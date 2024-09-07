@@ -1,0 +1,181 @@
+/* Mobile and Tablet */
+@media (max-width: 63.9375em) {
+     :root { 
+          --header-height: 6.5em;
+     }
+
+     .s-m-hidden {
+          display: none !important;
+     }
+
+     .s-m-content {
+          display: inherit;
+     }
+
+     /* global CSS*/
+     .web-content {
+          padding-top: var(--header-height);
+     }
+
+     /* CSS header for mobile and tablet */
+     #header-container {
+          max-height: var(--header-height);
+     }
+
+     .nav-btn {
+          display: none;
+     }
+
+     #header-container .s-m-header {
+          max-width: 45.25em;
+          max-height: 3em;
+     }
+
+     .s-m-header .header-items.s-m-nav-btn {
+          order: 1;
+          cursor: pointer;
+     }
+
+     .s-m-header .web-logo {
+          order: 2;
+          margin: auto;
+     }
+     .s-m-header .web-logo img {
+          max-height: 3em;
+     }
+
+     .s-m-header .header-items {
+          order: 3;
+     }
+
+     #header-container .search-container {
+          order: 4;
+          padding: 0.5em 0;
+     }
+
+     .header-items .cart-btn .cart-count.item-count {
+          left: 50%;
+     }
+
+     /* CSS for main content */
+     #main-content .category-tab .content-container {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+     }
+
+     #main-content .category-tab .content-container::-webkit-scrollbar {
+          display: none;
+     }
+
+     #main-content .category-tab {
+          overflow-x: hidden;
+     }
+
+     .category-tab .item-inner:hover .action {
+          display: none;
+     }
+
+     /* CSS for footer */
+     #footer-container {
+          padding-inline: 0.75em;
+     }
+}
+/* Mobile */
+@media (max-width: 46.1875em) {
+     /* set order for items in header bar */
+     #header-container .s-m-nav-btn,
+     #header-container .header-items {
+          padding-inline: 1em;
+     }
+
+     #header-container .search-container .search-form-container {
+          margin-inline: 0.5em;
+     }
+     
+     /* css for main content */
+     #main-content .ad-banner .banner-item {
+          width: 48%;
+     }
+
+     #main-content .service-container{
+          display: none;
+     }
+
+     #main-content .category-tab {
+          margin: 1.5em 0;
+     }
+
+     .category-tab .item-inner .item-image {
+          height: 16.65em;
+     }
+
+     .search-container .search-form-container input {
+          max-width: 100%;
+     }
+
+     .news-blogs-container .news-blogs-inner .tab-content {
+          margin: 1.25em 0.75em 0;
+          overflow-x: auto;
+     }
+     
+     .news-blogs-container .news-blogs-inner .tab-content::-webkit-scrollbar {
+          display: none;
+     }
+     
+
+     .news-blogs-container .news-blogs-inner .news-blogs-item {
+          width: 100%;
+     }
+
+     /* CSS for footer */
+     #footer-container .footer-col-container + .footer-col-container {
+          border: none;
+          margin-top: 2em;
+     }
+}
+
+/* Tablet */
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+     /* CSS for header content */
+
+     /* CSS for main content */
+     #main-content .banner-container {
+          margin-inline: 0.25em;
+     }
+
+     #main-content .homepage::before {
+          margin-inline: 0.5em;
+     }
+
+     #main-content .homepage::after {
+          margin-inline: 0.5em;
+     }
+
+     #main-content .category-tab {
+          margin: 1.5em 0.75em;
+     }
+
+     .s-m-header .s-m-nav-content {
+          width: 46%;
+     }
+
+     #main-content .service-container .service-content {
+          padding-inline: 0.2em;
+     }
+
+     .service-container .service-content > img {
+          margin-left: 1em;
+     }
+
+     /* CSS for footer content */
+     #footer-container .footer-col-container:last-child {
+          margin-top: 1.5em;
+          border: none;
+     }
+
+     #footer-container .footer-col-container .footer-icon {
+          max-width: 40%;
+     }
+}
+
+

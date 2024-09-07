@@ -1,0 +1,115 @@
+#main-container #login-registration-form {
+     display: flex;
+     justify-content: center;
+     padding-bottom: 1.25em;
+}
+
+#main-container #login-registration-form .userbox {
+     display: flex;
+     flex-flow: column wrap;
+     margin: 2em 2em;
+     min-height: 20em;
+     padding: 1em 1.5em;
+     background: var(--primary-white);
+     border-radius: var(--higher-radius);
+}
+
+#login-registration-form .userbox a {
+     color: var(--main-color);
+}
+
+#login-registration-form .userbox #login, #signup {
+     display: none;
+}
+
+.userbox #login-layout form,
+.userbox #signup-layout form {
+     display: flex;
+     flex-flow: column wrap;
+     padding: 1.25em 0 0;
+}
+
+.userbox #login-layout form > p {
+     text-align: start;
+}
+
+.userbox #login-layout input,
+.userbox #signup-layout input {
+     width: 22em;
+     opacity: 0.8;
+     height: var(--btn-height);
+     margin: 0.5em 0;
+     padding-inline: 0.25em;
+     background: unset;
+     border: 1px solid var(--primary-grey);
+     outline-style: none;
+     color: var(--primary-dark);
+     border-radius: var(--normal-radius);
+}
+
+.userbox #login-layout button,
+.userbox #signup-layout button {
+     margin-top: 0.75em;
+     background: var(--main-color);
+     color: var(--primary-black);
+     border: none;
+     height: 2.5em;
+     border-radius: var(--normal-radius);
+     cursor: pointer;
+}
+
+#login-registration-form .userbox div:nth-child(3) {
+     position: relative;
+}
+
+#login-registration-form .userbox div:nth-child(3)::before {
+     content: "";
+     left: 0;
+     top: 50%;
+     right: 56%;
+}
+
+#login-registration-form .userbox div:nth-child(3)::after {
+     content: "";
+     top: 50%;
+     right: 0;
+     left: 56%;
+}
+
+#login-registration-form .userbox div:nth-child(3)::after,
+#login-registration-form .userbox div:nth-child(3)::before {
+     height: 2px;
+     opacity: 0.4;
+     position: absolute;
+     background: var(--primary-dark);
+}
+
+#login-registration-form .userbox .customer-login-social {
+     display: flex;
+     flex-flow: column wrap;
+}
+
+.userbox .customer-login-social .btn-social-login {
+     gap: 6em;
+     padding-inline: 0.5em;
+     border: none;
+     display: flex;
+     align-items: center;
+     height: var(--btn-height);
+     border-radius: var(--normal-radius);
+}
+
+.userbox .customer-login-social #btn-facebook-login,
+.userbox .customer-login-social #btn-google-login {
+     color: var(--primary-dark);
+     cursor: pointer;
+}
+
+.userbox .customer-login-social #btn-facebook-login {
+     background-color: var(--main-color);
+}
+
+.userbox .customer-login-social #btn-google-login {
+
+     background-color: var(--bg-red);
+}

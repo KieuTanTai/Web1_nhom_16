@@ -1,0 +1,21 @@
+#main-container .cart-title {
+     margin-bottom: 0.25em;
+     padding: 0.5em 0;
+     display: flex;
+     align-items: center;
+}
+
+#main-container .cart-item-container img {
+     width: 20%;
+     height: 20%;
+}
+
+#main-container .cart-item-container #no-item {
+     padding: 0.75em;
+     display: flex;
+     align-items: center;
+     flex-flow: column wrap;
+     border-radius: var(--higher-radius);
+     background-color: var(--primary-white);
+     box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../Assets/CSS/Grid.css">
+     <link rel="stylesheet" href="../Assets/CSS/Base.css">
+     <link rel="stylesheet" href="../Assets/CSS/Style.css">
+     <link rel="stylesheet" href="../Assets/CSS/Responsive.css">
+     <link rel="stylesheet" href="../Assets/CSS/account.css">
+     <title>Tài Khoản</title>
+</head>
+<body>
+     <section class="grid wide">
+          <div class="grid-row flex-center">
+               <main id="main-container">
+                    <!-- add scripts login & registration form here -->
+                    <section id="login-registration-form" class="js-account-form">
+                         <div class="userbox">
+                              <div id="login" class="text-center">
+                                   <div class="font-size-20 uppercase font-bold">login</div>
+                                   <div id="login-layout">
+                                        <form action="" method="post">
+                                             <input type="email" name="customer-email-login" id="customer-email-login" placeholder="Email" 
+                                                  autocomplete="on" required>
+                                             <input type="password" name="customer-password-login" id="customer-password-login" placeholder="Password"
+                                                  autocomplete="current-password" required>
+          
+                                             <p class="font-size-13 capitalize forgot-ps-btn">
+                                                  <a href="#">forgot password?</a>
+                                             </p>
+          
+                                             <button type="submit" id="login-btn">
+                                                  <p class="capitalize font-bold">login</p>
+                                             </button>
+                                        </form>
+          
+                                        <div class="font-size-14 margin-y-12 nav-">
+                                             <span>Không có tài khoản ?</span>
+                                             <a href="#signup">signup</a> 
+                                        </div>
+                                   </div>
+                              </div>
+          
+                              <div id="signup" class="text-center">
+                                   <div class="font-size-20 uppercase font-bold">signup</div>
+                                   <div id="signup-layout">
+                                        <form action="" method="post">
+                                             <input type="text" name="customer-last-name" id="customer-last-name"  placeholder="Họ" required>
+                                             <input type="text" name="customer-first-name" id="customer-first-name" placeholder="Tên" required>
+                                             <input type="email" name="customer-email-signup" id="customer-email-signup" placeholder="Email" 
+                                                  autocomplete="on" required>
+                                             <input type="password" name="customer-password-signup" id="customer-password-signup" 
+                                                  placeholder="Create password" minlength="8" required>
+                                             <input type="password" name="customer-confirm-password-signup" id="customer-confirm-password-signup" 
+                                                  placeholder="Confirm password" minlength="8" required>
+                                             <button type="submit" id="signup-btn">
+                                                  <p class="capitalize font-bold">signup</p>
+                                             </button>
+                                        </form>
+          
+                                        <div class="font-size-14 margin-y-12">
+                                             <span>Đã có tài khoản ?</span>
+                                             <a href="#login">login</a> 
+                                        </div>
+                                   </div>
+          
+                              </div>
+          
+                              <!-- social login for login & signup -->
+                              <div class="opacity-0-6 text-center margin-bottom-12">OR</div>
+                              <div class="customer-login-social">
+                                   <button id="btn-facebook-login" class="btn-social-login margin-bottom-12">
+                                        <i class="fa-brands fa-facebook" style="color: var(--primary-white);"></i>
+                                        <span class="capitalize font-size-13 font-bold">login with facebook</span>
+                                   </button>
+          
+                                   <button id="btn-google-login" class="btn-social-login">
+                                        <i class="fa-brands fa-google" style="color: var(--primary-white);"></i>
+                                        <span class="capitalize font-size-13 font-bold">login with google</span>
+                                   </button>
+                              </div>
+                         </div>
+                    </section>
+               </main>
+          </div>
+     </section>
+     <script type="module" src="../JavaScript/account.js"></script>
+</body>
+</html>
