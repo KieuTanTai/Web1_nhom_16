@@ -79,8 +79,16 @@
 .header-items .cart-btn .cart-count.item-count {
      top: 16%;
      left: 16%;
-     color: var(--primary-white);
+     width: 1.25em;
+     height: 1.25em;
+     font-weight: 700;
+     font-size: 0.75rem;
+     border-radius: 50%;
+     display: flex;
+     position: absolute;
+     justify-content: center;
      background: var(--bg-red);
+     color: var(--primary-white);
 }
 
 #header-container .header-items #user-account {
@@ -130,21 +138,20 @@
 }
 
 #user-account .nav-account .lnw-btn {
-     height: 3em;
+     height: 2.5em;
      min-width: 14em;
-     border-radius: var(--higher-radius);
      display: flex;
      color: inherit;
      cursor: pointer;
      align-items: center;
+     padding: var(--btn-height);
      justify-content: center;
-     border: 0.2em solid var(--active);
      background: var(--primary-white);
+     border-radius: var(--higher-radius);
+     border: 0.2em solid var(--active);
 }
 
 #user-account .nav-account .lnw-btn.active {
-     color: inherit;
-     margin-bottom: 1em;
      background: var(--active);
 }
 
@@ -501,13 +508,13 @@
 }
 
 .category-tab .item-inner .item-image {
-     height: 18.75em;
+     height: 17.5em;
      overflow: hidden;
 }
 
 .category-tab .content-container .sale-label {
-     top: 0;
-     right: 2%;
+     top: -4%;
+     right: 0;
      padding: 0.5em;
      position: absolute;
      color: var(--primary-white);
@@ -522,11 +529,13 @@
 
 .category-tab .item-inner .info-inner {
      max-height: 3.75em;
+     display: flex;
      border-top: unset;
+     justify-content: center;
 }
 
 .category-tab .item-inner .info-inner h4 {
-     min-width: 6em;
+     max-width: 16em;
      padding-inline: 1em;
      overflow: hidden;
      text-align: center;
@@ -594,7 +603,7 @@
 
 /* load more item */
 #main-container .category-btn {
-     padding: 0.5em 4em;
+     padding: var(--btn-height) 4em;
      color: var(--primary-white);
      background: var(--main-color);
      border-radius: var(--higher-radius);
@@ -622,8 +631,14 @@
      flex-flow: row nowrap;
 }
 
+.news-blogs-container .news-blogs-inner .news-blogs-item {
+     display: flex;
+     flex-flow: column wrap;
+}
+
 .news-blogs-container .news-blogs-items .news-blogs-image {
      max-height: 23.5em;
+     
      overflow: hidden;
      position: relative;
 }
@@ -724,21 +739,19 @@
 
 .footer-col-container .footer-input #user-gmail {
      width: 100%;
-     height: 3em;
      margin-right: 1.5em;
-     border-radius: var(--higher-radius);
-     padding-inline: 0.5em;
      border: none;
      outline: none;
+     padding: var(--btn-height);
      color: var(--primary-dark);
+     border-radius: var(--higher-radius);
      background-color: var(--primary-grey);
 }
 
 .footer-col-container .footer-input .subscribe-btn {
      right: 34%;
-     height: 3em;
-     padding-inline: 1em;
      border-radius: 0 0.5em 0.5em 0;
+     padding: var(--btn-height) 1em;
      border: none;
      color: inherit;
      position: absolute;

@@ -37,14 +37,14 @@
 .userbox #signup-layout input {
      width: 22em;
      opacity: 0.8;
-     height: var(--btn-height);
      margin: 0.5em 0;
      padding-inline: 0.25em;
      background: unset;
-     border: 1px solid var(--primary-grey);
      outline-style: none;
+     padding: var(--btn-height);
      color: var(--primary-dark);
      border-radius: var(--normal-radius);
+     border: 1px solid var(--primary-grey);
 }
 
 .userbox #login-layout button,
@@ -95,7 +95,7 @@
      border: none;
      display: flex;
      align-items: center;
-     height: var(--btn-height);
+     padding: var(--btn-height);
      border-radius: var(--normal-radius);
 }
 
