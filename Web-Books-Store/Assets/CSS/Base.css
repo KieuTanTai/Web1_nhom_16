@@ -2,7 +2,7 @@
      --main-color: #81BAEA;
      --primary-dark: #000;
      --primary-white: #fff;
-     --primary-grey: #dddddd;
+     --primary-grey: #e8e8e8;
      --active: rgb(144, 212, 255);
      --footer-bg: #242434;
      --bg-body: #ECECEC;
@@ -11,17 +11,17 @@
      --body-theme: #232627;
      --btn-hover: #689AF2;
      --border: rgba(113, 156, 227, 0.3);
-     --cost-color: #7FC8F5;
+     --price-color: #7FC8F5;
      --overlay: rgba(0, 0, 0, 0.5);
      --filter: linear-gradient(rgba(174, 241, 255, 0.5), rgba(255, 255, 255, 0));
      --filter-reverse: linear-gradient(rgba(255, 255, 255, 0), rgba(174, 241, 255, 0.5));
 
-     --max-height-header: 3.5em;
-     --btn-height: 2.5em;
-     --max-search-bar: 4em;
-     --normal-radius: 0.25em;
-     --higher-radius: 0.5em;
+     --btn-height: 0.5em;
      --search-radius: 2em;
+     --max-search-bar: 4em;
+     --higher-radius: 0.5em;
+     --normal-radius: 0.25em;
+     --max-height-header: 3.5em;
 }
 
 /* reset CSS */
@@ -57,8 +57,14 @@ img {
 }
 
 del {
-     opacity: 0.8;
+     color: var(--primary-dark) !important;
+     opacity: 0.4;
 }
+
+ul {
+     list-style: none;
+}
+
 /* CSS global */
 
 /* width & height */
@@ -76,6 +82,55 @@ del {
 /* end width & height */
 
 /* margin & padding */
+/* margin */
+.margin-left-8 {
+     margin-left: 0.5em;
+}
+
+.margin-right-8 {
+     margin-right: 0.5em;
+}
+
+.margin-top-8 {
+     margin-top: 0.5em;
+}
+
+.margin-bottom-8 {
+     margin-bottom: 0.5em;
+}
+
+.margin-right-12 {
+     margin-right: 0.75em;
+}
+
+.margin-left-12 {
+     margin-left: 0.75em;
+}
+
+.margin-top-12 {
+     margin-top: 0.75em;
+}
+
+.margin-bottom-12 {
+     margin-bottom: 0.75em;
+}
+
+.margin-right-16 {
+     margin-right: 1em;
+}
+
+.margin-left-16 {
+     margin-left: 1em;
+}
+
+.margin-top-16 {
+     margin-top: 1em;
+}
+
+.margin-bottom-16 {
+     margin-bottom: 1em;
+}
+
 .margin-y-4 {
      margin: 0.25em 0;
 }
@@ -88,40 +143,65 @@ del {
      margin: 1.5em 0;
 }
 
-.margin-bottom-12 {
-     margin-bottom: 0.75em;
-}
-
-.margin-bottom-20 {
-     margin-bottom: 1.25em;
-}
-
 .margin-inline-12 {
      margin-inline: 0.75em;
 }
 
-.padding-left-8 {
-     padding-left: 0.5em;
+/* padding */
+.padding-8 {
+     padding: 0.5em;
 }
 
 .padding-right-8 {
      padding-right: 0.5em;
 }
 
-.padding-inline-12 {
-     padding-inline: 0.75em;
+.padding-left-8 {
+     padding-left: 0.5em;
 }
 
-.padding-left-16 {
-     padding-left: 1em;
+.padding-top-8 {
+     padding-top: 0.5em;
+}
+
+.padding-bottom-8 {
+     padding-bottom: 0.5em;
+}
+
+.padding-right-12 {
+     padding-right: 0.75em;
+}
+
+.padding-left-12 {
+     padding-left: 0.75em;
+}
+
+.padding-top-12 {
+     padding-top: 0.75em;
+}
+
+.padding-bottom-12 {
+     padding-bottom: 0.75em;
+}
+
+.padding-inline-12 {
+     padding-inline: 0.75em;
 }
 
 .padding-right-16 {
      padding-right: 1em;
 }
 
-.padding-8 {
-     padding: 0.5em;
+.padding-left-16 {
+     padding-left: 1em;
+}
+
+.padding-top-16 {
+     padding-top: 1em;
+}
+
+.padding-bottom-16 {
+     padding-right: 1em;
 }
 /* end margin & padding */
 
@@ -162,6 +242,10 @@ del {
      font-size: 0.875rem;
 }
 
+.font-size-16 {
+     font-size: 1rem;
+}
+
 .font-size-20 {
      font-size: 1.25rem;
 }
@@ -184,11 +268,21 @@ del {
      text-align: center;
 }
 
-.flex-center {
+.flex {
      display: flex;
-     align-items: center;
      flex-flow: row wrap;
+}
+
+.justify-center {
      justify-content: center;
+}
+
+.justify-space-between {
+     justify-content: space-between;
+}
+
+.align-center {
+     align-items: center;
 }
 
 .flex-direction-y {
@@ -210,6 +304,10 @@ del {
 
 .opacity-0-6 {
      opacity: 0.6;
+}
+
+.opacity-0-8 {
+     opacity: 0.8;
 }
 /* end display */
 
@@ -249,18 +347,6 @@ del {
      position: absolute;
 }
 
-/* count item on notification icon or cart icon */
-.item-count {
-     width: 1.25em;
-     height: 1.25em;
-     font-weight: 700;
-     font-size: 0.75rem;
-     border-radius: 50%;
-     display: flex;
-     position: absolute;
-     justify-content: center;
-}
-
 /* css for nav button */
 .nav-btn {
      left: 0;
@@ -297,6 +383,15 @@ del {
      background: var(--btn-hover);
 }
 /* end button & items */
+
+/* css for cart ui */
+.cart-ui {
+     padding: 0.75em;
+     border-radius: var(--higher-radius);
+     box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+     background-color: var(--primary-white);
+}
+/* end css for cart ui */
 
 /* animation */
 @keyframes fadeIn {
@@ -374,6 +469,12 @@ del {
      text-decoration: none;
 }
 
-.cost {
-     color: var(--cost-color);
+
+/* css for class price */
+.price {
+     color: var(--price-color);
+}
+
+.total-price {
+     color: var(--bg-red);
 }

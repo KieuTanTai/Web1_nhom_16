@@ -12,21 +12,21 @@
      <link rel="stylesheet" href="../Assets/CSS/account.css">
      <title>Light Novel World</title>
 </head>
-<body class="body-index">
+<body>
      <div class="web-content">
           <!-- html for header -->
           <header id="header-container">
                <section class="grid wide">
-                    <section class="grid-row" style="justify-content: center;">
+                    <section class="grid-row flex justify-center">
                          <!-- header bar with most useful function for users -->
                          <!-- header for mobile and tablet -->
-                         <div class="s-m-header s-m-content flex-center grid-col col-m-12 col-s-12 no-gutter">
+                         <div class="s-m-header s-m-content flex justify-center align-center grid-col col-m-12 col-s-12 no-gutter">
                               <div class="header-items full-height s-m-content s-m-nav-btn">
                                         <i class="fa-solid fa-list fa-xl" style="color: var(--main-color);"></i>
                                         
                                         <div class="overlay">
                                              <div class="s-m-nav-content s-m-content">
-                                                  <div class="flex-center margin-y-12">
+                                                  <div class="flex justify-center align-center margin-y-12">
                                                        <a href="">Đăng nhập</a>
                                                        <span class="padding-inline-12">/</span>
                                                        <a href="">Đăng ký</a>
@@ -88,12 +88,12 @@
                          </div>
 
                          <section class="search-container grid-col col-l-5 col-m-12 col-s-12">
-                              <div class="search-form-container flex-center">
+                              <div class="search-form-container flex justify-center align-center">
                                    <form action="" method="get" autocomplete="on">
                                         <label for="search">
                                              <input type="text" name="search" id="search" class="no-outline" size="100%" placeholder="Tìm kiếm sản phẩm...."/>
                                         </label>
-                                        <button type="submit" class="search-btn flex-center">
+                                        <button type="submit" class="search-btn flex justify-center align-center">
                                                   <i class="fa-solid fa-magnifying-glass fa-gl" style="color: var(--primary-white);"></i>
                                         </button>
                                    </form>
@@ -137,24 +137,28 @@
 
                               <div id="user-account" class="full-height">
                                    <a href="#" onclick="return false">
-                                        <div id="no-sign-in" class="flex-center" >
+                                        <div id="no-sign-in" class="flex justify-center align-center" >
                                              <i class="fa-regular fa-circle-user fa-xl" style="color: var(--main-color);"></i>
                                              <p class="padding-left-8">Tài khoản</p>
                                         </div>
 
                                         <!-- account -->
-                                        <nav class="nav-account flex-center flex-direction-y">
-                                             <button type="button" title="Đăng nhập" class="lnw-btn active js-login">
+                                        <nav class="nav-account flex justify-center align-center flex-direction-y">
+                                             <button type="button" title="Đăng nhập" class="lnw-btn active js-login margin-bottom-16">
                                                   <span class="font-bold uppercase">Đăng nhập</span>
                                              </button>
 
                                              <button type="button" title="Đăng ký" class="lnw-btn js-signup">
                                                   <span class="font-bold uppercase">Đăng ký</span>
                                              </button>
+
+                                             <button type="button" title="Đăng xuất" class="lnw-btn js-signup margin-top-16 disable">
+                                                  <span class="font-bold uppercase">Đăng xuất</span>
+                                             </button>
                                         </nav>
                                    </a>
                               </div>
-                              <script type="module" src="../JavaScript/Account.js"></script>
+                              <script type="module" src="../JavaScript/Temp.js"></script>
                          </section>
                     </section>
                </section>
@@ -169,7 +173,7 @@
                               <div class="sub-menu min-height-40 grid-col col-l-12">
                                    <div class="sub-menu-item grid-col col-l-2 no-gutter">                        
                                         <!-- Nav button -->
-                                        <div class="flex-center list-btn min-height-40 full-width">
+                                        <div class="flex justify-center align-center list-btn min-height-40 full-width">
                                              <span>
                                                   <i class="fa-solid fa-list" style="color: var(--primary-white);"></i>
                                              </span>
@@ -304,15 +308,11 @@
 
                <!-- html for main content -->
                <section id="main-content">
-                    <article id="scroll-top" class="s-m-hidden">
-                         <img src="../Assets/Images/Icons/Web_logo/manga-icon-backtotop_550x700_1.png" alt="back to top">
-                    </article>
-
                     <!-- main items -->
                     <section class="grid wide"> 
                          <div class="grid-row">
                               <!-- banner -->
-                              <section class="banner-container flex-center">
+                              <section class="banner-container flex justify-center align-center">
                                    <div class="grid-col col-l-12 col-m-12 col-s-12 homepage">
                                         <img src="../Assets/Images/BackGrounds/siteheader_weakestTamerLN_864x300.jpg" alt="LIGHT NOVEL WORLD">
                                    </div>
@@ -345,7 +345,7 @@
                               </section>
 
                               <!-- service -->
-                              <section class="service-container flex-center margin-y-24 margin-inline-12">
+                              <section class="service-container flex justify-center align-center margin-y-24 margin-inline-12">
                                    <div class="service-content grid-col col-l-3 col-m-3 col-s-6">
                                         <img src="../Assets/Images/Icons/Service/icon-sv1.jpg" alt="Thanh toán">
                                         <div class="flex-direction-y padding-left-8">
@@ -383,14 +383,15 @@
                               <section id="fs-container" class="category-tab">
                                    <section class="heading">
                                         <span id="fs-label" class="heading-label"></span>
-                                        <span class="fs-countdown flex-center padding-left-8 font-bold">
-                                             <p class="s-m-hidden padding-right-8">kết thúc trong:</p>
+                                        <span class="fs-countdown flex justify-center align-center padding-left-8 font-bold">
+                                             <p class="s-m-hidden padding-right-8">kết thúc vào ngày:</p>
                                              <div class="fs-time">
-                                                  <span class="fs-number">01</span>
+                                                  <!-- <span class="fs-number">01</span>
                                                   <span>:</span>
                                                   <span class="fs-number">59</span>
                                                   <span>:</span>
-                                                  <span class="fs-number">59</span>
+                                                  <span class="fs-number">59</span> -->
+                                                  <span class="fs-number">23/09</span>
                                              </div>
                                         </span>
                                    </section>
@@ -405,11 +406,11 @@
                                                   </div>
                                                   <div class="sale-label">31%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">3 ngày hạnh phúc</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">59,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">85,000₫</del>
+                                                            <span class="price font-bold">59,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">85,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -437,11 +438,11 @@
                                                   </div>
                                                   <div class="sale-label">45%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">đau ơi bay đi</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">66,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">120,000₫</del>
+                                                            <span class="price font-bold">66,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">120,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -469,11 +470,11 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khi ấy là một đêm đầy sao</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">111,200₫</span>
-                                                            <del class="padding-left-8 font-size-14">139,000₫</del>
+                                                            <span class="price font-bold">111,200₫</span>
+                                                            <del class="price padding-left-8 font-size-14">139,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -502,11 +503,11 @@
                                                   </div>
                                                   <div class="sale-label">40%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">đêm nay dẫu tình yêu biến mất khỏi thế gian</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">77,400₫</span>
-                                                            <del class="padding-left-8 font-size-14">129,000₫</del>
+                                                            <span class="price font-bold">77,400₫</span>
+                                                            <del class="price padding-left-8 font-size-14">129,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -535,11 +536,11 @@
                                                   </div>
                                                   <div class="sale-label">26%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">em là ánh sáng giữa đêm trăng</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">59,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">80,000₫</del>
+                                                            <span class="price font-bold">59,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">80,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -566,7 +567,7 @@
                                              <i class="fa-solid fa-angle-right fa-lg" style="color: var(--primary-white);"></i>
                                         </div>
                                    </div>                      
-                                   <section class="flex-center font-bold capitalize margin-bottom-20">
+                                   <section class="flex justify-center align-center font-bold capitalize margin-bottom-16">
                                         <a href=" " target="_blank" class="category-btn">Xem thêm</a>
                                    </section>
                               </section>
@@ -589,11 +590,11 @@
                                                   </div>
                                                   <div class="sale-label">70%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">BELLE - Rồng Và Công Chúa Tàn Nhang</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">33,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">110,000₫</del>
+                                                            <span class="price font-bold">33,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">110,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -622,11 +623,11 @@
                                                   </div>
                                                   <div class="sale-label">35%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Tặng Hoa Cho Quái Vật Trong Rừng</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">74,750₫</span>
-                                                            <del class="padding-left-8 font-size-14">115,000₫</del>
+                                                            <span class="price font-bold">74,750₫</span>
+                                                            <del class="price padding-left-8 font-size-14">115,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -655,11 +656,11 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khi Muốn Khóc Tôi Đeo Mặt Nạ Mèo</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">78,400₫</span>
-                                                            <del class="padding-left-8 font-size-14">98,000₫</del>
+                                                            <span class="price font-bold">78,400₫</span>
+                                                            <del class="price padding-left-8 font-size-14">98,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -687,11 +688,11 @@
                                                   </div>
                                                   <div class="sale-label">35%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 7</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">55,250₫</span>
-                                                            <del class="padding-left-8 font-size-14">65,000₫</del>
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -719,11 +720,11 @@
                                                   </div>
                                                   <div class="sale-label">15%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Yotsuba&! - 4</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">55,250₫</span>
-                                                            <del class="padding-left-8 font-size-14">65,000₫</del>
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -751,11 +752,11 @@
                                                   </div>
                                                   <div class="sale-label">15%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 6</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">55,250₫</span>
-                                                            <del class="padding-left-8 font-size-14">65,000₫</del>
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -783,11 +784,11 @@
                                                   </div>
                                                   <div class="sale-label">23%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Yotsuba&! - 4</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">84,700₫</span>
-                                                            <del class="padding-left-8 font-size-14">110,000₫</del>
+                                                            <span class="price font-bold">84,700₫</span>
+                                                            <del class="price padding-left-8 font-size-14">110,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -816,13 +817,13 @@
                                                   </div>
                                                   <div class="sale-label">40%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">
                                                             Alice Ở Xứ Sở Diệu Kỳ Và Thế Giới Trong Gương
                                                        </h4>                                             
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold ">90,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">150,000₫</del>
+                                                            <span class="price font-bold ">90,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">150,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -850,13 +851,13 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">
                                                             Clean Code - Mã Sạch Và Con Đường Trở Thành Lập Trình Viên Giỏi (Tái Bản 2023)
                                                        </h4>                                             
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold ">308,800₫</span>
-                                                            <del class="padding-left-8 font-size-14">386,000₫</del>
+                                                            <span class="price font-bold ">308,800₫</span>
+                                                            <del class="price padding-left-8 font-size-14">386,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -885,13 +886,13 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">
                                                             Kanji Look And Learn - 512 Chữ Kanji Có Minh Họa Và Gợi Nhớ Bằng Hình - Bài Tập Workbook
                                                        </h4>                                             
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold ">96,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">120,000₫</del>
+                                                            <span class="price font-bold ">96,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">120,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -911,7 +912,7 @@
                                         </div>    
                                    </section>
 
-                                   <section class="flex-center font-bold capitalize margin-bottom-20">
+                                   <section class="flex justify-center align-center font-bold capitalize margin-bottom-16">
                                         <a href=" " target="_blank" class="category-btn">Xem thêm</a>
                                    </section>
                               </section>
@@ -934,11 +935,11 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khi Muốn Khóc Tôi Đeo Mặt Nạ Mèo</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">78,400₫</span>
-                                                            <del class="padding-left-8 font-size-14">98,000₫</del>
+                                                            <span class="price font-bold">78,400₫</span>
+                                                            <del class="price padding-left-8 font-size-14">98,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -967,11 +968,11 @@
                                                   </div>
                                                   <div class="sale-label">30%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Bầu Trời Xanh Của Em</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">77,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">110,000₫</del>
+                                                            <span class="price font-bold">77,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">110,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1000,11 +1001,11 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khóa Chặt Cửa Nào Suzume (Bìa Cứng)</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">152,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">190,000₫</del>
+                                                            <span class="price font-bold">152,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">190,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1032,11 +1033,11 @@
                                                   </div>
                                                   <div class="sale-label">40%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Hello World</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">72,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">120,000₫</del>
+                                                            <span class="price font-bold">72,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">120,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1064,11 +1065,11 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khu Vườn Ngôn Từ</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">96,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">120,000₫</del>
+                                                            <span class="price font-bold">96,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">120,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1088,7 +1089,7 @@
                                         </div>       
                                    </section>
                                    
-                                   <section class="flex-center font-bold capitalize margin-bottom-20">
+                                   <section class="flex justify-center align-center font-bold capitalize margin-bottom-16">
                                         <a href=" " target="_blank" class="category-btn">Xem thêm</a>
                                    </section>
                               </section>
@@ -1111,11 +1112,11 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khóa Chặt Cửa Nào Suzume (Bìa Mềm)</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">116,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">145,000₫</del>
+                                                            <span class="price font-bold">116,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">145,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1144,11 +1145,11 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Tôi Muốn Bảo Vệ Cậu Dù Phải Mất Đi... Tình Yêu Này</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">100,800₫</span>
-                                                            <del class="padding-left-8 font-size-14">126,000₫</del>
+                                                            <span class="price font-bold">100,800₫</span>
+                                                            <del class="price padding-left-8 font-size-14">126,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1176,11 +1177,11 @@
                                                   </div>
                                                   <div class="sale-label">50%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Tạm Biệt Trời Xanh</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">58,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">116,000₫</del>
+                                                            <span class="price font-bold">58,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">116,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1209,11 +1210,11 @@
                                                   </div>
                                                   <div class="sale-label">26%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Okitegami Kyoko I - Sổ Ghi Chép</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">107,300₫</span>
-                                                            <del class="padding-left-8 font-size-14">145,000₫</del>
+                                                            <span class="price font-bold">107,300₫</span>
+                                                            <del class="price padding-left-8 font-size-14">145,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1242,11 +1243,11 @@
                                                   </div>
                                                   <div class="sale-label">50%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Okitegami Kyoko II - Thư Tiến Cử</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">87,500₫</span>
-                                                            <del class="padding-left-8 font-size-14">175,000₫</del>
+                                                            <span class="price font-bold">87,500₫</span>
+                                                            <del class="price padding-left-8 font-size-14">175,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1266,7 +1267,7 @@
                                         </div>    
                                    </section>
                                    
-                                   <section class="flex-center font-bold capitalize margin-bottom-20">
+                                   <section class="flex justify-center align-center font-bold capitalize margin-bottom-16">
                                         <a href=" " target="_blank" class="category-btn">Xem thêm</a>
                                    </section>
                               </section>
@@ -1288,11 +1289,11 @@
                                                   </div>
                                                   <div class="sale-label">15%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 1</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">55,250₫</span>
-                                                            <del class="padding-left-8 font-size-14">65,000₫</del>
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1320,11 +1321,11 @@
                                                   </div>
                                                   <div class="sale-label">15%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 2</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">55,250₫</span>
-                                                            <del class="padding-left-8 font-size-14">65,000₫</del>
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1352,11 +1353,11 @@
                                                   </div>
                                                   <div class="sale-label">15%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 3</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">55,250₫</span>
-                                                            <del class="padding-left-8 font-size-14">65,000₫</del>
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1384,11 +1385,11 @@
                                                   </div>
                                                   <div class="sale-label">15%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 4</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">55,250₫</span>
-                                                            <del class="padding-left-8 font-size-14">65,000₫</del>
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1416,11 +1417,11 @@
                                                   </div>
                                                   <div class="sale-label">15%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 5</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">55,250₫</span>
-                                                            <del class="padding-left-8 font-size-14">65,000₫</del>
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1440,7 +1441,7 @@
                                         </div>   
                                    </section>
                                    
-                                   <section class="flex-center font-bold capitalize margin-bottom-20">
+                                   <section class="flex justify-center align-center font-bold capitalize margin-bottom-16">
                                         <a href=" " target="_blank" class="category-btn">Xem thêm</a>
                                    </section>
                               </section>
@@ -1463,13 +1464,13 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">
                                                             Kanji Look And Learn - 512 Chữ Kanji Có Minh Họa Và Gợi Nhớ Bằng Hình
                                                        </h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">128,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">160,000₫</del>
+                                                            <span class="price font-bold">128,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">160,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1498,13 +1499,13 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">
                                                             Kanji Look And Learn - 512 Chữ Kanji Có Minh Họa Và Gợi Nhớ Bằng Hình - Bài Tập Workbook
                                                        </h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">96,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">120,000₫</del>
+                                                            <span class="price font-bold">96,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">120,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1533,13 +1534,13 @@
                                                   </div>
                                                   <div class="sale-label">40%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">
                                                             Alice Ở Xứ Sở Diệu Kỳ Và Thế Giới Trong Gương
                                                        </h4>                                             
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold ">90,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">150,000₫</del>
+                                                            <span class="price font-bold ">90,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">150,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1567,13 +1568,13 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">
                                                             Clean Code - Mã Sạch Và Con Đường Trở Thành Lập Trình Viên Giỏi (Tái Bản 2023)
                                                        </h4>                                             
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold ">308,800₫</span>
-                                                            <del class="padding-left-8 font-size-14">386,000₫</del>
+                                                            <span class="price font-bold ">308,800₫</span>
+                                                            <del class="price padding-left-8 font-size-14">386,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1601,11 +1602,11 @@
                                                   </div>
                                                   <div class="sale-label">20%</div>
                                                   <div class="sale-off font-bold">Hết hàng</div>
-                                                  <div class="info-inner flex-center line-height-1-6">
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
                                                        <h4 class="font-light capitalize">Ám Hắc Quán – Combo 2 Tập</h4>
                                                        <div class="margin-y-4">
-                                                            <span class="cost font-bold">280,000₫</span>
-                                                            <del class="padding-left-8 font-size-14">350,000₫</del>
+                                                            <span class="price font-bold">280,000₫</span>
+                                                            <del class="price padding-left-8 font-size-14">350,000₫</del>
                                                        </div>
                                                   </div>
                                                   <div class="action">
@@ -1625,7 +1626,7 @@
                                         </div>    
                                    </section>
                                    
-                                   <section class="flex-center font-bold capitalize margin-bottom-20">
+                                   <section class="flex justify-center align-center font-bold capitalize margin-bottom-16">
                                         <a href=" " target="_blank" class="category-btn">Xem thêm</a>
                                    </section>
                               </section>
@@ -1636,7 +1637,7 @@
                     <section class="news-blogs-container">
                          <section class="grid wide">
                               <div class="grid-row">
-                                   <h2 class="grid-col col-l-12 col-m-12 col-s-12 flex-center uppercase margin-bottom-20 full-width">bài viết mới</h2>
+                                   <h2 class="grid-col col-l-12 col-m-12 col-s-12 flex justify-center align-center uppercase margin-bottom-16 full-width">bài viết mới</h2>
                                    <div class="news-blogs-inner active">
                                         <div class="tab-content">
                                              <div class="news-blogs-items">
@@ -1742,17 +1743,17 @@
                                    </a>
                               </div>
                               <div class="contact-info">
-                                   <div class="margin-bottom-20">
+                                   <div class="margin-bottom-16">
                                         <i class="fa-solid fa-map-location-dot fa-xl" style="color: var(--main-color);"></i>
                                         <div class="line-height-1-6 font-size-14 padding-left-16">
                                              <p> Số 110 Nguyễn Ngọc Nại, Khương Mai, Thanh Xuân, Hà Nội</p>
                                         </div>
                                    </div>
-                                   <div class="margin-bottom-20">
+                                   <div class="margin-bottom-16">
                                         <i class="fa-solid fa-phone fa-xl" style="color: var(--main-color);"></i>
                                         <p class="padding-left-16">Hotline: 03 2838 xxxx</p>
                                    </div>
-                                   <div class="margin-bottom-20">
+                                   <div class="margin-bottom-16">
                                         <i class="fa-regular fa-envelope fa-xl" style="color: var(--main-color);"></i>
                                         <p class="padding-left-16">tanthi***la**@gmail.com</p>
                                    </div>
@@ -1793,7 +1794,7 @@
                          </div>
 
                          <div class="footer-col-container grid-col col-l-3 col-m-12 col-s-12">
-                              <h4 class="uppercase margin-bottom-20">kết nối với chúng tôi</h4>
+                              <h4 class="uppercase margin-bottom-16">kết nối với chúng tôi</h4>
                               <div class="footer-icon">
                                    <div>
                                         <a href="https://www.facebook.com/profile.php?id=100079218978533" target="_blank">
@@ -1821,7 +1822,7 @@
                                         </a>
                                    </div>
                               </div>
-                              <h4 class="uppercase margin-bottom-20">các phương thức thanh toán</h4>
+                              <h4 class="uppercase margin-bottom-16">các phương thức thanh toán</h4>
                               <div class="footer-image-container">
                                    <div class="footer-image-item">
                                         <img src="../Assets/Images/Icons/Payment_method/internet_banking.jpg" alt="internet banking">
@@ -1849,5 +1850,6 @@
      </div>
      <!-- <script type="module" src="../JavaScript/Interface.js"></script> -->
      <script type="module" src="../JavaScript/Demo.js"></script>
+     <script type="module" src="../JavaScript/Account.js"></script>
 </body>
 </html>

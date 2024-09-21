@@ -106,7 +106,11 @@
      }
 
      .category-tab .item-inner .item-image {
-          height: 16.65em;
+          height: 16em;
+     }
+
+     .category-tab .item-inner .info-inner h4 {
+          min-width: 16em;
      }
 
      .search-container .search-form-container input {
