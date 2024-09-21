@@ -724,6 +724,7 @@
 .footer-col-container .block-footer a {
      line-height: 1.8;
      font-size: 0.94rem;
+     pointer-events: none; /*disable link in block footer*/
 }
 
 .footer-col-container .block-footer a:hover {
