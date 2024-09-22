@@ -229,7 +229,7 @@
 
 .sub-menu .sub-menu-item .list-btn:hover {
      z-index: 10;
-     max-width: inherit;
+     max-width: 12.5em;
      position: fixed;
      cursor: pointer;
      box-shadow: 0 0.25em 0.5em var(--primary-dark);
@@ -724,7 +724,6 @@
 .footer-col-container .block-footer a {
      line-height: 1.8;
      font-size: 0.94rem;
-     pointer-events: none; /*disable link in block footer*/
 }
 
 .footer-col-container .block-footer a:hover {
