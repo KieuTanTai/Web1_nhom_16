@@ -1,0 +1,223 @@
+#main-container .order-status-container {
+     overflow: hidden;
+     position: relative;
+}
+
+.order-status-container #blank-order {
+     display: flex; 
+     align-items: center;
+     flex-flow: column wrap;
+}
+
+.order-status-container #blank-order img{
+     width: 20%;
+}
+
+#blank-order, 
+#consignee-order,
+#history-order-container {
+     padding: 1.5em;
+     background: var(--primary-white);
+     border-radius: var(--higher-radius);
+}
+
+.order-status-container .order-status-header {
+     position: relative;
+}
+
+.order-status-container .order-status-header > p::before {
+     content: " ";
+     top: 50%;
+     left: 40%;
+     right: 20%;
+     padding: 1px;
+     opacity: 0.8;
+     position: absolute;
+     transform: translateX(-100%);
+     background-color: var(--main-color);
+}
+
+.order-status-header > p::after {
+     content: " ";
+     top: 50%;
+     left: 20%;
+     right: 40%;
+     padding: 1px;
+     opacity: 0.8;
+     position: absolute;
+     transform: translateX(100%);
+     background-color: var(--main-color);
+}
+
+.order-status-container .order-info .block-order-info  {
+     min-height: 6em;
+     padding: 0.5em 0;
+}
+
+.order-info .block-order-info > h4 {
+     padding-bottom: 0.25em;
+}
+
+.order-status-container .order-info .tracking-bar {
+     display: flex; 
+     flex-grow: 1;
+}
+
+.order-info .tracking-bar:not(:nth-child(2)) {
+     padding-inline: 1em;
+}
+
+.tracking-bar .dot-status {
+     min-height: 4.75em;
+     position: relative;
+}
+
+.tracking-bar .in-transit-dot .dot-status::before {
+     content: " ";
+     top : 14%;
+     left: -42%;
+     right: 0;
+     opacity: 0.4;
+     height: 0.25em;
+     margin-left: 0.1em;
+     margin-right: 0.6em;
+     transform: translateX(-36%);
+     display: block;
+     position: absolute;
+     background-color: var(--main-color);
+}
+
+.tracking-bar .in-transit-dot .dot-status::after {
+     content: " ";
+     top : 14%;
+     left: 0;
+     right: -42%;
+     opacity: 0.4;
+     height: 0.25em;
+     margin-left: 0.6em;
+     margin-right: 0.1em;
+     transform: translateX(36%);
+     display: block;
+     position: absolute;
+     background-color: var(--main-color);
+}
+
+.tracking-bar .dot-status .dot-active 
+/* .tracking-bar .dot-status .dot-disable*/{
+     display: none;
+} 
+
+.tracking-bar .dot-status p {
+     font-weight: 500;
+     padding-top: 1em;
+     
+}
+
+.tracking-bar .shipped-dot p {
+     max-width: 12em;
+     margin-left: -2em;
+} 
+
+.tracking-bar .delivered-dot p {
+     max-width: 7em;
+     margin-left: auto;
+     margin-right: -2em;
+}
+
+.shipped-dot .dot-status .border-arrow-top {
+     left: 0;
+     top: 1em;
+     transform: translateX(10%); 
+}    
+
+.in-transit-dot .dot-status .border-arrow-top {
+     top: 1em;
+     left: 50%;
+     transform: translateX(-50%);
+}
+
+.delivered-dot .dot-status .border-arrow-top {
+     top: 1em;
+     right: 0;
+     transform: translateX(-10%);
+}
+
+.order-status-container .order-info .tracking-table {
+     flex-flow:column-reverse;
+}
+
+.tracking-table .tracking-block:not(:last-child) {
+     border-top: 1px solid var(--border);
+} 
+
+.order-info .tracking-block .dot-status{
+     position: relative;
+}
+
+/* .tracking-block:not(:last-child) .dot-status > div::before {
+     content: " ";
+     position: absolute;
+     top: 0;
+     left: 50%;
+     bottom: 0;
+     width: 0.25em;
+     opacity: 0.8;
+     transform: translate(-50%, -70%);
+     background: var(--main-color);
+} */
+
+.order-status-container #consignee-order .history-order-link {
+     max-width: 20%;
+     padding: 0.5em;
+     margin: auto;
+     cursor: pointer;
+     color: var(--primary-white);
+     background: var(--main-color);
+     border-radius: var(--normal-radius);
+     border: 1px solid var(--main-color);
+}
+
+#consignee-order .history-order-link:hover {
+     box-shadow: 0 0 1px var(--primary-dark);
+}
+
+.history-order-table .cart-item {
+     margin-bottom: 1em;
+     flex-basis: calc(50% - 0.5em);
+     display: flex;
+     flex-flow: column wrap;
+     justify-content: space-between;
+}
+
+.history-order-table .cart-item .cart-content {
+     padding: 0.5em;
+     border-radius: var(--normal-radius);
+     border: 1px solid var(--main-color);
+     box-shadow: 0 0 1px var(--primary-dark);
+}
+
+#history-order-container .cart-item img {
+     width: 12%;
+     height: 100%;
+     object-fit: contain;
+}
+
+.history-order-table .cart-item > div + div {
+     border-top: 1px solid var(--border);
+
+}
+
+.history-order-table .cart-item .order-status {
+     cursor: pointer;
+}
+
+.cart-item .buy-btn > div{
+     line-height: 1.4;
+     padding: 0.5em 1.5em;
+     background: var(--main-color);
+     border-radius: var(--higher-radius);
+}
+
+.history-order-table .completed-order-info {
+     display: flex;
+}

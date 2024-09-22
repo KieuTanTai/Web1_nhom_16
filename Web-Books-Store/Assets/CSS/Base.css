@@ -3,6 +3,7 @@
      --primary-dark: #000;
      --primary-white: #fff;
      --primary-grey: #e8e8e8;
+     --primary-IPM-green: rgb(0,130,26);
      --active: rgb(144, 212, 255);
      --footer-bg: #242434;
      --bg-body: #ECECEC;
@@ -99,6 +100,10 @@ ul {
      margin-bottom: 0.5em;
 }
 
+.margin-inline-8 {
+     margin-inline: 0.5em;
+}
+
 .margin-right-12 {
      margin-right: 0.75em;
 }
@@ -113,6 +118,10 @@ ul {
 
 .margin-bottom-12 {
      margin-bottom: 0.75em;
+}
+
+.margin-inline-12 {
+     margin-inline: 0.75em;
 }
 
 .margin-right-16 {
@@ -131,6 +140,10 @@ ul {
      margin-bottom: 1em;
 }
 
+.margin-inline-16 {
+     margin-inline: 1em;
+}
+
 .margin-y-4 {
      margin: 0.25em 0;
 }
@@ -141,10 +154,6 @@ ul {
 
 .margin-y-24 {
      margin: 1.5em 0;
-}
-
-.margin-inline-12 {
-     margin-inline: 0.75em;
 }
 
 /* padding */
@@ -166,6 +175,10 @@ ul {
 
 .padding-bottom-8 {
      padding-bottom: 0.5em;
+}
+
+.padding-inline-8 {
+     padding-inline: 0.5em;
 }
 
 .padding-right-12 {
@@ -202,6 +215,10 @@ ul {
 
 .padding-bottom-16 {
      padding-right: 1em;
+}
+
+.padding-inline-16 {
+     padding-inline: 1em;
 }
 /* end margin & padding */
 
@@ -268,6 +285,10 @@ ul {
      text-align: center;
 }
 
+.text-end {
+     text-align: end;
+}
+
 .flex {
      display: flex;
      flex-flow: row wrap;
@@ -275,6 +296,10 @@ ul {
 
 .justify-center {
      justify-content: center;
+}
+
+.justify-end {
+     justify-content: end;
 }
 
 .justify-space-between {
@@ -444,15 +469,42 @@ ul {
      }
 }
 
+/* css for border arrow */
+.border-arrow-right { 
+     border-width: 0.5em;
+     position: absolute;
+     border-style: solid;
+     border-color: transparent var(--primary-dark) transparent transparent;
+}
+
+.border-arrow-left { 
+     border-width: 0.5em;
+     position: absolute;
+     border-style: solid;
+     border-color: transparent transparent transparent var(--primary-dark);
+}
+
+.border-arrow-top { 
+     border-width: 0.5em;
+     position: absolute;
+     border-style: solid;
+     border-color: transparent transparent var(--primary-dark) transparent;
+}
+
+.border-arrow-bottom { 
+     border-width: 0.5em;
+     position: absolute;
+     border-style: solid;
+     border-color: var(--primary-dark) transparent transparent transparent;
+}
+
 /* other */
 .s-m-content {
      display: none;
 }
 
-.disable {
-     display: none !important;
-}
 
+/* disable active success error */
 .active {
      display: unset !important;
 }
@@ -461,6 +513,19 @@ ul {
      animation: fadeIn linear .4 !important;
 }
 
+.disable {
+     display: none !important;
+}
+
+.success-color {
+     color: var(--primary-IPM-green);
+}
+
+.error-color {
+     color: var(--bg-red);
+}
+
+/* disable some base css */
 .no-outline {
      outline: none;
 }
