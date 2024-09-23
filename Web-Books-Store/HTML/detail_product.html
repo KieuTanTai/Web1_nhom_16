@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="shortcut icon" href="../Assets/Images/Icons/Web_logo/main-logo.ico" type="image/x-icon">
+     <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css">
+     <link rel="stylesheet" href="../Assets/CSS/Grid.css">
+     <link rel="stylesheet" href="../Assets/CSS/Base.css">
+     <link rel="stylesheet" href="../Assets/CSS/Style.css">
+     <link rel="stylesheet" href="../Assets/CSS/Responsive.css">
+     <link rel="stylesheet" href="../Assets/CSS/detail_product.css">
+     <title>detail product</title>
+</head>
+<body>
+     <div class="web-content">
+          <!-- html for header -->
+          <header id="header-container">
+               <section class="grid wide">
+                    <section class="grid-row flex justify-center">
+                         <!-- header bar with most useful function for users -->
+                         <!-- header for mobile and tablet -->
+                         <div class="s-m-header s-m-content flex justify-center align-center grid-col col-m-12 col-s-12 no-gutter">
+                              <div class="header-items full-height s-m-content s-m-nav-btn">
+                                        <i class="fa-solid fa-list fa-xl" style="color: var(--main-color);"></i>
+                                        
+                                        <div class="overlay">
+                                             <div class="s-m-nav-content s-m-content">
+                                                  <div class="flex justify-center align-center margin-y-12">
+                                                       <a href="">Đăng nhập</a>
+                                                       <span class="padding-inline-12">/</span>
+                                                       <a href="">Đăng ký</a>
+                                                  </div>
+          
+                                                  <ul class="s-m-nav-list">
+                                                       <li>
+                                                            <a href="">
+                                                                 trang chủ
+                                                            </a>
+                                                       </li>
+          
+                                                       <li>
+                                                            <a href="">
+                                                                 tủ sách thương hiệu
+                                                            </a>
+                                                       </li>
+          
+                                                       <li>
+                                                            <a href="">
+                                                                 Tin tức & Sự kiện
+                                                            </a>
+                                                       </li>
+          
+                                                       <li>
+                                                            <a href="">
+                                                                 về Light Novel World
+                                                            </a>
+                                                       </li>
+          
+                                                       <li>
+                                                            <a href="">
+                                                                 Liên hệ
+                                                            </a>
+                                                       </li>
+                                                  </ul>
+                                             </div>
+                                   </div>
+                                        </div>
+          
+                              <div class="web-logo full-height">
+                                   <a href="#" ><img src="../Assets/Images/Icons/Web_logo/light-novel-world.png" alt="Light Novel World"/></a>
+                              </div>
+
+                              <div class="header-items full-height">
+                                   <div class="cart-btn full-height">
+                                        <a href="#" onclick="return false">
+                                             <div class="cart-count item-count">0</div>
+                                             <i class="fa-solid fa-cart-shopping fa-xl" style="color: var(--main-color);"></i>
+                                             <span class="padding-left-8 font-size-14 s-m-hidden">Giỏ hàng</span>
+                                        </a>
+                                   </div>
+                              </div>
+                         </div>
+                         <!-- end header for mobile and tablet -->
+
+                         <div class="grid-col col-l-2 col-m-8 col-s-8 web-logo s-m-hidden">
+                              <a href="../HTML/index.html" ><img src="../Assets/Images/Icons/Web_logo/light-novel-world.png" alt="Light Novel World"/></a>
+                         </div>
+
+                         <section class="search-container grid-col col-l-5 col-m-12 col-s-12">
+                              <div class="search-form-container flex justify-center align-center">
+                                   <form action="" method="get" autocomplete="on">
+                                        <label for="search">
+                                             <input type="text" name="search" id="search" class="no-outline" size="100%" placeholder="Tìm kiếm sản phẩm...."/>
+                                        </label>
+                                        <button type="submit" class="search-btn flex justify-center align-center">
+                                                  <i class="fa-solid fa-magnifying-glass fa-gl" style="color: var(--primary-white);"></i>
+                                        </button>
+                                   </form>
+                              </div>
+                         </section>
+
+                         <section class="header-items grid-col col-l-5 col-m-2 col-s-2 s-m-hidden font-size-14">
+                              <!-- <div id="change-bg-btn" class="full-height">
+                                   <a href="#" onclick="return false" title="Change background color" >
+                                        <i class="fa-solid fa-circle-half-stroke fa-xl btn" style="color: var(--main-color);"></i>
+                                   </a>
+                              </div> -->
+
+                              <div class="hotline full-height">
+                                   <a href="#" onclick="copy_hotline()">
+                                        <i class="fa-solid fa-phone-volume fa-xl" style="color: var(--main-color);"></i>
+                                        <div class="flex-direction-y padding-left-8">
+                                             <span>Hotline</span>
+                                             <span class="font-bold" style="color: var(--main-color)">084xxxxxxx</span>
+                                        </div>
+                                   </a>
+                              </div>
+
+                              <div class="order-tracking full-height">
+                                   <a href="#" onclick="return false">
+                                        <i class="fa-solid fa-truck-fast fa-xl" style="color: var(--main-color);"></i>
+                                        <div class="flex-direction-y">
+                                             <span class="padding-left-8">Tra cứu</span>
+                                             <span class="padding-left-8">đơn hàng</span>
+                                        </div>
+                                   </a>
+                              </div>
+
+                              <div class="cart-btn full-height">
+                                   <a href="#" onclick="return false">
+                                        <div class="cart-count item-count">0</div>
+                                        <i class="fa-solid fa-cart-shopping fa-xl" style="color: var(--main-color);"></i>
+                                        <span class="padding-left-8">Giỏ hàng</span>
+                                   </a>
+                              </div>
+
+                              <div id="user-account" class="full-height">
+                                   <a href="#" onclick="return false">
+                                        <div id="no-sign-in" class="flex justify-center align-center" >
+                                             <i class="fa-regular fa-circle-user fa-xl" style="color: var(--main-color);"></i>
+                                             <p class="padding-left-8">Tài khoản</p>
+                                        </div>
+
+                                        <!-- account -->
+                                        <nav class="nav-account flex justify-center align-center flex-direction-y">
+                                             <button type="button" title="Đăng nhập" class="lnw-btn active js-login margin-bottom-16">
+                                                  <span class="font-bold uppercase">Đăng nhập</span>
+                                             </button>
+
+                                             <button type="button" title="Đăng ký" class="lnw-btn js-signup">
+                                                  <span class="font-bold uppercase">Đăng ký</span>
+                                             </button>
+
+                                             <button type="button" title="Đăng xuất" class="lnw-btn js-signup margin-top-16 disable">
+                                                  <span class="font-bold uppercase">Đăng xuất</span>
+                                             </button>
+                                        </nav>
+                                   </a>
+                              </div>
+                         </section>
+                    </section>
+               </section>
+          </header>
+
+          <main id="main-container">
+               <!-- html for sub header -->
+               <section id="sub-header" class="s-m-hidden">
+                    <div class="grid wide">
+                         <div class="grid-row">
+                              <!-- Items in sub header  -->
+                              <div class="sub-menu min-height-40 grid-col col-l-12">
+                                   <div class="sub-menu-item grid-col col-l-2 no-gutter">                        
+                                        <!-- Nav button -->
+                                        <div class="flex justify-center align-center list-btn min-height-40 full-width">
+                                             <span>
+                                                  <i class="fa-solid fa-list" style="color: var(--primary-white);"></i>
+                                             </span>
+                                             <p class="padding-left-8 font-size-14 font-bold">Danh mục sản phẩm</p>
+               
+                                             <!-- Nav content -->
+                                             <nav class="nav-categories js-bg-white full-width">
+                                                  <div  class="nav-item ">
+                                                       <a href="">
+                                                            <img src="../Assets/Images/Icons/Other_icons/Manga.jpg" alt="Manga" width="24px">
+                                                            <p class="padding-left-8 font-size-14 font-bold">Manga</p>
+                                                       </a> 
+                                                  </div>
+
+                                                  <div class="nav-item ">
+                                                       <a href="">
+                                                            <img src="../Assets/Images/Icons/Other_icons/LN.jpg" alt="Light Novel" width="24px">
+                                                            <p class="padding-left-8 font-size-14 font-bold">Light Novel</p>
+                                                       </a>
+                                                  </div>
+
+                                                  <div class="nav-item ">
+                                                       <a href="">
+                                                            <img src="../Assets/Images/Icons/Other_icons/yang-icon-1.jpg" alt="Sách văn học" width="24px">
+                                                            <p class="padding-left-8 font-size-14 font-bold">Sách văn học</p>
+                                                       </a>
+                                                  </div>
+
+                                                  <div class="nav-item ">
+                                                       <a href="">
+                                                            <img src="../Assets/Images/Icons/Other_icons/yang-icon-2.png" alt="Sách thiếu nhi" width="24px">
+                                                            <p class="padding-left-8 font-size-14 font-bold">Sách thiếu nhi</p>
+                                                       </a>
+                                                  </div>
+
+                                                  <div class="nav-item ">
+                                                       <a href="">
+                                                            <img src="../Assets/Images/Icons/Other_icons/yang-icon-3.png" alt="Sách công nghệ" width="24px">
+                                                            <p class="padding-left-8 font-size-14 font-bold">Sách công nghệ</p>
+                                                       </a>
+                                                  </div>
+
+                                                  <div class="nav-item ">
+                                                       <a href="">
+                                                            <img src="../Assets/Images/Icons/Other_icons/yang-icon-4.png" alt="Sách học ngoại ngữ" width="24px">
+                                                            <p class="padding-left-8 font-size-14 font-bold ">Sách học ngoại ngữ</p>
+                                                       </a>
+                                                  </div>
+                                             </nav>    
+                                        </div>        
+                                   </div>
+                    
+                                   <div class="sub-menu-item grid-col col-l-2">
+                                        <div class="full-height full-width">
+                                             <span>
+                                                  <i class="fa-solid fa-ticket fa-lg" style="color: var(--main-color);"></i>
+                                             </span>
+                                             <p class="padding-left-8 font-size-13 font-bold">Săn voucher</p>
+                                        </div>
+                                   </div>
+
+                                   <div class="sub-menu-item history-order-link grid-col col-l-2 "> 
+                                        <div class="full-height full-width">
+                                             <span>
+                                                  <i class="fa-solid fa-file-invoice fa-lg" style="color: var(--main-color);"></i>
+                                             </span>
+                                             <p class="padding-left-8 font-size-13 font-bold">Đơn hàng của tôi</p>
+                                        </div>
+                                   </div>  
+
+                                   <div class="sub-menu-item grid-col col-l-2 "> 
+                                        <div class="full-height full-width">
+                                             <span>
+                                                  <i class="fa-regular fa-newspaper fa-lg" style="color: var(--main-color);"></i>
+                                             </span>
+                                             <p class="padding-left-8 font-size-13 font-bold">Tin tức & Sự kiện</p>
+                                        </div>
+                                   </div>           
+
+                                   <div class="sub-menu-item grid-col col-l-2 "> 
+                                        <div class="full-height full-width">
+                                             <span>
+                                                  <i class="fa-brands fa-fantasy-flight-games fa-lg" style="color: var(--main-color);"></i>
+                                             </span>
+                                             <p class="padding-left-8 font-size-13 font-bold">Light Novel World</p>
+                                        </div>
+                                   </div>
+
+                                   <div class="sub-menu-item grid-col col-l-2"> 
+                                        <a href="#footer-container" class="full-height full-width">
+                                             <span>
+                                                  <i class="fa-solid fa-headset fa-lg" style="color: var(--main-color);"></i>
+                                             </span>
+                                             <p class="padding-left-8 font-size-13 font-bold">Liên hệ</p>
+                                        </a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </section>
+
+               <!-- breadcrumb -->
+               <section class="breadcrumb-list">
+                    <div class="grid wide">
+                         <div class="grid-row">
+                              <div class="grid-col col-l-12">
+                                   <ol class="capitalize font-size-14">
+                                        <li>
+                                             <a href="#" onclick="location.reload()">
+                                                  <i class="fa-solid fa-house" style="color: var(--main-color);"></i>
+                                                  <span class="font-bold font-size-14" style="color: var(--main-color)">Trang chủ</span>
+                                             </a>
+                                        </li>
+
+                                        <li>
+                                             <span>khẽ hát lời yêu - 1</span>
+                                        </li>
+                                   </ol>
+                              </div>
+                         </div>
+                    </div>
+               </section>
+
+               <section id="main-content">
+                    <div class="grid wide">
+                         <div class="grid-row">
+                              <section class="detail-item-container grid-col col-l-12">
+                                   <div class="detail-block">
+                                        <div class="block-product grid-col col-l-5">
+                                             <div class="product-image">
+                                                  <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="khẽ hát lời yêu 1">
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <!-- nav button -->
+                                                  <div class="nav-btn">
+                                                       <div class="previous-btn font-size-14">
+                                                            <i class="fa-solid fa-angle-left fa-lg" style="color: var(--primary-white);"></i>
+                                                       </div>
+                                                       <div class="next-btn font-size-14">
+                                                            <i class="fa-solid fa-angle-right fa-lg" style="color: var(--primary-white);"></i>
+                                                       </div>
+                                                  </div> 
+                                             </div>
+                                             <div class="sale-label">31%</div>
+                                        </div>
+
+                                        <div class="grid-col col-l-7">
+                                             <div class="padding-left-16">
+                                                  <div class="product-title">
+                                                       <h1 class="font-size-26 capitalize font-light">Khẽ hát lời yêu - 1</h1>
+                                                       <div class="product-id margin-y-12 font-size-14 opacity-0-8">SKU: 8935250712187BT</div>     
+                                                  </div>
+                                                  <div class="block-product-price margin-bottom-12">
+                                                       <span class="new-price font-bold padding-right-8 price font-size-26">55,250₫</span>
+                                                       <del class="old-price font-size-26">65,000₫</del>
+                                                  </div>
+                                                  <div class="product-info grid-col col-l-12 no-gutter flex margin-bottom-12">
+                                                       <div class="grid-col col-l-6 no-gutter">
+                                                            <strong>Tác giả</strong>
+                                                            <div class="author-name">Eku Takeshima</div>
+                                                       </div>
+                                                       <div class="grid-col col-l-6">
+                                                            <strong>Năm xuất bản</strong>
+                                                            <div class="opacity-0-8">2023</div>
+                                                       </div>
+                                                       <div class="grid-col col-l-6 no-gutter">
+                                                            <strong>Hình thức</strong>
+                                                            <div class="opacity-0-8">Bìa mềm</div>
+                                                       </div>
+                                                       <div class="grid-col col-l-6">
+                                                            <strong>Kích thước</strong>
+                                                            <div class="opacity-0-8">13 x 18 cm</div>
+                                                       </div>
+                                                  </div>
+                                                  <div class="short-desc">
+                                                       <strong class="font-size-14">nội dung:</strong>
+                                                       <div class="font-size-14 opacity-0-8">
+                                                            Himari, nữ sinh mới lên cấp ba, đã đem lòng ngưỡng mộ Yori,
+                                                            ca sĩ hát chính của ban nhạc biểu diễn trong buổi lễ chào đón học sinh mới. 
+                                                            </br>
+                                                            Khi tình cờ gặp nhau ở trường, Himari bèn bày tỏ cảm xúc của mình với Yori.
+                                                            </br> 
+                                                            Ấn tượng với thái độ thẳng thắn ấy, Yori nhanh chóng nảy sinh tình cảm với Himari…
+                                                            </br>
+                                                            Mời các bạn đón đọc câu chuyện về tình yêu nảy sinh từ hiểu lầm của hai cô gái trong 
+                                                            Khẽ hát lời yêu – Whispering you a love song tập 1!
+                                                       </div>
+                                                  </div>
+                                                  <div class="product-selector margin-top-16">
+                                                       <label>
+                                                            <div class="margin-bottom-8">
+                                                                 <p class="font-size-14 font-bold margin-bottom-8">phiên bản</p>
+                                                            </div>
+                                                            <div class="margin-bottom-12 grid-col col-l-2-4 no-gutter">
+                                                                 <select name="product-selector" id="product-selector-option">
+                                                                      <option value="Bản Đặc Biệt">bản đặc biệt</option>
+                                                                      <option value="Bản Thường">bản thường</option>
+                                                                 </select>
+                                                            </div>
+                                                       </label>
+                                                       <div class="quantity-box margin-bottom-12 grid-col col-l-2-4 no-gutter">
+                                                                 <input type="button" value="-" class="reduce">
+                                                                 <input type="text" name="quantity" id="quantity" placeholder="1" 
+                                                                      class="quantity-cart">
+                                                                 <input type="button" value="+" class="add">
+                                                       </div>
+                                                       <div class="grid-col col-l-7 no-gutter flex justify-space-between margin-bottom-12">
+                                                            <div class="buy-btn button">mua ngay</div>
+                                                            <div class="add-to-cart button">thêm vào giỏ hàng</div>
+                                                       </div>
+                                                  </div>
+                                                  <div class="product-tags">
+                                                       <strong>tag:</strong>
+                                                       <a href="">girls love</a>
+                                                       </br>
+                                                       <strong>danh mục:</strong>
+                                                       <a href="" class="">girls love</a>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </section>
+                              <!-- show books same author -->
+                              <section class="same-author grid-col col-l-12">
+                                   <strong>sách cùng tác giả</strong>
+                                   <div class="product-container">
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="Khẽ Hát Lời Yêu - 1">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 1</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>  
+                                   
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_2.jpg" alt="Khẽ Hát Lời Yêu - 2">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 2</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>    
+
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_3.jpg" alt="Khẽ Hát Lời Yêu - 3">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 3</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>    
+
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_4.jpg" alt="Khẽ Hát Lời Yêu - 4">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 4</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>    
+
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_5.jpg" alt="Khẽ Hát Lời Yêu - 5">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 5</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>   
+                                        
+                                        <!-- nav button -->
+                                        <div class="nav-btn">
+                                             <div class="previous-btn font-size-14">
+                                                  <i class="fa-solid fa-angle-left fa-lg" style="color: var(--primary-white);"></i>
+                                             </div>
+                                             <div class="next-btn font-size-14">
+                                                  <i class="fa-solid fa-angle-right fa-lg" style="color: var(--primary-white);"></i>
+                                             </div>
+                                        </div> 
+                                   </div>
+                              </section>
+
+                              <!-- show books same tags -->
+                              <section class="product-like grid-col col-l-12">
+                                   <strong>sách cùng thể loại</strong>
+                                   <div class="product-container">
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="Khẽ Hát Lời Yêu - 1">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 1</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>  
+                                   
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_2.jpg" alt="Khẽ Hát Lời Yêu - 2">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 2</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>    
+
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_3.jpg" alt="Khẽ Hát Lời Yêu - 3">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 3</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>    
+
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_4.jpg" alt="Khẽ Hát Lời Yêu - 4">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 4</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>    
+
+                                        <div class="grid-col col-l-2-4 col-m-3 col-s-6">
+                                             <div class="block-product store-item">
+                                                  <div class="product-image">
+                                                       <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_5.jpg" alt="Khẽ Hát Lời Yêu - 5">
+                                                  </div>
+                                                  <div class="sale-label">15%</div>
+                                                  <div class="sale-off font-bold">Hết hàng</div>
+                                                  <div class="info-inner flex justify-center align-center line-height-1-6">
+                                                       <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 5</h4>
+                                                       <div class="margin-y-4">
+                                                            <span class="price font-bold">55,250₫</span>
+                                                            <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                       </div>
+                                                  </div>
+                                                  <div class="action">
+                                                       <div class="buy-btn">
+                                                            <a href="#" title="mua ngay">
+                                                                 <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+
+                                                       <div class="add-to-cart">
+                                                            <a href="#" title="thêm vào giỏ hàng">
+                                                                 <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                                                            </a>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>      
+                                        
+                                        <!-- nav button -->
+                                        <div class="nav-btn">
+                                             <div class="previous-btn font-size-14">
+                                                  <i class="fa-solid fa-angle-left fa-lg" style="color: var(--primary-white);"></i>
+                                             </div>
+                                             <div class="next-btn font-size-14">
+                                                  <i class="fa-solid fa-angle-right fa-lg" style="color: var(--primary-white);"></i>
+                                             </div>
+                                        </div> 
+                                   </div>
+                              </section>
+                         </div>
+                    </div>
+               </section>
+          </main>
+
+          <!-- html for footer content -->
+          <footer id="footer-container">
+               <section class="grid wide">
+                    <div class="grid-row">
+                         <div class="footer-col-container grid-col col-l-4 col-m-4 col-s-12">
+                              <div class="footer-logo">
+                                   <a href="#">
+                                        <img src="../Assets/Images/Icons/Web_logo/light-novel-world.png" alt="Light Novel World">
+                                   </a>
+                              </div>
+                              <div class="contact-info">
+                                   <div class="margin-bottom-16">
+                                        <i class="fa-solid fa-map-location-dot fa-xl" style="color: var(--main-color);"></i>
+                                        <div class="line-height-1-6 font-size-14 padding-left-16">
+                                             <p> Số 110 Nguyễn Ngọc Nại, Khương Mai, Thanh Xuân, Hà Nội</p>
+                                        </div>
+                                   </div>
+                                   <div class="margin-bottom-16">
+                                        <i class="fa-solid fa-phone fa-xl" style="color: var(--main-color);"></i>
+                                        <p class="padding-left-16">Hotline: 03 2838 xxxx</p>
+                                   </div>
+                                   <div class="margin-bottom-16">
+                                        <i class="fa-regular fa-envelope fa-xl" style="color: var(--main-color);"></i>
+                                        <p class="padding-left-16">tanthi***la**@gmail.com</p>
+                                   </div>
+                                   <div>
+                                        <i class="fa-solid fa-shield fa-xl" style="color: var(--main-color);"></i>
+                                        <p class="padding-left-16">Giấy phép DKKD số xxxxxx, cấp lần thứ x năm 2024</p>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="footer-col-container grid-col col-l-5 col-m-8 col-s-12">
+                              <div class="block-footer margin-bottom-12">
+                                   <div class="flex-direction-y">
+                                        <h4 class="uppercase margin-bottom-12">Hỗ trợ khách hàng</h4>
+                                        <a href="">Câu hỏi thường gặp</a>
+                                        <a href="">Điều khoản dịch vụ</a>
+                                   </div>
+          
+                                   <div class="flex-direction-y">
+                                        <h4 class="uppercase margin-bottom-12">Chính sách</h4>
+                                        <a href="">Chính sách bảo mật</a>
+                                        <a href="">Chính sách thanh toán</a>
+                                        <a href="">Chính sách vận chuyển</a>
+                                        <a href="">Chính sách đổi trả</a>
+                                   </div>
+                              </div>
+                              <div>
+                                   <h4 class="uppercase margin-y-12">đăng ký nhận tin</h4>
+                                   <p class="font-size-13 margin-y-12" style="max-width: 60%">
+                                        Hãy nhập email của bạn vào ô dưới đây để có thể nhận được tất cả tin tức mới nhất của LNW
+                                   </p>
+                                   <div class="footer-input">
+                                        <input type="text" name="user-gmail" id="user-gmail" placeholder="đăng ký gmail"/>
+                                        <button type="submit" class="subscribe-btn uppercase" name="subscribe" id="subscribe">đăng ký</button>
+                                        <img src="../Assets/Images/Icons/Web_logo/bct_img.jpg" alt="bo cong thuong">
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="footer-col-container grid-col col-l-3 col-m-12 col-s-12">
+                              <h4 class="uppercase margin-bottom-16">kết nối với chúng tôi</h4>
+                              <div class="footer-icon">
+                                   <div>
+                                        <a href="https://www.facebook.com/profile.php?id=100079218978533" target="_blank">
+                                             <img src="../Assets/Images/Icons/Social_media/facebook.svg" alt="facebook">
+                                        </a>
+                                   </div>
+                                   <div class="padding-left-8">
+                                        <a href="https://www.youtube.com/channel/UCKPO5JjzN41dr5kNLSlcdsg" target="_blank">
+                                             <img src="../Assets/Images/Icons/Social_media/icons8-youtube.svg" alt="youtube">
+                                        </a>
+                                   </div>
+                                   <div class="padding-left-8">
+                                        <a href="https://www.tiktok.com/@thienlangvotri" target="_blank">
+                                             <img src="../Assets/Images/Icons/Social_media/icons8-tiktok.svg" alt="tiktok">
+                                        </a>
+                                   </div>
+                                   <div class="padding-left-8">
+                                        <a href="https://twitter.com/thien8224" target="_blank">
+                                             <img src="../Assets/Images/Icons/Social_media/icons8-twitterx.svg" alt="Twitter/X">
+                                        </a>
+                                   </div>
+                                   <div class="padding-left-8">
+                                        <a href="https://chat.zalo.me/" target="_blank">
+                                             <img src="../Assets/Images/Icons/Social_media/icons8-zalo.svg" alt="zalo">
+                                        </a>
+                                   </div>
+                              </div>
+                              <h4 class="uppercase margin-bottom-16">các phương thức thanh toán</h4>
+                              <div class="footer-image-container">
+                                   <div class="footer-image-item">
+                                        <img src="../Assets/Images/Icons/Payment_method/internet_banking.jpg" alt="internet banking">
+                                   </div>
+                                   <div class="footer-image-item">
+                                        <img src="../Assets/Images/Icons/Payment_method/pay_7.jpg" alt="visa">
+                                   </div>
+                                   <div class="footer-image-item">
+                                        <img src="../Assets/Images/Icons/Payment_method/mastercard.jpg" alt="master card">
+                                   </div>
+                                   <div class="footer-image-item">
+                                        <img src="../Assets/Images/Icons/Payment_method/pay_5.jpg" alt="tiền mặt">
+                                   </div>
+                                   <div class="footer-image-item">
+                                        <img src="../Assets/Images/Icons/Payment_method/pay_4.jpg" alt="zalo pay">
+                                   </div>
+                                   <div class="footer-image-item">
+                                        <img src="../Assets/Images/Icons/Payment_method/pay_8.jpg" alt="Momo">
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </section>
+          </footer>
+     </div>
+</body>
+</html>
