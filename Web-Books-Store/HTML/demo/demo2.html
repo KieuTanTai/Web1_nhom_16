@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="../../Assets/CSS/Base.css">
+     <title>Document</title>
+     <style>
+          .table {
+               border: 6px solid black;
+          }
+
+          .table header {
+               border: 4px solid red;
+          }
+
+          .table main {
+               border: 4px solid green;
+          }
+
+          .table main .inline-item {
+               border: 4px solid blue;
+          }
+
+          .table .inline-item span {
+               display: inline-block;
+               padding: 4px;
+               font-size: 14px;
+               text-align: center;
+               border: 1px solid red;
+               background: var(--main-color);
+          }
+
+          .table main > div {
+               display: flex;
+          }
+
+          .table .sibling-table {
+               display: flex;
+               flex-flow: column wrap;
+               border: 0.25em solid blue;
+          }
+
+          .table .sibling-table > div {
+               padding: 4px 20px 0 4px;  
+               font-size: 14px;
+               border: 0.1em solid blue;
+          }
+
+          main > div .inline-item {
+               display: flex;
+               flex-grow: 4;
+          }
+     </style>
+</head>
+<body>
+     <div class="table">
+          <header>
+               <p class="text-center margin-y-24">header</p>
+          </header>
+
+          <main>
+               <div class="inline-item margin-bottom-8 margin-top-8">
+                    <span>trang chủ</span>
+                    <span>thông tin tuyển sinh</span>
+                    <span>thông tin đào tạo</span>
+                    <span>liên hệ</span>
+               </div>
+
+               <div>
+                    <div class="sibling-table">
+                         <div>trang chủ</div>
+                         <div>thông tin tuyển sinh</div>
+                         <div>thông tin đào tạo</div>
+                         <div>giới thiệu</div>
+                         <div>liên hệ</div>
+                    </div>
+                    <div class="inline-item">
+                         <div class="flex full-width">c</div>
+                         <di class="flex full-width">r</di>
+                    </div>
+               </div>
+          </main>
+          
+          <footer>
+               <span>footer</span>
+          </footer>
+     </div>
+</body>
+</html>

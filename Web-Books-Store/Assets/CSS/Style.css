@@ -203,9 +203,11 @@
 
 #sub-header .sub-menu .sub-menu-item {
      padding: 0;
+     cursor: pointer;
 }
 
-#sub-header .sub-menu a {
+.sub-menu .sub-menu-item a,
+.sub-menu .sub-menu-item > div {
      display: flex;
      align-items: center;
      justify-content: center;
@@ -322,10 +324,10 @@
 }
 
 #scroll-top img{
-     right: 0;
-     bottom: 8%;
-     width: 8%;
+     right: 2%;
+     width: 4%;
      z-index: 2;
+     bottom: 8%;
      cursor: pointer;
      position: fixed;
 }
@@ -488,7 +490,7 @@
      margin: 1.25em 0;
      position: relative;
      background: var(--primary-white);
-     /* border: 1px solid var(--border); */
+     cursor: pointer;
 }
 
 .category-tab .content-container .item-inner:hover {
