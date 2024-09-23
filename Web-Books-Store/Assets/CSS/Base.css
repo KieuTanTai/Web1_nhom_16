@@ -32,10 +32,16 @@
      box-sizing: inherit;
 }
 
+@font-face {
+     font-family: "Open Sans";
+     src: url(../Font/GFont/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf);
+     src: url(../Font/GFont/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf)
+}
+
 html {
      font-size: 16px;
      box-sizing: border-box;
-     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     font-family:"Open Sans" ,Arial, sans-serif;
 }
 
 body {
@@ -251,7 +257,7 @@ ul {
 }
 
 .font-light {
-     font-weight: 450;
+     font-weight: 400;
 } 
 
 .font-size-13 {
@@ -268,6 +274,10 @@ ul {
 
 .font-size-20 {
      font-size: 1.25rem;
+}
+
+.font-size-26 {
+     font-size: 1.625rem;
 }
 /* end text & font style */
 
@@ -369,6 +379,11 @@ ul {
 /* end background */
 
 /* button & items */
+.button {
+     color: var(--primary-white);
+     border-radius: var(--normal-radius);
+}
+
 .search-btn {
      top: 0;
      right: 0;
@@ -382,8 +397,8 @@ ul {
      top: 50%;
      position: absolute;
 }
-.nav-btn .previous-btn,
-.nav-btn .next-btn {
+.nav-btn .next-btn,
+.nav-btn .previous-btn {
      padding: 1.5em 1em;
      border-radius: 0.5em;
      display: flex;
@@ -414,7 +429,7 @@ ul {
 
 /* css for cart ui */
 .cart-ui {
-     padding: 0.75em;
+     padding: 1em;
      border-radius: var(--higher-radius);
      box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
      background-color: var(--primary-white);

@@ -4,8 +4,8 @@
 }
 
 #main-container .cart-title {
-     margin-bottom: 0.25em;
      padding: 0.5em 0;
+     margin-bottom: 0.25em;
      display: flex;
      align-items: center;
 }
@@ -40,13 +40,13 @@
      padding: 0 0 0 1em;
 }
 
-.cart-ui-content #cart .cart-item-container {
+.cart-ui-content #cart .list-carts {
      background: var(--primary-white);
      display: flex;
      flex-flow: column;
 }
 
-#cart .cart-item-container .cart-item {
+#cart .list-carts .block-product {
      padding: 1em 0;
      display: flex;
      flex-flow: row;
@@ -54,7 +54,7 @@
      align-items: center;
 }
 
-.cart-item-container .cart-item + .cart-item::before {
+.list-carts .block-product + .block-product::before {
      content: " ";
      top: 0;
      left: 0;
@@ -66,16 +66,16 @@
      
 }
 
-.cart-item .price-per-item {
+.block-product .price-per-item {
      color: var(--bg-red);
 }
 
-.cart-item .product-cart {
+.block-product .product-cart {
      display: flex;
      flex-flow: row;
 }
 
-.cart-item .info-product-cart {
+.block-product .info-product-cart {
      width: 100%;
      display: flex;
      flex-flow: column;
@@ -98,7 +98,7 @@
      transform: scale(1.2);
 }
 
-#cart .cart-item .rm-cart-btn i{
+#cart .block-product .rm-cart-btn i{
      transform: translateX(50%);
 }
 
@@ -119,10 +119,8 @@
 
 .promotion-block-content .shop-voucher button {
      padding: var(--btn-height);
-     color: var(--primary-white);
      background: var(--main-color);
      border: 1px solid var(--border);
-     border-radius: var(--normal-radius);
 }
 
 #cart .promotion-block-content .payment-methods {
@@ -156,10 +154,8 @@
 
 .order-summary .checkout-btn {
      border: none;
-     background: var(--bg-red);
      padding: var(--btn-height);
-     color: var(--primary-white);
-     border-radius: var(--normal-radius);
+     background: var(--bg-red);
 }
 
 #cart .user-cart-note textarea {

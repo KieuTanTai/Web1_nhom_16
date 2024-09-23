@@ -1,0 +1,100 @@
+.detail-item-container .detail-block {
+     padding: 1em;
+     display: flex;
+     background: var(--primary-white);
+     border-radius: var(--higher-radius);
+}
+/* 
+.detail-block .block-product {
+     border-radius: var(--higher-radius);
+     box-shadow: 0 0 2px var(--primary-dark);
+} */
+
+.detail-block .block-product .sale-label {
+     top: -2%;
+}
+
+.detail-block .block-product .product-image {
+     display: flex; 
+     position: relative;
+     justify-content: center;
+}
+
+.detail-block .block-product img {
+     width: 80%;
+     object-fit: contain;
+}
+
+.block-product .product-image .nav-btn {
+     left: 6%;
+     right: 6%;
+}
+
+.detail-block .product-info > div {
+     display: flex;
+     font-size: 0.875rem;
+}
+
+.product-info > div + div {
+     padding-bottom: 0.25em;
+}
+
+.product-info > div strong {
+     width: 40%;
+}
+
+.product-info > div .author-name {
+     cursor: pointer;
+}
+
+.author-name:hover {
+     color: var(--main-color);
+}
+
+.product-selector #product-selector-option {
+     width: 100%; 
+     padding: 0.5em;
+     outline: none;
+     text-transform: capitalize;
+     background: var(--primary-white);
+     border-radius: var(--normal-radius);    
+     border: 1px solid var(--primary-dark);
+}
+
+.quantity-box {
+     display: flex;
+     align-items: center;
+}
+
+.quantity-box input {
+     width: 100%;
+     padding: 0.5em;
+     outline: none;
+     color: initial;
+     text-align: center;
+     background: var(--primary-grey);
+     border: 1px solid var(--primary-dark);
+}
+
+.quantity-box .add,
+.quantity-box .reduce {
+     width: 50%;
+     cursor: pointer;
+}
+
+.quantity-box .add {
+     margin-left: 0.25em;
+     border-top-right-radius: var(--normal-radius);
+     border-bottom-right-radius: var(--normal-radius);
+}
+
+.quantity-box .reduce {
+     margin-right: 0.25em;
+     border-top-left-radius: var(--normal-radius);
+     border-bottom-left-radius: var(--normal-radius);
+}
+.product-selector .buy-btn,
+.product-selector .add-to-cart {
+     padding: 0.5em 1.5em;
+     background: var(--main-color);
+}

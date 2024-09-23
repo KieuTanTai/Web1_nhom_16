@@ -15,7 +15,7 @@
 .grid-row {
      display: flex;
      flex-wrap: wrap;
-     margin-inline: -0.25em;
+     margin-inline: -calc(0.25em + 3px);
 }
 
 .grid-row.no-gutter {
@@ -23,7 +23,7 @@
 }
 
 .grid-col {
-     padding-inline: 0.25em;
+     padding-inline: calc(0.25em + 3px);
 }
 
 .grid-col.no-gutter {

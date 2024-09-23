@@ -293,8 +293,8 @@
 /* CSS for breadcrumb */
 
 .breadcrumb-list {
+     display: block;
      margin-top: 1.25em;
-     display: none;
 }
 
 .breadcrumb-list ol {
@@ -303,11 +303,16 @@
      align-items: center;
 }
 
+.breadcrumb-list ol > li + li{
+     opacity: 0.6;
+     font-weight: 200;
+}
+
 .breadcrumb-list ol > li + li::before {
      content: "/";
      opacity: 0.6;
      font-weight: 500;
-     padding-inline: 0.5em;
+     margin-inline: 0.5em;
      display: inline-block;
      transform: translateY(-4%);
 }
@@ -375,6 +380,7 @@
      display: flex;
      flex-flow: row wrap;
      align-items: center;
+     /* flex-basis: calc(100% - 0.25em); */
      justify-content: space-between;
 }
 
@@ -475,30 +481,34 @@
 }
 /* end flash sale container */
 
-#main-content .category-tab .content-container {
+/* is also use in some other file html */
+#main-content .product-container {
      margin-bottom: 0.5em;
      display: flex;
      flex-flow: row wrap;
 }
 
-#main-content .category-tab .content-container::-webkit-scrollbar {
+#main-content .product-container::-webkit-scrollbar {
      display: none;
 }
 
 /* item inside */
-.category-tab .content-container .item-inner {
-     margin: 1.25em 0;
-     position: relative;
-     background: var(--primary-white);
+.block-product {
      cursor: pointer;
+     position: relative;
 }
 
-.category-tab .content-container .item-inner:hover {
+.product-container .block-product {
+     margin: 1.25em 0;
+     background: var(--primary-white);
+}
+
+.product-container .block-product:hover {
      animation: zoomScale linear 0.1s forwards;
      box-shadow: 0 1px 0.25em var(--primary-dark);
 }
 
-.content-container .item-inner .sale-off {
+.block-product .sale-off {
      width: 100%;
      line-height: 1.6;
      padding: 0.25em 0;
@@ -509,35 +519,36 @@
      transform: translateY(-100%);
 }
 
-.category-tab .item-inner .item-image {
-     height: 17.5em;
+.block-product .product-image {
      overflow: hidden;
+     position: relative;
 }
 
-.category-tab .content-container .sale-label {
+.block-product .sale-label {
      top: -4%;
-     right: 0;
-     padding: 0.5em;
+     right: -2%;
+     padding: 0.75em;
+     font-size: 0.875rem;
      position: absolute;
      color: var(--primary-white);
      transform: translate(0.5em, 0);
      background: url('../Images/QC/discount.png') center / contain no-repeat;
 }
 
-.category-tab .item-inner img {
+.block-product .product-image img {
      width: 100%;
      height: 100%;
 }
 
-.category-tab .item-inner .info-inner {
+.block-product .info-inner {
      max-height: 3.75em;
      display: flex;
      border-top: unset;
      justify-content: center;
 }
 
-.category-tab .item-inner .info-inner h4 {
-     max-width: 16em;
+.block-product .info-inner h4 {
+     width: 100%;
      padding-inline: 1em;
      overflow: hidden;
      text-align: center;
@@ -546,7 +557,7 @@
 }
 
 /* css for action */
-.category-tab .item-inner .action {
+.block-product .action {
      top: 68%;
      right: 20%;
      min-width: 6.25em;
@@ -557,17 +568,17 @@
      justify-content: space-between;
 }
 
-.category-tab .item-inner:hover .action {
+.block-product:hover .action {
      display: flex;
      animation: fadeIn linear 0.2s forwards;
 }
 
-.category-tab .item-image:hover .action {
+.product-image:hover .action {
      display: flex;
      animation: fadeIn linear 0.2s forwards;
 }
 
-.category-tab .item-inner .action a {
+.block-product .action a {
      width: 2.5em;
      height: 2.5em;
      margin: 0.25em 0;
@@ -579,6 +590,7 @@
      box-shadow: 0 0 0.25em var(--primary-dark);
 }
 /* end css for action */
+/* end container css using on other html */
 
 .category-tab .heading #new-book-label {
      background: url('../Images/Icons/Other_icons/new-book.jpg') top left / cover no-repeat;
@@ -606,9 +618,7 @@
 /* load more item */
 #main-container .category-btn {
      padding: var(--btn-height) 4em;
-     color: var(--primary-white);
      background: var(--main-color);
-     border-radius: var(--higher-radius);
 }
 
 #main-content .category-tab .category-btn:hover {
