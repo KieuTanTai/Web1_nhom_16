@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
      <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="shortcut icon" href="../Assets/Images/Icons/Web_logo/main-logo.ico" type="image/x-icon">
      <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css">
      <link rel="stylesheet" href="../Assets/CSS/Grid.css">
@@ -10,19 +10,20 @@
      <link rel="stylesheet" href="../Assets/CSS/Style.css">
      <link rel="stylesheet" href="../Assets/CSS/Responsive.css">
      <link rel="stylesheet" href="../Assets/CSS/Account.css">
-     <link rel="stylesheet" href="../Assets/CSS/Cart.css">
-     <title>Giỏ hàng</title>
+     <title>detail item</title>
 </head>
 <body>
      <div class="web-content">
+          <!-- html for header -->
           <header id="header-container">
-               <div class="grid wide">
-                    <section class="grid-row" style="justify-content: center;">
+               <section class="grid wide">
+                    <section class="grid-row flex justify-center">
                          <!-- header bar with most useful function for users -->
                          <!-- header for mobile and tablet -->
                          <div class="s-m-header s-m-content flex justify-center align-center grid-col col-m-12 col-s-12 no-gutter">
                               <div class="header-items full-height s-m-content s-m-nav-btn">
-                                        <i class="fa-solid fa-list fa-xl" style="color: var(--main-color);"></i>                                       
+                                        <i class="fa-solid fa-list fa-xl" style="color: var(--main-color);"></i>
+                                        
                                         <div class="overlay">
                                              <div class="s-m-nav-content s-m-content">
                                                   <div class="flex justify-center align-center margin-y-12">
@@ -143,23 +144,26 @@
 
                                         <!-- account -->
                                         <nav class="nav-account flex justify-center align-center flex-direction-y">
-                                             <button type="button" title="Đăng nhập" class="lnw-btn active js-login">
+                                             <button type="button" title="Đăng nhập" class="lnw-btn active js-login margin-bottom-16">
                                                   <span class="font-bold uppercase">Đăng nhập</span>
                                              </button>
 
                                              <button type="button" title="Đăng ký" class="lnw-btn js-signup">
                                                   <span class="font-bold uppercase">Đăng ký</span>
                                              </button>
+
+                                             <button type="button" title="Đăng xuất" class="lnw-btn js-signup margin-top-16 disable">
+                                                  <span class="font-bold uppercase">Đăng xuất</span>
+                                             </button>
                                         </nav>
                                    </a>
                               </div>
-                              <script type="module" src="../JavaScript/Account.js"></script>
                          </section>
                     </section>
-               </div>
+               </section>
           </header>
 
-          <main id="main-container" style="padding:0 0 40em;">
+          <main id="main-container">
                <!-- html for sub header -->
                <section id="sub-header" class="s-m-hidden">
                     <div class="grid wide">
@@ -291,226 +295,21 @@
                          </div>
                     </div>
                </section>
-               <div class="grid wide">
-                    <div class="grid-row">
-                         <section class="cart grid-col col-l-12 col-m-12 col-s-12 margin-y-12">
-                              <div class="cart-title">
-                                   <span class="uppercase font-size-20">giỏ hàng</span>
-                                   <span class="cart-count font-size-16 padding-left-8">(0 sản phẩm)</span>
-                              </div>
 
-                              <div class="cart-ui-content">
-                                   <section id="blank-cart" class="margin-y-12 cart-ui disable">
-                                        <img src="https://m.media-amazon.com/images/G/31/cart/empty/kettle-desaturated._CB424694257_.svg">
-                                        <span class="font-size-16 padding-left-16 margin-y-12">Không có sản phẩm nào trong giỏ hàng. Quay lại cửa hàng để tiếp tục mua sắm.</span>
-                                        <section class="flex justify-center align-center font-bold capitalize margin-y-12">
-                                             <a href=" " target="_blank" class="category-btn">trang chủ</a>
-                                        </section>
-                                   </section>
-
-                                   <section id="cart">
-                                        <div class="grid-cols col-l-8 no-gutter">
-                                             <div class="header-cart-content cart-ui">
-                                                  <input type="checkbox" name="selection-item" id="selection-item" class="grid-col col-l-1">
-                                                  <div class="grid-col col-l-6">
-                                                       chọn sản phẩm
-                                                       <span class="item-count">(1 sản phẩm)</span>
-                                                  </div>
-     
-                                                  <div class="grid-col col-l-2 text-center">số lượng</div>
-                                                  <div class="grid-col col-l-2 text-center">thành tiền</div>
-                                                  <div class="grid-col col-l-1 text-center">xóa</div>
-                                             </div>
-
-                                             <div class="cart-item-container cart-ui margin-top-16">
-                                                  <div class="cart-item">
-                                                       <input type="checkbox" name="select-cart-item" id="cart-item-1" class="grid-col col-l-1">
-                                                       <div class="product-cart grid-col col-l-6">
-                                                            <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="khe hat loi yeu 1">
-                                                            <div class="info-product-cart padding-left-8">
-                                                                 <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
-                                                                 <div class="cart-item-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price price">65,000₫</del>
-                                                                 </div>
-                                                            </div>   
-                                                       </div>
-                                                       <div class="number-product-cart grid-col col-l-2">
-                                                                 <input type="number" name="quantity-cart" id="update_12323" value="1" max="2" class="quantity-cart">
-                                                       </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
-                                                       <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
-                                                  </div>
-                                                  
-                                                  <div class="cart-item">
-                                                       <input type="checkbox" name="select-cart-item" id="cart-item-2" class="grid-col col-l-1">
-                                                       <div class="product-cart grid-col col-l-6">
-                                                            <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="khe hat loi yeu 1">
-                                                            <div class="info-product-cart padding-left-8">
-                                                                 <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
-                                                                 <div class="cart-item-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price price">65,000₫</del>
-                                                                 </div>
-                                                            </div>   
-                                                       </div>
-                                                       <div class="number-product-cart grid-col col-l-2">
-                                                                 <input type="number" name="quantity-cart" id="update_12324" value="1" max="2" class="quantity-cart">
-                                                       </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
-                                                       <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
-                                                  </div>
-
-                                                  <div class="cart-item">
-                                                       <input type="checkbox" name="select-cart-item" id="cart-item-3" class="grid-col col-l-1">
-                                                       <div class="product-cart grid-col col-l-6">
-                                                            <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="khe hat loi yeu 1">
-                                                            <div class="info-product-cart padding-left-8">
-                                                                 <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
-                                                                 <div class="cart-item-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price price">65,000₫</del>
-                                                                 </div>
-                                                            </div>   
-                                                       </div>
-                                                       <div class="number-product-cart grid-col col-l-2">
-                                                                 <input type="number" name="quantity-cart" id="update_12325" value="1" max="2" class="quantity-cart">
-                                                       </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
-                                                       <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
-                                                  </div>
-
-                                                  <div class="cart-item">
-                                                       <input type="checkbox" name="select-cart-item" id="cart-item-4" class="grid-col col-l-1">
-                                                       <div class="product-cart grid-col col-l-6">
-                                                            <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="khe hat loi yeu 1">
-                                                            <div class="info-product-cart padding-left-8">
-                                                                 <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
-                                                                 <div class="cart-item-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price price">65,000₫</del>
-                                                                 </div>
-                                                            </div>   
-                                                       </div>
-                                                       <div class="number-product-cart grid-col col-l-2">
-                                                                 <input type="number" name="quantity-cart" id="update_12326" value="1" max="2" class="quantity-cart">
-                                                       </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
-                                                       <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
-                                                  </div>
-
-                                                  <div class="cart-item">
-                                                       <input type="checkbox" name="select-cart-item" id="cart-item-5" class="grid-col col-l-1">
-                                                       <div class="product-cart grid-col col-l-6">
-                                                            <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="khe hat loi yeu 1">
-                                                            <div class="info-product-cart padding-left-8">
-                                                                 <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
-                                                                 <div class="cart-item-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price price">65,000₫</del>
-                                                                 </div>
-                                                            </div>   
-                                                       </div>
-                                                       <div class="number-product-cart grid-col col-l-2">
-                                                                 <input type="number" name="quantity-cart" id="update_12327" value="1" max="2" class="quantity-cart">
-                                                       </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
-                                                       <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
-                                                  </div>
-
-                                                  <div class="cart-item">
-                                                       <input type="checkbox" name="select-cart-item" id="cart-item-6" class="grid-col col-l-1">
-                                                       <div class="product-cart grid-col col-l-6">
-                                                            <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="khe hat loi yeu 1">
-                                                            <div class="info-product-cart padding-left-8">
-                                                                 <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
-                                                                 <div class="cart-item-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price price">65,000₫</del>
-                                                                 </div>
-                                                            </div>   
-                                                       </div>
-                                                       <div class="number-product-cart grid-col col-l-2">
-                                                                 <input type="number" name="quantity-cart" id="update_12328" value="1" max="2" class="quantity-cart">
-                                                       </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
-                                                       <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
-                                                  </div>
-                                             </div>
-                                        </div>
+               <section id="main-content">
+                    <div class="grid wide">
+                         <div class="grid-row">
+                              <section class="detail-item-container">
+                                   <div class="detail-block">
                                         
-                                        <div class="grid-col col-l-4">
-                                             <div class="promotion-block-content cart-ui">
-                                                  <div class="shop-voucher margin-bottom-12">
-                                                       <p class="font-bold margin-bottom-8 capitalize">Shop voucher</p> 
-                                                       <form action="" method="post" class="flex justify-space-between">
-                                                            <input type="text" name="voucher-code" id="voucher-code" placeholder="nhập mã khuyến mãi">
-                                                            <button type="submit" class="font-size-14">sử dụng</button>
-                                                       </form>
-                                                  </div>
-                                                  <div class="payment-methods margin-bottom-12">
-                                                       <h4 class="capitalize margin-bottom-8">phương thức thanh toán</h4>
-                                                       <ul>
-                                                            <li class="flex align-center">
-                                                                 <input type="radio" name="payment-option" id="payment-option-1" class="margin-right-8">
-                                                                 <img src="../Assets/Images/Icons/Payment_method/ico_cashondelivery.svg">
-                                                                 <p class="padding-left-8 font-size-14">thanh toán khi nhận hàng (COD)</p>
-                                                            </li>
-                                                            <li class="flex align-center">
-                                                                 <input type="radio" name="payment-option" id="payment-option-2" class="margin-right-8">
-                                                                 <img src="../Assets/Images/Icons/Payment_method/ico_momopay.svg">
-                                                                 <p class="padding-left-8 font-size-14">Ví Momo</p>
-                                                            </li>
-                                                            <li class="flex align-center">
-                                                                 <input type="radio" name="payment-option" id="payment-option-3" class="margin-right-8">
-                                                                 <img src="../Assets/Images/Icons/Payment_method/ico_vnpayatm.svg">
-                                                                 <p class="padding-left-8 font-size-14">ATM / Internet Banking</p>
-                                                            </li>
-                                                       </ul>
-                                                  </div>
-                                                  <div class="order-summary">
-                                                       <h4 class="capitalize margin-bottom-8">chi tiết thanh toán</h4>
-                                                       <div>
-                                                            <p>thành tiền</p>
-                                                            <span class="price">55,250₫</span>
-                                                       </div>
-                                                       <div>
-                                                            <p>tổng tiền phí vận chuyển</p>
-                                                            <span class="price">10,000₫</span>
-                                                       </div>
-                                                       <div>
-                                                            <p>giảm giá phí vận chuyển</p>
-                                                            <span class="price">5,250₫</span>
-                                                       </div>
-                                                       <div>
-                                                            <p>voucher giảm giá</p>
-                                                            <span class="price">5,000₫</span>
-                                                       </div>
-                                                       <div>
-                                                            <p class="font-bold">tổng số tiền</p>
-                                                            <span class="total-price font-bold">55,000₫</span>
-                                                       </div>
-
-                                                       <button type="submit" class="checkout-btn uppercase font-size-16 font-bold margin-top-12">
-                                                            Đặt hàng
-                                                       </button>
-                                                  </div>
-                                             </div>
-
-                                             <div class="user-cart-note cart-ui margin-top-16">
-                                                  <form action="" method="post">
-                                                       <label for="user-note" class="capitalize font-bold">Ghi Chú</label>
-                                                       <textarea name="user-note" id="user-note"></textarea>
-                                                  </form>
-                                             </div>
-                                        </div>
-                                   </section>
-                              </div>
-                         </section>
+                                   </div>
+                              </section>
+                         </div>
                     </div>
-               </div>
+               </section>
           </main>
 
+          <!-- html for footer content -->
           <footer id="footer-container">
                <section class="grid wide">
                     <div class="grid-row">
@@ -541,7 +340,7 @@
                                    </div>
                               </div>
                          </div>
-     
+
                          <div class="footer-col-container grid-col col-l-5 col-m-8 col-s-12">
                               <div class="block-footer margin-bottom-12">
                                    <div class="flex-direction-y">
@@ -570,7 +369,7 @@
                                    </div>
                               </div>
                          </div>
-     
+
                          <div class="footer-col-container grid-col col-l-3 col-m-12 col-s-12">
                               <h4 class="uppercase margin-bottom-16">kết nối với chúng tôi</h4>
                               <div class="footer-icon">
@@ -626,8 +425,5 @@
                </section>
           </footer>
      </div>
-
-
-
 </body>
 </html>
