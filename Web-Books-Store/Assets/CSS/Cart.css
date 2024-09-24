@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-#main-container .cart-ui-content {
-     display: flex;
-     flex-flow: row wrap;
-}
-
-=======
->>>>>>> main
 #main-container .cart-title {
      padding: 0.5em 0;
      margin-bottom: 0.25em;

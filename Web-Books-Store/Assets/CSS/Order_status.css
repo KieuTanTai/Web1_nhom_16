@@ -119,11 +119,7 @@
 } 
 
 .tracking-bar .delivered-dot p {
-<<<<<<< HEAD
-     max-width: 7em;
-=======
      max-width: 7.25em;
->>>>>>> main
      margin-left: auto;
      margin-right: -2em;
 }
