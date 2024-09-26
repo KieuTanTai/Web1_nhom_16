@@ -18,7 +18,7 @@
 #history-order-container {
      padding: 1em;
      background: var(--primary-white);
-     border-radius: var(--normal-radius);
+     border-radius: var(--higher-radius);
 }
 
 .order-status-container .order-status-header {

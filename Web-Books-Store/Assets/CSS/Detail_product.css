@@ -104,3 +104,14 @@
      border-top: 1px solid var(--border);
      border-bottom: 1px solid var(--border);
 }
+
+#main-container .same-author,
+#main-container .product-like {
+     position: relative;
+     border-radius: var(--higher-radius);
+}
+
+.same-author .list-title,
+.product-like .list-title {
+     border-bottom: 1px solid var(--border);
+}

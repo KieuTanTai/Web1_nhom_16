@@ -110,9 +110,9 @@
           height: 16em;
      }
 
-     .category-tab .block-product .info-inner h4 {
+     /* .category-tab .block-product .info-inner h4 {
           min-width: 16em;
-     }
+     } */
 
      .search-container .search-form-container input {
           max-width: 100%;

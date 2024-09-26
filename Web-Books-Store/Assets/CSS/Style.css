@@ -294,7 +294,7 @@
 
 .breadcrumb-list {
      display: block;
-     margin-top: 1.25em;
+     margin-top: 1em;
 }
 
 .breadcrumb-list ol {
@@ -319,7 +319,7 @@
 
 /* CSS for main content */
 #main-content {
-     padding-top: 1.25em;
+     padding-top: 1em;
      position: relative;
 }
 
@@ -376,7 +376,7 @@
 }
 
 #main-content .ad-banner {
-     margin: 0.25em 0 1.5em 0;
+     margin: 0.25em 0 1em;
      display: flex;
      flex-flow: row wrap;
      align-items: center;
@@ -428,7 +428,7 @@
 /* content items container */
 #main-content .category-tab {
      width: 100%;
-     margin: 1.5em 0.75em;
+     margin: 1em 0;
      border-radius: var(--higher-radius);
      position: relative;
      background: var(--primary-white);
@@ -450,12 +450,12 @@
 }
 
 /* Flash sale container */
-#main-content #fs-container.category-tab {
+#main-content #fs-container .category-tab {
      background: var(--bg-flash-sale);
 }
 
 #main-content #fs-container .heading {
-     margin: 0.75em;
+     margin: 1.25em 0.75em;
      border-radius: var(--higher-radius);
      background: var(--primary-white);
 }
@@ -559,7 +559,8 @@
 /* css for action */
 .block-product .action {
      top: 68%;
-     right: 20%;
+     left: 30%;
+     right: 30%;
      min-width: 6.25em;
      padding-right: 0.5em;
      display: none;
@@ -628,8 +629,13 @@
 /* news and blogs container */
 #main-content .news-blogs-container {
      margin-top: 3em;
-     padding: 2.5em 0 4em;
+     padding: 1.5em 0 2em;
      background: var(--primary-white);
+}
+
+#main-container .list-title {
+     text-align: center;
+     text-transform: uppercase;
 }
 
 #main-content .news-blogs-container .news-blogs-inner {

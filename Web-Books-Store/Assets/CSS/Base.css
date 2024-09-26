@@ -160,6 +160,11 @@ ul {
      margin-bottom: 0.75em;
 }
 
+.margin-y-16 {
+     margin-top: 1em;
+     margin-bottom: 1em;
+}
+
 .margin-y-24 {
      margin-top: 1.5em;
      margin-bottom: 1.5em;
