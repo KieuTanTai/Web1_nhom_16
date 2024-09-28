@@ -10,6 +10,7 @@
      <link rel="stylesheet" href="../Assets/CSS/Style.css">
      <link rel="stylesheet" href="../Assets/CSS/Responsive.css">
      <link rel="stylesheet" href="../Assets/CSS/Detail_product.css">
+     <script src="../JavaScript/Interface.js"></script>
      <title>detail product</title>
 </head>
 <body>
@@ -19,6 +20,7 @@
                <section class="grid wide">
                     <section class="grid-row flex justify-center">
                          <!-- header bar with most useful function for users -->
+
                          <!-- header for mobile and tablet -->
                          <div class="s-m-header s-m-content flex justify-center align-center grid-col col-m-12 col-s-12 no-gutter">
                               <div class="header-items full-height s-m-content s-m-nav-btn">
@@ -73,16 +75,15 @@
 
                               <div class="header-items full-height">
                                    <div class="cart-btn full-height">
-                                        <a href="#" onclick="return false">
+                                        <div class="flex align-center full-height">
                                              <div class="cart-count item-count">0</div>
                                              <i class="fa-solid fa-cart-shopping fa-xl" style="color: var(--main-color);"></i>
                                              <span class="padding-left-8 font-size-14 s-m-hidden">Giỏ hàng</span>
-                                        </a>
+                                        </div>
                                    </div>
                               </div>
                          </div>
                          <!-- end header for mobile and tablet -->
-
                          <div class="grid-col col-l-2 col-m-8 col-s-8 web-logo s-m-hidden">
                               <a href="../HTML/index.html" ><img src="../Assets/Images/Icons/Web_logo/light-novel-world.png" alt="Light Novel World"/></a>
                          </div>
@@ -108,35 +109,35 @@
                               </div> -->
 
                               <div class="hotline full-height">
-                                   <a href="#" onclick="copy_hotline()">
+                                   <div class="flex align-center full-height">
                                         <i class="fa-solid fa-phone-volume fa-xl" style="color: var(--main-color);"></i>
                                         <div class="flex-direction-y padding-left-8">
                                              <span>Hotline</span>
-                                             <span class="font-bold" style="color: var(--main-color)">084xxxxxxx</span>
+                                             <span class="font-bold" style="color: var(--main-color)">032838xxxx</span>
                                         </div>
-                                   </a>
+                                   </div>
                               </div>
 
                               <div class="order-tracking full-height">
-                                   <a href="#" onclick="return false">
+                                   <div class="flex align-center full-height">
                                         <i class="fa-solid fa-truck-fast fa-xl" style="color: var(--main-color);"></i>
                                         <div class="flex-direction-y">
                                              <span class="padding-left-8">Tra cứu</span>
                                              <span class="padding-left-8">đơn hàng</span>
                                         </div>
-                                   </a>
+                                   </div>
                               </div>
 
                               <div class="cart-btn full-height">
-                                   <a href="#" onclick="return false">
+                                   <div class="flex align-center full-height">
                                         <div class="cart-count item-count">0</div>
                                         <i class="fa-solid fa-cart-shopping fa-xl" style="color: var(--main-color);"></i>
                                         <span class="padding-left-8">Giỏ hàng</span>
-                                   </a>
+                                   </div>
                               </div>
 
                               <div id="user-account" class="full-height">
-                                   <a href="#" onclick="return false">
+                                   <div class="flex align-center full-height">
                                         <div id="no-sign-in" class="flex justify-center align-center" >
                                              <i class="fa-regular fa-circle-user fa-xl" style="color: var(--main-color);"></i>
                                              <p class="padding-left-8">Tài khoản</p>
@@ -156,7 +157,7 @@
                                                   <span class="font-bold uppercase">Đăng xuất</span>
                                              </button>
                                         </nav>
-                                   </a>
+                                   </div>
                               </div>
                          </section>
                     </section>
@@ -325,8 +326,8 @@
                                                        <div class="product-id margin-y-12 font-size-14 opacity-0-8">SKU: 8935250712187BT</div>     
                                                   </div>
                                                   <div class="block-product-price margin-bottom-12">
-                                                       <span class="new-price font-bold padding-right-8 price font-size-26">55,250₫</span>
-                                                       <del class="old-price font-size-26">65,000₫</del>
+                                                       <span class="new-price font-bold padding-right-8 price font-size-26">55250</span>
+                                                       <del class="old-price font-size-26">65000</del>
                                                   </div>
                                                   <div class="product-info grid-col col-l-12 no-gutter flex margin-bottom-12">
                                                        <div class="grid-col col-l-6 no-gutter">
@@ -404,7 +405,7 @@
                                         </div>
                                         <div class="product-container">
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="Khẽ Hát Lời Yêu - 1">
                                                        </div>
@@ -413,8 +414,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 1</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">
@@ -434,7 +435,7 @@
                                              </div>  
                                         
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_2.jpg" alt="Khẽ Hát Lời Yêu - 2">
                                                        </div>
@@ -443,8 +444,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 2</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">
@@ -464,7 +465,7 @@
                                              </div>    
      
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_3.jpg" alt="Khẽ Hát Lời Yêu - 3">
                                                        </div>
@@ -473,8 +474,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 3</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">
@@ -494,7 +495,7 @@
                                              </div>    
      
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_4.jpg" alt="Khẽ Hát Lời Yêu - 4">
                                                        </div>
@@ -503,8 +504,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 4</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">
@@ -524,7 +525,7 @@
                                              </div>    
      
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_5.jpg" alt="Khẽ Hát Lời Yêu - 5">
                                                        </div>
@@ -533,8 +534,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 5</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">
@@ -574,7 +575,7 @@
                                         </div>
                                         <div class="product-container">
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.jpg" alt="Khẽ Hát Lời Yêu - 1">
                                                        </div>
@@ -583,8 +584,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 1</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">
@@ -604,7 +605,7 @@
                                              </div>  
                                         
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_2.jpg" alt="Khẽ Hát Lời Yêu - 2">
                                                        </div>
@@ -613,8 +614,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 2</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">
@@ -634,7 +635,7 @@
                                              </div>    
      
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_3.jpg" alt="Khẽ Hát Lời Yêu - 3">
                                                        </div>
@@ -643,8 +644,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 3</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">
@@ -664,7 +665,7 @@
                                              </div>    
      
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_4.jpg" alt="Khẽ Hát Lời Yêu - 4">
                                                        </div>
@@ -673,8 +674,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 4</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">
@@ -694,7 +695,7 @@
                                              </div>    
      
                                              <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                                                  <div class="block-product store-item">
+                                                  <div class="block-product product-resize">
                                                        <div class="product-image">
                                                             <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_5.jpg" alt="Khẽ Hát Lời Yêu - 5">
                                                        </div>
@@ -703,8 +704,8 @@
                                                        <div class="info-inner flex justify-center align-center line-height-1-6">
                                                             <h4 class="font-light capitalize">Khẽ Hát Lời Yêu - 5</h4>
                                                             <div class="margin-y-4">
-                                                                 <span class="price font-bold">55,250₫</span>
-                                                                 <del class="price padding-left-8 font-size-14">65,000₫</del>
+                                                                 <span class="price font-bold">55250</span>
+                                                                 <del class="price padding-left-8 font-size-14">65000</del>
                                                             </div>
                                                        </div>
                                                        <div class="action">

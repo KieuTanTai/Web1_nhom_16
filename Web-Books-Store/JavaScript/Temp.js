@@ -1,139 +1,89 @@
 'use strict'
-// get DOM Elements
-function getMainContainer() {
-     let mainContainer = document.getElementById("main-content");
-     return mainContainer;
-}
-function getScripts () {
-     let scriptsHTML = async function showAccountFormHandler() {
-          let accountHTML = "../HTML/account.html"; 
-          try {
-               const response = await fetch(accountHTML);
-               const responseText = await response.text();
-               const parserHTML = new DOMParser();
-               const containerScripts = parserHTML.parseFromString(responseText, "text/html");
-               const getFormScripts = containerScripts.body.querySelector("#main-container");
-               return getFormScripts;
-               // customer choses 
-          } catch (error) {
-               console.error(error);
-          }
-     }
-     return scriptsHTML();
-}
+// change background color
+document.addEventListener('DOMContentLoaded', function() {
+    const allElement = document.querySelectorAll('*');
+    var bodyIndex = document.querySelectorAll('.body-index');
+    var button = document.getElementById('change-bg-btn');
+    button.onclick = function () {
+        allElement.forEach((element) => {
+            const style = window.getComputedStyle(element);
+            const changeBackground = style.backgroundColor;
 
-// window function 
-function scrollToHeader() {
-     window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "smooth",
-     })
-}
+            if (changeBackground === 'rgb(255, 255, 255)') {
+                element.style.backgroundColor = 'rgb(0, 0, 0)';
+                element.style.color = 'rgb(255, 255, 255)';
+            }
+            else if (changeBackground === 'rgb(0, 0, 0)') {
+                element.style.backgroundColor = 'rgb(255, 255, 255)';
+                element.style.color = 'rgb(0, 0, 0)';
+            }
+        });
+
+        // change background for body 
+        bodyIndex.forEach((bodyBackground) => {
+            if(!bodyBackground.classList.contains('body-theme')) {
+                bodyBackground.classList.add('body-theme');
+            }
+            else {
+                bodyBackground.classList.remove('body-theme');
+            }
+        })
+    }
+
+});
+
+//  scroll back top
+document.addEventListener('DOMContentLoaded', function () {
+    var scrollTop = document.getElementById('scroll-top');
+    scrollTop.addEventListener('click', function () {
+        scrollTop.classList.add('animation');
+        
+        setTimeout(function() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            scrollTop.classList.remove('animation');
+        }, 100);
+    });
+});
 
 
-// change show or hide login form / signup form
-function showHideForm(containerScripts, option) {
-     const loginScripts =  containerScripts.querySelector("#login");
-     const signupScripts = containerScripts.querySelector("#signup");
-     if(option) {
-          if(signupScripts.classList.contains("active")) {
-               signupScripts.classList.remove("active");
-               loginScripts.classList.add("active");
-          }
-          else 
-               loginScripts.classList.add("active");
-     }
-     else {
-          if(loginScripts.classList.contains("active")) {
-               loginScripts.classList.remove("active");
-               signupScripts.classList.add("active");
-          }
-          else
-               signupScripts.classList.add("active");
-     }
-}
+// test
+window.addEventListener('scroll', updateChildPosition);
+window.addEventListener('resize', updateChildPosition);
+document.addEventListener('DOMContentLoaded', updateChildPosition);
 
-// overwrite scripts with link btn
-function buttonShowForm(mainContainer, scriptsHandler) {
-     let lnwBtn = document.querySelectorAll("button.lnw-btn"); 
-     try {
-          lnwBtn.forEach((btnClicked) => {
-               btnClicked.addEventListener("click", () => {
-                    if (btnClicked.classList.contains("js-login")) {
-                         showHideForm(scriptsHandler, true);
-                    }
-                    else if (btnClicked.classList.contains("js-signup")) { 
-                         showHideForm(scriptsHandler, false);
-                    }
-                    mainContainer.innerHTML = scriptsHandler.innerHTML;
-                    linkChangeForm(mainContainer, scriptsHandler);
-                    scrollToHeader();
-               })
-          })
-     } catch(error) {
-          window.alert(error);
-     }
+function updateChildPosition(test, type = 'log') {
+    const parent = document.querySelector('.sub-menu-item');
+    const child = document.querySelector('.list-btn');
+    
+    const rect = parent.getBoundingClientRect();
+    
+    child.style.width = `${rect.width / 16}em`;
+    child.style.height = `${rect.height / 16}em`;
 }
 
-function linkChangeForm(mainContainer, getFormScripts) {
-     let links = document.querySelectorAll("a");
-     let linkLoginForm;
-     let linkSignupForm;
-     try {
-          links.forEach((link) => {
-               if (link.href.match("#login"))
-                    linkLoginForm = link;
-               if(link.href.match("#signup"))
-                    linkSignupForm = link;
-          })
-          // have account ?
-          linkLoginForm.addEventListener("click", (event) => {
-               showHideForm(getFormScripts, true);
-               mainContainer.innerHTML = getFormScripts.innerHTML;
-               window.setTimeout(() => {
-                    scrollToHeader();
-                    linkChangeForm(mainContainer, getFormScripts);
-               }, 10);
-          })
-     
-          // don't have account ?
-          linkSignupForm.addEventListener("click", (event) => {
-               showHideForm(getFormScripts, false);
-               mainContainer.innerHTML = getFormScripts.innerHTML;
-               window.setTimeout(() => {
-                    scrollToHeader();
-                    linkChangeForm(mainContainer, getFormScripts);
-               }, 10);
-          })          
-     } catch (error) {
-          window.alert(error);
-     }
-}
-
-// overwrite scripts with hash
-const hashChange = document.addEventListener("DOMContentLoaded", () => {})
-function hashChangeForm(mainContainer, getFormScripts, hashLocation) {
-     try {
-          window.addEventListener("hashchange", () => {
-
-          })
-     } catch (error) {
-          window.alert(error);
-     }
-}
+export const updateChildPositionI = updateChildPosition;
 
 
 
 
-// DOM LOADED
-document.addEventListener ("DOMContentLoaded", function() {
-     let mainContainerScripts = getMainContainer();
-     let scriptsHandler = getScripts();
-     scriptsHandler.then((scripts) => {
-          buttonShowForm(mainContainerScripts, scripts);
-     })
-})
 
+// function GetImageProducts() {
+//     return document.querySelectorAll(".product-image");
+// }
 
+// function ResizeImage(productImage) {
+//     let productImgWidth = productImage.naturalWidth;
+//     let productImgHeight = productImage.naturalHeight;
+//     console.log(productImgWidth, productImgHeight);
+// }
 
+// document.addEventListener("DOMContentLoaded", () => {
+//     const productHandler = GetImageProducts();
+//     let productContainer = [];
+//     productHandler.forEach((product) => {
+//         let productImage = product.querySelector('img');
+//         productImage.addEventListener('load', () => {
+//             ResizeImage(productImage);
+//         })
+//     });
+// })

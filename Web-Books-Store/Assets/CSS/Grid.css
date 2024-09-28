@@ -15,7 +15,7 @@
 .grid-row {
      display: flex;
      flex-wrap: wrap;
-     margin-inline: -calc(0.25em + 3px);
+     margin-inline: -0.25em;
 }
 
 .grid-row.no-gutter {
@@ -23,7 +23,7 @@
 }
 
 .grid-col {
-     padding-inline: calc(0.25em + 3px);
+     padding-inline: 0.25em;
 }
 
 .grid-col.no-gutter {
@@ -452,7 +452,7 @@
      }
 
      /* overwrite display style */
-     .wide .col-l-1,
+     /* .wide .col-l-1,
      .wide .col-l-2,
      .wide .col-l-2-4,
      .wide .col-l-3,
@@ -466,7 +466,7 @@
      .wide .col-l-11,
      .wide .col-l-12 {
           display: block;
-     }
+     } */
 
      /* define the number of Column to use (pc) */
      .wide .col-l-0 {

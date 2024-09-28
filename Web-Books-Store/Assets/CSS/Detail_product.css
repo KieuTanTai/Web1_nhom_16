@@ -32,7 +32,7 @@
 
 .detail-block .product-info > div {
      display: flex;
-     font-size: 0.875rem;
+     font-size: var(--font-size-14);
 }
 
 .product-info > div + div {

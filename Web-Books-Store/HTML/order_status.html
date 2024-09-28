@@ -11,6 +11,7 @@
      <link rel="stylesheet" href="../Assets/CSS/Responsive.css">
      <link rel="stylesheet" href="../Assets/CSS/Cart.css">
      <link rel="stylesheet" href="../Assets/CSS/Order_status.css">
+     <script src="../JavaScript/Interface.js"></script>
      <title>tra cứu đơn hàng </title>
 </head>
 <body>
@@ -20,6 +21,7 @@
                <section class="grid wide">
                     <section class="grid-row flex justify-center">
                          <!-- header bar with most useful function for users -->
+
                          <!-- header for mobile and tablet -->
                          <div class="s-m-header s-m-content flex justify-center align-center grid-col col-m-12 col-s-12 no-gutter">
                               <div class="header-items full-height s-m-content s-m-nav-btn">
@@ -74,16 +76,15 @@
 
                               <div class="header-items full-height">
                                    <div class="cart-btn full-height">
-                                        <a href="#" onclick="return false">
+                                        <div class="flex align-center full-height">
                                              <div class="cart-count item-count">0</div>
                                              <i class="fa-solid fa-cart-shopping fa-xl" style="color: var(--main-color);"></i>
                                              <span class="padding-left-8 font-size-14 s-m-hidden">Giỏ hàng</span>
-                                        </a>
+                                        </div>
                                    </div>
                               </div>
                          </div>
                          <!-- end header for mobile and tablet -->
-
                          <div class="grid-col col-l-2 col-m-8 col-s-8 web-logo s-m-hidden">
                               <a href="../HTML/index.html" ><img src="../Assets/Images/Icons/Web_logo/light-novel-world.png" alt="Light Novel World"/></a>
                          </div>
@@ -109,35 +110,35 @@
                               </div> -->
 
                               <div class="hotline full-height">
-                                   <a href="#" onclick="copy_hotline()">
+                                   <div class="flex align-center full-height">
                                         <i class="fa-solid fa-phone-volume fa-xl" style="color: var(--main-color);"></i>
                                         <div class="flex-direction-y padding-left-8">
                                              <span>Hotline</span>
-                                             <span class="font-bold" style="color: var(--main-color)">084xxxxxxx</span>
+                                             <span class="font-bold" style="color: var(--main-color)">032838xxxx</span>
                                         </div>
-                                   </a>
+                                   </div>
                               </div>
 
                               <div class="order-tracking full-height">
-                                   <a href="#" onclick="return false">
+                                   <div class="flex align-center full-height">
                                         <i class="fa-solid fa-truck-fast fa-xl" style="color: var(--main-color);"></i>
                                         <div class="flex-direction-y">
                                              <span class="padding-left-8">Tra cứu</span>
                                              <span class="padding-left-8">đơn hàng</span>
                                         </div>
-                                   </a>
+                                   </div>
                               </div>
 
                               <div class="cart-btn full-height">
-                                   <a href="#" onclick="return false">
+                                   <div class="flex align-center full-height">
                                         <div class="cart-count item-count">0</div>
                                         <i class="fa-solid fa-cart-shopping fa-xl" style="color: var(--main-color);"></i>
                                         <span class="padding-left-8">Giỏ hàng</span>
-                                   </a>
+                                   </div>
                               </div>
 
                               <div id="user-account" class="full-height">
-                                   <a href="#" onclick="return false">
+                                   <div class="flex align-center full-height">
                                         <div id="no-sign-in" class="flex justify-center align-center" >
                                              <i class="fa-regular fa-circle-user fa-xl" style="color: var(--main-color);"></i>
                                              <p class="padding-left-8">Tài khoản</p>
@@ -157,9 +158,8 @@
                                                   <span class="font-bold uppercase">Đăng xuất</span>
                                              </button>
                                         </nav>
-                                   </a>
+                                   </div>
                               </div>
-                              <script type="module" src="../JavaScript/Temp.js"></script>
                          </section>
                     </section>
                </section>
@@ -572,14 +572,14 @@
                                                                  <p class="capitalize padding-bottom-8">khẽ hát lời yêu 1</p>
                                                                  <div class="block-product-price text-end">
                                                                       <div class="quantity-cart">x1</div>
-                                                                      <div class="new-price price">55,250₫</div>
+                                                                      <div class="new-price price">55250</div>
                                                                  </div>
                                                             </div>  
                                                        </div>
                                                        <div class="flex justify-space-between padding-bottom-8 padding-top-8">
                                                             <div class="total-item opacity-0-6">1 item</div>
-                                                            <div class="total-price font-bold text-end">
-                                                                 55,250₫
+                                                            <div class="price total-price font-bold text-end">
+                                                                 55250
                                                             </div>
                                                        </div>
                                                        <div class="order-status flex justify-space-between padding-top-8 padding-bottom-8">
@@ -607,14 +607,14 @@
                                                                  <p class="capitalize padding-bottom-8">khẽ hát lời yêu 1</p>
                                                                  <div class="block-product-price text-end">
                                                                       <div class="quantity-cart">x1</div>
-                                                                      <div class="new-price price">55,250₫</div>
+                                                                      <div class="new-price price">55250</div>
                                                                  </div>
                                                             </div>  
                                                        </div>
                                                        <div class="flex justify-space-between padding-bottom-8 padding-top-8">
                                                             <div class="total-item opacity-0-6">1 item</div>
-                                                            <div class="total-price font-bold text-end">
-                                                                 55,250₫
+                                                            <div class="price total-price font-bold text-end">
+                                                                 55250
                                                             </div>
                                                        </div>
                                                        <div class="order-status flex justify-space-between padding-top-8 padding-bottom-8">
@@ -642,14 +642,14 @@
                                                                  <p class="capitalize padding-bottom-8">khẽ hát lời yêu 1</p>
                                                                  <div class="block-product-price text-end">
                                                                       <div class="quantity-cart">x1</div>
-                                                                      <div class="new-price price">55,250₫</div>
+                                                                      <div class="new-price price">55250</div>
                                                                  </div>
                                                             </div>  
                                                        </div>
                                                        <div class="flex justify-space-between padding-bottom-8 padding-top-8">
                                                             <div class="total-item opacity-0-6">1 item</div>
-                                                            <div class="total-price font-bold text-end">
-                                                                 55,250₫
+                                                            <div class="price total-price font-bold text-end">
+                                                                 55250
                                                             </div>
                                                        </div>
                                                        <div class="order-status flex justify-space-between padding-top-8 padding-bottom-8">

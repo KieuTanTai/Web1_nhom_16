@@ -11,18 +11,21 @@
      <link rel="stylesheet" href="../Assets/CSS/Responsive.css">
      <link rel="stylesheet" href="../Assets/CSS/Account.css">
      <link rel="stylesheet" href="../Assets/CSS/Cart.css">
+     <script src="../JavaScript/Interface.js"></script>
      <title>Giỏ hàng</title>
 </head>
 <body>
      <div class="web-content">
           <header id="header-container">
-               <div class="grid wide">
-                    <section class="grid-row" style="justify-content: center;">
+               <section class="grid wide">
+                    <section class="grid-row flex justify-center">
                          <!-- header bar with most useful function for users -->
+
                          <!-- header for mobile and tablet -->
                          <div class="s-m-header s-m-content flex justify-center align-center grid-col col-m-12 col-s-12 no-gutter">
                               <div class="header-items full-height s-m-content s-m-nav-btn">
-                                        <i class="fa-solid fa-list fa-xl" style="color: var(--main-color);"></i>                                       
+                                        <i class="fa-solid fa-list fa-xl" style="color: var(--main-color);"></i>
+                                        
                                         <div class="overlay">
                                              <div class="s-m-nav-content s-m-content">
                                                   <div class="flex justify-center align-center margin-y-12">
@@ -72,16 +75,15 @@
 
                               <div class="header-items full-height">
                                    <div class="cart-btn full-height">
-                                        <a href="#" onclick="return false">
+                                        <div class="flex align-center full-height">
                                              <div class="cart-count item-count">0</div>
                                              <i class="fa-solid fa-cart-shopping fa-xl" style="color: var(--main-color);"></i>
                                              <span class="padding-left-8 font-size-14 s-m-hidden">Giỏ hàng</span>
-                                        </a>
+                                        </div>
                                    </div>
                               </div>
                          </div>
                          <!-- end header for mobile and tablet -->
-
                          <div class="grid-col col-l-2 col-m-8 col-s-8 web-logo s-m-hidden">
                               <a href="../HTML/index.html" ><img src="../Assets/Images/Icons/Web_logo/light-novel-world.png" alt="Light Novel World"/></a>
                          </div>
@@ -107,35 +109,35 @@
                               </div> -->
 
                               <div class="hotline full-height">
-                                   <a href="#" onclick="copy_hotline()">
+                                   <div class="flex align-center full-height">
                                         <i class="fa-solid fa-phone-volume fa-xl" style="color: var(--main-color);"></i>
                                         <div class="flex-direction-y padding-left-8">
                                              <span>Hotline</span>
-                                             <span class="font-bold" style="color: var(--main-color)">084xxxxxxx</span>
+                                             <span class="font-bold" style="color: var(--main-color)">032838xxxx</span>
                                         </div>
-                                   </a>
+                                   </div>
                               </div>
 
                               <div class="order-tracking full-height">
-                                   <a href="#" onclick="return false">
+                                   <div class="flex align-center full-height">
                                         <i class="fa-solid fa-truck-fast fa-xl" style="color: var(--main-color);"></i>
                                         <div class="flex-direction-y">
                                              <span class="padding-left-8">Tra cứu</span>
                                              <span class="padding-left-8">đơn hàng</span>
                                         </div>
-                                   </a>
+                                   </div>
                               </div>
 
                               <div class="cart-btn full-height">
-                                   <a href="#" onclick="return false">
+                                   <div class="flex align-center full-height">
                                         <div class="cart-count item-count">0</div>
                                         <i class="fa-solid fa-cart-shopping fa-xl" style="color: var(--main-color);"></i>
                                         <span class="padding-left-8">Giỏ hàng</span>
-                                   </a>
+                                   </div>
                               </div>
 
                               <div id="user-account" class="full-height">
-                                   <a href="#" onclick="return false">
+                                   <div class="flex align-center full-height">
                                         <div id="no-sign-in" class="flex justify-center align-center" >
                                              <i class="fa-regular fa-circle-user fa-xl" style="color: var(--main-color);"></i>
                                              <p class="padding-left-8">Tài khoản</p>
@@ -143,20 +145,23 @@
 
                                         <!-- account -->
                                         <nav class="nav-account flex justify-center align-center flex-direction-y">
-                                             <button type="button" title="Đăng nhập" class="lnw-btn active js-login">
+                                             <button type="button" title="Đăng nhập" class="lnw-btn active js-login margin-bottom-16">
                                                   <span class="font-bold uppercase">Đăng nhập</span>
                                              </button>
 
                                              <button type="button" title="Đăng ký" class="lnw-btn js-signup">
                                                   <span class="font-bold uppercase">Đăng ký</span>
                                              </button>
+
+                                             <button type="button" title="Đăng xuất" class="lnw-btn js-signup margin-top-16 disable">
+                                                  <span class="font-bold uppercase">Đăng xuất</span>
+                                             </button>
                                         </nav>
-                                   </a>
+                                   </div>
                               </div>
-                              <script type="module" src="../JavaScript/Account.js"></script>
                          </section>
                     </section>
-               </div>
+               </section>
           </header>
 
           <main id="main-container" style="padding:0 0 40em;">
@@ -330,15 +335,15 @@
                                                             <div class="info-product-cart padding-left-8">
                                                                  <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
                                                                  <div class="block-product-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price">65,000₫</del>
+                                                                      <span class="new-price font-bold padding-right-8 price">55250</span>
+                                                                      <del class="price old-price">65000</del>
                                                                  </div>
                                                             </div>   
                                                        </div>
                                                        <div class="number-product-cart grid-col col-l-2">
                                                                  <input type="number" name="quantity-cart" id="update_12323" value="1" max="2" class="quantity-cart">
                                                        </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
+                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55250</div>
                                                        <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
                                                   </div>
                                                   
@@ -349,15 +354,15 @@
                                                             <div class="info-product-cart padding-left-8">
                                                                  <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
                                                                  <div class="block-product-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price">65,000₫</del>
+                                                                      <span class="new-price font-bold padding-right-8 price">55250</span>
+                                                                      <del class="price old-price">65000</del>
                                                                  </div>
                                                             </div>   
                                                        </div>
                                                        <div class="number-product-cart grid-col col-l-2">
                                                                  <input type="number" name="quantity-cart" id="update_12324" value="1" max="2" class="quantity-cart">
                                                        </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
+                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55250</div>
                                                        <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
                                                   </div>
 
@@ -368,15 +373,15 @@
                                                             <div class="info-product-cart padding-left-8">
                                                                  <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
                                                                  <div class="block-product-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price">65,000₫</del>
+                                                                      <span class="new-price font-bold padding-right-8 price">55250</span>
+                                                                      <del class="price old-price">65000</del>
                                                                  </div>
                                                             </div>   
                                                        </div>
                                                        <div class="number-product-cart grid-col col-l-2">
                                                                  <input type="number" name="quantity-cart" id="update_12325" value="1" max="2" class="quantity-cart">
                                                        </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
+                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55250</div>
                                                        <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
                                                   </div>
 
@@ -387,15 +392,15 @@
                                                             <div class="info-product-cart padding-left-8">
                                                                  <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
                                                                  <div class="block-product-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price">65,000₫</del>
+                                                                      <span class="new-price font-bold padding-right-8 price">55250</span>
+                                                                      <del class="price old-price">65000</del>
                                                                  </div>
                                                             </div>   
                                                        </div>
                                                        <div class="number-product-cart grid-col col-l-2">
                                                                  <input type="number" name="quantity-cart" id="update_12326" value="1" max="2" class="quantity-cart">
                                                        </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
+                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55250</div>
                                                        <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
                                                   </div>
 
@@ -406,15 +411,15 @@
                                                             <div class="info-product-cart padding-left-8">
                                                                  <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
                                                                  <div class="block-product-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price">65,000₫</del>
+                                                                      <span class="new-price font-bold padding-right-8 price">55250</span>
+                                                                      <del class="price old-price">65000</del>
                                                                  </div>
                                                             </div>   
                                                        </div>
                                                        <div class="number-product-cart grid-col col-l-2">
                                                                  <input type="number" name="quantity-cart" id="update_12327" value="1" max="2" class="quantity-cart">
                                                        </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
+                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55250</div>
                                                        <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
                                                   </div>
 
@@ -425,15 +430,15 @@
                                                             <div class="info-product-cart padding-left-8">
                                                                  <p class="font-bold capitalize">khẽ hát lời yêu 1</p>
                                                                  <div class="block-product-price">
-                                                                      <span class="new-price font-bold padding-right-8 price">55,250₫</span>
-                                                                      <del class="old-price">65,000₫</del>
+                                                                      <span class="new-price font-bold padding-right-8 price">55250</span>
+                                                                      <del class="price old-price">65000</del>
                                                                  </div>
                                                             </div>   
                                                        </div>
                                                        <div class="number-product-cart grid-col col-l-2">
                                                                  <input type="number" name="quantity-cart" id="update_12328" value="1" max="2" class="quantity-cart">
                                                        </div>                                                    
-                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55,250₫</div>
+                                                       <div class="price-per-item font-bold text-center grid-col col-l-2">55250</div>
                                                        <div class="rm-cart-btn grid-col col-l-1"> <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> </div>
                                                   </div>
                                              </div>
@@ -472,23 +477,23 @@
                                                        <h4 class="capitalize margin-bottom-8">chi tiết thanh toán</h4>
                                                        <div>
                                                             <p>thành tiền</p>
-                                                            <span class="price">55,250₫</span>
+                                                            <span class="price">55250</span>
                                                        </div>
                                                        <div>
                                                             <p>tổng tiền phí vận chuyển</p>
-                                                            <span class="price">10,000₫</span>
+                                                            <span class="price">10000</span>
                                                        </div>
                                                        <div>
                                                             <p>giảm giá phí vận chuyển</p>
-                                                            <span class="price">5,250₫</span>
+                                                            <span class="price">5250</span>
                                                        </div>
                                                        <div>
                                                             <p>voucher giảm giá</p>
-                                                            <span class="price">5,000₫</span>
+                                                            <span class="price">5000</span>
                                                        </div>
                                                        <div>
                                                             <p class="font-bold">tổng số tiền</p>
-                                                            <span class="total-price font-bold">55,000₫</span>
+                                                            <span class="price total-price font-bold">55000</span>
                                                        </div>
 
                                                        <button type="submit" class="checkout-btn button margin-top-12">

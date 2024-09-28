@@ -32,9 +32,52 @@
           max-height: 3em;
      }
 
+     
      .s-m-header .header-items.s-m-nav-btn {
           order: 1;
           cursor: pointer;
+     }
+
+     .s-m-nav-content .s-m-nav-btn button {
+          line-height: 1.6;
+          border: none;
+          background: unset;
+          position: relative;
+          display: none;
+
+     }
+
+     .s-m-nav-btn button + button:not(:last-child):before {
+          left: -20%;
+          content: "/";
+          font-weight: bold;
+          position: absolute;
+          transform: translateY(6%);
+     }
+
+     .s-m-nav-btn button > div {
+          transform: translateY(10%);
+     }
+
+     .s-m-nav-content .s-m-nav-list {
+          cursor: pointer;
+     }
+
+     .s-m-nav-content .s-m-nav-list > li {
+          font-weight: 600;
+          padding-left: 1.5em;
+          display: flex;
+          position: relative;
+     } 
+     
+     .s-m-nav-list > li:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 40%;
+          padding: 0.25em;
+          border-radius: 50%;
+          background: var(--main-color);
      }
 
      .s-m-header .web-logo {
@@ -84,7 +127,6 @@
 /* Mobile */
 @media (max-width: 46.1875em) {
      /* set order for items in header bar */
-     #header-container .s-m-nav-btn,
      #header-container .header-items {
           padding-inline: 1em;
      }
@@ -144,20 +186,12 @@
      /* CSS for header content */
 
      /* CSS for main content */
-     #main-content .banner-container {
-          margin-inline: 0.25em;
-     }
-
      #main-content .homepage::before {
           margin-inline: 0.5em;
      }
 
      #main-content .homepage::after {
           margin-inline: 0.5em;
-     }
-
-     #main-content .category-tab {
-          margin: 1.5em 0.75em;
      }
 
      .s-m-header .s-m-nav-content {
