@@ -272,6 +272,10 @@ ul {
      font-weight: 400;
 } 
 
+.font-size-12 {
+     font-size: var(--font-size-12);
+}
+
 .font-size-13 {
      font-size: var(--font-size-13);
 }
@@ -537,7 +541,7 @@ ul {
 
 /* disable active success error */
 .active {
-     display: unset !important;
+     display: initial !important;
 }
 
 *.active {

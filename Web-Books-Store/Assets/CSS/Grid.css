@@ -27,7 +27,7 @@
 }
 
 .grid-col.no-gutter {
-     padding-inline: 0;
+     padding-inline: 0 ;
 }
 
 /* define the number of Column to use (mobile) */
