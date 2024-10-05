@@ -121,3 +121,7 @@
 .product-like .product-image img {
      object-fit: contain;
 }
+
+.product-like {
+     margin-bottom: 1.5em;
+}
