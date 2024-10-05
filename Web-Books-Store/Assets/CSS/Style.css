@@ -542,8 +542,7 @@
 }
 
 .block-product .product-image img {
-     width: 100%;
-     height: 100%;
+     max-width: 100%;
 }
 
 .block-product .info-inner {
@@ -768,6 +767,8 @@
 .footer-col-container .block-footer a {
      line-height: 1.8;
      font-size: 0.94rem;
+     cursor: default;
+     pointer-events: none;
 }
 
 .footer-col-container .block-footer a:hover {
