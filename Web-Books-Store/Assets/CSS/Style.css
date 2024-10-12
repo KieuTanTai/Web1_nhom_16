@@ -257,9 +257,9 @@
 }
 
 .list-btn .nav-categories .nav-item {
-     padding: 0.5em;
      line-height: 1.5;
      min-height: 2.25em; 
+     padding: 0.5em 0.25em;
      display: none; 
      align-items: center;
      text-transform: capitalize;
