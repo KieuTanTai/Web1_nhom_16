@@ -1,21 +1,19 @@
-#main-container .cart-title {
-     padding: 0.5em 0;
-     margin-bottom: 0.25em;
-     display: flex;
-     align-items: center;
-}
-
 #main-container .cart-ui-content img {
      width: 100%;
 }
 
 .cart-ui-content #blank-cart,
 .cart-ui-content #cart {
-     display: flex;
+     display: none;
+}
+
+.cart-ui-content #blank-cart.active,
+.cart-ui-content #cart.active {
+     display: flex !important;
      flex-flow: row wrap;
 }
 
-.cart-ui-content #blank-cart {
+.cart-ui-content #blank-cart.active {
      align-items: center;
      flex-flow: column wrap;
 }
