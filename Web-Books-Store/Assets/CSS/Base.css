@@ -541,7 +541,7 @@ ul {
 
 /* disable active success error */
 .active {
-     display: initial !important;
+     display:block !important;
 }
 
 *.active {

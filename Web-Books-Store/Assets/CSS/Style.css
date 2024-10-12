@@ -231,7 +231,6 @@
      padding-left: 0.25em;
      border-top-left-radius: 0.25em;
      border-top-right-radius: 0.25em;
-     position: relative;
      color: var(--primary-white);
      justify-content: flex-start;
      background: var(--main-color);
@@ -239,7 +238,7 @@
 
 .sub-menu .sub-menu-item .list-btn:hover {
      z-index: 10;
-     max-width: 12.5em;
+     max-width: inherit;
      position: fixed;
      cursor: pointer;
      box-shadow: 0 0.25em 0.5em var(--primary-dark);
@@ -278,25 +277,6 @@
      background: var(--primary-grey);
      color: var(--main-color);
 }
-
-/* sub-nav lv2
-.sub-menu .nav-categories .subnav {
-     top: 0;
-     right: 0;
-     display: none;
-     flex-flow: column wrap;
-     color: initial;
-     position: absolute;
-     width: calc(75em*(10/12));
-     transform: translateX(100%);
-     border-right: 1px solid var(--border);
-     border-bottom: 1px solid var(--border);
-     border-top: 1px solid var(--border);
-}
-
-.nav-categories .nav-item:hover .subnav {
-     display: flex;
-} */
 
 /* CSS for breadcrumb */
 
@@ -542,7 +522,8 @@
 }
 
 .block-product .product-image img {
-     max-width: 100%;
+     width: 100%;
+     /* aspect-ratio: 5/8; */
 }
 
 .block-product .info-inner {
@@ -608,12 +589,12 @@
 
 .category-tab .heading #ln-label {
      border-radius: var(--higher-radius);
-     background: url('../Images/Icons/Other_icons/LN.jpg') top left / cover no-repeat;
+     background: url('../Images/Icons/Other_icons/LN.webp') top left / cover no-repeat;
 }
 
 .category-tab .heading #manga-label {
      border-radius: var(--higher-radius);
-     background: url('../Images/Icons/Other_icons/Manga.jpg') top left / cover no-repeat;
+     background: url('../Images/Icons/Other_icons/Manga.webp') top left / cover no-repeat;
 }
 
 .category-tab .heading #other-book-label {
