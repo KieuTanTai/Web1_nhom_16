@@ -5,9 +5,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="shortcut icon" href="../Assets/Images/Icons/Web_logo/main-logo.ico" type="image/x-icon">
      <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css">
-     <link rel="stylesheet" href="../Assets/CSS/Grid.css">
-     <link rel="stylesheet" href="../Assets/CSS/Base.css">
-     <link rel="stylesheet" href="../Assets/CSS/Style.css">
+     <link rel="stylesheet" href="../Assets/CSS/CssBridge.css">
      <link rel="stylesheet" href="../Assets/CSS/Cart.css">
      <link rel="stylesheet" href="../Assets/CSS/Order_status.css">
      <link rel="stylesheet" href="../Assets/CSS/Responsive.css">
@@ -319,46 +317,48 @@
      
                                         <!--block order info and tracking bar -->
                                         <div class="order-info flex margin-y-24">
-                                             <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
-                                                  <h4 class="capitalize">mã đơn hàng</h4>
-                                                  <span class="order-code font-size-20 opacity-0-8">123451</span>     
-                                             </div>
-     
-                                             <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
-                                                  <h4 class="capitalize">thời gian đặt hàng</h4>
-                                                  <span class="order-time font-size-20 opacity-0-8">21/09/2024</span>
-                                             </div>
-     
-                                             <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
-                                                  <h4 class="capitalize">mã vận đơn</h4>
-                                                  <span class="tracking-code font-size-20 opacity-0-8">432434xgf14142</span>
-                                             </div>
-     
-                                             <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
-                                                  <h4 class="capitalize">vận chuyển bởi</h4>
-                                                  <span class="shipped-with font-size-20 opacity-0-8">TLANG SHIP</span>
-                                             </div>
-     
-                                             <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
-                                                  <h4 class="capitalize">ngày nhận hàng dự kiến</h4>
-                                                  <span class="expected-delivery-date font-size-20 opacity-0-8">22/9/2024</span>
-                                             </div>
-     
-                                             <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
-                                                  <h4 class="capitalize">tên người nhận</h4>
-                                                  <span class="Consignee font-size-20 opacity-0-8">K Tài</span>
-                                             </div>
-     
-                                             <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
-                                                  <h4 class="capitalize">số điện thoại người nhận</h4>
-                                                  <span class="Consignee-phone font-size-20 opacity-0-8">(+84)843 *** ***</span>
-                                             </div>
-     
-                                             <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
-                                                  <h4 class="capitalize">địa chỉ nhận hàng</h4>
-                                                  <span class="shipping-to font-size-20 opacity-0-8">
-                                                       <span class="Consignee-address">449/76 K4 HL BD BT TP.HCM</span>
-                                                  </span>
+                                             <div>
+                                                  <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
+                                                       <h4 class="capitalize">mã đơn hàng</h4>
+                                                       <span class="order-code font-size-20 opacity-0-8">123451</span>     
+                                                  </div>
+          
+                                                  <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
+                                                       <h4 class="capitalize">thời gian đặt hàng</h4>
+                                                       <span class="order-time font-size-20 opacity-0-8">21/09/2024</span>
+                                                  </div>
+          
+                                                  <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
+                                                       <h4 class="capitalize">mã vận đơn</h4>
+                                                       <span class="tracking-code font-size-20 opacity-0-8">432434xgf14142</span>
+                                                  </div>
+          
+                                                  <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
+                                                       <h4 class="capitalize">vận chuyển bởi</h4>
+                                                       <span class="shipped-with font-size-20 opacity-0-8">TLANG SHIP</span>
+                                                  </div>
+          
+                                                  <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
+                                                       <h4 class="capitalize">ngày nhận hàng dự kiến</h4>
+                                                       <span class="expected-delivery-date font-size-20 opacity-0-8">22/9/2024</span>
+                                                  </div>
+          
+                                                  <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
+                                                       <h4 class="capitalize">tên người nhận</h4>
+                                                       <span class="Consignee font-size-20 opacity-0-8">K Tài</span>
+                                                  </div>
+          
+                                                  <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
+                                                       <h4 class="capitalize">số điện thoại người nhận</h4>
+                                                       <span class="Consignee-phone font-size-20 opacity-0-8">(+84)843 *** ***</span>
+                                                  </div>
+          
+                                                  <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
+                                                       <h4 class="capitalize">địa chỉ nhận hàng</h4>
+                                                       <span class="shipping-to font-size-20 opacity-0-8">
+                                                            <span class="Consignee-address">449/76 K4 HL BD BT TP.HCM</span>
+                                                       </span>
+                                                  </div>
                                              </div>
                                         
                                              <!-- tracking bar -->
@@ -777,6 +777,142 @@
                                    </section>
                               </div>
 
+                              <div class="overlay">
+                                   <div class="order-status-container grid-col col-l-6 col-m-6 col-s-6 flex justify-center align-center full-height">
+                                        <!-- tracking table -->
+                                        <div class="tracking-table-container grid-col col-l-12 col-m-12 col-s-12 no-gutter">
+                                             <div class="tracking-table flex align-center">
+                                                  <div class="flex justify-space-between full-width margin-bottom-12">
+                                                       <h4 class="uppercase">mã vận đơn</h4>
+                                                       <span class="tracking-code font-size-20 opacity-0-6">432434xgf14142</span>
+                                                  </div>
+
+                                                  <div class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
+                                                       <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div>12/09</div>
+                                                            <div>18:05</div>
+                                                       </div>
+     
+                                                       <div class="dot-status flex align-center">
+                                                            <div>
+                                                                 <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
+                                                            </div>
+                                                       </div>
+     
+                                                       <div class="delivery-state padding-left-12">
+                                                            <div class="font-bold">Chờ xác nhận</div>
+                                                            <span class="opacity-0-8">Đặt hàng thành công</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
+                                                       <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div>12/09</div>
+                                                            <div>19:05</div>
+                                                       </div>
+     
+                                                       <div class="dot-status flex align-center">
+                                                            <div>
+                                                                 <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
+                                                            </div>
+                                                       </div>
+     
+                                                       <div class="delivery-state padding-left-12">
+                                                            <div class="font-bold">Chuẩn bị hàng</div>
+                                                            <span class="opacity-0-8">Shop đang chuẩn bị hàng</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
+                                                       <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div>12/09</div>
+                                                            <div>20:05</div>
+                                                       </div>
+     
+                                                       <div class="dot-status flex align-center">
+                                                            <div>
+                                                                 <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
+                                                            </div>
+                                                       </div>
+     
+                                                       <div class="delivery-state padding-left-12">
+                                                            <span class="opacity-0-8">Đơn vị vận chuyển lấy hàng thành công</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
+                                                       <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div>12/09</div>
+                                                            <div>21:05</div>
+                                                       </div>
+     
+                                                       <div class="dot-status flex align-center">
+                                                            <div>
+                                                                 <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
+                                                            </div>
+                                                       </div>
+     
+                                                       <div class="delivery-state padding-left-12">
+                                                            <span class="opacity-0-8">Đơn hàng đã đến kho phân loại</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
+                                                       <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div>12/09</div>
+                                                            <div>21:55</div>
+                                                       </div>
+     
+                                                       <div class="dot-status flex align-center">
+                                                            <div>
+                                                                 <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
+                                                            </div>
+                                                       </div>
+     
+                                                       <div class="delivery-state padding-left-12">
+                                                            <span class="opacity-0-8">Đơn hàng đã rời kho phân loại</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
+                                                       <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div>12/09</div>
+                                                            <div>22:35</div>
+                                                       </div>
+     
+                                                       <div class="dot-status flex align-center">
+                                                            <div>
+                                                                 <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
+                                                            </div>
+                                                       </div>
+     
+                                                       <div class="delivery-state padding-left-12">
+                                                            <div class="font-bold">Chờ giao hàng</div>
+                                                            <span class="opacity-0-8">Đơn hàng đang trên đường giao đến bạn.</span>
+                                                       </div>
+                                                  </div>
+
+                                                  <div class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
+                                                       <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div>12/09</div>
+                                                            <div>22:55</div>
+                                                       </div>
+     
+                                                       <div class="dot-status flex align-center">
+                                                            <div>
+                                                                 <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
+                                                            </div>
+                                                       </div>
+     
+                                                       <div class="delivery-state padding-left-12">
+                                                            <div class="font-bold">Đã giao hàng</div>
+                                                            <span class="opacity-0-8">Giao hàng thành công</span>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
                          </div>
                     </div>
                </section>

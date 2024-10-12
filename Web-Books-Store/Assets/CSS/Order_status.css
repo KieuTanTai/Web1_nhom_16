@@ -96,7 +96,7 @@
      flex-flow:column-reverse;
 }
 
-.tracking-table .tracking-block:not(:last-child) {
+.tracking-table .tracking-block:not(:first-child) {
      border-top: 1px solid var(--border);
 } 
 
@@ -156,4 +156,14 @@
 
 .history-order-table .completed-order-info {
      display: flex;
+}
+
+.overlay .order-status-container {
+     margin: auto;
+}
+
+.overlay .order-status-container .tracking-table {
+     padding: 1em;
+     background: var(--primary-white);
+     border-radius: var(--higher-radius);
 }
