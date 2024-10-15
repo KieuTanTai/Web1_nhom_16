@@ -578,3 +578,11 @@ ul {
 .total-price {
      color: var(--bg-red);
 }
+
+/* validate */
+.error-message {
+     text-align: start;
+     font-size: 0.75rem;
+     padding-bottom: 1em;
+     color: var(--bg-red);
+}

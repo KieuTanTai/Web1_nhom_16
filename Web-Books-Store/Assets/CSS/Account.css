@@ -36,7 +36,6 @@
 .userbox #signup-layout input {
      width: 22em;
      opacity: 0.8;
-     margin: 0.5em 0;
      padding-inline: 0.25em;
      background: unset;
      outline-style: none;
@@ -60,7 +59,7 @@
      position: relative;
 }
 
-#login-registration-form .userbox div:nth-child(3)::before {
+/* #login-registration-form .userbox div:nth-child(3)::before {
      content: "";
      left: 0;
      top: 50%;
@@ -72,7 +71,7 @@
      top: 50%;
      right: 0;
      left: 56%;
-}
+} */
 
 #login-registration-form .userbox div:nth-child(3)::after,
 #login-registration-form .userbox div:nth-child(3)::before {
