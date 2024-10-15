@@ -198,14 +198,29 @@
                                              <div class="font-size-20 uppercase font-bold">signup</div>
                                              <div id="signup-layout">
                                                   <form action="" method="post">
-                                                       <input type="text" name="customer-last-name" id="customer-last-name"  placeholder="Họ" required>
-                                                       <input type="text" name="customer-first-name" id="customer-first-name" placeholder="Tên" required>
-                                                       <input type="email" name="customer-email-signup" id="customer-email-signup" placeholder="Email" 
+                                                       <div class="js-fname-input">
+                                                            <input type="text" name="customer-last-name" id="customer-last-name"  placeholder="Họ" required>
+                                                            <div class="error-message"></div>
+                                                       </div>
+                                                       <div class="js-lname-input">
+                                                            <input type="text" name="customer-first-name" id="customer-first-name" placeholder="Tên" required>
+                                                            <div class="error-message"></div>
+                                                       </div>
+                                                       <div class="js-email-input">
+                                                            <input type="email" name="customer-email-signup" id="customer-email-signup" placeholder="Email" 
                                                             autocomplete="on" required>
-                                                       <input type="password" name="customer-password-signup" id="customer-password-signup" 
+                                                            <div class="error-message"></div>
+                                                       </div>
+                                                       <div class="js-password-input">
+                                                            <input type="password" name="customer-password-signup" id="customer-password-signup" 
                                                             placeholder="Create password" minlength="8" required>
-                                                       <input type="password" name="customer-confirm-password-signup" id="customer-confirm-password-signup" 
+                                                            <div class="error-message"></div>
+                                                       </div>
+                                                       <div class="js-confirm-pass-input">
+                                                            <input type="password" name="customer-confirm-password-signup" id="customer-confirm-password-signup" 
                                                             placeholder="Confirm password" minlength="8" required>
+                                                            <div class="error-message"></div>
+                                                       </div>
                                                        <button type="submit" id="signup-btn" class="button">
                                                             <p class="capitalize font-bold">signup</p>
                                                        </button>
