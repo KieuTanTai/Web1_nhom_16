@@ -147,11 +147,11 @@
                                                   <span class="font-bold uppercase">Đăng nhập</span>
                                              </button>
 
-                                             <button type="button" title="Đăng ký" class="lnw-btn js-signup">
+                                             <button type="button" title="Đăng ký" class="lnw-btn js-sign-up">
                                                   <span class="font-bold uppercase">Đăng ký</span>
                                              </button>
 
-                                             <button type="button" title="Đăng xuất" class="lnw-btn js-signup margin-top-16 disable">
+                                             <button type="button" title="Đăng xuất" class="lnw-btn js-sign-up margin-top-16 disable">
                                                   <span class="font-bold uppercase">Đăng xuất</span>
                                              </button>
                                         </nav>
@@ -168,17 +168,23 @@
                          <div class="grid-row flex justify-center align-center">
                               <!-- add scripts login & registration form here -->
                               <section id="login-registration-form" class="js-account-form">
-                                   <div class="userbox">
+                                   <div class="user-box">
                                         <div id="login" class="text-center ">
                                              <div class="font-size-20 uppercase font-bold">login</div>
                                              <div id="login-layout">
                                                   <form action="" method="post">
-                                                       <input type="email" name="customer-email-login" id="customer-email-login" placeholder="Email" 
+                                                       <div class="js-email-login">
+                                                            <input type="email" name="customer-email-login" id="customer-email-login" placeholder="Email" 
                                                             autocomplete="on" required>
-                                                       <input type="password" name="customer-password-login" id="customer-password-login" placeholder="Password"
+                                                            <div class="error-message"></div>
+                                                       </div>
+                                                       <div class="js-pass-login">
+                                                            <input type="password" name="customer-password-login" id="customer-password-login" placeholder="Password"
                                                             autocomplete="current-password" required>
+                                                            <div class="error-message"></div>
+                                                       </div>
                     
-                                                       <p class="font-size-13 capitalize forgot-ps-btn">
+                                                       <p class="font-size-13 capitalize js-forgot-pass">
                                                             <a href="#">forgot password?</a>
                                                        </p>
                     
@@ -189,40 +195,40 @@
                     
                                                   <div class="font-size-14 margin-y-12 nav-">
                                                        <span>Không có tài khoản ?</span>
-                                                       <a href="#signup">signup</a> 
+                                                       <a href="#sign-up">sign-up</a> 
                                                   </div>
                                              </div>
                                         </div>
                     
-                                        <div id="signup" class="text-center active">
-                                             <div class="font-size-20 uppercase font-bold">signup</div>
-                                             <div id="signup-layout">
+                                        <div id="sign-up" class="text-center">
+                                             <div class="font-size-20 uppercase font-bold">sign-up</div>
+                                             <div id="sign-up-layout">
                                                   <form action="" method="post">
-                                                       <div class="js-fname-input">
+                                                       <div class="js-fname-sign-up">
                                                             <input type="text" name="customer-last-name" id="customer-last-name"  placeholder="Họ" required>
                                                             <div class="error-message"></div>
                                                        </div>
-                                                       <div class="js-lname-input">
+                                                       <div class="js-lname-sign-up">
                                                             <input type="text" name="customer-first-name" id="customer-first-name" placeholder="Tên" required>
                                                             <div class="error-message"></div>
                                                        </div>
-                                                       <div class="js-email-input">
-                                                            <input type="email" name="customer-email-signup" id="customer-email-signup" placeholder="Email" 
+                                                       <div class="js-email-sign-up">
+                                                            <input type="email" name="customer-email-sign-up" id="customer-email-sign-up" placeholder="Email" 
                                                             autocomplete="on" required>
                                                             <div class="error-message"></div>
                                                        </div>
-                                                       <div class="js-password-input">
-                                                            <input type="password" name="customer-password-signup" id="customer-password-signup" 
+                                                       <div class="js-password-sign-up">
+                                                            <input type="password" name="customer-password-sign-up" id="customer-password-sign-up" 
                                                             placeholder="Create password" minlength="8" required>
                                                             <div class="error-message"></div>
                                                        </div>
-                                                       <div class="js-confirm-pass-input">
-                                                            <input type="password" name="customer-confirm-password-signup" id="customer-confirm-password-signup" 
+                                                       <div class="js-confirm-pass-sign-up">
+                                                            <input type="password" name="customer-confirm-password-sign-up" id="customer-confirm-password-sign-up" 
                                                             placeholder="Confirm password" minlength="8" required>
                                                             <div class="error-message"></div>
                                                        </div>
-                                                       <button type="submit" id="signup-btn" class="button">
-                                                            <p class="capitalize font-bold">signup</p>
+                                                       <button type="submit" id="sign-up-btn" class="button">
+                                                            <p class="capitalize font-bold">sign-up</p>
                                                        </button>
                                                   </form>
                     
@@ -233,8 +239,27 @@
                                              </div>
                     
                                         </div>
-                    
-                                        <!-- social login for login & signup -->
+                                        
+                                        <div id="forgot-password" class="text-center active">
+                                             <div class="font-size-20 uppercase font-bold">forgot password</div>
+                                             <div id="forgot-pass-layout">
+                                             <form action="" method="post">
+                                                  <div class="js-email-forgot">
+                                                       <input type="email" name="customer-email-forgot" id="customer-email-forgot" placeholder="Email" 
+                                                       autocomplete="on" required>
+                                                       <div class="error-message"></div>
+                                                  </div>
+               
+                                                  <p class="font-size-13 capitalize js-cancel">
+                                                       <a href="#">cancel</a>
+                                                  </p>
+               
+                                                  <button type="submit" id="send-reset-pass-btn" class="button">
+                                                       <p class="capitalize font-bold">send</p>
+                                                  </button>
+                                             </form>
+                                        </div>
+                                        <!-- social login for login & sign-up -->
                                         <!-- <div class="opacity-0-6 text-center margin-bottom-12">OR</div>
                                         <div class="customer-login-social">
                                              <button id="btn-facebook-login" class="btn-social-login button margin-bottom-12">
