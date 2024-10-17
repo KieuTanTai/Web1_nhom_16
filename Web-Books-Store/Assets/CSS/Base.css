@@ -400,6 +400,10 @@ ul {
      border-radius: var(--normal-radius);
 }
 
+.button:hover {
+     background: var(--btn-hover) !important;
+}
+
 .search-btn {
      top: 0;
      right: 0;

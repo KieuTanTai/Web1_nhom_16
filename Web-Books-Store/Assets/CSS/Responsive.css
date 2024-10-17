@@ -44,8 +44,8 @@
      }
 
      .s-m-nav-btn button + button:not(:last-child):before {
-          left: -20%;
-          content: "/";
+          left: -16%;
+          content: "|";
           font-weight: bold;
           position: absolute;
           transform: translateY(6%);

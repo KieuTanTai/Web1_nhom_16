@@ -19,7 +19,7 @@
 }
 
 #blank-cart img {
-     max-width: 40%;
+     max-width: 30%;
 }
 
 /* css when user have at least one cart */
@@ -149,8 +149,13 @@
 
 .order-summary .checkout-btn {
      border: none;
+     cursor: pointer;
      padding: var(--btn-height);
      background: var(--bg-red);
+}
+
+.order-summary .checkout-btn:hover {
+     background: var(--bg-red) !important;
 }
 
 #cart .user-cart-note textarea {

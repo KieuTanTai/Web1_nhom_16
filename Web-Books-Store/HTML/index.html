@@ -6,6 +6,10 @@
      <link rel="shortcut icon" href="../Assets/Images/Icons/Web_logo/main-logo.ico" type="image/x-icon">
      <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css">
      <link rel="stylesheet" href="../Assets/CSS/CssBridge.css">
+     <link rel="stylesheet" href="../Assets/CSS/Account.css">
+     <link rel="stylesheet" href="../Assets/CSS/Cart.css">
+     <link rel="stylesheet" href="../Assets/CSS/Order_status.css">
+     <link rel="stylesheet" href="../Assets/CSS/Detail_product.css">
      <link rel="stylesheet" href="../Assets/CSS/Responsive.css">
      <script src="../Javascript/Interface.js"></script>
      <title>Light Novel World</title>
@@ -23,9 +27,9 @@
                               <div class="header-items full-height s-m-content s-m-nav-btn">
                                         <i class="fa-solid fa-list fa-xl" style="color: var(--main-color);"></i>
                                         
-                                        <div class="overlay">
+                                        <div class="overlay active">
                                              <div class="s-m-nav-content s-m-content">
-                                                  <div class="s-m-nav-btn align-center margin-y-12">
+                                                  <div class="s-m-nav-btn flex align-center margin-y-12">
                                                        <button type="button" title="Đăng nhập" class="lnw-btn js-login active">
                                                             <div class="font-bold uppercase">Đăng nhập</div>
                                                        </button>
@@ -91,7 +95,7 @@
                                         <label for="search">
                                              <input type="text" name="search" id="search" class="no-outline" size="100%" placeholder="Tìm kiếm sản phẩm...."/>
                                         </label>
-                                        <button type="submit" class="search-btn flex justify-center align-center">
+                                        <button type="submit" class="search-btn button flex justify-center align-center">
                                                   <i class="fa-solid fa-magnifying-glass fa-gl" style="color: var(--primary-white);"></i>
                                         </button>
                                    </form>
@@ -175,7 +179,7 @@
                          <div class="grid-row">
                               <!-- Items in sub header  -->
                               <div class="sub-menu min-height-40 grid-col col-l-12">
-                                   <div class="sub-menu-item grid-col col-l-2 no-gutter menu-nav">                        
+                                   <div class="sub-menu-item menu-nav grid-col col-l-2 no-gutter">                        
                                         <!-- Nav button -->
                                         <div class="flex justify-center align-center list-btn min-height-40 full-width">
                                              <span>
@@ -414,15 +418,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -444,15 +448,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -474,15 +478,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -505,15 +509,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -536,15 +540,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -590,15 +594,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -621,15 +625,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -652,15 +656,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -682,15 +686,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -712,15 +716,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -742,15 +746,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -772,15 +776,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -805,15 +809,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -837,15 +841,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -870,15 +874,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -917,15 +921,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -948,15 +952,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -979,15 +983,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1009,15 +1013,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1039,15 +1043,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1086,15 +1090,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1117,15 +1121,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1147,15 +1151,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1178,15 +1182,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1209,15 +1213,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1255,15 +1259,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1285,15 +1289,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1315,15 +1319,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1345,15 +1349,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1375,15 +1379,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1424,15 +1428,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1457,15 +1461,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1490,15 +1494,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1522,15 +1526,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
@@ -1552,15 +1556,15 @@
                                                        </div>
                                                        <div class="action">
                                                             <div class="buy-btn">
-                                                                 <a href="#" title="mua ngay">
+                                                                 <div title="mua ngay" class="button">
                                                                       <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
      
                                                             <div class="add-to-cart">
-                                                                 <a href="#" title="thêm vào giỏ hàng">
+                                                                 <div title="thêm vào giỏ hàng" class="button">
                                                                       <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                                                 </a>
+                                                                 </div>
                                                             </div>
                                                        </div>
                                                   </div>
