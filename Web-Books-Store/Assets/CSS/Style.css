@@ -65,6 +65,10 @@
      font-size: var(--font-size-13);
 }
 
+#header-container .header-items .hotline {
+     cursor: unset;
+}
+
 #header-container .header-items #change-bg-btn {
      padding-right: 0.25em;
 }
@@ -565,7 +569,7 @@
      animation: fadeIn linear 0.2s forwards;
 }
 
-.block-product .action a {
+.block-product .action div {
      width: 2.5em;
      height: 2.5em;
      margin: 0.25em 0;
@@ -606,10 +610,6 @@
 .category-btn {
      padding: var(--btn-height) 4em;
      background: var(--main-color);
-}
-
-.category-tab .category-btn:hover {
-     background: var(--btn-hover);
 }
 
 /* news and blogs container */

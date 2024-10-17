@@ -74,6 +74,10 @@
      margin-right: -2em;
 }
 
+.shipped-dot .dot-status > div {
+     transform: translateX(4%);
+}
+
 .shipped-dot .dot-status .border-arrow-top {
      left: 0;
      top: 1em;
@@ -84,6 +88,10 @@
      top: 1em;
      left: 50%;
      transform: translateX(-50%);
+}
+
+.delivered-dot .dot-status > div {
+     transform: translateX(-4%);
 }
 
 .delivered-dot .dot-status .border-arrow-top {
@@ -149,7 +157,7 @@
      cursor: pointer;
 }
 
-.block-product .buy-btn {
+#history-order-container .block-product .buy-btn {
      padding: 0.5em 1.5em;
      background: var(--main-color);
 }

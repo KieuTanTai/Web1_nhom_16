@@ -17,6 +17,13 @@
      color: var(--main-color);
 }
 
+<<<<<<< HEAD
+=======
+#login-registration-form .user-box a:hover {
+     color: var(--btn-hover);
+}
+
+>>>>>>> KieuTai
 #login, 
 #sign-up, 
 #forgot-password {
@@ -57,7 +64,6 @@
      margin-top: 0.75em;
      border: none;
      cursor: pointer;
-     color: var(--primary-black);
      background: var(--main-color);
 }
 
