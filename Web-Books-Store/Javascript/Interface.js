@@ -1,101 +1,93 @@
 'use strict'
-const query = document.querySelector.bind(document);
-const queryAll = document.querySelectorAll.bind(document);
-const fromId = document.getElementById.bind(document);
-const fromClass = document.getElementsByClassName.bind(document);
-const fromTag = document.getElementsByTagName.bind(document);
+import {query, queryAll} from "./Bridge.js";
+import getElementsHandler from "./Bridge.js";
 
-// get Elements object 
-function getElementsHandler () {
-     let getElements = {
-          getImages: () => queryAll(".product-image.js-item img"),
-          getSubMenuNav: () => query(".sub-menu-item.menu-nav"),
-          getJsLoginButton: () => queryAll(".lnw-btn.js-login"),
-          getJsSignupButton: () => queryAll(".lnw-btn.js-signup"),
-          getMainContainer: () => query("#main-container"),
-          getWebContent: () => query(".web-content")
-     }
-     return getElements;
+function getElementPrices () {
+     return queryAll(".price");
+} 
+
+function getTimeFS () {
+     return query(".fs-time");
 }
 
-// obj of path name
-function pathNamesHandler () {
-     let pathNamesObj = {
-          "/": " ",
-          "/login" : "login",
-          "/register": "sign up",
-          "/product" : "product",
-          "/order" : "order",
-          "/tracking" : "order tracking",
-          "/history" : "history order",
-     }
-     return pathNamesObj;
+function formatPrices (pricesContainer) {
+     const formatPricesHandler = new Intl.NumberFormat("vi-VN", {style: "currency" ,currency: "VND", minimumSignificantDigits: "3"});
+     pricesContainer.forEach ((element) => {
+          element.innerText = formatPricesHandler.format(element.innerText);
+     })
 }
 
-// function for popstate listener (it's will be very long)
-function popStateHandler (pathsObj) {
-     window.addEventListener ("popstate", (event) => {
-          const currentPath = event.target.location.pathname;
-          const path = currentPath.slice(currentPath.lastIndexOf("/"), currentPath.length + 1);  
-          if (pathsObj[path]) {
-               switch (path) {
-                    case "/login":
-                    case "/register":
-                         accountDOMHandler(path.slice(1, path.length + 1));
-                         break;
-                    case "/":
-                         window.location.reload();
-                         break;
-                    default:
-                         accountDOMHandler(path.slice(1, path.length + 1));
-                    
-               }
-
-          }
-     });
-}
-
-// handle url path changed
-function urlHandler (pathName) {
-     const docsURL = document.URL;
-     const pathsObj = pathNamesHandler();
-     if (!pathName.includes("/"))
-          pathName = `/${pathName}`;
-     popStateHandler(pathsObj);
-
-     if (pathsObj[pathName]) {
-          window.history.pushState({}, "", `${docsURL.slice(0, docsURL.lastIndexOf("/"))}${pathName}`)
-          return true;
-     }
+function setTimeFS (fSTime) {
+     let testDate = new Date();
+     let stringTime = localStorage.getItem("flashSaleTime"); 
+     if (stringTime === null)
+          localStorage.setItem("flashSaleTime", testDate.toLocaleTimeString("vi-VN"));
      else {
-          alert ("404 not found!");
-          return false;
+          let index = 0;
+          stringTime = stringTime.split(":");
+          let timeArray = [];
+          fSTime.forEach ((time) => {
+               if (time.classList.contains("fs-number")) {
+                    time.innerText = stringTime[index];
+                    timeArray.push(time);
+                    index++;
+               }                    
+          });
+          startCountDown(timeArray);
+
      }
 }
 
-// get promise DOM function (use async await with fetch api)
-async function promiseDOMHandler (fileAddress) {
+async function startCountDown (timeArray) {
      try {
-          const response = await fetch(fileAddress);
-          if (!response.ok)
-               throw new Error(`${response.status} (${response.statusText})`);
-          const text = await response.text();
-          return (new DOMParser()).parseFromString(text, "text/html");
-     }
-     catch (error) {
-          throw (`error when fetch your address! \n ${error}`);
+          window.addEventListener ("beforeunload", (e) => {
+               localStorage.setItem("flashSaleTime", `${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`);
+          }) ;
+
+          if (timeArray[2].innerText !== "0" ) {
+               timeArray[2].innerText = await countDown(timeArray[2], "seconds");
+          }
+
+          if (timeArray[2].innerText === "0" && timeArray[1].innerText !== "0") {
+               timeArray[2].innerText = "60";
+               timeArray[1].innerText = await countDown (timeArray[1], "minutes");
+          }
+          else if (timeArray[2].innerText === "0" && timeArray[1].innerText === "0" && timeArray[0].innerText !== "0") {
+               timeArray[1].innerText = "60";
+               timeArray[0].innerText = await countDown (timeArray[0], "minutes");
+          }
+
+          if (timeArray[2].innerText !== "0" || timeArray[1].innerText !== "0" || timeArray[0].innerText !== "0")
+               startCountDown (timeArray);
+          else 
+               alert ("End sale event !");
+     } catch (error) {
+          alert(error);               
      }
 }
 
-// first params for checkActiveHTML would be added active class
-function checkActiveHTML (nameForm, ...restForm) {
-     restForm.forEach((form) => {
-          if (form.classList.contains("active"))
-               form.classList.remove("active");
-     });
-     if (!nameForm.classList.contains("active"))
-          nameForm.classList.add("active");
-     return nameForm;
+function countDown (timeHandler, typeTime) {
+     if (typeTime === "seconds")
+          return new Promise ((resolve, reject) => {
+               if (timeHandler <= 0)
+                    reject(timeHandler.innerText);
+               const timeLength = timeHandler.innerText;
+               for (let i = 0; i < timeLength; i++) {
+                    setTimeout (()=> {
+                         timeHandler.innerText-- ;
+                         if (timeHandler.innerText === "0")
+                              resolve(timeHandler.innerText);
+                    }, 1000 * i);
+               }
+          });
+
+     if (typeTime === "minutes" || typeTime === "hours")
+          return new Promise ((resolve, reject) => {
+               if (timeHandler <= 0)
+                    reject(timeHandler.innerText);
+               timeHandler.innerText-- ;
+               resolve(timeHandler.innerText);
+          });
 }
 
 // fix bug interface function
@@ -129,72 +121,12 @@ function resizeSmNav (subMenuNav) {
      });
 }
 
-// DOM navigate handler (SPA)
-// function account's events handle
-function accountEvents(elementsObj) {
-     const loginBtn = elementsObj.getJsLoginButton();
-     const signupBtn = elementsObj.getJsSignupButton();
-     loginBtn.forEach((button) => {
-          button.addEventListener("click", () => {
-               if (urlHandler("login"))
-                    accountDOMHandler("login");
-          });
-     });
-
-     signupBtn.forEach((button) => {
-          button.addEventListener("click", () => {
-               if (urlHandler("register"))
-                    accountDOMHandler("register");
-          });
-     });
-}
-
-// render html DOM
-// render account.html DOM 
-async function accountDOMHandler (request) {
-     try {
-          const accountDocs = await promiseDOMHandler("../HTML/account.html");
-          let loginHTML = accountDocs.getElementById("login");
-          let signupHTML = accountDocs.getElementById("sign-up");
-          const accountTitle = accountDocs.querySelector("title");
-          const accountContent = accountDocs.getElementById("main-content");
-          let forgotPassHTML = accountDocs.getElementById("forgot-password");
-          const elementsObj = getElementsHandler();
-          let placeInsert = Array.from(elementsObj.getMainContainer().children).find((element) => element.id === "main-content");
-          const webContent = elementsObj.getWebContent();
-
-          if ((placeInsert === undefined) && (request === undefined))
-               throw new Error(`your place you wanna insert is ${placeInsert}!`)
-
-          if (request === "login") {
-               accountTitle.innerText = "Đăng Nhập";
-               query("title").innerText = accountTitle.innerText;
-               webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
-
-               // check if login form have active or not
-               loginHTML = checkActiveHTML(loginHTML, signupHTML, forgotPassHTML);
-               placeInsert.innerHTML = accountContent.innerHTML;
-          }
-          else if (request === "register") {
-               accountTitle.innerText = "Đăng Ký";
-               query("title").innerText = accountTitle.innerText;
-               webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
-
-               // check if signup form have active or not
-               signupHTML = checkActiveHTML(signupHTML, loginHTML, forgotPassHTML);
-               placeInsert.innerHTML = accountContent.innerHTML;
-          }
-     }
-     catch (error) {
-          alert(`something went wrong! \n${error}`);
-     }
-}
-
 document.addEventListener ("DOMContentLoaded", function () {
      const ratio = 9 / 6;
-     let elementsObj = getElementsHandler();
+     const elementsObj = getElementsHandler();
+     const timeFS = Array.from(getTimeFS().children);
+     setTimeFS(timeFS);
+     formatPrices(getElementPrices());
      resizeSmNav(elementsObj.getSubMenuNav());
      resizeImages(elementsObj.getImages(), ratio);
-     accountEvents(elementsObj);
-
 })
