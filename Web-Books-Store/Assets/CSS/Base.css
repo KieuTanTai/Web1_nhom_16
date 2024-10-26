@@ -178,6 +178,26 @@ ul {
 }
 
 /* padding */
+.padding-4 {
+     padding: 0.25em;
+}
+
+padding-right-4 {
+     padding-right: 0.25em;
+}
+
+padding-left-4 {
+     padding-left: 0.25em;
+}
+
+padding-top-4 {
+     padding-top: 0.25em;
+}
+
+padding-bottom-4 {
+     padding-bottom: 0.25em;
+}
+
 .padding-8 {
      padding: 0.5em;
 }
@@ -560,7 +580,8 @@ ul {
      color: var(--primary-IPM-green);
 }
 
-.error-color {
+.error-color,
+.exit-color {
      color: var(--bg-red);
 }
 
