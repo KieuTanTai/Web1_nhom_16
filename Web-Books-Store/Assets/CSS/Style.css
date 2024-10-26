@@ -100,11 +100,22 @@
      content: '';
      left: 0;
      bottom: 0;
-     padding: 1em 0.75em;
+     padding: 1.5em;
      display: block;
      position: absolute;
      background: transparent;
-     transform: translateX(-80%);
+     transform: translateX(-76%);
+}
+
+#header-container .header-items #user-account::after {
+     content: '';
+     left: 0;
+     bottom: 0;
+     padding: 0.75em 1.5em;
+     display: block;
+     position: absolute;
+     background: transparent;
+     transform: translateX(-90%);
 }
 
 #user-account .header-user-info {
