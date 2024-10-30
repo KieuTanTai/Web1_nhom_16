@@ -2,10 +2,11 @@
 
 const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
-const throttleList = {};
+const throttleList = {}; //object for throttle function
+const debounceList = {};
 
 // get Elements object 
-function getElementsHandler () {
+function getElementsHandler() {
      let getElements = {
           getFSTable: () => query("#fs-container"),
           getSubHeader: () => query("#sub-header"),
@@ -33,18 +34,18 @@ function getElementsHandler () {
 }
 
 // obj of path name
-function pathNamesHandler () {
+function pathNamesHandler() {
      let pathNamesObj = {
           "/": " ",
-          "/index.html" : "homepage",
-          "/account/login" : "login",
+          "/index": "homepage",
+          "/account/login": "login",
           "/account/register": "sign up",
           "/account/forgot_password": "forgot password",
-          "/cart" : "cart",
-          "/product" : "product",
-          "/order" : "order",
-          "/history" : "history order",
-          "/tracking" : "order tracking",
+          "/cart": "cart",
+          "/product": "product",
+          "/order": "order",
+          "/history": "history order",
+          "/tracking": "order tracking",
           "Header_Footer/footer": "footer",
           "Header_Footer/header": "header",
      }
@@ -55,25 +56,31 @@ function throttle(callback, delayTime, key) {
 
      // create key for multi throttle
      if (!throttleList[key])
-          throttleList[key] = {lastCall: 0};
-     return function(...args) {
-          let now = Date.now();
-          const lastCall = throttleList[key].lastCall;
-          // console.log('Last call:', lastCall);
-          // console.log('Now:', now);
-          // console.log('Delay Time:', delayTime);
-          // console.log('Elapsed time:', now - lastCall);
-          
-          if (now - lastCall < delayTime) return;
-          
-          throttleList[key].lastCall = now;
-          return callback(...args);
+          throttleList[key] = { shouldWait: false };
+     return function (...restArgs) {
+          let shouldWait = throttleList[key].shouldWait;
+
+          if (shouldWait)
+               return;
+          callback(...restArgs);
+          throttleList[key].shouldWait = true;
+          setTimeout(() => throttleList[key].shouldWait = false, delayTime);
      };
 }
 
+function debounce(callback, delayTime, key) {
+     if (!debounceList[key])
+          debounceList[key] = {time: 0};
+     return function(...restArgs) {
+          clearTimeout(debounceList[key].time);
+          debounceList[key].time = setTimeout(() => {
+               callback(...restArgs);
+          }, delayTime);
+     }
+}
 
 // get promise DOM function (use async await with fetch api)
-async function promiseDOMHandler (fileAddress) {
+async function promiseDOMHandler(fileAddress) {
      try {
           const response = await fetch(fileAddress);
           if (!response.ok)
@@ -87,4 +94,4 @@ async function promiseDOMHandler (fileAddress) {
 }
 
 export default getElementsHandler;
-export {query, queryAll, pathNamesHandler, promiseDOMHandler, throttle};
+export { query, queryAll, pathNamesHandler, promiseDOMHandler, throttle, debounce};

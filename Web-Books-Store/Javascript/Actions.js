@@ -50,7 +50,7 @@ function scrollToHandler(nameStaticPage) {
                     });
                     clearInterval(checkBlog);
                }
-          }, 200);
+          }, 500);
      }
      else if (!staticPage && nameStaticPage === "services") {
           alert("not found services!");
@@ -65,7 +65,7 @@ function scrollToHandler(nameStaticPage) {
                behavior: "smooth"
           });
      }
-     else 
+     else if (staticPage)
           window.scroll({
                top: staticPage.offsetTop + 3 * 16,
                left: 0,
@@ -224,9 +224,9 @@ async function renderDOMHandler(nameDOM, ...requestRest) {
           }
 
           // set await promise DOM
-          let scriptDOM;
+          let scriptDOM, request;
           if (nameDOM === "account") {
-               for (let request of requestRest)
+               for (request of requestRest)
                     // validate request is one of these types or not
                     if (request === "login" || request === "register" || request === "forgotPassword") {
                          if (request === "forgotPassword")
@@ -249,6 +249,10 @@ async function renderDOMHandler(nameDOM, ...requestRest) {
 
           // for account DOM
           if (nameDOM === "account") {
+               if (request === "forgot_password")
+                    placeInsert.style.paddingTop = 0.7 + "em";
+               else 
+                    placeInsert.style.paddingTop = 1 + "em";
                bridge.query("title").innerText = title.innerText;
                placeInsert.innerHTML = content.innerHTML;
                webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
@@ -264,9 +268,12 @@ async function renderDOMHandler(nameDOM, ...requestRest) {
           // call some functions again after render DOM
           cancelAction(elementsObj);
           accountEvents(elementsObj);
+          staticContents(elementsObj);
      } 
      catch (error) {
           alert("something went wrong!\n" + "Error type: " + error + "\nwe will navigate you to homepage!");
+          const nowPath = location.pathname;
+          window.history.pushState({}, "", `${nowPath.slice(0, nowPath.lastIndexOf("/HTML/") + 6)}index.html`);
           renderDOMHandler("homepage");
      }
 }
