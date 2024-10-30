@@ -22,13 +22,13 @@
 }
 
 #login, 
-#sign-up, 
+#register, 
 #forgot-password {
      display: none;
 }
 
 .user-box #login-layout form,
-.user-box #sign-up-layout form,
+.user-box #register-layout form,
 .user-box #forgot-pass-layout form {
      padding: 1.25em 0 0;
      display: flex;
@@ -41,7 +41,7 @@
 }
 
 .user-box #login-layout input,
-.user-box #sign-up-layout input,
+.user-box #register-layout input,
 .user-box #forgot-pass-layout input {
      width: 22em;
      opacity: 0.8;
@@ -55,7 +55,7 @@
 }
 
 .user-box #login-layout button,
-.user-box #sign-up-layout button,
+.user-box #register-layout button,
 .user-box #forgot-pass-layout button {
      height: 2.5em;
      margin-top: 0.75em;
@@ -119,3 +119,24 @@
      background-color: var(--bg-red);
 }
 
+.js-logout,
+.js-cancel,
+.js-login,
+.js-register,
+.js-forgot-password {
+     cursor: pointer;
+}
+
+.js-forgot-password span,
+.js-login span:last-child,
+.js-cancel span:last-child,
+.js-register span:last-child {
+     color: var(--main-color);
+}
+
+.js-forgot-password span:hover,
+.js-login span:last-child:hover,
+.js-cancel span:last-child:hover,
+.js-register span:last-child:hover {
+     color: var(--btn-hover);
+}
