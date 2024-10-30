@@ -1,23 +1,23 @@
 'use strict'
 import * as bridge from "./Bridge.js";
 
-function formatPrices (elementsObj) {
+function formatPrices(elementsObj) {
      const pricesContainer = elementsObj.getElementPrices();
 
      if (pricesContainer) {
-          const formatPricesHandler = new Intl.NumberFormat("vi-VN", {style: "currency" ,currency: "VND", minimumSignificantDigits: "3"});
-          pricesContainer.forEach ((element) => {
+          const formatPricesHandler = new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND", minimumSignificantDigits: "3" });
+          pricesContainer.forEach((element) => {
                element.innerText = formatPricesHandler.format(element.innerText);
           });
      }
 }
 
 // functions for count down time flash sale events
-function setTimeFS (elementsObj) {
-     let fSTime = elementsObj.getTimeFS(); 
+function setTimeFS(elementsObj) {
+     let fSTime = elementsObj.getTimeFS();
      if (fSTime) {
           let date = new Date();
-          let stringTime = localStorage.getItem("flashSaleTime"); 
+          let stringTime = localStorage.getItem("flashSaleTime");
           fSTime = Array.from(elementsObj.getTimeFS().children);
 
           if (!stringTime)
@@ -26,26 +26,26 @@ function setTimeFS (elementsObj) {
                let index = 0;
                let timeArray = [];
                stringTime = stringTime.split(":");
-               fSTime.forEach ((time) => {
+               fSTime.forEach((time) => {
                     if (time.classList.contains("fs-number")) {
                          time.innerText = stringTime[index];
                          timeArray.push(time);
                          index++;
-                    }                    
+                    }
                });
                startCountDown(timeArray, elementsObj);
           }
-     } 
+     }
 
 }
 
-async function startCountDown (timeArray, elementsObj) {
+async function startCountDown(timeArray, elementsObj) {
      try {
-          window.addEventListener ("beforeunload", () => {
+          window.addEventListener("beforeunload", () => {
                localStorage.setItem("flashSaleTime", `${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`);
-          }) ;
+          });
 
-          if (timeArray[2].innerText !== "00" )
+          if (timeArray[2].innerText !== "00")
                timeArray[2].innerText = await countDown(timeArray[2], "seconds");
 
           if (timeArray[2].innerText === "00" && timeArray[1].innerText !== "00") {
@@ -60,28 +60,28 @@ async function startCountDown (timeArray, elementsObj) {
           if (timeArray[2].innerText !== "00" || timeArray[1].innerText !== "00" || timeArray[0].innerText !== "00")
                startCountDown(timeArray);
           else {
-               const fSTable = elementsObj.getFSTable(); 
+               const fSTable = elementsObj.getFSTable();
                if (!fSTable) {
                     alert("not found flash sale product!");
                     return false;
                }
                fSTable.classList.add("disable");
           }
-     } 
+     }
      catch (error) {
-          alert(error);               
+          alert(error);
      }
 }
 
-function countDown (timeHandler, typeTime) {
-     return new Promise ((resolve, reject) => {
+function countDown(timeHandler, typeTime) {
+     return new Promise((resolve, reject) => {
           if (!timeHandler || isNaN(parseInt(timeHandler.innerText)) || parseInt(timeHandler.innerText) <= 0)
                reject(new Error("invalid time!"));
           const timeLength = timeHandler.innerText;
 
           if (typeTime === "seconds") {
                for (let i = 0; i < timeLength; i++) {
-                    setTimeout (()=> {
+                    setTimeout(() => {
                          let currentTime = parseInt(timeHandler.innerText);
                          timeHandler.innerText = (--currentTime).toString().padStart(2, '0');
                          if (timeHandler.innerText === "00")
@@ -101,7 +101,7 @@ function countDown (timeHandler, typeTime) {
 
 // fix bug interface function
 // resize image
-function resizeImages (elementsObj, ratio) {
+function resizeImages(elementsObj, ratio) {
      const productImages = elementsObj.getImages();
      if (!productImages) {
           alert("not found any image!");
@@ -122,10 +122,10 @@ function resizeImages (elementsObj, ratio) {
 }
 
 // resize width of nav
-function resizeSmNav (elementsObj) {
+function resizeSmNav(elementsObj) {
      const subMenuNav = elementsObj.getSubMenuNav();
      if (!subMenuNav) {
-          alert ("not found nav!");
+          alert("not found nav!");
           return false;
      }
      const childInner = subMenuNav.firstElementChild;
@@ -142,7 +142,7 @@ function resizeSmNav (elementsObj) {
 }
 
 // default add header footer
-async function addDOMHeader (elementsObj) {
+async function addDOMHeader(elementsObj) {
      try {
           const headerDOM = await bridge.promiseDOMHandler("/Web-Books-Store/HTML/Header_Footer/header.html");
           const header = headerDOM.getElementById("header-container");
@@ -151,14 +151,14 @@ async function addDOMHeader (elementsObj) {
           const webContent = elementsObj.getWebContent();
 
           webContent.before(header);
-          placeInsert.insertAdjacentElement('afterbegin' , subHeader);
+          placeInsert.insertAdjacentElement('afterbegin', subHeader);
      }
      catch (error) {
           alert(error);
      }
 }
 
-async function addDOMFooter (elementsObj) {
+async function addDOMFooter(elementsObj) {
      try {
           const footerDOM = await bridge.promiseDOMHandler("/Web-Books-Store/HTML/Header_Footer/footer.html");
           const footer = footerDOM.getElementById("footer-container");
@@ -171,18 +171,18 @@ async function addDOMFooter (elementsObj) {
      }
 }
 
-document.addEventListener ("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
      const ratio = 9 / 6;
      const elementsObj = bridge.default();
      //create check DOM of Header and Footer
      addDOMHeader(elementsObj);
-     addDOMFooter(elementsObj);    
+     addDOMFooter(elementsObj);
      const checkDOM = setInterval(() => {
           if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
                resizeSmNav(elementsObj);
                clearInterval(checkDOM);
           }
-     }, 200);     
+     }, 200);
 
      setTimeFS(elementsObj);
      formatPrices(elementsObj);
