@@ -2,27 +2,32 @@
 
 const query = document.querySelector.bind(document);
 const queryAll = document.querySelectorAll.bind(document);
+const throttleList = {};
 
 // get Elements object 
 function getElementsHandler () {
      let getElements = {
-          getImages: () => queryAll(".product-image.js-item img"),
-          getWebLogo: () => queryAll(".web-logo a"),
-          getSubMenuNav: () => query(".sub-menu-item.menu-nav"),
-          getJsLoginBtn: () => queryAll(".lnw-btn.js-login"),
-          getJsSignupBtn: () => queryAll(".lnw-btn.js-signup"),
-          getMainContainer: () => query("#main-container"),
-          getWebContent: () => query(".web-content"),
-          getWebContent: () => query(".web-content"),
-          getScrollTop: () => query("#scroll-top"),
-          getJsCartBtn: () => queryAll(".cart-btn"),
-          getElementPrices: () => queryAll(".price"),
-          getTimeFS: () => query(".fs-time"),
           getFSTable: () => query("#fs-container"),
-          getJsAccountBtn: () => query("#user-account"),
-          getHeader: () => query("#header-container"),
           getSubHeader: () => query("#sub-header"),
+          getScrollTop: () => query("#scroll-top"),
+          getHeader: () => query("#header-container"),
           getFooter: () => query("#footer-container"),
+          getJsAccountBtn: () => query("#user-account"),
+          getMainContainer: () => query("#main-container"),
+          getNewsBlogs: () => query("#news-blogs-container"),
+          getTimeFS: () => query(".fs-time"),
+          getJsCartBtn: () => queryAll(".cart-btn"),
+          getNewsBtn: () => queryAll(".news-blogs"),
+          getServicesBtn: () => queryAll(".services"),
+          getElementPrices: () => queryAll(".price"),
+          getWebContent: () => query(".web-content"),
+          getWebLogo: () => queryAll(".web-logo div"),
+          getJsLoginBtn: () => queryAll(".js-login"),
+          getJsCancelBtn: () => queryAll(".js-cancel"),
+          getJsRegisterBtn: () => queryAll(".js-register"),
+          getJsForgotBtn: () => queryAll(".js-forgot-password"),
+          getSubMenuNav: () => query(".sub-menu-item.menu-nav"),
+          getImages: () => queryAll(".product-image.js-item img"),
      }
      return getElements;
 }
@@ -34,16 +39,38 @@ function pathNamesHandler () {
           "/index.html" : "homepage",
           "/account/login" : "login",
           "/account/register": "sign up",
+          "/account/forgot_password": "forgot password",
           "/cart" : "cart",
           "/product" : "product",
           "/order" : "order",
-          "/tracking" : "order tracking",
           "/history" : "history order",
+          "/tracking" : "order tracking",
           "Header_Footer/footer": "footer",
           "Header_Footer/header": "header",
      }
      return pathNamesObj;
 }
+
+function throttle(callback, delayTime, key) {
+
+     // create key for multi throttle
+     if (!throttleList[key])
+          throttleList[key] = {lastCall: 0};
+     return function(...args) {
+          let now = Date.now();
+          const lastCall = throttleList[key].lastCall;
+          // console.log('Last call:', lastCall);
+          // console.log('Now:', now);
+          // console.log('Delay Time:', delayTime);
+          // console.log('Elapsed time:', now - lastCall);
+          
+          if (now - lastCall < delayTime) return;
+          
+          throttleList[key].lastCall = now;
+          return callback(...args);
+     };
+}
+
 
 // get promise DOM function (use async await with fetch api)
 async function promiseDOMHandler (fileAddress) {
@@ -60,4 +87,4 @@ async function promiseDOMHandler (fileAddress) {
 }
 
 export default getElementsHandler;
-export {query, queryAll, pathNamesHandler, promiseDOMHandler};
+export {query, queryAll, pathNamesHandler, promiseDOMHandler, throttle};
