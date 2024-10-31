@@ -46,8 +46,10 @@ function pathNamesHandler() {
           "/order": "order",
           "/history": "history order",
           "/tracking": "order tracking",
-          "Header_Footer/footer": "footer",
-          "Header_Footer/header": "header",
+          "header_footer/footer": "footer",
+          "header_footer/header": "header",
+          "order/status": "status",
+          "order/history": "history",
      }
      return pathNamesObj;
 }

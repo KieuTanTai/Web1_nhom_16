@@ -132,6 +132,14 @@ function popStateHandler(pathsObj, docsURL) {
                               renderDOMHandler("account", `${path.slice(path.lastIndexOf("/") + 1, path.length + 1)}`);
                               break;
 
+                         case "order/status":
+                         case "order/history":
+                              if (path === "order/status")
+                                   renderDOMHandler("orderStatus");
+                              else
+                                   renderDOMHandler("orderHistory");
+                              break;
+
                          case "/":
                          case "/index":
                               renderDOMHandler("homepage");
@@ -243,8 +251,16 @@ async function renderDOMHandler(nameDOM, ...requestRest) {
                          throw new Error(`invalid request: ${request}\ntry again with request type 
                                          "login", "register", "forgot_password" for account DOM`);
           }
+
           if (nameDOM === "homepage")
                scriptDOM = await bridge.promiseDOMHandler(`/Web-Books-Store/HTML/index.html`);
+
+          if (nameDOM === "orderStatus" || nameDOM === "orderHistory") {
+               nameDOM = nameDOM.replace("order", "");
+               nameDOM = nameDOM.toLowerCase();
+               scriptDOM = await bridge.promiseDOMHandler(`/Web-Books-Store/HTML/order/${request}.html`);
+          }
+
           if (!scriptDOM)
                throw new Error("scripDOM: " + scriptDOM);
 
@@ -253,22 +269,15 @@ async function renderDOMHandler(nameDOM, ...requestRest) {
           let placeInsert = Array.from(mainContainer.children).find((element) => element.id === "main-content");
 
           // for account DOM
-          if (nameDOM === "account") {
-               if (request === "forgot_password")
-                    placeInsert.style.paddingTop = 0.7 + "em";
-               else 
-                    placeInsert.style.paddingTop = 1 + "em";
-               bridge.query("title").innerText = title.innerText;
-               placeInsert.innerHTML = content.innerHTML;
-               webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
-          }
+          if (nameDOM === "account" && request === "forgot_password")
+               placeInsert.style.paddingTop = 0.7 + "em";
+          else 
+               placeInsert.removeAttribute("style");
 
-          // for homepage DOM
-          if (nameDOM === "homepage") {
+          // for render DOM
                bridge.query("title").innerText = title.innerText;
                placeInsert.innerHTML = content.innerHTML;
                webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
-          }
 
           // call some functions again after render DOM
           cancelAction(elementsObj);
