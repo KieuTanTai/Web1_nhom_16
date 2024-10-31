@@ -24,11 +24,18 @@ function returnHomepage(elementsObj, nowPath) {
      }
 }
 
+// handle event click
+function onclickHandler () {
+
+}
+
+
+
 // handle scroll 
 function scrollToHandler(nameStaticPage) {
      let staticPage;
      const elementsObj = bridge.default();
-
+     
      if (nameStaticPage === "news")
           staticPage = elementsObj.getNewsBlogs();
 
@@ -48,29 +55,32 @@ function scrollToHandler(nameStaticPage) {
                          left: 0,
                          behavior: "smooth"
                     });
+                    console.log("total: " + (staticPage.offsetTop + 3 * 16));
+                    console.log(staticPage.offsetTop);
                     clearInterval(checkBlog);
                }
-          }, 500);
+          }, 800);
      }
      else if (!staticPage && nameStaticPage === "services") {
           alert("not found services!");
           return false;
      }
-     
+
      // check if action is scroll to top or not
-     if (nameStaticPage === "scrollTop") {
+     if (nameStaticPage === "scrollTop")
           window.scroll({
                top: 0,
                left: 0,
                behavior: "smooth"
-          });
-     }
-     else if (staticPage)
+          });     
+
+     else if (staticPage) 
           window.scroll({
                top: staticPage.offsetTop + 3 * 16,
                left: 0,
                behavior: "smooth"
           });
+     
 }
 
 // function for click nav btn on sub header or click to scroll top btn
@@ -109,8 +119,10 @@ function popStateHandler(pathsObj, docsURL) {
      window.addEventListener("popstate",
           bridge.throttle((event) => {
                const currentPath = event.target.location.pathname;
-               const path = currentPath.slice(docsURL.lastIndexOf("/HTML/") + 5, currentPath.length + 1);
-
+               let path = currentPath.slice(docsURL.lastIndexOf("/HTML/") + 5, currentPath.length + 1);
+               if (path.includes(".html"))
+                    path = path.replace(".html", "");
+               console.log(path);
                // execute DOM with specific path
                if (pathsObj[path]) {
                     switch (path) {
@@ -121,7 +133,7 @@ function popStateHandler(pathsObj, docsURL) {
                               break;
 
                          case "/":
-                         case "/index.html":
+                         case "/index":
                               renderDOMHandler("homepage");
                               break;
 
@@ -134,7 +146,7 @@ function popStateHandler(pathsObj, docsURL) {
 
                     }
                }
-     }, 500, "popstate"));
+     }, 200, "popstate"));
 }
 
 // handle url path changed
@@ -151,14 +163,7 @@ function urlHandler(pathName, docsURL) {
           return false;
      }
 
-     // execute state for not duplicate path name
-     const nowPath = docsURL.slice(docsURL.lastIndexOf("/HTML/") + 6, docsURL.lastIndexOf("/")); //path after HTML path
-     const inputPath = pathName.slice(1, pathName.lastIndexOf("/")); //slice to substring for compare path
-     let newURL;
-     if (nowPath === inputPath)
-          newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/HTML/") + 5)}${pathName}`;
-     else
-          newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/"))}${pathName}`;
+     let newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/HTML/") + 5)}${pathName}`;
      window.history.pushState({}, "", newURL);
      return true;
 }
@@ -190,21 +195,21 @@ function accountEvents(elementsObj) {
           btn.addEventListener("click", bridge.throttle(() => {
                if (urlHandler("/account/login", docsURL))
                     (renderDOMHandler("account", "login"));
-          }, 500, "login"));
+          }, 200, "login"));
      });
 
      registerBtn.forEach((btn) => {
           btn.addEventListener("click", bridge.throttle(() => {
                if (urlHandler("/account/register", docsURL))
                     renderDOMHandler("account", "register");
-          }, 500, "register"));
+          }, 200, "register"));
      });
 
      forgotBtn.forEach((btn) => {
           btn.addEventListener("click", bridge.throttle(() => {
                if (urlHandler("/account/forgot_password", docsURL))
                     renderDOMHandler("account", "forgotPassword");
-          }, 500, "forgotPassword"));
+          }, 200, "forgotPassword"));
      })
 }
 

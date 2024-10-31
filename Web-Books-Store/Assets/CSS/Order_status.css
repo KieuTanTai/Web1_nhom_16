@@ -1,3 +1,4 @@
+#history-order-container,
 #main-container .order-status-container {
      overflow: hidden;
      position: relative;
@@ -28,7 +29,7 @@
      border-bottom: 1px solid var(--border);
 }
 
-.order-status-container .order-info .block-order-info  {
+.order-info .block-order-info  {
      min-height: 6em;
      padding: 0.5em 0;
 }
@@ -37,7 +38,7 @@
      padding-bottom: 0.25em;
 }
 
-.order-status-container .order-info .tracking-bar {
+.order-info .tracking-bar {
      display: flex; 
      flex-grow: 1;
      border-top: 1px solid var(--border);
@@ -100,7 +101,7 @@
      transform: translateX(-10%);
 }
 
-.order-status-container .order-info .tracking-table {
+.order-info .tracking-table {
      flex-flow:column-reverse;
 }
 
@@ -112,7 +113,7 @@
      position: relative;
 }
 
-.order-status-container #customer-order .history-order-link {
+#customer-order .history-order-link {
      max-width: 26%;
      padding: 0.5em;
      margin: auto;
@@ -166,11 +167,11 @@
      display: flex;
 }
 
-.overlay .order-status-container {
+.overlay .status-container {
      margin: auto;
 }
 
-.overlay .order-status-container .tracking-table {
+.overlay .status-container .tracking-table {
      padding: 1em;
      background: var(--primary-white);
      border-radius: var(--higher-radius);

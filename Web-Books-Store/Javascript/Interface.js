@@ -144,7 +144,7 @@ function resizeSmNav(elementsObj) {
 // default add header footer
 async function addDOMHeader(elementsObj) {
      try {
-          const headerDOM = await bridge.promiseDOMHandler("/Web-Books-Store/HTML/Header_Footer/header.html");
+          const headerDOM = await bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/header.html");
           const header = headerDOM.getElementById("header-container");
           const subHeader = headerDOM.getElementById("sub-header");
           let placeInsert = elementsObj.getMainContainer();
@@ -160,7 +160,7 @@ async function addDOMHeader(elementsObj) {
 
 async function addDOMFooter(elementsObj) {
      try {
-          const footerDOM = await bridge.promiseDOMHandler("/Web-Books-Store/HTML/Header_Footer/footer.html");
+          const footerDOM = await bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/footer.html");
           const footer = footerDOM.getElementById("footer-container");
           const webContent = elementsObj.getWebContent();
 
