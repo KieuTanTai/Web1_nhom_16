@@ -222,6 +222,10 @@ padding-bottom-4 {
      padding-inline: 0.5em;
 }
 
+.padding-12 {
+     padding: 0.75em;
+}
+
 .padding-right-12 {
      padding-right: 0.75em;
 }
@@ -240,6 +244,10 @@ padding-bottom-4 {
 
 .padding-inline-12 {
      padding-inline: 0.75em;
+}
+
+.padding-16 {
+     padding: 1em;
 }
 
 .padding-right-16 {
@@ -558,18 +566,14 @@ padding-bottom-4 {
 }
 
 /* other */
+.s-content,
 .s-m-content {
      display: none;
 }
 
-
 /* disable active success error */
 .active {
      display:block !important;
-}
-
-*.active {
-     animation: fadeIn linear .4 !important;
 }
 
 .disable {
@@ -583,6 +587,33 @@ padding-bottom-4 {
 .error-color,
 .exit-color {
      color: var(--bg-red);
+}
+
+/* dots */
+.dots-bar {
+     min-height: 1em;
+}
+.dots-bar > .dot {
+     opacity: 0.6;
+     padding: 0.5em;
+     border-radius: 50%;
+     font-size: var(--font-size-12);
+     border: 2px solid var(--main-color);
+}
+
+.dots-bar > .dot:not(:first-child) {
+     margin-left: 0.75em;
+}
+
+.dots-bar > .dot.active {
+     opacity: 1;
+     background: var(--main-color);
+}
+
+.dots-bar > .dot:hover{
+     opacity: 1;
+     cursor: pointer;
+
 }
 
 /* disable some base css */

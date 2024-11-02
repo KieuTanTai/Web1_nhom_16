@@ -1,34 +1,45 @@
 'use strict'
 
-const query = document.querySelector.bind(document);
-const queryAll = document.querySelectorAll.bind(document);
 const throttleList = {}; //object for throttle function
 const debounceList = {};
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
 
 // get Elements object 
 function getElementsHandler() {
      let getElements = {
-          getFSTable: () => query("#fs-container"),
-          getSubHeader: () => query("#sub-header"),
-          getScrollTop: () => query("#scroll-top"),
-          getHeader: () => query("#header-container"),
-          getFooter: () => query("#footer-container"),
-          getJsAccountBtn: () => query("#user-account"),
-          getMainContainer: () => query("#main-container"),
-          getNewsBlogs: () => query("#news-blogs-container"),
-          getTimeFS: () => query(".fs-time"),
-          getJsCartBtn: () => queryAll(".cart-btn"),
-          getNewsBtn: () => queryAll(".news-blogs"),
-          getServicesBtn: () => queryAll(".services"),
-          getElementPrices: () => queryAll(".price"),
-          getWebContent: () => query(".web-content"),
-          getWebLogo: () => queryAll(".web-logo div"),
-          getJsLoginBtn: () => queryAll(".js-login"),
-          getJsCancelBtn: () => queryAll(".js-cancel"),
-          getJsRegisterBtn: () => queryAll(".js-register"),
-          getJsForgotBtn: () => queryAll(".js-forgot-password"),
-          getSubMenuNav: () => query(".sub-menu-item.menu-nav"),
-          getImages: () => queryAll(".product-image.js-item img"),
+          // containers
+          getWebContent: () => $(".web-content"),
+          getHeader: () => $("#header-container"),
+          getSubHeader: () => $("#sub-header"),
+          getMainContainer: () => $("#main-container"),
+          getFooter: () => $("#footer-container"),
+          // news blogs
+          getNewsBtn: () => $$(".news-nav"),
+          getNewsBlogs: () => $("#news-blogs-container"),
+          // flash sale elements
+          getTimeFS: () => $(".fs-time"),
+          getFSTable: () => $("#fs-container"),
+          // buttons
+          getNavBtn: () => $$(".nav-btn"),
+          getPrevBtn: () => $$(".prev-btn"),
+          getNextBtn: () => $$(".next-btn"),
+          getJsCancelBtn: () => $$(".js-cancel"),
+          getServicesBtn: () => $$(".services"),
+          getJsCartBtn: () => $$(".cart-btn"),
+          getHistoryBtn: () => $$(".history-order-link"),
+          // account buttons
+          getJsAccountBtn: () => $("#user-account"),
+          getJsLoginBtn: () => $$(".js-login"),
+          getJsRegisterBtn: () => $$(".js-register"),
+          getJsForgotBtn: () => $$(".js-forgot-password"),
+          // others
+          getScrollTop: () => $("#scroll-top"),
+          getDotsBar: () => $$(".dots-bar"),
+          getSubMenuNav: () => $(".sub-menu-item.menu-nav"),
+          getElementPrices: () => $$(".price"),
+          getWebLogo: () => $$(".web-logo div"),
+          getImages: () => $$(".product-image.js-item img"),
      }
      return getElements;
 }
@@ -36,32 +47,40 @@ function getElementsHandler() {
 // obj of path name
 function pathNamesHandler() {
      let pathNamesObj = {
-          "/": " ",
+          // root url
+          "/": "homepage",
           "/index": "homepage",
+          // other pages url
+          "/cart": "cart",
+          "/product": "product",
+          "/tracking": "order tracking",
+          // account url
+          "/account/": "account",
           "/account/login": "login",
           "/account/register": "sign up",
           "/account/forgot_password": "forgot password",
-          "/cart": "cart",
-          "/product": "product",
-          "/order": "order",
-          "/history": "history order",
-          "/tracking": "order tracking",
-          "Header_Footer/footer": "footer",
-          "Header_Footer/header": "header",
+          // order url
+          "/order/": "order",
+          "/order/status": "status",
+          "/order/history": "history",
+          // forbidden url 
+          "/header_footer/footer": "footer",
+          "/header_footer/header": "header",
      }
      return pathNamesObj;
 }
 
 function throttle(callback, delayTime, key) {
-
-     // create key for multi throttle
+     // create obj key for multi throttle
      if (!throttleList[key])
-          throttleList[key] = { shouldWait: false };
+          throttleList[key] = {shouldWait: false};
+
      return function (...restArgs) {
           let shouldWait = throttleList[key].shouldWait;
 
           if (shouldWait)
                return;
+
           callback(...restArgs);
           throttleList[key].shouldWait = true;
           setTimeout(() => throttleList[key].shouldWait = false, delayTime);
@@ -69,9 +88,11 @@ function throttle(callback, delayTime, key) {
 }
 
 function debounce(callback, delayTime, key) {
+     // create obj key for multi debounce
      if (!debounceList[key])
-          debounceList[key] = {time: 0};
-     return function(...restArgs) {
+          debounceList[key] = { time: 0 };
+
+     return function (...restArgs) {
           clearTimeout(debounceList[key].time);
           debounceList[key].time = setTimeout(() => {
                callback(...restArgs);
@@ -79,12 +100,14 @@ function debounce(callback, delayTime, key) {
      }
 }
 
-// get promise DOM function (use async await with fetch api)
+// get promise DOM func (use async await with fetch api)
 async function promiseDOMHandler(fileAddress) {
      try {
           const response = await fetch(fileAddress);
+
           if (!response.ok)
                throw new Error(`${response.status} (${response.statusText})`);
+
           const text = await response.text();
           return (new DOMParser()).parseFromString(text, "text/html");
      }
@@ -94,4 +117,4 @@ async function promiseDOMHandler(fileAddress) {
 }
 
 export default getElementsHandler;
-export { query, queryAll, pathNamesHandler, promiseDOMHandler, throttle, debounce};
+export { $, $$, pathNamesHandler, promiseDOMHandler, throttle, debounce };
