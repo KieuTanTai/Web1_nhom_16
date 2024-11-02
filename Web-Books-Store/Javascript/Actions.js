@@ -70,9 +70,7 @@ function slidesNews(elementsObj) {
      }, 200, "nextBtn"));
 
      // resize handler for set active 
-     window.addEventListener("resize", bridge.throttle(() => {
-          showSlides(container, slidesIndex, 3);
-     }, 300, "activeItems"));
+     window.addEventListener("resize", bridge.throttle(() => showSlides(container, slidesIndex, 3), 300, "activeItems"));
      showSlides(container, slidesIndex, 3);
 }
 
@@ -103,12 +101,12 @@ function showSlides(slidesContainer, slidesIndex, showCount) {
           dots.forEach((dot, index) => {
                dot.addEventListener("click", bridge.throttle(() => {
                     if (!dot.classList.contains("active")) {
-                         showCount = 3;
-                         if (slidesIndex > slidesContainer.length)
-                              slidesIndex = 1;
-
+                         // after run code add active and codes below it showCount will decrease and equal 0
+                         // set default slidesIndex = init value of slidesIndex
+                         showCount = 3, slidesIndex = 1
+                         slidesIndex += showCount * index;
                          console.log("110 now: " + slidesIndex);
-                         slidesIndex += index;
+                         console.log("you click btn in index: " + index);
                          showSlides (slidesContainer, slidesIndex, showCount);
                     }
                }, 200, "dotBehavior"));
