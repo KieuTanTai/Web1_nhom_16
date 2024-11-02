@@ -1,7 +1,10 @@
 'use strict'
 import * as bridge from "./Bridge.js";
+import * as fInterface from "./Interface.js";
+// index for news slides
 
-function cancelAction (elementsObj) {
+// funcs event
+function cancelAction(elementsObj) {
      const cancelBtn = elementsObj.getJsCancelBtn();
      if (cancelBtn) {
           cancelBtn.forEach((btn) => {
@@ -24,18 +27,117 @@ function returnHomepage(elementsObj, nowPath) {
      }
 }
 
-// handle event click
-function onclickHandler () {
-
+function historyNavigate(elementsObj) {
+     const docsURL = location.pathname;
+     const buttons = elementsObj.getHistoryBtn();
+     if (!buttons)
+          return;
+     buttons.forEach((btn) => {
+          btn.addEventListener("click", bridge.throttle(() => {
+               if (urlHandler("/order/history", docsURL))
+                    renderDOMHandler("orderHistory");
+          }, 200, "historyNav"));
+     });
 }
 
+// get buttons and add behavior for slide
+function slidesNews(elementsObj) {
+     let slidesIndex = 1;
+     const blockNews = elementsObj.getNewsBlogs();
+     const navButtons = blockNews.querySelector(".nav-btn");
+     const prevButtons = blockNews.querySelector(".prev-btn");
+     const nextButtons = blockNews.querySelector(".next-btn");
+     let container = (blockNews.querySelector(".news-blogs-items")).children;
+     container = Array.from(container);
 
+     if (!navButtons || !prevButtons || !nextButtons) {
+          alert("not found button!");
+          return false;
+     }
 
-// handle scroll 
+     // increase 1 for slidesIndex when click next btn
+     nextButtons.addEventListener("click", bridge.throttle(() => {
+          if (++slidesIndex > container.length)
+               slidesIndex = 1;
+          showSlides(container, slidesIndex, 3);
+     }, 200, "nextBtn"));
+     
+     // decrease 1 for slidesIndex when click next btn
+     prevButtons.addEventListener("click", bridge.throttle(() => {
+          if(--slidesIndex < 1)
+               slidesIndex = container.length;
+          showSlides(container, slidesIndex, 3);
+     }, 200, "nextBtn"));
+
+     // resize handler for set active 
+     window.addEventListener("resize", bridge.throttle(() => {
+          showSlides(container, slidesIndex, 3);
+     }, 300, "activeItems"));
+     showSlides(container, slidesIndex, 3);
+}
+
+// slides active / hidden
+function showSlides(slidesContainer, slidesIndex, showCount) {
+     let i, breakpoint = 46.1875 * 16;
+     const elementsObj = bridge.default();
+     const dots = (elementsObj.getNewsBlogs()).querySelectorAll(".dot");    
+
+     // reset display slides
+     for (i = 0; i < slidesContainer.length; i++) {
+          if (slidesContainer[i].classList.contains("active"))
+               slidesContainer[i].classList.remove("active");
+     }
+
+     if (dots && dots[0]) {
+          for (i = 0; i < dots.length; i++)
+               if (dots[i].classList.contains("active"))
+                    dots[i].classList.remove("active");
+
+          // dots behavior
+          console.log("97 before: " + slidesIndex);
+          i = 0;
+          i = Math.floor((slidesIndex - 1) / 3);
+          dots[i].classList.add("active");
+          console.log("101 after: " + slidesIndex);
+
+          dots.forEach((dot, index) => {
+               dot.addEventListener("click", bridge.throttle(() => {
+                    if (!dot.classList.contains("active")) {
+                         showCount = 3;
+                         if (slidesIndex > slidesContainer.length)
+                              slidesIndex = 1;
+
+                         console.log("110 now: " + slidesIndex);
+                         slidesIndex += index;
+                         showSlides (slidesContainer, slidesIndex, showCount);
+                    }
+               }, 200, "dotBehavior"));
+          });
+     }
+
+     // add active class for show items
+     if (window.innerWidth <= breakpoint)
+          showCount = 1;
+
+     // add class active to show now items
+     while (showCount > 0) {
+          if (slidesIndex > slidesContainer.length) {
+               slidesIndex = 1;
+               console.warn("inner while and if: " + slidesIndex);
+          }
+          console.log("128: index slide show: " + (slidesIndex - 1));
+          slidesContainer[slidesIndex - 1].classList.add("active");
+          slidesIndex++, showCount--;
+
+          console.log("131: slides after: " + slidesIndex);
+     }
+}
+
+// handle scrolls
 function scrollToHandler(nameStaticPage) {
      let staticPage;
      const elementsObj = bridge.default();
-     
+
      if (nameStaticPage === "news")
           staticPage = elementsObj.getNewsBlogs();
 
@@ -55,11 +157,9 @@ function scrollToHandler(nameStaticPage) {
                          left: 0,
                          behavior: "smooth"
                     });
-                    console.log("total: " + (staticPage.offsetTop + 3 * 16));
-                    console.log(staticPage.offsetTop);
                     clearInterval(checkBlog);
                }
-          }, 800);
+          }, 600);
      }
      else if (!staticPage && nameStaticPage === "services") {
           alert("not found services!");
@@ -72,49 +172,44 @@ function scrollToHandler(nameStaticPage) {
                top: 0,
                left: 0,
                behavior: "smooth"
-          });     
+          });
 
-     else if (staticPage) 
+     else if (staticPage)
           window.scroll({
                top: staticPage.offsetTop + 3 * 16,
                left: 0,
                behavior: "smooth"
           });
-     
+
 }
 
-// function for click nav btn on sub header or click to scroll top btn
+// func for click nav btn on sub header or click to scroll top btn
 function staticContents(elementsObj) {
-     const newsBtn = elementsObj.getNewsBtn();
-     const scrollTopBtn = elementsObj.getScrollTop();
-     const servicesBtn = elementsObj.getServicesBtn();
+     const newsButtons = elementsObj.getNewsBtn();
+     const scrollTopButtons = elementsObj.getScrollTop();
+     const servicesButtons = elementsObj.getServicesBtn();
 
      // add event listener
-     if (newsBtn) {
-          newsBtn.forEach((btn) => {
-               btn.addEventListener("click", () => {
-                    scrollToHandler("news");
-               });
+     if (newsButtons) {
+          newsButtons.forEach((btn) => {
+               btn.addEventListener("click", bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn"));
           });
      }
 
-     if (servicesBtn) {
-          servicesBtn.forEach((btn) => {
-               btn.addEventListener("click", () => {
-                    scrollToHandler("services");
-               });
+     if (servicesButtons) {
+          servicesButtons.forEach((btn) => {
+               btn.addEventListener("click", bridge.throttle(() => scrollToHandler("services"), 200, "servicesBtn"));
           });
      }
 
-     if (scrollTopBtn) {
-          scrollTopBtn.addEventListener("click", () => {
-               scrollToHandler("scrollTop");
-          });
+     if (scrollTopButtons) {
+          scrollTopButtons.addEventListener("click", bridge.throttle(() => scrollToHandler("scrollTop"), 200, "ScrollTopBtn"));
      }
 
 }
 
-// function for popstate listener (it's will be very long)
+// funcs execute url
+// func for popstate listener (it's will be very long)
 function popStateHandler(pathsObj, docsURL) {
      window.addEventListener("popstate",
           bridge.throttle((event) => {
@@ -122,19 +217,24 @@ function popStateHandler(pathsObj, docsURL) {
                let path = currentPath.slice(docsURL.lastIndexOf("/HTML/") + 5, currentPath.length + 1);
                if (path.includes(".html"))
                     path = path.replace(".html", "");
-               console.log(path);
                // execute DOM with specific path
                if (pathsObj[path]) {
                     switch (path) {
+                         case "/account/":
                          case "/account/login":
                          case "/account/register":
                          case "/account/forgot_password":
+
+                              if (path === "/account/")
+                                   path = "/account/login";
                               renderDOMHandler("account", `${path.slice(path.lastIndexOf("/") + 1, path.length + 1)}`);
                               break;
 
-                         case "order/status":
-                         case "order/history":
-                              if (path === "order/status")
+                         case "/order/":
+                         case "/order/status":
+                         case "/order/history":
+
+                              if (path === "/order/status" || path === "/order/")
                                    renderDOMHandler("orderStatus");
                               else
                                    renderDOMHandler("orderHistory");
@@ -143,10 +243,12 @@ function popStateHandler(pathsObj, docsURL) {
                          case "/":
                          case "/index":
                               renderDOMHandler("homepage");
+                              fInterface.setTimeFS(elementsObj);
                               break;
 
-                         case "Header_Footer/footer":
-                         case "Header_Footer/header":
+                         case "/header_footer/footer":
+                         case "/header_footer/header":
+
                               alert("forbidden!");
                               throw new Error("forbidden!");
                          default:
@@ -154,12 +256,12 @@ function popStateHandler(pathsObj, docsURL) {
 
                     }
                }
-     }, 200, "popstate"));
+          }, 200, "popstate"));
 }
 
 // handle url path changed
 function urlHandler(pathName, docsURL) {
-     if (typeof pathName !== "string" || !pathName) 
+     if (typeof pathName !== "string" || !pathName)
           return false;
 
      if (pathName[0] !== "/")
@@ -177,8 +279,8 @@ function urlHandler(pathName, docsURL) {
 }
 
 // first params for checkActiveHTML would be added active class
-function checkActiveHTML(nameForm, ...restForm) {
-     restForm.forEach((form) => {
+function checkActiveHTML(nameForm, ...restForms) {
+     restForms.forEach((form) => {
           if (form.classList.contains("active"))
                form.classList.remove("active");
      });
@@ -189,31 +291,31 @@ function checkActiveHTML(nameForm, ...restForm) {
 }
 
 // DOM navigate handler (SPA)
-// function account's events handle
+// func account's events handle
 function accountEvents(elementsObj) {
      const docsURL = location.pathname;
-     const loginBtn = elementsObj.getJsLoginBtn();
-     const registerBtn = elementsObj.getJsRegisterBtn();
-     const forgotBtn = elementsObj.getJsForgotBtn();
+     const loginButtons = elementsObj.getJsLoginBtn();
+     const registerButtons = elementsObj.getJsRegisterBtn();
+     const forgotButtons = elementsObj.getJsForgotBtn();
 
-     if (!loginBtn || !registerBtn || !forgotBtn)
+     if (!loginButtons || !registerButtons || !forgotButtons)
           return false;
 
-     loginBtn.forEach((btn) => {
+     loginButtons.forEach((btn) => {
           btn.addEventListener("click", bridge.throttle(() => {
                if (urlHandler("/account/login", docsURL))
                     (renderDOMHandler("account", "login"));
           }, 200, "login"));
      });
 
-     registerBtn.forEach((btn) => {
+     registerButtons.forEach((btn) => {
           btn.addEventListener("click", bridge.throttle(() => {
                if (urlHandler("/account/register", docsURL))
                     renderDOMHandler("account", "register");
           }, 200, "register"));
      });
 
-     forgotBtn.forEach((btn) => {
+     forgotButtons.forEach((btn) => {
           btn.addEventListener("click", bridge.throttle(() => {
                if (urlHandler("/account/forgot_password", docsURL))
                     renderDOMHandler("account", "forgotPassword");
@@ -222,45 +324,50 @@ function accountEvents(elementsObj) {
 }
 
 // render html DOM
-async function renderDOMHandler(nameDOM, ...requestRest) {
+async function renderDOMHandler(nameDOM, ...requestRests) {
      try {
           const elementsObj = bridge.default();
+          const originPath = location.pathname.slice(0, location.pathname.lastIndexOf("/HTML/") + 5);
           const webContent = elementsObj.getWebContent();
           const mainContainer = elementsObj.getMainContainer();
+
           if (!webContent || !mainContainer)
                return false;
 
-          if (nameDOM === "account" && !requestRest) {
+          // set default request when name of DOM is account
+          if (nameDOM === "account" && !requestRests) {
                let loginStatus = localStorage.getItem("loginStatus");
                if (!loginStatus)
-                    requestRest = "login";
+                    requestRests = "login";
           }
 
           // set await promise DOM
           let scriptDOM, request;
+
           if (nameDOM === "account") {
-               for (request of requestRest)
+               for (request of requestRests)
                     // validate request is one of these types or not
                     if (request === "login" || request === "register" || request === "forgotPassword") {
                          if (request === "forgotPassword")
                               request = "forgot_password";
-                         scriptDOM = await bridge.promiseDOMHandler(`/Web-Books-Store/HTML/account/${request}.html`);
+
+                         scriptDOM = await bridge.promiseDOMHandler(`${originPath}/account/${request}.html`);
                          break;
                     }
                     else
                          throw new Error(`invalid request: ${request}\ntry again with request type 
-                                         "login", "register", "forgot_password" for account DOM`);
+                                             "login", "register", "forgotPassword" for account DOM`);
           }
 
           if (nameDOM === "homepage")
-               scriptDOM = await bridge.promiseDOMHandler(`/Web-Books-Store/HTML/index.html`);
+               scriptDOM = await bridge.promiseDOMHandler(`${originPath}/index.html`);
 
           if (nameDOM === "orderStatus" || nameDOM === "orderHistory") {
-               nameDOM = nameDOM.replace("order", "");
-               nameDOM = nameDOM.toLowerCase();
-               scriptDOM = await bridge.promiseDOMHandler(`/Web-Books-Store/HTML/order/${request}.html`);
+               nameDOM = (nameDOM.replace("order", "")).toLowerCase();
+               scriptDOM = await bridge.promiseDOMHandler(`${originPath}/order/${nameDOM}.html`);
           }
 
+          // error if script DOM is invalid
           if (!scriptDOM)
                throw new Error("scripDOM: " + scriptDOM);
 
@@ -271,23 +378,24 @@ async function renderDOMHandler(nameDOM, ...requestRest) {
           // for account DOM
           if (nameDOM === "account" && request === "forgot_password")
                placeInsert.style.paddingTop = 0.7 + "em";
-          else 
+          else
                placeInsert.removeAttribute("style");
 
           // for render DOM
-               bridge.query("title").innerText = title.innerText;
-               placeInsert.innerHTML = content.innerHTML;
-               webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
+          bridge.$("title").innerText = title.innerText;
+          placeInsert.innerHTML = content.innerHTML;
+          webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
 
           // call some functions again after render DOM
           cancelAction(elementsObj);
           accountEvents(elementsObj);
           staticContents(elementsObj);
-     } 
+          fInterface.formatPrices(elementsObj);
+          fInterface.resizeImages(elementsObj);
+     }
      catch (error) {
           alert("something went wrong!\n" + "Error type: " + error + "\nwe will navigate you to homepage!");
-          const nowPath = location.pathname;
-          window.history.pushState({}, "", `${nowPath.slice(0, nowPath.lastIndexOf("/HTML/") + 6)}index.html`);
+          window.history.pushState({}, "", `${originPath}/index.html`);
           renderDOMHandler("homepage");
      }
 }
@@ -295,16 +403,22 @@ async function renderDOMHandler(nameDOM, ...requestRest) {
 document.addEventListener("DOMContentLoaded", () => {
      let elementsObj = bridge.default();
      const pathsObj = bridge.pathNamesHandler();
+
      // check DOM of header, sub header and footer
      const checkDOM = setInterval(() => {
           if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
+               // call funcs
                accountEvents(elementsObj);
                staticContents(elementsObj);
+               historyNavigate(elementsObj);
                returnHomepage(elementsObj, location.pathname);
+               // remove Interval 
                clearInterval(checkDOM);
           }
      }, 200);
 
+     // call funcs
      cancelAction(elementsObj);
+     slidesNews(elementsObj);
      popStateHandler(pathsObj, location.pathname);
 })

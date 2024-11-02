@@ -129,6 +129,14 @@
 /* Mobile */
 @media (max-width: 46.1875em) {
      /* set order for items in header bar */
+     .s-content {
+          display: inherit;
+     }
+
+     .s-hidden {
+          display: none !important;
+     }
+
      #header-container .header-items {
           padding-inline: 1em;
      }

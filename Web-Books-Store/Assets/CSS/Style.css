@@ -398,7 +398,7 @@
 }
 
 /* service container and service content */
-#main-content .service-container {
+#main-content .services-container {
      width: 100%;
      min-height: 4.5em;
      position: relative;
@@ -407,22 +407,22 @@
      background: var(--primary-white);
 }
 
-#main-content .service-container .service-content {
+#main-content .services-container .service-content {
      line-height: 1.4;
+     padding-inline: 1.75em;
      display: flex;
      align-items: center;
-     padding-inline: 1.75em;
 }
 
-#main-content .service-container .service-content:not(:last-child) {
+#main-content .services-container .service-content:not(:last-child) {
      border-right: 1px solid var(--border);
 }
 
-.service-container .service-content p {
+.services-container .service-content p {
      opacity: 0.8;
 }
 
-.service-container .service-content > img {
+.services-container .service-content > img {
      max-width: 4em;
      margin-left: 1.5em;
 }
@@ -431,8 +431,11 @@
 #main-content .category-tab {
      width: 100%;
      margin: 1.5em 0;
-     border-radius: var(--higher-radius);
+     min-height: 20em;
+     display: flex;
+     flex-flow: column;
      position: relative;
+     border-radius: var(--higher-radius);
      background: var(--primary-white);
 }
 
@@ -481,6 +484,7 @@
      color: var(--primary-white);
      background: var(--primary-dark);
 }
+
 /* end flash sale container */
 
 /* is also use in some other file html */
@@ -637,11 +641,11 @@
 }
 
 #news-blogs-container .news-blogs-inner {
-     display: none;
      position: relative;
 }
 
 .news-blogs-inner .nav-btn {
+     top: 20em;
      left: 1.4%;
      right: 1.4%;
 }
@@ -652,12 +656,12 @@
      flex-flow: row nowrap;
 }
 
-.news-blogs-items > div {
+.news-blogs-items > .news-item {
      display: none;
 }
 
-.news-blogs-items > .active {
-     display: initial;
+.news-blogs-items > .news-item.active {
+     animation: fadeIn linear 0.4s;
 }
 
 .news-blogs-items .news-blogs-image {
@@ -707,24 +711,6 @@
 #news-blogs-container .news-blogs-inner .news-blogs:hover {
      animation: zoomScale linear 0.2s forwards;
      box-shadow: 0 1px 0.25em var(--primary-dark);
-}
-
-.dots-bar > .dot-active,
-.dots-bar > .dot-disable {
-     opacity: 0.6;
-     padding: 0.5em;
-     border-radius: 50%;
-     font-size: var(--font-size-12);
-     border: 2px solid var(--main-color);
-}
-
-.dots-bar > .dot-active {
-     opacity: 1;
-     background: var(--main-color);
-}
-
-.dots-bar:hover > div {
-     cursor: pointer;
 }
 
 /* CSS for footer */
@@ -787,7 +773,8 @@
 }
 
 .footer-col-container .footer-input .subscribe-btn {
-     right: 34%;
+     top: 23.6%;
+     right: 33%;
      border-radius: 0 0.5em 0.5em 0;
      padding: var(--btn-height) 1em;
      border: none;

@@ -17,9 +17,7 @@
 }
 
 .detail-block .block-product .product-image {
-     display: flex; 
      position: relative;
-     justify-content: center;
 }
 
 .block-product .product-image .nav-btn {
