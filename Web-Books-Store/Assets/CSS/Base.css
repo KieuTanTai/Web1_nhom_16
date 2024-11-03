@@ -536,6 +536,12 @@ padding-bottom-4 {
      }
 }
 
+@keyframes slideIn {
+     100% { 
+          transform: translateX(0%); 
+     }
+ }
+ 
 /* css for border arrow */
 .border-arrow-right { 
      border-width: 0.5em;
@@ -591,8 +597,10 @@ padding-bottom-4 {
 
 /* dots */
 .dots-bar {
+     width: 100%;
      min-height: 1em;
 }
+
 .dots-bar > .dot {
      opacity: 0.6;
      padding: 0.5em;

@@ -176,6 +176,10 @@
           width: 100%;
      }
 
+     .news-blogs-items > .news-item  {
+          min-height: 44em;
+     }
+
      /* CSS for footer */
      #footer-container .footer-col-container + .footer-col-container {
           border: none;

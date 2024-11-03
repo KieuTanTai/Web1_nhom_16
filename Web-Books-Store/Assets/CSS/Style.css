@@ -658,6 +658,7 @@
 
 .news-blogs-items > .news-item {
      display: none;
+     min-height: 34em;
 }
 
 .news-blogs-items > .news-item.active {
@@ -756,12 +757,15 @@
 
 #footer-container .footer-col-container .footer-input {
      display: flex;
-     position: relative;
      align-items: center;
      justify-content: space-between;
 }
 
-.footer-col-container .footer-input #user-gmail {
+.footer-input > form {
+     position: relative;
+}
+
+.footer-col-container .footer-input #user-email {
      width: 100%;
      margin-right: 1.5em;
      border: none;
@@ -773,8 +777,8 @@
 }
 
 .footer-col-container .footer-input .subscribe-btn {
-     top: 23.6%;
-     right: 33%;
+     top: 0;
+     right: 0;
      border-radius: 0 0.5em 0.5em 0;
      padding: var(--btn-height) 1em;
      border: none;
@@ -793,11 +797,11 @@
 }
 
 #footer-container .footer-col-container .footer-icon {
+     margin-bottom: 1em;
      display: flex;
      flex-flow: row wrap;
      align-items: center;
-     margin-bottom: 1em;
-     justify-content: space-between;
+     /* justify-content: space-between; */
 } 
 
 .footer-col-container .footer-icon img {
@@ -809,7 +813,7 @@
      display: flex;
      flex-flow: row wrap;
      align-items: center;
-     justify-content: space-between;
+     /* justify-content: space-between; */
 }
 
 .footer-col-container .footer-image-container .footer-image-item {

@@ -15,48 +15,30 @@ function formatPrices(elementsObj) {
      }
 }
 
-// select dots bar and create dot
-function newsDotsBar() {
-     window.addEventListener("resize", bridge.debounce(createDots, 200, "resize"));
-     createDots();
-}
-
 // create Dots
-function createDots() {
-     let childInners, dotCount = 0, temp = 0;
-     const elementsObj = bridge.default();
-     const container = elementsObj.getNewsBlogs().querySelector(".nav-tab-container");
-
-     if (!container)
-          return;
-
-     childInners = Array.from(container.children);
-     let dotBar = (container.offsetParent).querySelector(".dots-bar");
-     let breakpoint = 46.1875 * 16;
-
+function createDots(parent, totalDots) {
+     let dotCount = 0, breakpoint = 46.1875 * 16;
+     let container = parent.querySelector(".nav-tab-container");
+     let childInners = Array.from(container?.children);
+     let dotBar = parent.querySelector(".dots-bar");
+     
      if (window.innerWidth <= breakpoint)
           dotCount = childInners.length;
-     else {
-          childInners.forEach((child) => {
-               if (child.classList.contains("active"))
-                    temp++;
-          });
+     else 
+          dotCount = Math.ceil(childInners.length / totalDots);
 
-          if (temp === 0)
-               dotCount = 0;
-          else
-               dotCount = Math.ceil(childInners.length / temp);
-     }
+     if (dotBar) {
+          dotBar.innerHTML = ""; 
+          if (dotCount === 1) return;
 
-     dotBar.innerHTML = ""; 
-     if (dotCount === 1)
-          return;
-     for (let i = 0; i < dotCount; i++) {
-          let dot = document.createElement("div");
-          if (i == 0)
-               dot.classList.add("active");
-          dot.classList.add("dot");
-          dotBar.appendChild(dot);
+          for (let i = 0; i < dotCount; i++) {
+               let dot = document.createElement("div");
+
+               if (i == 0)
+                    dot.classList.add("active");
+               dot.classList.add("dot");
+               dotBar.appendChild(dot);
+          }
      }
 }
 
@@ -70,11 +52,11 @@ function activeFlashSale () {
 // funcs for count down time flash sale events
 function setTimeFS(elementsObj) {
      let fSTime = elementsObj.getTimeFS();
+
      if (fSTime) {
-          let date = new Date();
           let stringTime = localStorage.getItem("flashSaleTime");
           fSTime = Array.from(elementsObj.getTimeFS().children);
-
+          
           if (!stringTime)
                stringTime = activeFlashSale();
 
@@ -103,6 +85,7 @@ function setTimeFS(elementsObj) {
 async function startCountDown(timeArray, elementsObj) {
      try {
           window.addEventListener("beforeunload", () => {
+               console.log(`${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`);
                localStorage.setItem("flashSaleTime",
                     `${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`);
           });
@@ -124,16 +107,13 @@ async function startCountDown(timeArray, elementsObj) {
           else {
                const fSTable = elementsObj.getFSTable();
                const productContainer = fSTable.querySelector(".product-container");
-
-               if (!fSTable) {
-                    alert("not found flash sale product!");
-                    return false;
-               }
+               if (!fSTable)  
+                    throw new Error ("not found flash sale product!");
 
                productContainer.innerHTML = "<div class=\"s-m-hidden font-size-26 font-bold\">Không có sản phẩm trong phần này</div>";
                productContainer.classList.add("flex", "full-height", "align-center", "justify-center");
-               (fSTable.querySelector(".nav-btn")).classList.add("disable");
-               (fSTable.querySelector(".category-btn")).classList.add("disable");
+               (fSTable.querySelector(".nav-btn"))?.classList.add("disable");
+               (fSTable.querySelector(".category-btn"))?.classList.add("disable");
                productContainer.style.color = "var(--primary-white)";
           }
      }
@@ -182,13 +162,15 @@ function resizeImages(elementsObj) {
 
      productImages.forEach((image) => {
           image.addEventListener("load", () => {
-               image.style.height = (ratio * image.offsetWidth) + "px";
+               let imageWidth = image.offsetWidth;
+               image.style.height = (ratio * imageWidth) + "px";
           });
      });
 
      window.addEventListener("resize", () => {
           productImages.forEach((image) => {
-               image.style.height = (ratio * image.offsetWidth) + "px";
+               let imageWidth = image.offsetWidth;
+               image.style.height = (ratio * imageWidth) + "px";
           });
      });
 }
@@ -263,10 +245,9 @@ document.addEventListener("DOMContentLoaded", function () {
      }, 200);
 
      // call funcs
-     newsDotsBar(elementsObj);
      setTimeFS(elementsObj);
      formatPrices(elementsObj);
      resizeImages(elementsObj);
 })
 
-export { formatPrices, setTimeFS, resizeImages };
+export { formatPrices, setTimeFS, resizeImages, createDots};
