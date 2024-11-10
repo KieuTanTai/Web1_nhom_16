@@ -4,11 +4,8 @@ import * as bridge from "./Bridge.js";
 // format prices from default to vi-VN format
 function formatPrices(elementsObj) {
      const pricesContainer = elementsObj.getElementPrices();
-
      if (pricesContainer) {
-          const formatPricesHandler = new Intl.NumberFormat("vi-VN",
-               { style: "currency", currency: "VND", minimumSignificantDigits: "3" });
-
+          const formatPricesHandler = new Intl.NumberFormat("vi-VN",{ style: "currency", currency: "VND", minimumSignificantDigits: "3" });
           pricesContainer.forEach((element) => {
                element.innerText = formatPricesHandler.format(element.innerText);
           });
@@ -159,14 +156,17 @@ function resizeImages(elementsObj) {
           alert("not found any image!");
           return false;
      }
-
      productImages.forEach((image) => {
           image.addEventListener("load", () => {
                let imageWidth = image.offsetWidth;
                image.style.height = (ratio * imageWidth) + "px";
           });
-     });
 
+          if (image && !image.getAttribute("style")) {
+               let imageWidth = image.offsetWidth;
+               image.style.height = (ratio * imageWidth) + "px";
+          }
+     });
      window.addEventListener("resize", () => {
           productImages.forEach((image) => {
                let imageWidth = image.offsetWidth;

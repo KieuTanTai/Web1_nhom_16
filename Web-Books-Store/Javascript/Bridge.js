@@ -50,6 +50,8 @@ function pathNamesHandler() {
           // root url
           "/": "homepage",
           "/index": "homepage",
+          // news
+          "/news/test" : "news",
           // other pages url
           "/cart": "cart",
           "/product": "product",

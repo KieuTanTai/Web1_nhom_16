@@ -293,6 +293,10 @@ function popStateHandler(pathsObj, docsURL) {
                               renderDOMHandler("homepage");
                               break;
 
+                         case "/news/test":
+                              renderDOMHandler("news");
+                              break;
+
                          case "/header_footer/footer":
                          case "/header_footer/header":
                               alert("forbidden!");

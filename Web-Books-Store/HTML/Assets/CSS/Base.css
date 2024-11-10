@@ -182,19 +182,19 @@ ul {
      padding: 0.25em;
 }
 
-.padding-right-4 {
+padding-right-4 {
      padding-right: 0.25em;
 }
 
-.padding-left-4 {
+padding-left-4 {
      padding-left: 0.25em;
 }
 
-.padding-top-4 {
+padding-top-4 {
      padding-top: 0.25em;
 }
 
-.padding-bottom-4 {
+padding-bottom-4 {
      padding-bottom: 0.25em;
 }
 
@@ -424,7 +424,6 @@ ul {
 
 /* button & items */
 .button {
-     cursor: pointer;
      color: var(--primary-white);
      border-radius: var(--normal-radius);
 }
@@ -573,34 +572,6 @@ ul {
 }
 
 /* other */
-.text-content {
-     opacity: 0.95;
-     font-size: 1em;
-     margin-bottom: 1em;
-}
-
-/* default card */
-.user-card {
-     box-shadow: 0 0 1px var(--primary-dark);
-     border-radius: var(--normal-radius);
-     border: 1px solid var(--main-color);
-}
-
-.user-card .info {
-     opacity: 0.8;
-     padding: 0.25em;
-     font-size: 1rem;
-     display: flex;
-}
-
-.user-card .info:not(:first-child) {
-     border-top: 1px solid var(--border);
-}
-
-.user-card .js-edit-btn {
-     color: var(--primary-dark);
-}
-
 .s-content,
 .s-m-content {
      display: none;
@@ -677,6 +648,5 @@ ul {
      text-align: start;
      font-size: 0.75rem;
      padding-bottom: 1em;
-     border-radius: var(--normal-radius);
      color: var(--bg-red);
 }
