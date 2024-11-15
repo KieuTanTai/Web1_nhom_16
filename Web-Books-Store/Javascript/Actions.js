@@ -83,6 +83,8 @@ function behaviorSlides(nameSlide, showCount, haveDots) {
      if (container.length === 0) return;
      container = Array.from(container);
 
+     console.log(nameSlide);
+
      // execute for dots and others if not found
      while(parent !== bridge.$("#main-content"))
           parent = parent.parentElement;
