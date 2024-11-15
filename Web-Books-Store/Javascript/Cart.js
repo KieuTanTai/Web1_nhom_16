@@ -141,7 +141,7 @@ function addToCart(name, price, image) {
 }
 function increaseCartCount() {
     const cartCountElement = document.querySelectorAll('.cart-count');
-    const currentCount = parseInt(cartCountElement[0].textContent) || 0;
+    const currentCount = parseInt(cartCountElement[0]?.textContent) || 0;
     cartCountElement.forEach(el => {
         el.textContent = currentCount + 1;
     });
@@ -165,50 +165,52 @@ function displayCartItems(elementsObj) {
     }
 
     // Hiển thị các sản phẩm trong giỏ hàng
-    cartContainer.innerHTML = '';
-    cart.forEach((item, index) => {
-        cartContainer.innerHTML += `
-            <div class="block-product">
-                <input
-                    type="checkbox"
-                    name="select-block-product"
-                    id="block-product-${index}"
-                    class="grid-col col-l-1 col-m-1 col-s-1"
-                />
-                <div class="product-cart grid-col col-l-1 col-m-1 col-s-1 no-gutter full-width">
-                    <img src="${item.image}" alt="${item.name}" />
-                </div>
-                <div class="grid-col col-l-10 col-m-10 col-s-10 no-gutter flex align-center">
-                    <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
-                        <p class="font-bold capitalize margin-bottom-16">${item.name}</p>
-                        <div class="block-product-price">
-                            <span class="new-price font-bold padding-right-8 price">${item.price}</span>
-                            <del class="price old-price">65000</del>
+    // cartContainer.innerHTML = '';
+    if (cartContainer) {
+        cart.forEach((item, index) => {
+            cartContainer.innerHTML += `
+                <div class="block-product">
+                    <input
+                        type="checkbox"
+                        name="select-block-product"
+                        id="block-product-${index}"
+                        class="grid-col col-l-1 col-m-1 col-s-1"
+                    />
+                    <div class="product-cart grid-col col-l-1 col-m-1 col-s-1 no-gutter full-width">
+                        <img src="${item.image}" alt="${item.name}" />
+                    </div>
+                    <div class="grid-col col-l-10 col-m-10 col-s-10 no-gutter flex align-center">
+                        <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
+                            <p class="font-bold capitalize margin-bottom-16">${item.name}</p>
+                            <div class="block-product-price">
+                                <span class="new-price font-bold padding-right-8 price">${item.price}</span>
+                                <del class="price old-price">65000</del>
+                            </div>
+                        </div>
+                        <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
+                            <input
+                                type="number"
+                                name="quantity-cart"
+                                id="update_${index}"
+                                value="${item.quantity}"
+                                min="1"
+                                max="99"
+                                class="quantity-cart"
+                            />
+                        </div>
+                        <div class="price-per-item font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">
+                            ${(item.price * item.quantity).toFixed(2)} đ
+                        </div>
+                        <div class="rm-cart-btn col-l col-l-1 col-m-2 col-s-2 flex justify-center">
+                            <div>
+                                <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark)"></i>
+                            </div>
                         </div>
                     </div>
-                    <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
-                        <input
-                            type="number"
-                            name="quantity-cart"
-                            id="update_${index}"
-                            value="${item.quantity}"
-                            min="1"
-                            max="99"
-                            class="quantity-cart"
-                        />
-                    </div>
-                    <div class="price-per-item font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">
-                        ${(item.price * item.quantity).toFixed(2)} đ
-                    </div>
-                    <div class="rm-cart-btn col-l col-l-1 col-m-2 col-s-2 flex justify-center">
-                        <div>
-                            <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark)"></i>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        `;
-    });
+            `;
+        });
+    }
     updateCartTotal(elementsObj);
 }
 document.addEventListener("DOMContentLoaded", function () {
