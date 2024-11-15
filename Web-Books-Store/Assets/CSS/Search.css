@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 30px;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.book-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 15px;
+  width: calc(
+    20% - 20px
+  ); /* Mỗi item chiếm 25% chiều rộng, trừ đi khoảng cách margin */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .book-item {
+    width: calc(
+      50% - 20px
+    ); /* Trên màn hình nhỏ, mỗi item chiếm 50% chiều rộng */
+  }
+}
+
+@media (max-width: 480px) {
+  .book-item {
+    width: calc(
+      100% - 20px
+    ); /* Trên màn hình rất nhỏ, mỗi item chiếm toàn bộ chiều rộng */
+  }
+}
