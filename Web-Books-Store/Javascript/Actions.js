@@ -99,9 +99,6 @@ function behaviorSlides(nameSlide, showCount, haveDots) {
 
           if (!nextButtons)
                nextButtons = parent.querySelector(".next-btn");
-
-          console.log(prevButtons);
-          console.log(nextButtons);
      }
 
      if (nextButtons) {

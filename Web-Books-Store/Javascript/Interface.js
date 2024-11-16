@@ -57,6 +57,9 @@ function setTimeFS(elementsObj) {
           if (!stringTime)
                stringTime = activeFlashSale();
 
+          if (stringTime.includes("-"))
+               stringTime = activeFlashSale();
+
           if (stringTime === "00:00:00") {
                localStorage.removeItem("flashSaleTime");
                let timeCount = bridge.$(".fs-countdown");
@@ -66,7 +69,6 @@ function setTimeFS(elementsObj) {
           let index = 0;
           let timeArray = [];
           stringTime = stringTime.split(":");
-
           fSTime.forEach((time) => {
                if (time.classList.contains("fs-number")) {
                     time.innerText = stringTime[index];
