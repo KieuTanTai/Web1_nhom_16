@@ -86,8 +86,10 @@ function behaviorSlides(nameSlide, showCount, haveDots) {
      console.log(nameSlide);
 
      // execute for dots and others if not found
-     while(parent !== bridge.$("#main-content"))
+     let limitParent = bridge.$("#main-content");
+     while(parent !== limitParent && parent.parentElement !== limitParent) {
           parent = parent.parentElement;
+     }
      // first call init for create dot
      fInterface.createDots(parent, showCount);
 
