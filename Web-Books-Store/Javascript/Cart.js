@@ -44,11 +44,11 @@ function updateCartTotal(elementsObj) {
         Prices = 0;
     }
 
-    elementsObj.getTotalPrice().innerText = `${total.toFixed(2)} đ`;
-    elementsObj.getshippingFee().innerText = `${shippingFee.toFixed(2)} đ`;
-    elementsObj.getshippingDiscount().innerText = `${shippingDiscount.toFixed(2)} đ`;
-    elementsObj.getvoucherDiscount().innerText = `${voucherDiscount.toFixed(2)} đ`;
-    elementsObj.getPrices().innerText = `${Prices.toFixed(2)} đ`;
+    // elementsObj.getTotalPrice().innerText = `${total.toFixed(2)} đ`;
+    // elementsObj.getshippingFee().innerText = `${shippingFee.toFixed(2)} đ`;
+    // elementsObj.getshippingDiscount().innerText = `${shippingDiscount.toFixed(2)} đ`;
+    // elementsObj.getvoucherDiscount().innerText = `${voucherDiscount.toFixed(2)} đ`;
+    // elementsObj.getPrices().innerText = `${Prices.toFixed(2)} đ`;
 }
 
 function handleQuantityChange(elementsObj) {
