@@ -13,6 +13,7 @@
      <script type="module" src="../Javascript/Bridge.js"></script>
      <script type = "module" src="../Javascript/Interface.js"></script>
      <script type="module" src="../Javascript/Actions.js"></script>
+     <script type="module" src="../Javascript/Storage.js"></script>
      <title>Light Novel World</title>
 </head>
 <body>
@@ -128,7 +129,7 @@
                               <!-- flash-sale -->
                               <section id="fs-container" class="flex grid-col col-l-12 col-m-12 col-s-12">
                                    <div class="category-tab">
-                                        <section class="heading">
+                                        <section class="heading" name="fs-books">
                                              <span id="fs-label" class="heading-label"></span>
                                              <span class="fs-countdown flex justify-center align-center padding-left-8 font-bold">
                                                   <p class="s-m-hidden padding-right-8">kết thúc trong:</p>
@@ -314,7 +315,7 @@
                               <!-- new book -->
                               <section id="new-books-container" class="flex grid-col col-l-12 col-m-12 col-s-12">
                                    <div class="category-tab">
-                                        <section class="heading">
+                                        <section class="heading" name="new-books">
                                              <div id="new-book-label" class="heading-label"></div>
                                              <div class="uppercase font-bold font-size-20 padding-left-8">Sách mới</div>
                                         </section>
@@ -641,7 +642,7 @@
                               <!-- best selling -->
                               <section id="best-selling-container" class="flex grid-col col-l-12 col-m-12 col-s-12">
                                    <div class="category-tab">
-                                        <section class="heading">
+                                        <section class="heading" name="best-selling">
                                              <div id="best-selling-label" class="heading-label"></div>
                                              <div class="uppercase font-bold font-size-20 padding-left-8">Sản phẩm bán chạy</div>
                                         </section>
@@ -810,7 +811,7 @@
                               <!-- Light Novel  -->
                               <section id="light-novel-container" class="flex grid-col col-l-12 col-m-12 col-s-12">
                                    <div class="category-tab">
-                                        <section class="heading">
+                                        <section class="heading" name="light-novel">
                                              <div id="ln-label" class="heading-label"></div>
                                              <div class="uppercase font-bold font-size-20 padding-left-8">Light Novel</div>
                                         </section>
@@ -980,7 +981,7 @@
                               <!-- Manga -->
                               <section id="manga-container" class="flex grid-col col-l-12 col-m-12 col-s-12">
                                    <div class="category-tab">
-                                        <section class="heading">
+                                        <section class="heading" name="manga">
                                              <div id="manga-label" class="heading-label"></div>
                                              <div class="uppercase font-bold font-size-20 padding-left-8">Manga</div>
                                         </section>
@@ -1146,7 +1147,7 @@
                               <!-- Other -->
                               <section class="flex grid-col col-l-12 col-m-12 col-s-12">
                                    <div class="category-tab">
-                                        <section class="heading">
+                                        <section class="heading" name="others">
                                              <div id="other-book-label" class="heading-label"></div>
                                              <div class="uppercase font-bold font-size-20 padding-left-8">Các loại sách khác</div>
                                         </section>
