@@ -1,13 +1,15 @@
 #main-container #login-registration-form {
      display: flex;
      justify-content: center;
+     align-items: center;
+     min-height: 31em;   
      padding-bottom: 1.25em;
 }
 
 #main-container #login-registration-form .user-box {
      display: flex;
      flex-flow: column wrap;
-     padding: 1em;
+     padding: 2em;
      margin: 2em 2em;
      background: var(--primary-white);
      border-radius: var(--higher-radius);
