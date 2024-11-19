@@ -14,6 +14,8 @@ function getElementsHandler() {
           getSubHeader: () => $("#sub-header"),
           getMainContainer: () => $("#main-container"),
           getFooter: () => $("#footer-container"),
+          getCategories: () => $$(".category-tab"),
+          getProductContainer : () => $$(".product-container"),
           // news blogs
           getNewsBtn: () => $$(".news-nav"),
           getNewsBlogs: () => $("#news-blogs-container"),
