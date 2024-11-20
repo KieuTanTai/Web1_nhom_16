@@ -65,45 +65,34 @@ function slidesHandler(...names) {
                nameSlide = (parent?.querySelector(".news-blogs-items"));
 
                if (nameSlide)
-                    behaviorSlides(nameSlide, 3, true);
+                    behaviorSlides(parent, nameSlide, 3);
           }
 
      });
 }
 
 // get buttons and add behavior for slide
-function behaviorSlides(nameSlide, showCount, haveDots) {
+function behaviorSlides(parent, nameSlide, showCount) {
      let slidesIndex = 1;
      showCount = showCount ? showCount : 1; //check if showCount is falsy or not
-     let parent = nameSlide.parentElement;
-     let prevButtons = nameSlide.querySelector(".prev-btn");
-     let nextButtons = nameSlide.querySelector(".next-btn");
+     let haveDots = parent.querySelector(".dots-bar"); 
+     let prevButtons = parent.querySelector(".prev-btn");
+     let nextButtons = parent.querySelector(".next-btn");
      let container = nameSlide.children;
      // check if container is empty or not 
      if (container.length === 0) return;
      container = Array.from(container);
 
-     // execute for dots and others if not found
-     let limitParent = bridge.$("#main-content");
-     while(parent !== limitParent && parent.parentElement !== limitParent) {
-          parent = parent.parentElement;
-     }
      // first call init for create dot
      fInterface.createDots(parent, showCount);
-
      let dots = (haveDots) ? parent.querySelectorAll(".dot") : null;
-     // allow prev and next buttons find again with nearest parent when nearest parent is not main-content
-     if (!prevButtons || !nextButtons) {
-          if (!prevButtons)
-               prevButtons = parent.querySelector(".prev-btn");
-
-          if (!nextButtons)
-               nextButtons = parent.querySelector(".next-btn");
-     }
 
      if (nextButtons) {
           // increase 1 for slidesIndex when click next btn
           nextButtons.addEventListener("click", bridge.throttle(() => {
+               if (slidesIndex == container.length)
+                    nextButtons.classList.add("disable");
+
                if (++slidesIndex > container.length)
                     slidesIndex = 1;
                showSlides(container, dots, slidesIndex, showCount);
@@ -112,7 +101,15 @@ function behaviorSlides(nameSlide, showCount, haveDots) {
 
      if (prevButtons) {
           // decrease 1 for slidesIndex when click next btn
+
           prevButtons.addEventListener("click", bridge.throttle(() => {
+
+               if (slidesIndex > 0) {
+                    if (prevButtons.classList.contains("disable"))
+                         prevButtons.classList.remove("disable");
+                    prevButtons.classList.add("active");
+               }
+
                if (--slidesIndex < 1)
                     slidesIndex = container.length;
                showSlides(container, dots, slidesIndex, showCount);
