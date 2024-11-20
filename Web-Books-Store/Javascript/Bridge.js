@@ -63,6 +63,7 @@ function pathNamesHandler() {
           "/account/login": "login",
           "/account/register": "sign up",
           "/account/forgot_password": "forgot password",
+          "/account/user": "user",
           // order url
           "/order/": "order",
           "/order/status": "status",

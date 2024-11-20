@@ -273,6 +273,7 @@ function popStateHandler(pathsObj, docsURL) {
                          case "/account/login":
                          case "/account/register":
                          case "/account/forgot_password":
+                         case "/account/user":
                               if (path === "/account/")
                                    path = "/account/login";
                               renderDOMHandler("account", `${path.slice(path.lastIndexOf("/") + 1, path.length + 1)}`);
