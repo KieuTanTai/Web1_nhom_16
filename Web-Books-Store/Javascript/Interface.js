@@ -47,8 +47,7 @@ function categoryIsEmpty() {
                container.innerHTML = "<div class=\"s-m-hidden font-size-26 font-bold\">Không có sản phẩm trong phần này</div>";
                container.classList.add("flex", "full-height", "align-center", "justify-center");
                (container.querySelector(".nav-btn"))?.classList.add("disable");
-               (container.querySelector(".category-btn"))?.classList.add("disable");
-               container.style.color = "unset";
+               (category.querySelector(".category-btn"))?.classList.add("disable");
           }
      })
 } 

@@ -106,6 +106,7 @@
 
 #main-container .same-author,
 #main-container .product-like {
+     display: flex;
      position: relative;
      border-radius: var(--higher-radius);
 }
