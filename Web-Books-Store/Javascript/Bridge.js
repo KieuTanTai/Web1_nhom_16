@@ -22,6 +22,7 @@ function getElementsHandler() {
           // flash sale elements
           getTimeFS: () => $(".fs-time"),
           getFSTable: () => $("#fs-container"),
+          getFSCountDown: () => $(".fs-countdown"),
           // buttons
           getNavBtn: () => $$(".nav-btn"),
           getPrevBtn: () => $$(".prev-btn"),

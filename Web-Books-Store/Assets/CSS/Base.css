@@ -573,6 +573,10 @@ ul {
 }
 
 /* other */
+.container {
+     position: relative;
+}
+
 .text-content {
      opacity: 0.95;
      font-size: 1em;

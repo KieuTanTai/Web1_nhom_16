@@ -39,6 +39,20 @@ function createDots(parent, totalDots) {
      }
 }
 
+//change DOM on categories if it not have any product inside
+function categoryIsEmpty() {
+     bridge.default().getCategories().forEach((category) => {
+          const container = category.querySelector(".product-container");
+          if ((container.childNodes).length === 0) {
+               container.innerHTML = "<div class=\"s-m-hidden font-size-26 font-bold\">Không có sản phẩm trong phần này</div>";
+               container.classList.add("flex", "full-height", "align-center", "justify-center");
+               (container.querySelector(".nav-btn"))?.classList.add("disable");
+               (container.querySelector(".category-btn"))?.classList.add("disable");
+               container.style.color = "unset";
+          }
+     })
+} 
+
 // active flash sale event
 function activeFlashSale () {
      const date = new Date();
@@ -48,12 +62,13 @@ function activeFlashSale () {
 
 // funcs for count down time flash sale events
 function setTimeFS(elementsObj) {
+     let countDown = elementsObj.getFSCountDown();
      let fSTime = elementsObj.getTimeFS();
 
-     if (fSTime) {
+     if (countDown && fSTime) {
           let stringTime = localStorage.getItem("flashSaleTime");
-          fSTime = Array.from(elementsObj.getTimeFS().children);
-          
+          fSTime = Array.from(fSTime.children);
+
           if (!stringTime)
                stringTime = activeFlashSale();
 
@@ -65,7 +80,7 @@ function setTimeFS(elementsObj) {
                let timeCount = bridge.$(".fs-countdown");
                timeCount.innerHTML = "<p class=\"s-m-hidden padding-right-8 font-size-20 font-bold\">Đã hết hạn</p>"
           }
-
+          
           let index = 0;
           let timeArray = [];
           stringTime = stringTime.split(":");
@@ -105,15 +120,10 @@ async function startCountDown(timeArray, elementsObj) {
                startCountDown(timeArray);
           else {
                const fSTable = elementsObj.getFSTable();
-               const productContainer = fSTable.querySelector(".product-container");
                if (!fSTable)  
                     throw new Error ("not found flash sale product!");
+               categoryIsEmpty();
 
-               productContainer.innerHTML = "<div class=\"s-m-hidden font-size-26 font-bold\">Không có sản phẩm trong phần này</div>";
-               productContainer.classList.add("flex", "full-height", "align-center", "justify-center");
-               (fSTable.querySelector(".nav-btn"))?.classList.add("disable");
-               (fSTable.querySelector(".category-btn"))?.classList.add("disable");
-               productContainer.style.color = "var(--primary-white)";
           }
      }
      catch (error) {
@@ -151,7 +161,7 @@ function countDown(timeHandler, typeTime) {
 // fix bug interface func
 // resize image
 function resizeImages(elementsObj) {
-     const ratio = 9 / 6;
+     const ratio = 333.5 / 216;
      const productImages = elementsObj.getImages();
 
      if (!productImages) {
@@ -248,8 +258,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
      // call funcs
      setTimeFS(elementsObj);
-     formatPrices(elementsObj);
-     resizeImages(elementsObj);
+     categoryIsEmpty();
+     // formatPrices(elementsObj);
+     // resizeImages(elementsObj);
 })
 
 export { formatPrices, setTimeFS, resizeImages, createDots};

@@ -386,16 +386,19 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           if (nameDOM === "account") {
                for (request of requestRests)
                     // validate request is one of these types or not
-                    if (request === "login" || request === "register" || request === "forgotPassword") {
+                    if (request === "login" || request === "register" || request === "forgotPassword" || request === "user") {
                          if (request === "forgotPassword")
                               request = "forgot_password";
+
+                         if (request === "user")
+                              if (!localStorage.getItem("hasLogin"))
+                                   throw new Error(`you must be login!`);
 
                          scriptDOM = await bridge.promiseDOMHandler(`${originPath}/account/${request}.html`);
                          break;
                     }
                     else
-                         throw new Error(`invalid request: ${request}\ntry again with request type 
-                                             "login", "register", "forgotPassword" for account DOM`);
+                         throw new Error(`invalid request: ${request}\ntry again with request type "login", "register", "forgotPassword" for account DOM`);
           }
 
           if (nameDOM === "homepage") {

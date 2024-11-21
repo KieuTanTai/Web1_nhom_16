@@ -242,6 +242,10 @@
      border-right: 1px solid var(--border);
 }
 
+#sub-header .sub-menu-item.history-order-link:hover {
+     box-shadow: unset;
+}
+
 /*list-btn */
 .sub-menu .sub-menu-item .list-btn {
      padding-left: 0.25em;
@@ -457,6 +461,11 @@
 /* Flash sale container */
 #fs-container .category-tab {
      background: var(--bg-flash-sale);
+}
+
+#main-container #fs-container .product-container {
+     overflow: auto;
+     flex-flow: row nowrap;
 }
 
 #fs-container .heading {
