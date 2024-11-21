@@ -278,54 +278,6 @@ function setProductBooks(product) {
      localStorage.setItem("productsList", JSON.stringify(product));
 }
 
-function renderProductsList(productsList) {
-     bridge.default().getCategories().forEach((category) => {
-          const parent = category.offsetParent;
-          if (parent.getAttribute("id") === "fs-container") {
-               const container = parent.querySelector(".product-container");
-               let script = "";
-               for (let item in productsList) {
-                    if (productsList.hasOwnProperty(item)) {
-                         script +=
-                              `
-                         <div class="grid-col col-l-2-4 col-m-3 col-s-6">
-                              <div class="block-product product-resize">
-                                   <span class="product-image js-item">
-                                        <img src="${productsList[item].img}" 
-                                             alt="${productsList[item].name}">
-                                   </span>
-                                   <div class="sale-label">${productsList[item].sale * 100}%</div>
-                                   <div class="sale-off font-bold capitalize ${productsList[item].quantity <= 0 ? "active" : ""}">hết hàng</div>
-                                   <div class="info-inner flex justify-center align-center line-height-1-6">
-                                        <h4 class="font-light capitalize">${productsList[item].name}</h4>
-                                        <div class="margin-y-4">
-                                             <span class="price font-bold">${Math.round(productsList[item].price * (1 - productsList[item].sale))}</span>
-                                             <del class="price old-price padding-left-8 font-size-14">${productsList[item].price}</del>
-                                        </div>
-                                   </div>
-                                   <div class="action">
-                                        <div class="buy-btn">
-                                             <div title="mua ngay" class="button">
-                                                  <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                             </div>
-                                        </div>
-          
-                                        <div class="add-to-cart">
-                                             <div title="thêm vào giỏ hàng" class="button">
-                                                  <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                                             </div>
-                                        </div>
-                                   </div>
-                              </div>
-                         </div> 
-                         `
-                    }
-               }
-               container.innerHTML = script;
-          }
-     })
-}
-
 function productsFS(productsList) {
      const fsContainer = bridge.default().getFSTable()?.querySelector(".product-container");
      let html = "";
@@ -373,12 +325,25 @@ function productsFS(productsList) {
 
 }
 
+function geneProducts(productsList) {
+     const getHandler = bridge.default();
+     let containers = bridge.$$(".container");
+     // return if not have any container
+     if (!containers) 
+          return;
+     containers.forEach((container) => {
+          console.log(container)
+          let containerID = container.getAttribute("id");
+          console.log(containerID);
+     })
+}
 
 document.addEventListener("DOMContentLoaded", () => {
      const initProducts = getProductsList();
      let localProducts = getProductBooks();
      console.log((initProducts.sort((a,b) => a.sale - b.sale)).splice(0, 10))
      // productsFS((initProducts.sort((a,b) => a.sale - b.sale)).splice(0, 10));
+     geneProducts(initProducts);
 
 
      fInterface.resizeImages(bridge.default());
