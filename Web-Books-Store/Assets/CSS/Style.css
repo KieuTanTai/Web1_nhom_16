@@ -479,6 +479,11 @@
      font-weight: 500;
 }
 
+.heading .fs-time {
+     display: flex;
+     flex-flow : row nowrap;
+}
+
 #fs-container .heading .fs-number {
      line-height: 2;
      font-weight: 700;
@@ -496,6 +501,10 @@
      margin-bottom: 0.5em;
      display: flex;
      flex-flow: row nowrap;
+}
+
+.product-container .product-item {
+     position: relative;
 }
 
 #main-content .product-container::-webkit-scrollbar {
@@ -567,10 +576,10 @@
 }
 
 /* css for action */
-.block-product .action {
-     top: 68%;
-     left: 30%;
-     right: 30%;
+.product-item .action {
+     top:64%;
+     left: 28%;
+     right: 28%;
      min-width: 6.25em;
      padding-right: 0.5em;
      display: none;
@@ -579,7 +588,7 @@
      justify-content: space-between;
 }
 
-.block-product:hover .action {
+.product-item:hover .action {
      display: flex;
      animation: fadeIn linear 0.2s forwards;
 }
@@ -589,7 +598,7 @@
      animation: fadeIn linear 0.2s forwards;
 }
 
-.block-product .action div {
+.product-item .action div {
      width: 2.5em;
      height: 2.5em;
      margin: 0.25em 0;

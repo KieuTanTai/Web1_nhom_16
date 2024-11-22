@@ -1,4 +1,6 @@
 'use strict'
+import "./Products.js";
+import * as jsInterface from "./Interface.js";
 
 const throttleList = {}; //object for throttle function
 const debounceList = {};

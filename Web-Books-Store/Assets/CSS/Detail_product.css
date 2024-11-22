@@ -100,25 +100,25 @@
      border-bottom: 1px solid var(--border);
 }
 
-.product-tags div > a:not(:first-of-type)::before {
-     content: ", ";
-}
-
-#main-container .same-author,
-#main-container .product-like {
+#same-author-container,
+#product-like-container{
      display: flex;
      position: relative;
      border-radius: var(--higher-radius);
 }
 
-.same-author .list-title,
-.product-like .list-title {
+#same-author-container .list-title,
+#product-like-container .list-title {
      border-bottom: 1px solid var(--border);
 }
 
 .same-author .product-image img,
 .product-like .product-image img {
      object-fit: contain;
+}
+
+.short-desc {
+     min-height: 8.5em;
 }
 
 .product-like {

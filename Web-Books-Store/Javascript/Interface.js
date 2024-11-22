@@ -1,5 +1,18 @@
 'use strict'
-import * as bridge from "./Bridge.js";
+import * as Bridge from "./Bridge.js";
+import * as FlashSale from "./FlashSales.js"
+import * as RenderProducts from "./Products.js"
+
+// check container is empty or not
+function isEmpty(container) {
+     let children = container.children; 
+     if (children.length === 0)
+          return true;
+     for (let child of children) 
+          if (child.classList.contains("empty-mess"))
+               return true;
+     return false;
+}
 
 // format prices from default to vi-VN format
 function formatPrices(elementsObj) {
@@ -41,121 +54,16 @@ function createDots(parent, totalDots) {
 
 //change DOM on categories if it not have any product inside
 function categoryIsEmpty() {
-     bridge.default().getCategories().forEach((category) => {
+     Bridge.default().getCategories().forEach((category) => {
           const container = category.querySelector(".product-container");
-          if ((container.childNodes).length === 0) {
-               container.innerHTML = "<div class=\"s-m-hidden font-size-26 font-bold\">Không có sản phẩm trong phần này</div>";
+          if (isEmpty(container)) {
+               container.innerHTML = "<div class=\"empty-mess font-size-20 font-bold\">Không có sản phẩm trong phần này</div>";
                container.classList.add("flex", "full-height", "align-center", "justify-center");
                (container.querySelector(".nav-btn"))?.classList.add("disable");
                (category.querySelector(".category-btn"))?.classList.add("disable");
           }
      })
 } 
-
-// active flash sale event
-function activeFlashSale () {
-     const date = new Date();
-     localStorage.setItem("flashSaleTime", date.toLocaleTimeString("it-IT"));
-     return localStorage.getItem("flashSaleTime");
-}
-
-// funcs for count down time flash sale events
-function setTimeFS(elementsObj) {
-     let countDown = elementsObj.getFSCountDown();
-     let fSTime = elementsObj.getTimeFS();
-
-     if (countDown && fSTime) {
-          let stringTime = localStorage.getItem("flashSaleTime");
-          fSTime = Array.from(fSTime.children);
-
-          if (!stringTime)
-               stringTime = activeFlashSale();
-
-          if (stringTime.includes("-"))
-               stringTime = activeFlashSale();
-
-          if (stringTime === "00:00:00") {
-               localStorage.removeItem("flashSaleTime");
-               let timeCount = bridge.$(".fs-countdown");
-               timeCount.innerHTML = "<p class=\"s-m-hidden padding-right-8 font-size-20 font-bold\">Đã hết hạn</p>"
-          }
-          
-          let index = 0;
-          let timeArray = [];
-          stringTime = stringTime.split(":");
-          fSTime.forEach((time) => {
-               if (time.classList.contains("fs-number")) {
-                    time.innerText = stringTime[index];
-                    timeArray.push(time);
-                    index++;
-               }
-          });
-          startCountDown(timeArray, elementsObj);
-     }
-
-}
-
-async function startCountDown(timeArray, elementsObj) {
-     try {
-          window.addEventListener("beforeunload", () => {
-               console.log(`${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`);
-               localStorage.setItem("flashSaleTime",
-                    `${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`);
-          });
-
-          if (timeArray[2].innerText !== "00")
-               timeArray[2].innerText = await countDown(timeArray[2], "seconds");
-
-          if (timeArray[2].innerText === "00" && timeArray[1].innerText !== "00") {
-               timeArray[2].innerText = "60";
-               timeArray[1].innerText = await countDown(timeArray[1], "minutes");
-          }
-          else if (timeArray[2].innerText === "00" && timeArray[1].innerText === "00" && timeArray[0].innerText !== "00") {
-               timeArray[1].innerText = "60";
-               timeArray[0].innerText = await countDown(timeArray[0], "minutes");
-          }
-
-          if (timeArray[2].innerText !== "00" || timeArray[1].innerText !== "00" || timeArray[0].innerText !== "00")
-               startCountDown(timeArray);
-          else {
-               const fSTable = elementsObj.getFSTable();
-               if (!fSTable)  
-                    throw new Error ("not found flash sale product!");
-               categoryIsEmpty();
-
-          }
-     }
-     catch (error) {
-          alert(error);
-     }
-}
-
-function countDown(timeHandler, typeTime) {
-     return new Promise((resolve, reject) => {
-          if (!timeHandler || isNaN(parseInt(timeHandler.innerText)) || parseInt(timeHandler.innerText) <= 0)
-               reject(new Error("invalid time!"));
-
-          const timeLength = timeHandler.innerText;
-
-          if (typeTime === "seconds") {
-               for (let i = 0; i < timeLength; i++) {
-                    setTimeout(() => {
-                         let currentTime = parseInt(timeHandler.innerText);
-                         timeHandler.innerText = (--currentTime).toString().padStart(2, '0');
-                         if (timeHandler.innerText === "00")
-                              resolve(timeHandler.innerText);
-                    }, 1000 * i);
-               }
-          }
-          else if (typeTime === "minutes" || typeTime === "hours") {
-               let currentTime = parseInt(timeHandler.innerText);
-               timeHandler.innerText = (--currentTime).toString().padStart(2, '0');
-               resolve(timeHandler.innerText);
-          }
-          else
-               reject(new Error("error time!"));
-     });
-}
 
 // fix bug interface func
 // resize image
@@ -208,10 +116,10 @@ function resizeSmNav(elementsObj) {
      });
 }
 
-// default add header footer
+// default add header footer and initProducts
 async function addDOMHeader(elementsObj) {
      try {
-          const headerDOM = await bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/header.html");
+          const headerDOM = await Bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/header.html");
           const header = headerDOM.getElementById("header-container");
           const subHeader = headerDOM.getElementById("sub-header");
           let placeInsert = elementsObj.getMainContainer();
@@ -228,7 +136,7 @@ async function addDOMHeader(elementsObj) {
 
 async function addDOMFooter(elementsObj) {
      try {
-          const footerDOM = await bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/footer.html");
+          const footerDOM = await Bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/footer.html");
           const footer = footerDOM.getElementById("footer-container");
           const webContent = elementsObj.getWebContent();
 
@@ -240,8 +148,25 @@ async function addDOMFooter(elementsObj) {
      }
 }
 
+async function getInitProducts(elementsObj) {
+     try {
+          const storage = await fetch("/Web-Books-Store/Javascript/Storage.js");
+          const jsonArray = await storage.json();
+          const productsList = Array.from(jsonArray);
+
+          // render init products
+          RenderProducts.geneProducts(productsList);
+          formatPrices(elementsObj);
+          resizeImages(elementsObj);
+          categoryIsEmpty();
+     } catch (error) {
+          alert(error);
+     }
+}
+
+// call functions when DOM Loaded
 document.addEventListener("DOMContentLoaded", function () {
-     const elementsObj = bridge.default();
+     const elementsObj = Bridge.default();
 
      //create check DOM of Header and Footer
      addDOMHeader(elementsObj);
@@ -256,10 +181,8 @@ document.addEventListener("DOMContentLoaded", function () {
      }, 200);
 
      // call funcs
-     setTimeFS(elementsObj);
-     categoryIsEmpty();
-     // formatPrices(elementsObj);
-     // resizeImages(elementsObj);
+     getInitProducts(elementsObj);
+     FlashSale.setTimeFS(elementsObj);
 })
 
-export { formatPrices, setTimeFS, resizeImages, createDots};
+export {formatPrices, resizeImages, createDots, isEmpty, categoryIsEmpty, getInitProducts};
