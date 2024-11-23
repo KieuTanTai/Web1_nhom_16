@@ -79,6 +79,15 @@ ul {
      list-style: none;
 }
 
+input[type = text] {
+     display: -webkit-box;
+     line-clamp: 2;
+     overflow: hidden;
+     -webkit-line-clamp: 2;
+     text-overflow: ellipsis;
+     -webkit-box-orient: vertical;
+}
+
 /* CSS global */
 
 /* width & height */
@@ -573,6 +582,10 @@ ul {
 }
 
 /* other */
+.container {
+     position: relative;
+}
+
 .text-content {
      opacity: 0.95;
      font-size: 1em;

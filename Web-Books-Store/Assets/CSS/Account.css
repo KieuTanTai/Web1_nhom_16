@@ -1,13 +1,15 @@
 #main-container #login-registration-form {
      display: flex;
      justify-content: center;
+     align-items: center;
+     min-height: 31em;   
      padding-bottom: 1.25em;
 }
 
 #main-container #login-registration-form .user-box {
      display: flex;
      flex-flow: column wrap;
-     padding: 1em;
+     padding: 2em;
      margin: 2em 2em;
      background: var(--primary-white);
      border-radius: var(--higher-radius);
@@ -148,12 +150,22 @@
 }
 
 .account-info .user-card .js-edit-btn {
-     padding: 0.25em 1.5em;
+     padding: 0.5em 1.5em;
+     border: unset;
+     color: var(--primary-white);
      background: var(--main-color);
-     border: 2px solid var(--main-color);
 }
 
 .account-info .user-card input[type=text] {
      border: none;
      outline: none;
+}
+
+.account-container .history-order-link {
+     margin: 1em 0;
+     padding: 0.5em;
+     background: var(--main-color);
+     border-radius: var(--normal-radius);
+     border: 1px solid var(--main-color);
+     box-shadow: 0 0 1px var(--primary-dark);
 }

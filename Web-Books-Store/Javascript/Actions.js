@@ -1,6 +1,7 @@
 'use strict'
-import * as bridge from "./Bridge.js";
-import * as fInterface from "./Interface.js";
+import * as Bridge from "./Bridge.js";
+import * as Interface from "./Interface.js";
+import * as FlashSale from "./FlashSales.js"
 
 // funcs event
 function cancelAction(elementsObj) {
@@ -33,7 +34,7 @@ function historyNavigate(elementsObj) {
 
      if (!buttons) return;
      buttons.forEach((btn) => {
-          btn.addEventListener("click", bridge.throttle(() => {
+          btn.addEventListener("click", Bridge.throttle(() => {
                if (urlHandler("/order/history", docsURL))
                     renderDOMHandler("orderHistory");
           }, 200, "historyNav"));
@@ -55,7 +56,7 @@ function checkActiveHTML(nameForm, ...restForms) {
 // slide handler with name that need to use slide's behavior
 function slidesHandler(...names) {
      let parent, nameSlide;
-     const elementsObj = bridge.default();
+     const elementsObj = Bridge.default();
 
      // params is name of html need to use add behavior
      // default flag dots is "true" / add "else if" & change flag to "false" if not need dot 
@@ -65,43 +66,34 @@ function slidesHandler(...names) {
                nameSlide = (parent?.querySelector(".news-blogs-items"));
 
                if (nameSlide)
-                    behaviorSlides(nameSlide, 3, true);
+                    behaviorSlides(parent, nameSlide, 3);
           }
 
      });
 }
 
 // get buttons and add behavior for slide
-function behaviorSlides(nameSlide, showCount, haveDots) {
+function behaviorSlides(parent, nameSlide, showCount) {
      let slidesIndex = 1;
      showCount = showCount ? showCount : 1; //check if showCount is falsy or not
-     let parent = nameSlide.parentElement;
-     let prevButtons = nameSlide.querySelector(".prev-btn");
-     let nextButtons = nameSlide.querySelector(".next-btn");
+     let haveDots = parent.querySelector(".dots-bar"); 
+     let prevButtons = parent.querySelector(".prev-btn");
+     let nextButtons = parent.querySelector(".next-btn");
      let container = nameSlide.children;
      // check if container is empty or not 
      if (container.length === 0) return;
      container = Array.from(container);
 
-     // execute for dots and others if not found
-     while(parent !== bridge.$("#main-content"))
-          parent = parent.parentElement;
      // first call init for create dot
-     fInterface.createDots(parent, showCount);
-
+     Interface.createDots(parent, showCount);
      let dots = (haveDots) ? parent.querySelectorAll(".dot") : null;
-     // allow prev and next buttons find again with nearest parent when nearest parent is not main-content
-     if (!prevButtons || !nextButtons) {
-          if (!prevButtons)
-               prevButtons = parent.querySelector(".prev-btn");
-
-          if (!nextButtons)
-               nextButtons = parent.querySelector(".next-btn");
-     }
 
      if (nextButtons) {
           // increase 1 for slidesIndex when click next btn
-          nextButtons.addEventListener("click", bridge.throttle(() => {
+          nextButtons.addEventListener("click", Bridge.throttle(() => {
+               if (slidesIndex == container.length)
+                    nextButtons.classList.add("disable");
+
                if (++slidesIndex > container.length)
                     slidesIndex = 1;
                showSlides(container, dots, slidesIndex, showCount);
@@ -110,7 +102,15 @@ function behaviorSlides(nameSlide, showCount, haveDots) {
 
      if (prevButtons) {
           // decrease 1 for slidesIndex when click next btn
-          prevButtons.addEventListener("click", bridge.throttle(() => {
+
+          prevButtons.addEventListener("click", Bridge.throttle(() => {
+
+               if (slidesIndex > 0) {
+                    if (prevButtons.classList.contains("disable"))
+                         prevButtons.classList.remove("disable");
+                    prevButtons.classList.add("active");
+               }
+
                if (--slidesIndex < 1)
                     slidesIndex = container.length;
                showSlides(container, dots, slidesIndex, showCount);
@@ -118,8 +118,8 @@ function behaviorSlides(nameSlide, showCount, haveDots) {
      }
 
      // resize handler for set active 
-     window.addEventListener("resize", bridge.debounce(() => {
-          fInterface.createDots(parent, showCount);
+     window.addEventListener("resize", Bridge.debounce(() => {
+          Interface.createDots(parent, showCount);
           dots = (haveDots) ? parent.querySelectorAll(".dot") : null;
           showSlides(container, dots, slidesIndex, showCount);
      }, 150, "activeItems"));
@@ -155,7 +155,7 @@ function showSlides(slidesContainer, dots, slidesIndex, showCount) {
 
           // add event listener when click dots
           dots.forEach((dot, index) => {
-               dot.addEventListener("click", bridge.throttle(() => {
+               dot.addEventListener("click", Bridge.throttle(() => {
                     if (!dot.classList.contains("active")) {
                          // after run code add active and codes below it showCount will decrease and equal 0
                          slidesIndex = 1  // set default slidesIndex = init value of slidesIndex
@@ -179,7 +179,7 @@ function showSlides(slidesContainer, dots, slidesIndex, showCount) {
 // handle scrolls
 function scrollToHandler(nameStaticPage) {
      let staticPage;
-     const elementsObj = bridge.default();
+     const elementsObj = Bridge.default();
 
      if (nameStaticPage === "news")
           staticPage = elementsObj.getNewsBlogs();
@@ -237,18 +237,18 @@ function staticContents(elementsObj) {
      // add event listener
      if (newsButtons) {
           newsButtons.forEach((btn) => {
-               btn.addEventListener("click", bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn"));
+               btn.addEventListener("click", Bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn"));
           });
      }
 
      if (servicesButtons) {
           servicesButtons.forEach((btn) => {
-               btn.addEventListener("click", bridge.throttle(() => scrollToHandler("services"), 200, "servicesBtn"));
+               btn.addEventListener("click", Bridge.throttle(() => scrollToHandler("services"), 200, "servicesBtn"));
           });
      }
 
      if (scrollTopButtons) {
-          scrollTopButtons.addEventListener("click", bridge.throttle(() => scrollToHandler("top"), 200, "ScrollTopBtn"));
+          scrollTopButtons.addEventListener("click", Bridge.throttle(() => scrollToHandler("top"), 200, "ScrollTopBtn"));
      }
 
 }
@@ -256,17 +256,16 @@ function staticContents(elementsObj) {
 // funcs execute url
 // func for popstate listener (it's will be very long)
 function popStateHandler(pathsObj, docsURL) {
-     const elementsObj = bridge.default();
+     const elementsObj = Bridge.default();
 
      window.addEventListener("popstate",
-          bridge.throttle((event) => {
+          Bridge.throttle((event) => {
                const currentPath = event.target.location.pathname;
                let path = currentPath.slice(docsURL.lastIndexOf("/HTML/") + 5, currentPath.length + 1);
 
                if (path.includes(".html"))
                     path = path.replace(".html", "");
 
-               console.log("hello: " + (Math.random() * 100 + 1));
                // execute DOM with specific path
                if (pathsObj[path]) {
                     switch (path) {
@@ -274,6 +273,7 @@ function popStateHandler(pathsObj, docsURL) {
                          case "/account/login":
                          case "/account/register":
                          case "/account/forgot_password":
+                         case "/account/user":
                               if (path === "/account/")
                                    path = "/account/login";
                               renderDOMHandler("account", `${path.slice(path.lastIndexOf("/") + 1, path.length + 1)}`);
@@ -315,7 +315,7 @@ function urlHandler(pathName, docsURL) {
      if (typeof pathName !== "string" || !pathName)
           return false;
 
-     const pathsObj = bridge.pathNamesHandler();
+     const pathsObj = Bridge.pathNamesHandler();
 
      if (pathName[0] !== "/")
           pathName = `/${pathName}`;
@@ -341,21 +341,21 @@ function accountEvents(elementsObj) {
      const forgotButtons = elementsObj.getJsForgotBtn();
 
      loginButtons?.forEach((btn) => {
-          btn.addEventListener("click", bridge.throttle(() => {
+          btn.addEventListener("click", Bridge.throttle(() => {
                if (urlHandler("/account/login", docsURL))
                     (renderDOMHandler("account", "login"));
           }, 200, "login"));
      });
 
      registerButtons?.forEach((btn) => {
-          btn.addEventListener("click", bridge.throttle(() => {
+          btn.addEventListener("click", Bridge.throttle(() => {
                if (urlHandler("/account/register", docsURL))
                     renderDOMHandler("account", "register");
           }, 200, "register"));
      });
 
      forgotButtons?.forEach((btn) => {
-          btn.addEventListener("click", bridge.throttle(() => {
+          btn.addEventListener("click", Bridge.throttle(() => {
                if (urlHandler("/account/forgot_password", docsURL))
                     renderDOMHandler("account", "forgotPassword");
           }, 200, "forgotPassword"));
@@ -364,9 +364,11 @@ function accountEvents(elementsObj) {
 
 // render html specific DOM with required is name of DOM and option is requests
 async function renderDOMHandler(nameDOM, ...requestRests) {
+     // get origin path and set now place
+     localStorage.setItem("currentPlace", window.scrollY);
      const originPath = location.pathname.slice(0, location.pathname.lastIndexOf("/HTML/") + 5);
      try {
-          const elementsObj = bridge.default();
+          const elementsObj = Bridge.default();
           const webContent = elementsObj.getWebContent();
           const mainContainer = elementsObj.getMainContainer();
 
@@ -382,40 +384,45 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
 
           // set await promise DOM
           let scriptDOM, request;
-
           if (nameDOM === "account") {
                for (request of requestRests)
                     // validate request is one of these types or not
-                    if (request === "login" || request === "register" || request === "forgotPassword") {
+                    if (request === "login" || request === "register" || request === "forgotPassword" || request === "user") {
                          if (request === "forgotPassword")
                               request = "forgot_password";
 
-                         scriptDOM = await bridge.promiseDOMHandler(`${originPath}/account/${request}.html`);
+                         if (request === "user")
+                              if (!localStorage.getItem("hasLogin"))
+                                   throw new Error(`you must be login!`);
+
+                         scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/account/${request}.html`);
                          break;
                     }
                     else
-                         throw new Error(`invalid request: ${request}\ntry again with request type 
-                                             "login", "register", "forgotPassword" for account DOM`);
+                         throw new Error(`invalid request: ${request}\ntry again with request type "login", "register", "forgotPassword" for account DOM`);
           }
 
           if (nameDOM === "homepage") {
-               scriptDOM = await bridge.promiseDOMHandler(`${originPath}/index.html`);
+               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/index.html`);
                // call again some funcs
           }
 
           if (nameDOM === "orderStatus" || nameDOM === "orderHistory") {
                nameDOM = (nameDOM.replace("order", "")).toLowerCase();
-               scriptDOM = await bridge.promiseDOMHandler(`${originPath}/order/${nameDOM}.html`);
+               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/order/${nameDOM}.html`);
           }
+
+          if ((nameDOM === "detailProduct") && requestRests)
+               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/detail_product.html`);
 
           // error if script DOM is invalid
           if (!scriptDOM)
                throw new Error("scripDOM: " + scriptDOM);
 
-          const title = scriptDOM.querySelector("title");
-          const content = scriptDOM.getElementById("main-content");
+          let title = scriptDOM.querySelector("title");
+          let content = scriptDOM.getElementById("main-content");
           let placeInsert = Array.from(mainContainer.children).find((element) => element.id === "main-content");
-
+          // render DOM
           // for account DOM
           if (nameDOM === "account" && request === "forgot_password")
                placeInsert.style.paddingTop = 0.7 + "em";
@@ -423,9 +430,26 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                placeInsert.removeAttribute("style");
 
           // for render DOM
-          bridge.$("title").innerText = title.innerText;
+          let currentTitle = Bridge.$("title"); 
+          currentTitle.innerText = title.innerText;
           placeInsert.innerHTML = content.innerHTML;
           webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
+
+          // execute after render
+          if (nameDOM === "detailProduct" && requestRests) {
+               let product = requestRests[0];
+               let release = product.release, packaging = product.packaging;
+               let productSale = product.sale, productPrice = product.price;
+               let srcImage = product.img, productDescription = product.description;
+               let format = product.format, type = product.type, genre = product.genre;
+               let productAuth = product.author , productName = product.name, id = product.productID;
+               let imageContainer = placeInsert.querySelector(".product-image img");
+
+               // !set data (CONTINUE) GET FIELDS ON OBJ -> ADD DATA TO DOM 
+               currentTitle.innerText = productName;
+               // imageContainer.set
+          }
+
 
           // call some functions again after render DOM
           callAgain(elementsObj, "homepage");
@@ -444,7 +468,7 @@ function callAgain(elementsObj, ...names) {
                     let timeFS = elementsObj.getTimeFS();
                     if (newsContainer && timeFS) {
                          slidesHandler("news");
-                         fInterface.setTimeFS(elementsObj);
+                         FlashSale.setTimeFS(elementsObj);
                          clearInterval(checkBlog);
                     }
                }, 400);
@@ -454,13 +478,12 @@ function callAgain(elementsObj, ...names) {
      cancelAction(elementsObj);
      accountEvents(elementsObj);
      staticContents(elementsObj);
-     fInterface.formatPrices(elementsObj);
-     fInterface.resizeImages(elementsObj);
+     Interface.getInitProducts(elementsObj);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-     let elementsObj = bridge.default();
-     const pathsObj = bridge.pathNamesHandler();
+     let elementsObj = Bridge.default();
+     const pathsObj = Bridge.pathNamesHandler();
 
      // check DOM of header, sub header and footer
      const checkDOM = setInterval(() => {
@@ -480,3 +503,5 @@ document.addEventListener("DOMContentLoaded", () => {
      slidesHandler("news");
      popStateHandler(pathsObj, location.pathname);
 })
+
+export {renderDOMHandler}
