@@ -28,8 +28,7 @@ function setTimeFS(elementsObj) {
     if (stringTime === "00:00:00") {
       localStorage.removeItem("flashSaleTime");
       let timeCount = Bridge.$(".fs-countdown");
-      timeCount.innerHTML =
-        '<p class="s-m-hidden padding-right-8 font-size-20 font-bold">Đã hết hạn</p>';
+      timeCount.innerHTML = '<p class="s-m-hidden padding-right-8 font-size-20 font-bold">Đã hết hạn</p>';
     }
 
     let index = 0;
@@ -49,9 +48,7 @@ function setTimeFS(elementsObj) {
 async function startCountDown(timeArray, elementsObj) {
   try {
     window.addEventListener("beforeunload", () => {
-      localStorage.setItem(
-        "flashSaleTime",
-        `${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`
+      localStorage.setItem("flashSaleTime",`${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`
       );
     });
 
@@ -115,4 +112,4 @@ function countDown(timeHandler, typeTime) {
   });
 }
 
-export { setTimeFS };
+export { setTimeFS, activeFlashSale };

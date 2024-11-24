@@ -1,8 +1,8 @@
 [
      {
           "productID": "BK0001",
-          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp",
-          "name": "Khẽ Hát Lời Yêu - 1",
+          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp",
+          "name": "Khẽ Hát Lời Yêu-1",
           "author": "Eku Takeshima",
           "sale": 0.15,
           "price": 65000,
@@ -12,14 +12,14 @@
           "type": "manga",
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
-          "category": "special",
+          " ": "special",
           "description": "....."
      },
 
      {
           "productID": "BK0002",
-          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_2.webp",
-          "name": "Khẽ Hát Lời Yêu - 2",
+          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_2.webp",
+          "name": "Khẽ Hát Lời Yêu-2",
           "author": "Eku Takeshima",
           "sale": 0.15,
           "quantity": 30,
@@ -35,8 +35,8 @@
 
      {
           "productID": "BK0003",
-          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_3.webp",
-          "name": "Khẽ Hát Lời Yêu - 3",
+          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_3.webp",
+          "name": "Khẽ Hát Lời Yêu-3",
           "author": "Eku Takeshima",
           "sale": 0.15,
           "quantity": 50,
@@ -52,8 +52,8 @@
 
      {
           "productID": "BK0004",
-          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_4.webp",
-          "name": "Khẽ Hát Lời Yêu - 4",
+          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_4.webp",
+          "name": "Khẽ Hát Lời Yêu-4",
           "author": "Eku Takeshima",
           "sale": 0.15,
           "quantity": 40,
@@ -69,8 +69,8 @@
 
      {
           "productID": "BK0005",
-          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_5.webp",
-          "name": "Khẽ Hát Lời Yêu - 5",
+          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_5.webp",
+          "name": "Khẽ Hát Lời Yêu-5",
           "author": "Eku Takeshima",
           "sale": 0.15,
           "quantity": 500,
@@ -86,7 +86,7 @@
 
      {
           "productID": "BK0006",
-          "img": "../Assets/Images/Books/Light_Novel/suzume__bia_cung_bia_cung.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/suzume__bia_cung_bia_cung.webp",
           "name": "Khóa Chặt Cửa Nào Suzume (Bìa Cứng)",
           "author": "Shinkai Makoto",
           "sale": 0.2,
@@ -103,7 +103,7 @@
  
      {
           "productID": "BK0007",
-          "img": "../Assets/Images/Books/Light_Novel/suzume__bia_mem.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/suzume__bia_mem.webp",
           "name": "Khóa Chặt Cửa Nào Suzume (Bìa Mềm)",
           "author": "Shinkai Makoto",
           "sale": 0.2,
@@ -120,7 +120,7 @@
 
      {
           "productID": "BK0008",
-          "img": "../Assets/Images/Books/Light_Novel/3_ngay_hanh_phuc.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/3_ngay_hanh_phuc.webp",
           "name": "3 ngày hạnh phúc",
           "author": "Sugaru Miaki",
           "sale": 0.31,
@@ -137,7 +137,7 @@
 
      {
           "productID": "BK0009",
-          "img": "../Assets/Images/Books/Light_Novel/dau_oi_bay_di.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/dau_oi_bay_di.webp",
           "name": "đau ơi bay đi",
           "author": "Sugaru Miaki",
           "sale": 0.45,
@@ -154,7 +154,7 @@
 
      {
           "productID": "P00010",
-          "img": "../Assets/Images/Books/Light_Novel/dem-day-sao.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/dem-day-sao.webp",
           "name": "Khi ấy là một đêm đầy sao",
           "author": "Milito Amasaki, Nagu",
           "sale": 0.2,
@@ -171,7 +171,7 @@
 
      {
           "productID": "P00011",
-          "img": "../Assets/Images/Books/Light_Novel/dem_nay_dau_tinh_yeu_bien_mat.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/dem_nay_dau_tinh_yeu_bien_mat.webp",
           "name": "đêm nay dẫu tình yêu biến mất khỏi thế gian",
           "author": "Misaki Ichijo",
           "sale": 0.4,
@@ -188,7 +188,7 @@
 
      {
           "productID": "P00012",
-          "img": "../Assets/Images/Books/Light_Novel/em_la_anh_sang_giua_dem_trang.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/em_la_anh_sang_giua_dem_trang.webp",
           "name": "em là ánh sáng giữa đêm trăng",
           "author": " Sano Tetsuya",
           "sale": 0.26,
@@ -205,8 +205,8 @@
 
      {
           "productID": "P00013",
-          "img": "../Assets/Images/Books/Light_Novel/belle.webp",
-          "name": "BELLE - Rồng Và Công Chúa Tàn Nhang",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/belle.webp",
+          "name": "BELLE-Rồng Và Công Chúa Tàn Nhang",
           "author": "Mamoru Hosoda",
           "sale": 0.7,
           "quantity": 500,
@@ -222,7 +222,7 @@
 
      {
           "productID": "P00014",
-          "img": "../Assets/Images/Books/Light_Novel/tang_hoa_cho_quai_vat_trong_rung.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/tang_hoa_cho_quai_vat_trong_rung.webp",
           "name": "Tặng Hoa Cho Quái Vật Trong Rừng",
           "author": "Kimito Kogi",
           "sale": 0.35,
@@ -239,8 +239,8 @@
 
      {
           "productID": "P00015",
-          "img": "../Assets/Images/Books/Manga/yotsuba___tap_4.webp",
-          "name": "Yotsuba&! - 4",
+          "img": "/Web-Books-Store/Assets/Images/Books/Manga/yotsuba___tap_4.webp",
+          "name": "Yotsuba&!-4",
           "author": " Azuma Kiyohiko",
           "sale": 0.15,
           "quantity": 70,
@@ -256,7 +256,7 @@
 
      {
           "productID": "P00016",
-          "img": "../Assets/Images/Books/Van_Hoc/co-tich-nguoi-dien.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Van_Hoc/co-tich-nguoi-dien.webp",
           "name": "Cổ tích của người điên",
           "author": " Thời Thần",
           "sale": 0.23,
@@ -273,8 +273,8 @@
 
      {
           "productID": "P00017",
-          "img": "../Assets/Images/Books/Technology/clean_code.webp",
-          "name": "Clean Code - Mã Sạch Và Con Đường Trở Thành Lập Trình Viên Giỏi (Tái Bản 2023)",
+          "img": "/Web-Books-Store/Assets/Images/Books/Technology/clean_code.webp",
+          "name": "Clean Code-Mã Sạch Và Con Đường Trở Thành Lập Trình Viên Giỏi (Tái Bản 2023)",
           "author": "Nguyễn Văn Trung",
           "sale": 0.2,
           "quantity": 500,
@@ -290,7 +290,7 @@
 
      {
           "productID": "P00018",
-          "img": "../Assets/Images/Books/Light_Novel/khi_muon_khoc_toi_deo_mat_na_meo.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/khi_muon_khoc_toi_deo_mat_na_meo.webp",
           "name": "Khi Muốn Khóc Tôi Đeo Mặt Nạ Mèo",
           "author": "Iwasa Mamoru",
           "sale": 0.2,
@@ -307,7 +307,7 @@
 
      {
           "productID": "P00019",
-          "img": "../Assets/Images/Books/Light_Novel/bau_troi_xanh_cua_em.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/bau_troi_xanh_cua_em.webp",
           "name": "Bầu Trời Xanh Của Em",
           "author": "Cho-Heiwa Busters",
           "sale": 0.3,
@@ -324,7 +324,7 @@
 
      {
           "productID": "P00020",
-          "img": "../Assets/Images/Books/Light_Novel/hello_world.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/hello_world.webp",
           "name": "Hello World",
           "author": "Nozaki Mado",
           "sale": 0.4,
@@ -341,7 +341,7 @@
 
      {
           "productID": "P00021",
-          "img": "../Assets/Images/Books/Light_Novel/khu-vuon-ngon-tu.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/khu-vuon-ngon-tu.webp",
           "name": "Khu Vườn Ngôn Từ",
           "author": "Shinkai Makoto",
           "sale": 0.2,
@@ -358,7 +358,7 @@
 
      {
           "productID": "P00022",
-          "img": "../Assets/Images/Books/Light_Novel/toi-muon-bao-ve-cau-du-phai-mat-di-tinh-yeu-nay.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/toi-muon-bao-ve-cau-du-phai-mat-di-tinh-yeu-nay.webp",
           "name": "Tôi Muốn Bảo Vệ Cậu Dù Phải Mất Đi... Tình Yêu Này",
           "author": "Sou Inaida",
           "sale": 0.2,
@@ -375,7 +375,7 @@
 
      {
           "productID": "P00023",
-          "img": "../Assets/Images/Books/Light_Novel/tam-biet-troi-xanh.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/tam-biet-troi-xanh.webp",
           "name": "Tạm Biệt Trời Xanh",
           "author": "Misaki",
           "sale": 0.5,
@@ -392,8 +392,8 @@
 
      {
           "productID": "P00024",
-          "img": "../Assets/Images/Books/Light_Novel/okitegamikyoko_1.webp",
-          "name": "Okitegami Kyoko I - Sổ Ghi Chép",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/okitegamikyoko_1.webp",
+          "name": "Okitegami Kyoko I-Sổ Ghi Chép",
           "author": " NISIOISIN",
           "sale": 0.26,
           "quantity": 500,
@@ -409,8 +409,8 @@
 
      {
           "productID": "P00025",
-          "img": "../Assets/Images/Books/Light_Novel/okitegamikyoko_2.webp",
-          "name": "Okitegami Kyoko II - Thư Tiến Cử",
+          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/okitegamikyoko_2.webp",
+          "name": "Okitegami Kyoko II-Thư Tiến Cử",
           "author": " NISIOISIN",
           "sale": 0.5,
           "quantity": 500,
@@ -426,8 +426,8 @@
 
      {
           "productID": "P00026",
-          "img": "../Assets/Images/Books/Learn_Language/kanji-look-learn.webp",
-          "name": "Kanji Look And Learn - 512 Chữ Kanji Có Minh Họa Và Gợi Nhớ Bằng Hình",
+          "img": "/Web-Books-Store/Assets/Images/Books/Learn_Language/kanji-look-learn.webp",
+          "name": "Kanji Look And Learn-512 Chữ Kanji Có Minh Họa Và Gợi Nhớ Bằng Hình",
           "author": " Nhiều Tác Giả",
           "sale": 0.2,
           "quantity": 500,
@@ -443,8 +443,8 @@
 
      {
           "productID": "P00027",
-          "img": "../Assets/Images/Books/Learn_Language/kanji-look-learn-bai-tap.webp",
-          "name": "Kanji Look And Learn - 512 Chữ Kanji Có Minh Họa Và Gợi Nhớ Bằng Hình - Bài Tập Workbook",
+          "img": "/Web-Books-Store/Assets/Images/Books/Learn_Language/kanji-look-learn-bai-tap.webp",
+          "name": "Kanji Look And Learn-512 Chữ Kanji Có Minh Họa Và Gợi Nhớ Bằng Hình - Bài Tập Workbook",
           "author": " Nhiều Tác Giả",
           "sale": 0.2,
           "quantity": 500,
@@ -460,7 +460,7 @@
 
      {
           "productID": "P00028",
-          "img": "../Assets/Images/Books/Thieu_Nhi/alice.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Thieu_Nhi/alice.webp",
           "name": "Alice Ở Xứ Sở Diệu Kỳ Và Thế Giới Trong Gương",
           "author": " LEWIS CARROLL",
           "sale": 0.4,
@@ -478,7 +478,7 @@
 
      {
           "productID": "P00029",
-          "img": "../Assets/Images/Books/Van_Hoc/am_hac_quan_combo.webp",
+          "img": "/Web-Books-Store/Assets/Images/Books/Van_Hoc/am_hac_quan_combo.webp",
           "name": "Ám Hắc Quán – Combo 2 Tập",
           "author": "Yukito Ayatsuji",
           "sale": 0.2,

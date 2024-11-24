@@ -21,56 +21,21 @@ function formatPrices(elementsObj) {
       currency: "VND",
       minimumSignificantDigits: "3",
     });
-    pricesContainer.forEach((element) => {
-      element.innerText = formatPricesHandler.format(element.innerText);
-    });
-  }
-}
-
-// create Dots
-function createDots(parent, totalDots) {
-  let dotCount = 0,
-    breakpoint = 46.1875 * 16;
-  let container = parent.querySelector(".nav-tab-container");
-  let childInners = Array.from(container?.children);
-  let dotBar = parent.querySelector(".dots-bar");
-
-  if (window.innerWidth <= breakpoint) dotCount = childInners.length;
-  else dotCount = Math.ceil(childInners.length / totalDots);
-
-  if (dotBar) {
-    dotBar.innerHTML = "";
-    if (dotCount === 1) return;
-
-    for (let i = 0; i < dotCount; i++) {
-      let dot = document.createElement("div");
-
-      if (i == 0) dot.classList.add("active");
-      dot.classList.add("dot");
-      dotBar.appendChild(dot);
-    }
+    pricesContainer.forEach((element) => element.innerText = formatPricesHandler.format(element.innerText));
   }
 }
 
 //change DOM on categories if it not have any product inside
 function categoryIsEmpty() {
-  Bridge.default()
-    .getCategories()
-    .forEach((category) => {
+  Bridge.default().getCategories().forEach((category) => {
       const container = category.querySelector(".product-container");
       if (isEmpty(container)) {
-        container.innerHTML =
-          '<div class="empty-mess font-size-20 font-bold">Không có sản phẩm trong phần này</div>';
-        container.classList.add(
-          "flex",
-          "full-height",
-          "align-center",
-          "justify-center"
-        );
+        container.innerHTML = '<div class="empty-mess font-size-20 font-bold">Không có sản phẩm trong phần này</div>';
+        container.classList.add( "flex", "full-height", "align-center", "justify-center");
         container.querySelector(".nav-btn")?.classList.add("disable");
         category.querySelector(".category-btn")?.classList.add("disable");
       }
-    });
+  });
 }
 
 // fix bug interface func
@@ -125,9 +90,7 @@ function resizeSmNav(elementsObj) {
 // default add header footer and initProducts
 async function addDOMHeader(elementsObj) {
   try {
-    const headerDOM = await Bridge.promiseDOMHandler(
-      "/Web-Books-Store/HTML/header_footer/header.html"
-    );
+    const headerDOM = await Bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/header.html");
     const header = headerDOM.getElementById("header-container");
     const subHeader = headerDOM.getElementById("sub-header");
     let placeInsert = elementsObj.getMainContainer();
@@ -143,9 +106,7 @@ async function addDOMHeader(elementsObj) {
 
 async function addDOMFooter(elementsObj) {
   try {
-    const footerDOM = await Bridge.promiseDOMHandler(
-      "/Web-Books-Store/HTML/header_footer/footer.html"
-    );
+    const footerDOM = await Bridge.promiseDOMHandler( "/Web-Books-Store/HTML/header_footer/footer.html");
     const footer = footerDOM.getElementById("footer-container");
     const webContent = elementsObj.getWebContent();
 
@@ -161,10 +122,10 @@ async function getInitProducts(elementsObj) {
     const storage = await fetch("/Web-Books-Store/Javascript/Storage.js");
     const jsonArray = await storage.json();
     const productsList = Array.from(jsonArray);
+    localStorage.setItem("products", JSON.stringify(productsList));
 
     // render init products
-    //     RenderProducts.setProductBooks(productsList);
-    RenderProducts.geneProducts(productsList);
+    RenderProducts.productContainers(productsList);
     formatPrices(elementsObj);
     resizeImages(elementsObj);
     categoryIsEmpty();
@@ -174,21 +135,15 @@ async function getInitProducts(elementsObj) {
 }
 
 // call functions when DOM Loaded
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const elementsObj = Bridge.default();
 
   //create check DOM of Header and Footer
   addDOMHeader(elementsObj);
   addDOMFooter(elementsObj);
   const checkDOM = setInterval(() => {
-    if (
-      elementsObj.getHeader() &&
-      elementsObj.getSubHeader() &&
-      elementsObj.getFooter()
-    ) {
-      // call funcs
+    if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
       resizeSmNav(elementsObj);
-      // remove Interval
       clearInterval(checkDOM);
     }
   }, 200);
@@ -198,11 +153,4 @@ document.addEventListener("DOMContentLoaded", function () {
   FlashSale.setTimeFS(elementsObj);
 });
 
-export {
-  formatPrices,
-  resizeImages,
-  createDots,
-  isEmpty,
-  categoryIsEmpty,
-  getInitProducts,
-};
+export { formatPrices, resizeImages, isEmpty, categoryIsEmpty, getInitProducts };

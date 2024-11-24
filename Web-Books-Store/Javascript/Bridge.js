@@ -1,6 +1,5 @@
 "use strict";
 import "./Products.js";
-import * as jsInterface from "./Interface.js";
 
 const throttleList = {}; //object for throttle function
 const debounceList = {};
@@ -59,7 +58,7 @@ function pathNamesHandler() {
     "/news/test": "news",
     // other pages url
     "/cart": "cart",
-    "/product": "product",
+    "/detail_product": "detail_product",
     "/tracking": "order tracking",
     // account url
     "/account/": "account",
@@ -84,13 +83,11 @@ function throttle(callback, delayTime, key) {
 
   return function (...restArgs) {
     let shouldWait = throttleList[key].shouldWait;
-
+  
     if (shouldWait) return;
-
     callback(...restArgs);
     throttleList[key].shouldWait = true;
-    setTimeout(() => (throttleList[key].shouldWait = false), delayTime);
-  };
+    setTimeout(() => (throttleList[key].shouldWait = false), delayTime)};
 }
 
 function debounce(callback, delayTime, key) {
@@ -99,20 +96,15 @@ function debounce(callback, delayTime, key) {
 
   return function (...restArgs) {
     clearTimeout(debounceList[key].time);
-    debounceList[key].time = setTimeout(() => {
-      callback(...restArgs);
-    }, delayTime);
-  };
+    debounceList[key].time = setTimeout(() => callback(...restArgs), delayTime)};
 }
 
 // get promise DOM func (use async await with fetch api)
 async function promiseDOMHandler(fileAddress) {
   try {
     const response = await fetch(fileAddress);
-
     if (!response.ok)
       throw new Error(`${response.status} (${response.statusText})`);
-
     const text = await response.text();
     return new DOMParser().parseFromString(text, "text/html");
   } catch (error) {
