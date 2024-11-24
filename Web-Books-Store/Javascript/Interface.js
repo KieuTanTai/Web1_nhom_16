@@ -28,8 +28,8 @@ function formatPrices(elementsObj) {
 //change DOM on categories if it not have any product inside
 function categoryIsEmpty() {
   Bridge.default().getCategories().forEach((category) => {
-      const container = category.querySelector(".product-container");
-      if (isEmpty(container)) {
+    const container = category.querySelector(".product-container");
+    if (isEmpty(container)) {
         container.innerHTML = '<div class="empty-mess font-size-20 font-bold">Không có sản phẩm trong phần này</div>';
         container.classList.add( "flex", "full-height", "align-center", "justify-center");
         container.querySelector(".nav-btn")?.classList.add("disable");
@@ -126,6 +126,7 @@ async function getInitProducts(elementsObj) {
 
     // render init products
     RenderProducts.productContainers(productsList);
+    FlashSale.setTimeFS(elementsObj);
     formatPrices(elementsObj);
     resizeImages(elementsObj);
     categoryIsEmpty();
@@ -150,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // call funcs
   getInitProducts(elementsObj);
-  FlashSale.setTimeFS(elementsObj);
 });
 
 export { formatPrices, resizeImages, isEmpty, categoryIsEmpty, getInitProducts };

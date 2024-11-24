@@ -4,8 +4,22 @@ import * as Action from "./Actions.js";
 import * as Bridge from "./Bridge.js";
 import * as FlashSale from "./FlashSales.js";
 import { slidesHandler } from "./Slides.js";
+import { getValueQuery } from "./Products.js";
+
+function sleep(ms) {
+     return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 // funcs execute url
+function execQueryHandler() {
+     let query = getValueQuery("name");
+     let productsList = JSON.parse(localStorage.getItem("products"));
+     if (query) {
+          let product = productsList.find((item) => (item.name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-") === query);
+          renderDOMHandler("detail_product", product);
+     }
+}
+
 // func for popstate listener (it's will be very long)
 function popStateHandler(pathsObj, docsURL) {
      const elementsObj = Bridge.default();
@@ -53,12 +67,7 @@ function popStateHandler(pathsObj, docsURL) {
                               break;
 
                          case "/detail_product":
-                              let nowURL = new URL(window.location.href);
-                              let query = nowURL.searchParams.get("name");
-                              let productsList = JSON.parse(localStorage.getItem("products"));
-                              let product = productsList.find((item) => 
-                                   (item.name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-") === query);
-                              renderDOMHandler("detail_product", product);
+                              execQueryHandler();
                               break;
 
                          case "/header_footer/footer":
@@ -104,7 +113,7 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                let loginStatus = localStorage.getItem("loginStatus");
                if (!loginStatus) requestRests = "login";
           }
-
+          webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
           // set await promise DOM
           let scriptDOM, request;
           if (nameDOM === "account") {
@@ -126,8 +135,8 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           }
 
           if (nameDOM === "homepage") {
-               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/index.html`);
                // call again some funcs
+               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/index.html`);
           }
 
           if (nameDOM === "orderStatus" || nameDOM === "orderHistory") {
@@ -155,9 +164,29 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           // !for render DOM
           let currentTitle = Bridge.$("title");
           currentTitle.innerText = title.innerText;
+          placeInsert.classList.add("hidden"); // for fake loading
           placeInsert.innerHTML = content.innerHTML;
-          webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
+          // css for placeInsert and remove it when show
+          placeInsert.style.height = placeInsert.offsetHeight + 5 + "em";
+          webContent.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 
+          // overlay when loading 
+          const overlay = document.createElement('div');
+          overlay.className = 'overlay';
+          overlay.innerHTML = 'Loading... :3';
+          overlay.style.display = 'flex';
+          overlay.style.alignItems = 'center';
+          overlay.style.justifyContent = 'center';
+          overlay.style.fontSize = 3 + "em";
+          overlay.style.color = "var(--primary-white)";
+          document.body.appendChild(overlay); 
+          
+          // scroll before show DOM
+          await sleep(500); // fake loading
+          document.body.removeChild(overlay);
+          placeInsert.removeAttribute("style");
+          placeInsert.classList.remove("hidden");
+          
           // execute after render
           if (nameDOM === "detail_product" && requestRests) {
                // !book detail
@@ -194,7 +223,6 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                (Array.from(bookPrice.children)).forEach((child) => {
                     let oldPrice = bookPrice.querySelector(".old-price");
                     let newPrice = bookPrice.querySelector(".new-price");
-
                     if (oldPrice)
                               oldPrice.innerText = productPrice;
                     if (newPrice)
@@ -220,7 +248,6 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                bookTags.innerText = genre;
                bookCategory.innerText = type;
           }
-
 
           // call some functions again after render DOM
           callAgain(elementsObj, "homepage");
@@ -253,4 +280,4 @@ function callAgain(elementsObj, ...names) {
      Interface.getInitProducts(elementsObj);
 }
 
-export { popStateHandler, urlHandler, renderDOMHandler, callAgain}
+export { popStateHandler, urlHandler, renderDOMHandler, callAgain, execQueryHandler }

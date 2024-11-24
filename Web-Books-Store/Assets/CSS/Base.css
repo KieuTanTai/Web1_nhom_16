@@ -628,6 +628,14 @@ input[type = text] {
      display: none !important;
 }
 
+.hidden {
+     visibility: hidden;
+}
+
+.show {
+     visibility: visible;
+}
+
 .success-color {
      color: var(--primary-IPM-green);
 }

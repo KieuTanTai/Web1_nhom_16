@@ -1,5 +1,6 @@
 'use strict'
 import * as Bridge from "./Bridge.js";
+import * as Interface from "./Interface.js";
 
 // create Dots
 function createDots(parent, totalDots) {

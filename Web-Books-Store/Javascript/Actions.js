@@ -1,6 +1,8 @@
 'use strict'
 import * as Bridge from "./Bridge.js";
+import { activeFlashSale } from "./FlashSales.js";
 import * as Navigate from "./Navigate.js";
+import { getValueQuery } from "./Products.js";
  import { slidesHandler } from "./Slides.js";
 
 // funcs event
@@ -105,7 +107,6 @@ function staticContents(elementsObj) {
      if (scrollTopButtons) {
           scrollTopButtons.addEventListener("click", Bridge.throttle(() => scrollToHandler("top"), 200, "ScrollTopBtn"));
      }
-
 }
 
 // DOM navigate handler (SPAs)
@@ -158,6 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
      // call funcs
      cancelButtons(elementsObj);
      slidesHandler("news");
+     Navigate.execQueryHandler();
      Navigate.popStateHandler(pathsObj, location.pathname);
 })
 

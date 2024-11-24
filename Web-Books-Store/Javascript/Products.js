@@ -13,9 +13,13 @@ function setProductBooks(product) {
   localStorage.setItem("products", JSON.stringify(product));
 }
 
+function getValueQuery (query) {
+  let newURL = new URLSearchParams(window.location.search);
+  return newURL.get(query);
+}
 
 // for show detail products
-async function renderProductDetails(list, wrapper) {
+async function renderProductDetails(list, wrapper, fileHTML) {
   try {
     // first param on fields requestRest when renderDOM is now object item
     if (!list || !wrapper) return;
@@ -24,7 +28,8 @@ async function renderProductDetails(list, wrapper) {
       let block = child.querySelector(".block-product");
       block.addEventListener("click", () => {
         let bookName = (list[index].name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-");
-        let newURL = `${location.href.slice(0, location.href.lastIndexOf("/HTML/") + 6)}detail_product?name=${bookName}`;
+        // change path with path request
+        let newURL = `${location.href.slice(0, location.href.lastIndexOf("/HTML/") + 6)}${fileHTML ? fileHTML : ""}?name=${bookName}`;
         window.history.pushState({}, "", newURL);
         Navigate.renderDOMHandler("detail_product", list[index]);
       });
@@ -73,7 +78,7 @@ function renderProducts(list, wrapper) {
   }
   if (wrapper) {
     wrapper.innerHTML = html;
-    renderProductDetails(list, wrapper);
+    renderProductDetails(list, wrapper, "detail_product.html");
   } else 
     return html;
 }
@@ -121,4 +126,4 @@ function productContainers(productsList, container) {
   if (isEmpty(container)) return;
 }
 
-export { getProductBooks, setProductBooks, productContainers };
+export { getProductBooks, setProductBooks, productContainers, getValueQuery };
