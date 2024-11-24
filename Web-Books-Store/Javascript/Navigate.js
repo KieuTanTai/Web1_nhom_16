@@ -196,6 +196,7 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                let srcImage = product.img, productDescription = product.description;
                let format = product.format, type = product.type, genre = product.genre;
                let productAuth = product.author, productName = product.name, id = product.productID;
+               let productCategories = product.category; 
                
                // !Container for detail
                let saleLabel = placeInsert.querySelector(".detail-block .sale-label");
@@ -207,7 +208,10 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                let bookDesc = placeInsert.querySelector(".short-desc div:last-child"); 
                let bookTags = placeInsert.querySelector(".product-tags div:first-child p");
                let bookCategory = placeInsert.querySelector(".product-tags div:last-child p");
-
+               // for selections
+               let listOptions = placeInsert.querySelector("#product-selector-options");
+               let selectOptions = Array.from(listOptions?.children);
+               
                // !set data (CONTINUE) GET FIELDS ON OBJ -> ADD DATA TO DOM 
                currentTitle.innerText = productName;
                // img
@@ -244,6 +248,17 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                     else if (bSize)
                          bSize.innerText = packaging;
                });
+
+               // remove not exist selections
+               if (!productCategories)
+                    selectOptions.remove();
+               if (!productCategories.includes("normal"))
+                    (selectOptions.find((child) => child.value === "normal")).remove();
+               if (!productCategories.includes("special"))
+                    (selectOptions.find((child) => child.value === "special")).remove();
+               if (productCategories.includes("collectible"))
+                    listOptions.innerHTML = "<option value=\"collectible\">bản sưu tập</option>"
+
                bookDesc.innerText = productDescription;
                bookTags.innerText = genre;
                bookCategory.innerText = type;

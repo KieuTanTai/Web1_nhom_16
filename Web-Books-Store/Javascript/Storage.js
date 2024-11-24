@@ -12,7 +12,7 @@
           "type": "manga",
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
-          " ": "special",
+          "category": "normal, special",
           "description": "....."
      },
 
@@ -29,7 +29,7 @@
           "type": "manga",
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
-          "category": "special",
+          "category": "normal, special",
           "description": "....."
      },
 
@@ -46,7 +46,7 @@
           "type": "manga",
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
-          "category": "special",
+          "category": "normal, special",
           "description": "....."
      },
 
@@ -63,7 +63,7 @@
           "type": "manga",
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
-          "category": "special",
+          "category": "normal, special",
           "description": "....."
      },
 
@@ -80,7 +80,7 @@
           "type": "manga",
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
-          "category": "special",
+          "category": "normal, special",
           "description": "....."
      },
 
@@ -97,7 +97,7 @@
           "type": "light novel",
           "gene" : "No",
           "packagingSize": "13 x 18 cm",
-          "category": "normal",
+          "category": "normal, special",
           "description": "....."
      },
  
@@ -114,7 +114,7 @@
           "type": "light novel",
           "genre": "No",
           "packagingSize": "13 x 18 cm",
-          "category": "normal",
+          "category": "normal, special",
           "description": "....."
      },
 
@@ -182,7 +182,7 @@
           "type": "light novel",
           "genre": "tragedy",
           "packagingSize": "13 x 18 cm",
-          "category": "normal",
+          "category": "normal, special",
           "description": "....."
      },
 
@@ -490,6 +490,23 @@
           "genre": "literary",
           "packagingSize": "13.5 x 20.5 cm",
           "category": "normal",
+          "description": "....."
+     },
+
+     {
+          "productID": "BK0030",
+          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp",
+          "name": "Khẽ Hát Lời Yêu-1 (bản sưu tập)",
+          "author": "Eku Takeshima",
+          "sale": 0.15,
+          "price": 265000,
+          "quantity": 10,
+          "release": "2023",
+          "format": "bìa mềm",
+          "type": "manga",
+          "genre": "girls love",
+          "packagingSize": "13 x 18 cm",
+          "category": "collectible",
           "description": "....."
      }
 ]

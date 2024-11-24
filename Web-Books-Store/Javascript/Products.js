@@ -53,7 +53,7 @@ function renderProducts(list, wrapper) {
                          <div class="sale-label">${product.sale * 100}%</div>
                          <div class="sale-off font-bold capitalize ${product.quantity > 0 ? "" : "active"}">hết hàng</div>
                          <div class="info-inner flex justify-center align-center line-height-1-6">
-                              <h4 class="font-light capitalize">${product.name}</h4>
+                              <h4 class="font-light capitalize" title="${product.name}">${product.name}</h4>
                               <div class="margin-y-4">
                                    <span class="price font-bold">${Math.round(product.price * (1 - product.sale))}</span>
                                    <del class="price old-price padding-left-8 font-size-14">${product.price}</del>

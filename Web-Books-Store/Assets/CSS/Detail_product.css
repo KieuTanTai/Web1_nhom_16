@@ -46,7 +46,7 @@
      color: var(--main-color);
 }
 
-.product-selector #product-selector-option {
+.product-selector #product-selector-options {
      width: 100%; 
      padding: 0.5em;
      outline: none;
