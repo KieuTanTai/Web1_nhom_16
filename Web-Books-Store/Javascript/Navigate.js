@@ -106,6 +106,7 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           const elementsObj = Bridge.default();
           const webContent = elementsObj.getWebContent();
           const mainContainer = elementsObj.getMainContainer();
+          const placeInsert = Array.from(mainContainer.children).find((element) => element.id === "main-content");
 
           if (!webContent || !mainContainer) return false;
           // set default request when name of DOM is account
@@ -152,7 +153,6 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                throw new Error("scripDOM: " + scriptDOM);
           let title = scriptDOM.querySelector("title");
           let content = scriptDOM.getElementById("main-content");
-          let placeInsert = Array.from(mainContainer.children).find((element) => element.id === "main-content");
 
           // render DOM
           // !for account DOM
