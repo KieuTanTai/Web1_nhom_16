@@ -5,12 +5,10 @@
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <link rel="shortcut icon" href="/Web-Books-Store/Assets/Images/Icons/Web_logo/main-logo.ico" type="image/x-icon">
           <link rel="stylesheet" href="../../Assets/Font/fontawesome-6.6.0/css/all.min.css">
-          <link rel="stylesheet" href="../../Assets/CSS/CssBridge.css">
-          <link rel="stylesheet" href="../../Assets/CSS/Responsive.css">  
-          <script type="module" src="../../Javascript/Bridge.js"></script>
-          <script type="module" src="../../Javascript/Interface.js"></script>
-          <script type="module" src="../../Javascript/Actions.js"></script>
-          <title>Quên Mật Khẩu</title>
+          <link rel="stylesheet" href="../../Assets/CSS/index.css" />
+          <link rel="stylesheet" href="../../Assets/CSS/Responsive.css" />
+          <script type="module" src="../../Javascript/index.js"></script>
+          <title>Tài khoản</title>
      </head>
 <body>
      <div class="web-content">
@@ -19,42 +17,49 @@
           <main id="main-container">
                <section id="main-content">
                     <div class="grid wide">
-                         <div class="grid-row">
-                              <div class="grid-col col-l-12">
+                         <div class="grid-row margin-y-24">
+                              <div class="grid-col col-l-12 col-m-12 col-s-12">
                                    <div class="account-container">
-                                        <div class="flex align-center margin-bottom-12">
+                                        <div class="flex align-center margin-bottom-16">
                                              <div class="font-size-20 uppercase font-bold">tài khoản của bạn</div>
                                              <div class="margin-left-12 js-logout exit-color">Thoát</div>
                                         </div>
                                         <p class="user-orders margin-bottom-16 font-size-14 font-light">
                                              Bạn chưa đặt mua sản phẩm.
                                         </p>
+
+                                        <div class="account-history-bill disable">
+                                             <article class="history-order-link button flex justify-center align-center ">
+                                                  <div class="history-order-btn font-bold capitalize">xem lịch sử mua hàng</div>
+                                             </article>
+                                        </div>
+
                                         <div class="account-info padding-top-16">
-                                             <h3 class="uppercase margin-bottom-12">thông tin khách hàng</h3>
-                                             <div class="user-card padding-12 grid-col col-l-6 col-m-12 col-s-12">
+                                             <h3 class="uppercase margin-bottom-16">thông tin khách hàng</h3>
+                                             <div class="user-card padding-16 grid-col col-l-6 col-m-12 col-s-12">
                                                   <div class="info user-name">
-                                                       <div class="font-bold grid-col col-l-2 no-gutter">Full Name</div>
+                                                       <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Full Name</div>
                                                        <input type="text" name="user-name" id="user-name" 
-                                                            class="grid-col col-l-10" value="Kenneth Valdez" disabled>
+                                                            class="grid-col col-l-10 col-m-8 col-s-8" value="Kenneth Valdez" disabled>
                                                             
                                                   </div>
                                                   <div class="info user-email">
-                                                       <div class="font-bold grid-col col-l-2 font-size-14 no-gutter">Email</div>
+                                                       <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Email</div>
                                                        <input type="text" name="user-email" id="user-email" 
-                                                            class="grid-col col-l-10" value="fip@jukmuh.al" disabled>
+                                                            class="grid-col col-l-10 col-m-8 col-s-8" value="fip@jukmuh.al" disabled>
                                                   </div>
                                                   <div class="info user-phone">
-                                                       <div class="font-bold grid-col col-l-2 font-size-14 no-gutter">Phone</div>
+                                                       <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Phone</div>
                                                        <input type="text" name="user-phone" id="user-phone" 
-                                                            class="grid-col col-l-10" value="(239) 816-9029" disabled>
+                                                            class="grid-col col-l-10 col-m-8 col-s-8" value="(239) 816-9029" disabled>
                                                   </div>
                                                   <div class="info user-address">
-                                                       <div class="font-bold grid-col col-l-2 font-size-14 no-gutter">Address</div>
+                                                       <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Address</div>
                                                        <input type="text" name="user-address" id="user-address" 
-                                                            class="grid-col col-l-10" value="Bay Area, San Francisco, CA" disabled>
+                                                            class="grid-col col-l-10 col-m-8 col-s-8" value="Bay Area, San Francisco, CA" disabled>
                                                   </div>
                                                   <div class="full-width flex justify-center margin-top-8">
-                                                       <button class="js-edit-btn button">sửa thông tin</button>
+                                                       <button class="js-edit-btn button capitalize">sửa thông tin</button>
                                                   </div>
                                               </div>
                                              <!-- <a href="#" class="view-address">Xem địa chỉ</a> -->
