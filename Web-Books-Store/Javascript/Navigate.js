@@ -308,6 +308,7 @@ function callAgain(elementsObj, ...names) {
      Action.accountEvents(elementsObj);
      Action.staticContents(elementsObj);
      Interface.getInitProducts(elementsObj);
+     Action.historyNavigate(elementsObj);
 
 }
 
