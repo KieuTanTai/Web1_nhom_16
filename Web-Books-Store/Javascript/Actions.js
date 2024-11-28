@@ -12,6 +12,19 @@ function cancelButtons(elementsObj) {
           cancelBtn.forEach((btn) => btn.addEventListener("click", () => window.history.back()));
 }
 
+function trackingNavigate(elementsObj) {
+     const docsURL = location.pathname;
+     const buttons = elementsObj.getOrderTrackingBtn();
+
+     if (!buttons) return;
+     buttons.forEach((btn) => {
+          btn.addEventListener("click", Bridge.throttle(() => {
+               if (Navigate.urlHandler("/order/status", docsURL))
+                    Navigate.renderDOMHandler("orderStatus");
+          }, 200, "statusNav"));
+     });
+}
+
 function returnHomepage(elementsObj, nowPath) {
      const webLogo = elementsObj.getWebLogo();
      const originPath = nowPath.slice(0, nowPath.indexOf("/HTML/") + 6);
@@ -32,6 +45,18 @@ function historyNavigate(elementsObj) {
      });
 }
 
+
+function setQuantityBox (elementsObj) {
+     let reduceBtn = elementsObj.getQuantityBox().querySelector("input[type=button].reduce");
+     let increaseBtn = elementsObj.getQuantityBox().querySelector("input[type=button].increase");
+     let quantity = elementsObj.getQuantityBox().querySelector("input[type=text]#quantity");
+     let productID = Bridge.$(".product-id")?.innerHTML;
+     let realQuantity = Array.from(JSON.parse(localStorage.getItem("products"))).find((product) => product.productID === productID)?.quantity;
+
+     reduceBtn.addEventListener("click", () => quantity.value = parseInt(quantity.value) - 1 <= 0 ? 1 : parseInt(quantity.value) - 1);
+     increaseBtn.addEventListener("click", () => quantity.value = parseInt(quantity.value) + 1 <= realQuantity ? parseInt(quantity.value) + 1 : realQuantity);
+     quantity.addEventListener("change", () => quantity.value = parseInt(quantity.value) > realQuantity ? realQuantity : parseInt(quantity.value));
+}
 
 // handle scrolls
 function scrollToHandler(nameStaticPage) {
@@ -150,6 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
                accountEvents(elementsObj);
                staticContents(elementsObj);
                historyNavigate(elementsObj);
+               trackingNavigate(elementsObj);
                returnHomepage(elementsObj, location.pathname);
                // remove Interval 
                clearInterval(checkDOM);
@@ -163,4 +189,4 @@ document.addEventListener("DOMContentLoaded", () => {
      Navigate.popStateHandler(pathsObj, location.pathname);
 })
 
-export { cancelButtons, accountEvents, staticContents }
+export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox }

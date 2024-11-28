@@ -32,6 +32,8 @@ function getElementsHandler() {
     getServicesBtn: () => $$(".services"),
     getJsCartBtn: () => $$(".cart-btn"),
     getHistoryBtn: () => $$(".history-order-link"),
+    getOrderTrackingBtn: () => $$(".order-tracking"),
+    getQuantityBox: () => $(".quantity-box"),
     // account buttons
     getJsAccountBtn: () => $("#user-account"),
     getJsLoginBtn: () => $$(".js-login"),
@@ -59,7 +61,6 @@ function pathNamesHandler() {
     // other pages url
     "/cart": "cart",
     "/detail_product": "detail_product",
-    "/tracking": "order tracking",
     // account url
     "/account/": "account",
     "/account/login": "login",

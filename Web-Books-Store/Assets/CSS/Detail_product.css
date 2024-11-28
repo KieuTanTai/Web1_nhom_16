@@ -71,13 +71,13 @@
      border: 1px solid var(--primary-dark);
 }
 
-.quantity-box .add,
+.quantity-box .increase,
 .quantity-box .reduce {
      width: 50%;
      cursor: pointer;
 }
 
-.quantity-box .add {
+.quantity-box .increase {
      margin-left: 0.25em;
      border-top-right-radius: var(--normal-radius);
      border-bottom-right-radius: var(--normal-radius);

@@ -78,7 +78,7 @@ function behaviorSlides(parent, nameSlide, showCount) {
 
      // resize handler for set active 
      window.addEventListener("resize", Bridge.debounce(() => {
-          Interface.createDots(parent, showCount);
+          createDots(parent, showCount);
           dots = (haveDots) ? parent.querySelectorAll(".dot") : null;
           showSlides(container, dots, slidesIndex, showCount);
      }, 150, "activeItems"));

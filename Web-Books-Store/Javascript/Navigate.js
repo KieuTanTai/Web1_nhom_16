@@ -18,6 +18,10 @@ function execQueryHandler() {
           let product = productsList.find((item) => (item.name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-") === query);
           renderDOMHandler("detail_product", product);
      }
+     else {
+          urlHandler("/", location.href);
+          renderDOMHandler("homepage");
+     }
 }
 
 // func for popstate listener (it's will be very long)
@@ -55,6 +59,7 @@ function popStateHandler(pathsObj, docsURL) {
                                    renderDOMHandler("orderStatus");
                               else
                                    renderDOMHandler("orderHistory");
+                              Action.historyNavigate(elementsObj);
                               break;
 
                          case "/":
@@ -209,6 +214,7 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                let bookDesc = placeInsert.querySelector(".short-desc div:last-child"); 
                let bookTags = placeInsert.querySelector(".product-tags div:first-child p");
                let bookCategory = placeInsert.querySelector(".product-tags div:last-child p");
+               let quantityBox = placeInsert.querySelector(".quantity-box");
                let buttons = placeInsert.querySelectorAll(".button");
                // for selections
                let listOptions = placeInsert.querySelector("#product-selector-options");
@@ -262,14 +268,15 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                     listOptions.innerHTML = "<option value=\"collectible\">bản sưu tập</option>"
 
                // execute buttons when quantity > 0 or not 
-               buttons.forEach((button) => {
-                    if (quantity <= 0)
-                         button.classList.add("hidden");
-               });
+               if (quantity <= 0) {
+                    buttons.forEach((button) => button.classList.add("disable"));
+                    quantityBox.classList.add("disable")
+               }
 
                bookDesc.innerText = productDescription;
                bookTags.innerText = genre;
                bookCategory.innerText = type;
+               Action.setQuantityBox(Bridge.default());
           }
 
           // call some functions again after render DOM
@@ -301,6 +308,7 @@ function callAgain(elementsObj, ...names) {
      Action.accountEvents(elementsObj);
      Action.staticContents(elementsObj);
      Interface.getInitProducts(elementsObj);
+
 }
 
 export { popStateHandler, urlHandler, renderDOMHandler, callAgain, execQueryHandler }
