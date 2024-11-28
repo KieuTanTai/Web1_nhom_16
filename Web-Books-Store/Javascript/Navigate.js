@@ -191,6 +191,7 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           if (nameDOM === "detail_product" && requestRests) {
                // !book detail
                let product = requestRests[0];
+               let quantity = product.quantity;
                let release = product.release, packaging = product.packagingSize;
                let productSale = product.sale, productPrice = product.price;
                let srcImage = product.img, productDescription = product.description;
@@ -208,6 +209,7 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                let bookDesc = placeInsert.querySelector(".short-desc div:last-child"); 
                let bookTags = placeInsert.querySelector(".product-tags div:first-child p");
                let bookCategory = placeInsert.querySelector(".product-tags div:last-child p");
+               let buttons = placeInsert.querySelectorAll(".button");
                // for selections
                let listOptions = placeInsert.querySelector("#product-selector-options");
                let selectOptions = Array.from(listOptions?.children);
@@ -258,6 +260,12 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                     (selectOptions.find((child) => child.value === "special")).remove();
                if (productCategories.includes("collectible"))
                     listOptions.innerHTML = "<option value=\"collectible\">bản sưu tập</option>"
+
+               // execute buttons when quantity > 0 or not 
+               buttons.forEach((button) => {
+                    if (quantity <= 0)
+                         button.classList.add("hidden");
+               });
 
                bookDesc.innerText = productDescription;
                bookTags.innerText = genre;
