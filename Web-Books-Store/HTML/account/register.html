@@ -17,7 +17,7 @@
     <script type="module" src="../../Javascript/Bridge.js"></script>
     <script type="module" src="../../Javascript/Interface.js"></script>
     <script type="module" src="../../Javascript/Actions.js"></script>
-    <script type="module" src="../../Javascript/register.js"></script>
+    <script type="module" src="../../Javascript/Register.js"></script>
     <title>Đăng Ký</title>
   </head>
   <body>
@@ -34,7 +34,7 @@
                   <div id="register" class="text-center active">
                     <div class="font-size-20 uppercase font-bold">đăng ký</div>
                     <div id="register-layout">
-                      <form onsubmit="handleRegister(event)">
+                      <form action="" method="post">
                         <div class="js-fname-register">
                           <input
                             type="text"
@@ -71,6 +71,7 @@
                             type="password"
                             name="customer-password-register"
                             id="customer-password-register"
+                            autocomplete="off"
                             placeholder="Tạo mật khẩu"
                             minlength="8"
                             required
@@ -82,6 +83,7 @@
                             type="password"
                             name="customer-confirm-password-register"
                             id="customer-confirm-password-register"
+                            autocomplete="off"
                             placeholder="Xác nhận mật khẩu"
                             minlength="8"
                             required
