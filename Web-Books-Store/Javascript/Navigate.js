@@ -72,6 +72,7 @@ function popStateHandler(pathsObj, docsURL) {
                               break;
 
                          case "/detail_product":
+                              console.log("hello");
                               execQueryHandler();
                               break;
 

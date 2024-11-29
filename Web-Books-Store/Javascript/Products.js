@@ -67,14 +67,14 @@ function renderProducts(list, wrapper) {
                               </div>
                          </div>
 
-                         <div class="add-to-cart">
-                              <div title="thêm vào giỏ hàng" class="button">
-                                   <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                              </div>
-                         </div>
-                    </div>
-               </div> 
-               `;
+          <div class="add-to-cart">
+            <div title="thêm vào giỏ hàng" class="button">
+              <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
   }
   if (wrapper) {
     wrapper.innerHTML = html;

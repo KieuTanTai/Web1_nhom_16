@@ -127,6 +127,8 @@ async function getInitProducts(elementsObj) {
     // render init products
     RenderProducts.productContainers(productsList);
     FlashSale.setTimeFS(elementsObj);
+    // RenderProducts.setProductBooks(productsList);
+    RenderProducts.renderProducts(productsList);
     formatPrices(elementsObj);
     resizeImages(elementsObj);
     categoryIsEmpty();
