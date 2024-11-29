@@ -251,6 +251,24 @@
           margin-top: 1em;
      }
 
+     .product-selector .buy-btn{
+          position: fixed;
+          right: 0;
+          margin: 0;
+          bottom: 0;
+          left: 60%;
+          z-index: 10;
+          border-radius: 0;
+          text-align: center;
+          border-top-left-radius: var(--normal-radius);
+          box-shadow: 0 0 1px var(--primary-dark);
+     }
+     
+     .product-selector .add-to-cart {
+          width: 60%;
+          text-align: center;
+     }
+
 }
 
 @media (max-width: 46.1875em) {
