@@ -24,8 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const author = product.author?.toLowerCase() || "";
       const genre = product.genre?.toLowerCase() || "";
       const type = product.type?.toLowerCase() || "";
-      const queryMatch = searchQuery
-        ? name.includes(searchQuery) ||
+      const queryMatch = searchQuery? name.includes(searchQuery) ||
           author.includes(searchQuery) ||
           genre.includes(searchQuery) ||
           type.includes(searchQuery)
@@ -65,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Sự kiện thay đổi bộ lọc
   [categoryFilter, priceFilter].forEach((filter) => {
-    filter.addEventListener("change", () => {
+    filter?.addEventListener("change", () => {
       displayProducts(query); // Áp dụng lại bộ lọc với từ khóa hiện tại
     });
   });

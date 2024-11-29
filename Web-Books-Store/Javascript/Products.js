@@ -5,7 +5,6 @@ import * as Navigate from "./Navigate.js";
 
 // get / set products
 function getProductBooks() {
-  console.log(Array.from(JSON.parse(localStorage.getItem("products"))));
   return Array.from(JSON.parse(localStorage.getItem("products")));
 }
 
@@ -116,13 +115,25 @@ function productContainers(productsList, container) {
 
       else if (wrapper && containerID === "other-books-container")
         list = productsList.sort((a, b) => a.releaseDate - b.releaseDate).toSpliced(5);
-      else list = productsList.sort((a, b) => a.author - b.author).toSpliced(5);
+      else 
+        list = productsList.sort((a, b) => a.author - b.author).toSpliced(5);
       // render script and add it to DOM
       renderProducts(list, wrapper);
     });
+
+  
     return;
   }
-
+  else {
+    let list;
+    let wrapper = container.querySelector(".product-container");
+    let containerID = container.getAttribute("id");
+    if ( wrapper && containerID === "same-author-container")
+      list = productsList.filter((product) => product.author === Bridge.$(".b-author")?.innerHTML).toSpliced(5);
+    else if (wrapper && containerID === "product-like-container")
+      list = productsList.filter((product) => (product.genre)?.includes(Bridge.$(".product-tags div:first-child p")?.innerHTML)).toSpliced(5);
+    renderProducts(list, wrapper);
+  }
   if (isEmpty(container)) return;
 }
 

@@ -13,7 +13,7 @@
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
           "category": "normal, special",
-          "description": "....."
+          "description": "Himari, nữ sinh mới lên cấp ba, đã đem lòng ngưỡng mộ Yori, ca sĩ hát chính của ban nhạc biểu diễn trong buổi lễ chào đón học sinh mới.\nKhi tình cờ gặp nhau ở trường, Himari bèn bày tỏ cảm xúc của mình với Yori. Ấn tượng với thái độ thẳng thắn ấy, Yori nhanh chóng nảy sinh tình cảm với Himari…\nMời các bạn đón đọc câu chuyện về tình yêu nảy sinh từ hiểu lầm của hai cô gái trong Khẽ hát lời yêu – Whispering you a love song tập 1!"
      },
 
      {
@@ -30,7 +30,7 @@
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
           "category": "normal, special",
-          "description": "....."
+          "description": "Sau buổi đi chơi, Yori bất ngờ tỏ tình với Himari. Điều này khiến Himari vô cùng trăn trở vì “yêu” của cô khác với “yêu” của Yori. \nCâu trả lời của Himari là gì? Mời các bạn đón đọc câu chuyện về tình yêu nảy sinh từ hiểu lầm của hai cô gái trong Khẽ hát lời yêu – Whispering you a love song tập 2!"
      },
 
      {
@@ -47,7 +47,7 @@
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
           "category": "normal, special",
-          "description": "....."
+          "description": "Dù đã tạm hoãn lại câu trả lời cho lời tỏ tình của Yori, mối quan hệ giữa Himari và Yori không thể quay lại như trước kia. Aki tỏ ra không bằng lòng trước tình hình này và buộc phải thúc đẩy Himari. \nLiệu sự can thiệp của Aki có thể tạo ra bước ngoặt không? Mời các bạn đón đọc câu chuyện về tình yêu nảy sinh từ hiểu lầm của hai cô gái trong Khẽ hát lời yêu – Whispering you a love song tập 3!"
      },
 
      {
@@ -64,7 +64,7 @@
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
           "category": "normal, special",
-          "description": "....."
+          "description": "Sau khi thấu hiểu cảm xúc của nhau, Yori và Himari đã trở thành một cặp và tận hưởng cuộc sống học đường đầy sắc màu. Tuy đã đạt được mục tiêu, Yori vẫn tiếp tục làm hát chính cho ban nhạc SSGIRLS. Tuy nhiên, cả ban nhạc bỗng gặp lại Shiho, một thành viên cũ. Câu chuyện về quá khứ của ban nhạc SSGIRLS dần được hé lộ. Mời các bạn đón đọc những tình tiết mới trong câu chuyện về tình yêu từ cái nhìn đầu tiên của Khẽ hát lời yêu – Whispering you a love song tập 4!"
      },
 
      {
@@ -81,7 +81,7 @@
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
           "category": "normal, special",
-          "description": "....."
+          "description": "Shiho và Aki từng là bạn thân. Tuy nhiên, mối quan hệ giữa họ hoàn toàn thay đổi sau khi Shiho đột ngột rút khỏi SSGIRLS. Tại buổi thử giọng cho lễ hội của trường, SSGIRLS đối đầu với ban nhạc Laureley do Shiho dẫn đầu. Sau khi thu hút khán giả bằng màn trình diễn áp đảo, Shiho cho Aki biết mình đã nhận ra tình cảm thầm kín Aki dành cho Yori...\nĐây chính là tập 5 của câu chuyện tình yêu từ cái nhìn đầu tiên, với bao cảm xúc rối ren đan xen, chưa biết phải tháo gỡ ra sao..."
      },
 
      {
@@ -507,7 +507,7 @@
           "genre": "girls love",
           "packagingSize": "13 x 18 cm",
           "category": "collectible",
-          "description": "....."
+          "description": "Himari, nữ sinh mới lên cấp ba, đã đem lòng ngưỡng mộ Yori, ca sĩ hát chính của ban nhạc biểu diễn trong buổi lễ chào đón học sinh mới.\nKhi tình cờ gặp nhau ở trường, Himari bèn bày tỏ cảm xúc của mình với Yori. Ấn tượng với thái độ thẳng thắn ấy, Yori nhanh chóng nảy sinh tình cảm với Himari…\nMời các bạn đón đọc câu chuyện về tình yêu nảy sinh từ hiểu lầm của hai cô gái trong Khẽ hát lời yêu – Whispering you a love song tập 1!"
      }
 ]
 

@@ -4,7 +4,7 @@ import * as Action from "./Actions.js";
 import * as Bridge from "./Bridge.js";
 import * as FlashSale from "./FlashSales.js";
 import { slidesHandler } from "./Slides.js";
-import { getValueQuery } from "./Products.js";
+import { getProductBooks, getValueQuery, productContainers } from "./Products.js";
 
 function sleep(ms) {
      return new Promise(resolve => setTimeout(resolve, ms));
@@ -13,14 +13,14 @@ function sleep(ms) {
 // funcs execute url
 function execQueryHandler() {
      let query = getValueQuery("name");
+     let url = location.href;
+     url = url.slice(url.lastIndexOf("/") + 1);
      let productsList = JSON.parse(localStorage.getItem("products"));
      if (query) {
           let product = productsList.find((item) => (item.name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-") === query);
           renderDOMHandler("detail_product", product);
      }
-     let url = location.href;
-     url = url.slice(url.lastIndexOf("/") + 1);
-     if (url.includes("detail")) {
+     else if (url.includes("detail")) {
           urlHandler("/", location.href);
           renderDOMHandler("homepage");
      }
@@ -130,11 +130,9 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                     if (request === "login" || request === "register" || request === "forgotPassword" || request === "user") {
                          if (request === "forgotPassword")
                               request = "forgot_password";
-
                          if (request === "user")
                               if (!localStorage.getItem("hasLogin"))
                                    throw new Error(`you must be login!`);
-
                          scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/account/${request}.html`);
                          break;
                     }
@@ -279,6 +277,14 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                bookTags.innerText = genre;
                bookCategory.innerText = type;
                Action.setQuantityBox(Bridge.default());
+
+               // execute other container
+               let sameAuthor = elementsObj.getSameAuthorContainer();
+               let productLike = elementsObj.getProductLikeContainer();
+               let list = getProductBooks();
+               productContainers(list, sameAuthor);
+               productContainers(list, productLike);
+
           }
 
           // call some functions again after render DOM

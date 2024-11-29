@@ -17,6 +17,8 @@ function getElementsHandler() {
     getFooter: () => $("#footer-container"),
     getCategories: () => $$(".category-tab"),
     getProductContainer: () => $$(".product-container"),
+    getSameAuthorContainer: () => $("#same-author-container"),
+    getProductLikeContainer: () => $("#product-like-container"),
     // news blogs
     getNewsBtn: () => $$(".news-nav"),
     getNewsBlogs: () => $("#news-blogs-container"),
