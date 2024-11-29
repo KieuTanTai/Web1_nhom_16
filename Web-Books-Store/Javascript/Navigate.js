@@ -18,7 +18,9 @@ function execQueryHandler() {
           let product = productsList.find((item) => (item.name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-") === query);
           renderDOMHandler("detail_product", product);
      }
-     else {
+     let url = location.href;
+     url = url.slice(url.lastIndexOf("/") + 1);
+     if (url.includes("detail")) {
           urlHandler("/", location.href);
           renderDOMHandler("homepage");
      }
@@ -72,7 +74,6 @@ function popStateHandler(pathsObj, docsURL) {
                               break;
 
                          case "/detail_product":
-                              console.log("hello");
                               execQueryHandler();
                               break;
 
