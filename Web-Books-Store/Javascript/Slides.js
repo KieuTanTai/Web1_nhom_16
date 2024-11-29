@@ -13,7 +13,6 @@ function createDots(parent, totalDots) {
           dotCount = childInners.length;
      else 
           dotCount = Math.ceil(childInners.length / totalDots);
-     console.log(childInners.length / totalDots);
      if (!dotBar) return;
 
      dotBar.innerHTML = "";
