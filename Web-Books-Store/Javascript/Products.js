@@ -5,7 +5,7 @@ import { renderDOMHandler } from "./Actions.js";
 
 function getProductBooks() {
   let productsList = [];
-  productsList.push(localStorage.getItem("ProductsList"));
+  productsList.push(localStorage.getItem("products"));
   return productsList;
 }
 
@@ -31,55 +31,52 @@ async function renderProductDetails(list, wrapper) {
 
 function renderProducts(list, wrapper) {
   if (!list || !wrapper) return;
+
+  wrapper.innerHTML = ""; // Xóa nội dung cũ
+
   let html = "";
   for (let product of list) {
     html += `
-               <div class="product-item grid-col col-l-2-4 col-m-3 col-s-6">
-                    <div class="block-product product-resize">
-                         <span class="product-image js-item">
-                              <img src="${product.img}" 
-                                   alt="${product.name}">
-                         </span>
-                         <div class="sale-label">${product.sale * 100}%</div>
-                         <div class="sale-off font-bold capitalize ${
-                           product.quantity > 0 ? "" : "active"
-                         }">hết hàng</div>
-                         <div class="info-inner flex justify-center align-center line-height-1-6">
-                              <h4 class="font-light capitalize">${
-                                product.name
-                              }</h4>
-                              <div class="margin-y-4">
-                                   <span class="price font-bold">${Math.round(
-                                     product.price * (1 - product.sale)
-                                   )}</span>
-                                   <del class="price old-price padding-left-8 font-size-14">${
-                                     product.price
-                                   }</del>
-                              </div>
-                         </div>
-                    </div>
-                    <div class="action ${
-                      product.quantity > 0 ? "" : "disable"
-                    }">
-                         <div class="buy-btn">
-                              <div title="mua ngay" class="button">
-                                   <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                              </div>
-                         </div>
+      <div class="product-item grid-col col-l-2-4 col-m-3 col-s-6">
+        <div class="block-product product-resize">
+          <span class="product-image js-item">
+            <img src="${product.img}" alt="${product.name}">
+          </span>
+          <div class="sale-label">${product.sale * 100}%</div>
+          <div class="sale-off font-bold capitalize ${
+            product.quantity > 0 ? "" : "active"
+          }">hết hàng</div>
+          <div class="info-inner flex justify-center align-center line-height-1-6">
+            <h4 class="font-light capitalize">${product.name}</h4>
+            <div class="margin-y-4">
+              <span class="price font-bold">${Math.round(
+                product.price * (1 - product.sale)
+              )}</span>
+              <del class="price old-price padding-left-8 font-size-14">${
+                product.price
+              }</del>
+            </div>
+          </div>
+        </div>
+        <div class="action ${product.quantity > 0 ? "" : "disable"}">
+          <div class="buy-btn">
+            <div title="mua ngay" class="button">
+              <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+            </div>
+          </div>
 
-                         <div class="add-to-cart">
-                              <div title="thêm vào giỏ hàng" class="button">
-                                   <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                              </div>
-                         </div>
-                    </div>
-               </div> 
-               `;
+          <div class="add-to-cart">
+            <div title="thêm vào giỏ hàng" class="button">
+              <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
   }
-  if (wrapper) {
-    wrapper.innerHTML = html;
-    renderProductDetails(list, wrapper);
-  } else return html;
+
+  wrapper.innerHTML = html; // Gán nội dung HTML đã tạo vào wrapper
+  renderProductDetails(list, wrapper); // Gọi hàm chi tiết sản phẩm (nếu cần)
 }
 
 function geneProducts(productsList, container) {
@@ -128,4 +125,4 @@ function geneProducts(productsList, container) {
   if (isEmpty(container)) return;
 }
 
-export { getProductBooks, setProductBooks, geneProducts };
+export { getProductBooks, setProductBooks, geneProducts, renderProducts };

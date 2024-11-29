@@ -163,7 +163,7 @@ async function getInitProducts(elementsObj) {
     const productsList = Array.from(jsonArray);
 
     // render init products
-    //     RenderProducts.setProductBooks(productsList);
+    // RenderProducts.setProductBooks(productsList);
     RenderProducts.geneProducts(productsList);
     formatPrices(elementsObj);
     resizeImages(elementsObj);
