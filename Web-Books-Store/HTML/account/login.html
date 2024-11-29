@@ -8,12 +8,12 @@
           <link rel="stylesheet" href="../../Assets/CSS/index.css" />
           <link rel="stylesheet" href="../../Assets/CSS/Responsive.css" />
           <script type="module" src="../../Javascript/index.js"></script>
-          <title>Đăng Ký</title>
+          <title>Đăng Nhập</title>
      </head>
 <body>
      <div class="web-content">
           <!-- html for header -->
-          
+
           <main id="main-container">
                <section id="main-content">
                     <div class="grid wide">
@@ -21,47 +21,37 @@
                               <!-- add scripts login & registration form here -->
                               <section id="login-registration-form" class="js-account-form">
                                    <div class="user-box">
-                                        <div id="register" class="text-center active">
-                                             <div class="font-size-20 uppercase font-bold">đăng ký</div>
-                                             <div id="register-layout">
+                                        <div id="login" class="text-center active">
+                                             <div class="font-size-20 uppercase font-bold">đăng nhập</div>
+                                             <div id="login-layout">
                                                   <form action="" method="post">
-                                                       <div class="js-fname-register">
-                                                            <input type="text" name="customer-last-name" id="customer-last-name"  
-                                                                 placeholder="Họ" required>
+                                                       <div class="js-email-login">
+                                                            <input type="email" name="customer-email-login" id="customer-email-login" placeholder="Email" 
+                                                            autocomplete="on" required>
                                                             <div class="error-message"></div>
                                                        </div>
-                                                       <div class="js-lname-register">
-                                                            <input type="text" name="customer-first-name" id="customer-first-name" 
-                                                                 placeholder="Tên" required>
+                                                       <div class="js-pass-login">
+                                                            <input type="password" name="customer-password-login" id="customer-password-login" placeholder="Mật khẩu"
+                                                            autocomplete="current-password" required>
                                                             <div class="error-message"></div>
                                                        </div>
-                                                       <div class="js-email-register">
-                                                            <input type="email" name="customer-email-register" id="customer-email-register" 
-                                                                 placeholder="Email" autocomplete="on" required>
-                                                            <div class="error-message"></div>
-                                                       </div>
-                                                       <div class="js-password-register">
-                                                            <input type="password" name="customer-password-register" id="customer-password-register" 
-                                                                 autocomplete="off" placeholder="Tạo mật khẩu" minlength="8" required>
-                                                            <div class="error-message"></div>
-                                                       </div>
-                                                       <div class="js-confirm-pass-register">
-                                                            <input type="password" name="customer-confirm-password-register" id="customer-confirm-password-register" 
-                                                            autocomplete="off" placeholder="Xác nhận mật khẩu" minlength="8" required>
-                                                            <div class="error-message"></div>
-                                                       </div>
-                                                       <button type="submit" id="register-btn" class="button">
-                                                            <p class="capitalize font-bold">đăng ký</p>
+                    
+                                                       <p class="font-size-13 capitalize js-forgot-password">
+                                                            <span>quên mật khẩu?</span>
+                                                       </p>
+                    
+                                                       <button type="submit" id="login-btn" class="button">
+                                                            <p class="capitalize font-bold">đăng nhập</p>
                                                        </button>
                                                   </form>
                     
-                                                  <div class="font-size-14 margin-y-12 js-login">
-                                                       <span>Đã có tài khoản ?</span>
-                                                       <span>đăng nhập</span> 
+                                                  <div class="font-size-14 margin-y-12 js-register">
+                                                       <span>Không có tài khoản ?</span>
+                                                       <span>đăng ký</span> 
                                                   </div>
                                              </div>
                                         </div>
-                                        
+                                             
                                         <!-- social login for login & register -->
                                         <!-- <div class="opacity-0-6 text-center margin-bottom-12">OR</div>
                                         <div class="customer-login-social">
@@ -81,7 +71,6 @@
                     </div>
                </section>
           </main>
-
      </div>
 </body>
 </html>
