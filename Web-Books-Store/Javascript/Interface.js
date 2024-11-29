@@ -21,7 +21,10 @@ function formatPrices(elementsObj) {
       currency: "VND",
       minimumSignificantDigits: "3",
     });
-    pricesContainer.forEach((element) => element.innerText = formatPricesHandler.format(element.innerText));
+    pricesContainer.forEach((element) => {
+      if (!element.innerHTML.includes("₫"))
+          element.innerText = formatPricesHandler.format(element.innerText)
+    });
   }
 }
 
@@ -127,7 +130,6 @@ async function getInitProducts(elementsObj) {
     // render init products
     RenderProducts.productContainers(productsList);
     FlashSale.setTimeFS(elementsObj);
-    // RenderProducts.setProductBooks(productsList);
     RenderProducts.renderProducts(productsList);
     formatPrices(elementsObj);
     resizeImages(elementsObj);

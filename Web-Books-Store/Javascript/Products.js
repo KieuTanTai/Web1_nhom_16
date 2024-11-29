@@ -1,6 +1,6 @@
 "use strict";
 import * as Bridge from "./Bridge.js";
-import { isEmpty } from "./Interface.js";
+import { formatPrices, isEmpty } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
 
 // get / set products
