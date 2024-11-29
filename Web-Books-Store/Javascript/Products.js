@@ -12,9 +12,10 @@ function setProductBooks(product) {
   localStorage.setItem("products", JSON.stringify(product));
 }
 
-function getValueQuery (query) {
+function getValueQuery (request) {
   let newURL = new URLSearchParams(window.location.search);
-  return newURL.get(query);
+  let query = newURL.get(request);
+  return query ? query : "";
 }
 
 // for show detail products

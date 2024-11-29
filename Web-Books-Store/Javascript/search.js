@@ -2,12 +2,17 @@
 
 import * as Bridge from "./Bridge.js";
 import { formatPrices } from "./Interface.js";
-import { renderProducts } from "./Products.js";
+import { execQueryHandler } from "./Navigate.js";
+import { getProductBooks, renderProducts } from "./Products.js";
 
   // Hàm áp dụng bộ lọc
-function applyFilters(productList, searchQuery) {
-  const category = categoryFilter.value;
-  const priceRange = priceFilter.value;
+function applyFilters(productList, searchQuery, elementsObj) {
+  if (!elementsObj)
+    elementsObj = Bridge.default();
+  const categoryFilter = elementsObj.getCategoryFilter();
+  const priceFilter = elementsObj.getPriceFilter();
+  const category = categoryFilter?.value;
+  const priceRange = priceFilter?.value;
 
   // Lọc theo từ khóa (nếu có)
   return productList.filter((product) => {
@@ -33,40 +38,34 @@ function applyFilters(productList, searchQuery) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const searchParams = new URLSearchParams(window.location.search);
-  const query = searchParams.get("query")?.toLowerCase() || "";
-
-  const productContainer = document.getElementById("productContainer");
-  const categoryFilter = document.getElementById("categoryFilter");
-  const priceFilter = document.getElementById("priceFilter");
-
-  // Lấy danh sách sản phẩm từ localStorage
-  const products = JSON.parse(localStorage.getItem("products") || "[]");
-
-
-
   // Hàm hiển thị sản phẩm
-  const displayProducts = (searchQuery) => {
-    const filteredProducts = applyFilters(products, searchQuery);
+function displayProducts(productList, searchQuery, elementsObj) {
+  if (!elementsObj)
+    elementsObj = Bridge.default();
+  const filteredProducts = applyFilters(productList, searchQuery);
+  const productContainer = elementsObj.getResultContainer()?.querySelector(".product-container");
 
-    if (filteredProducts.length > 0) {
-      renderProducts(filteredProducts, productContainer);
-      formatPrices(Bridge.default());
-    } else {
-      productContainer.innerHTML = '<div class="font-size-13 font-bold">Không tìm thấy sản phẩm nào phù hợp</div>';
-    }
-  };
+  if (!productContainer)
+    return;
+  if (filteredProducts.length > 0) {
+    renderProducts(filteredProducts, productContainer);
+    formatPrices(Bridge.default());
+  } 
+  else
+    productContainer.innerHTML = '<div class="font-size-13 font-bold">Không tìm thấy sản phẩm nào phù hợp</div>';
+}
 
+function changeByFilter (elements ,query) {
+  elements.forEach((filter) => filter?.addEventListener("change", () => displayProducts(query)));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  let elementsObj = Bridge.default();
+  const query = execQueryHandler("query");
+  // Lấy danh sách sản phẩm từ localStorage
+  let productList = getProductBooks();
   // Khi có từ khóa tìm kiếm hoặc không
-  if (productContainer) {
-    displayProducts(query); // Hiển thị sản phẩm theo từ khóa tìm kiếm (hoặc toàn bộ nếu không có từ khóa)
-  }
-
+  displayProducts(productList, query, elementsObj); // Hiển thị sản phẩm theo từ khóa tìm kiếm (hoặc toàn bộ nếu không có từ khóa)
   // Sự kiện thay đổi bộ lọc
-  [categoryFilter, priceFilter].forEach((filter) => {
-    filter?.addEventListener("change", () => {
-      displayProducts(query); // Áp dụng lại bộ lọc với từ khóa hiện tại
-    });
-  });
+  changeByFilter([elementsObj.getCategoryFilter(), elementsObj.getPriceFilter()], query);
 });

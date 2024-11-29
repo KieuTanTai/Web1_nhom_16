@@ -41,6 +41,10 @@ function getElementsHandler() {
     getJsLoginBtn: () => $$(".js-login"),
     getJsRegisterBtn: () => $$(".js-register"),
     getJsForgotBtn: () => $$(".js-forgot-password"),
+    // search
+    getResultContainer: () => $("#search-results-container"),
+    getCategoryFilter: () => $("#category-filter"),
+    getPriceFilter: () => $("#price-filter"),
     // others
     getScrollTop: () => $("#scroll-top"),
     getDotsBar: () => $$(".dots-bar"),
@@ -61,6 +65,7 @@ function pathNamesHandler() {
     // news
     "/news/test": "news",
     // other pages url
+    "/search": "search",
     "/cart": "cart",
     "/detail_product": "detail_product",
     // account url

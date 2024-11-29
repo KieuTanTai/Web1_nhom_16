@@ -11,12 +11,12 @@ function sleep(ms) {
 }
 
 // funcs execute url
-function execQueryHandler() {
-     let query = getValueQuery("name");
+function execQueryHandler(request) {
+     let query = getValueQuery(request);
      let url = location.href;
      url = url.slice(url.lastIndexOf("/") + 1);
      let productsList = JSON.parse(localStorage.getItem("products"));
-     if (query) {
+     if (query && request === "name") {
           let product = productsList.find((item) => (item.name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-") === query);
           renderDOMHandler("detail_product", product);
      }
@@ -24,6 +24,8 @@ function execQueryHandler() {
           urlHandler("/", location.href);
           renderDOMHandler("homepage");
      }
+     else if (query && request === "query")
+          return query;
 }
 
 // func for popstate listener (it's will be very long)
@@ -74,7 +76,11 @@ function popStateHandler(pathsObj, docsURL) {
                               break;
 
                          case "/detail_product":
-                              execQueryHandler();
+                              execQueryHandler("name");
+                              break;
+                         
+                         case "/search": 
+                              
                               break;
 
                          case "/header_footer/footer":
@@ -101,7 +107,7 @@ function urlHandler(pathName, docsURL) {
           return false;
      }
 
-     let newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/HTML/") + 5)}${pathName}`;
+     let newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/HTML/") + 5)}${pathName}.html`;
      window.history.pushState({}, "", newURL);
      return true;
 }
