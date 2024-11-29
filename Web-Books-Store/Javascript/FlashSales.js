@@ -19,7 +19,8 @@ function setTimeFS(elementsObj) {
     fSTime = Array.from(fSTime.children);
 
     // execute
-    if (!stringTime) return;
+    if (!stringTime)
+      activeFlashSale();
     if (stringTime.includes("-")) {
       localStorage.removeItem("flashSaleTime");
       return;
@@ -48,7 +49,7 @@ function setTimeFS(elementsObj) {
 async function startCountDown(timeArray, elementsObj) {
   try {
     window.addEventListener("beforeunload", () => {
-      localStorage.setItem("flashSaleTime",`${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`
+      localStorage.setItem("flashSaleTime", `${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`
       );
     });
 
@@ -58,20 +59,12 @@ async function startCountDown(timeArray, elementsObj) {
     if (timeArray[2].innerText === "00" && timeArray[1].innerText !== "00") {
       timeArray[2].innerText = "60";
       timeArray[1].innerText = await countDown(timeArray[1], "minutes");
-    } else if (
-      timeArray[2].innerText === "00" &&
-      timeArray[1].innerText === "00" &&
-      timeArray[0].innerText !== "00"
-    ) {
+    } else if (timeArray[2].innerText === "00" && timeArray[1].innerText === "00" && timeArray[0].innerText !== "00") {
       timeArray[1].innerText = "60";
       timeArray[0].innerText = await countDown(timeArray[0], "minutes");
     }
 
-    if (
-      timeArray[2].innerText !== "00" ||
-      timeArray[1].innerText !== "00" ||
-      timeArray[0].innerText !== "00"
-    )
+    if (timeArray[1].innerText !== "00" || timeArray[2].innerText !== "00" || timeArray[0].innerText !== "00")
       startCountDown(timeArray);
     else {
       const container = elementsObj

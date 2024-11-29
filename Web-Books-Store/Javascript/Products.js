@@ -126,4 +126,4 @@ function productContainers(productsList, container) {
   if (isEmpty(container)) return;
 }
 
-export { getProductBooks, setProductBooks, productContainers, getValueQuery };
+export { getProductBooks, setProductBooks, productContainers, getValueQuery, renderProductDetails, renderProducts };
