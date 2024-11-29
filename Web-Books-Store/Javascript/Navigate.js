@@ -5,6 +5,7 @@ import * as Bridge from "./Bridge.js";
 import * as FlashSale from "./FlashSales.js";
 import { slidesHandler } from "./Slides.js";
 import { getProductBooks, getValueQuery, productContainers } from "./Products.js";
+import { test } from "./search.js";
 
 function sleep(ms) {
      return new Promise(resolve => setTimeout(resolve, ms));
@@ -80,7 +81,7 @@ function popStateHandler(pathsObj, docsURL) {
                               break;
                          
                          case "/search": 
-                              
+                              renderDOMHandler("search");
                               break;
 
                          case "/header_footer/footer":
@@ -156,8 +157,8 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/order/${nameDOM}.html`);
           }
 
-          if ((nameDOM === "detail_product") && requestRests)
-               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/detail_product.html`);
+          if ((nameDOM === "detail_product") && requestRests || nameDOM === "search")
+               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/${nameDOM}.html`);
 
           // error if script DOM is invalid
           if (!scriptDOM)
@@ -199,6 +200,9 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           placeInsert.classList.remove("hidden");
           
           // execute after render
+          if (nameDOM === "search")
+               test();
+
           if (nameDOM === "detail_product" && requestRests) {
                // !book detail
                let product = requestRests[0];

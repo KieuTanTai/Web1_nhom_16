@@ -55,11 +55,11 @@ function displayProducts(productList, searchQuery, elementsObj) {
     productContainer.innerHTML = '<div class="font-size-13 font-bold">Không tìm thấy sản phẩm nào phù hợp</div>';
 }
 
-function changeByFilter (elements ,query) {
-  elements.forEach((filter) => filter?.addEventListener("change", () => displayProducts(query)));
+function changeByFilter (elements ,query, productList) {
+  elements.forEach((filter) => filter?.addEventListener("change", () => displayProducts(productList, query)));
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function test () {
   let elementsObj = Bridge.default();
   const query = execQueryHandler("query");
   // Lấy danh sách sản phẩm từ localStorage
@@ -67,5 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Khi có từ khóa tìm kiếm hoặc không
   displayProducts(productList, query, elementsObj); // Hiển thị sản phẩm theo từ khóa tìm kiếm (hoặc toàn bộ nếu không có từ khóa)
   // Sự kiện thay đổi bộ lọc
-  changeByFilter([elementsObj.getCategoryFilter(), elementsObj.getPriceFilter()], query);
+  changeByFilter([elementsObj.getCategoryFilter(), elementsObj.getPriceFilter()], query, productList);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  test();
 });
+
+export { test };
