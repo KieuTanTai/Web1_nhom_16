@@ -98,7 +98,7 @@
           "gene" : "No",
           "packagingSize": "13 x 18 cm",
           "category": "normal, special",
-          "description": "....."
+          "description": "Cô nữ sinh 17 tuổi Suzume sống cùng dì ở một thị trấn bình yên ven biển Kyushu. Một ngày nọ, trên đường đến trường, Suzume đi ngang qua một thanh niên điển trai và nghe anh kể “Anh đang đi tìm cửa”. Tò mò theo dấu thanh niên nọ, Suzume tiến vào một phế tích trong núi. Điều cô bắt gặp ở đó là một cánh cửa màu trắng cũ kĩ, đứng trơ trọi giữa cảnh hoang tàn đổ nát. Như bị điều gì đó thôi thúc, Suzume đặt tay lên cánh cửa… Đó chính là khởi đầu “hành trình đóng cửa” của Suzume, một hành trình kết nối hiện tại và quá khứ. \nKHÓA CHẶT CỬA NÀO SUZUME là phiên bản tiểu thuyết của anime điện ảnh cùng tên do Shinkai Makoto làm đạo diễn, ra mắt năm 2022. Cuốn sách chứa đựng nỗi lòng đau đáu của đạo diễn nổi tiếng được mệnh danh “phù thủy nỗi buồn” Shinkai đối với thảm họa động đất-sóng thần đặc biệt thảm khốc xảy ra vào tháng 3 năm 2011 tại miền Đông Nhật Bản. Ở đó có những nỗi đau dai dẳng, những mất mát mãi chưa được xoa dịu, song cũng có thật nhiều nỗ lực sống tiếp, thật nhiều hi vọng và ánh sáng soi rọi bước đường tương lai của những con người từng trải qua sinh li tử biệt vì sự tàn khốc của thiên tai."
      },
  
      {
@@ -115,7 +115,7 @@
           "genre": "No",
           "packagingSize": "13 x 18 cm",
           "category": "normal, special",
-          "description": "....."
+          "description": "Cô nữ sinh 17 tuổi Suzume sống cùng dì ở một thị trấn bình yên ven biển Kyushu. Một ngày nọ, trên đường đến trường, Suzume đi ngang qua một thanh niên điển trai và nghe anh kể “Anh đang đi tìm cửa”. Tò mò theo dấu thanh niên nọ, Suzume tiến vào một phế tích trong núi. Điều cô bắt gặp ở đó là một cánh cửa màu trắng cũ kĩ, đứng trơ trọi giữa cảnh hoang tàn đổ nát. Như bị điều gì đó thôi thúc, Suzume đặt tay lên cánh cửa… Đó chính là khởi đầu “hành trình đóng cửa” của Suzume, một hành trình kết nối hiện tại và quá khứ. \nKHÓA CHẶT CỬA NÀO SUZUME là phiên bản tiểu thuyết của anime điện ảnh cùng tên do Shinkai Makoto làm đạo diễn, ra mắt năm 2022. Cuốn sách chứa đựng nỗi lòng đau đáu của đạo diễn nổi tiếng được mệnh danh “phù thủy nỗi buồn” Shinkai đối với thảm họa động đất-sóng thần đặc biệt thảm khốc xảy ra vào tháng 3 năm 2011 tại miền Đông Nhật Bản. Ở đó có những nỗi đau dai dẳng, những mất mát mãi chưa được xoa dịu, song cũng có thật nhiều nỗ lực sống tiếp, thật nhiều hi vọng và ánh sáng soi rọi bước đường tương lai của những con người từng trải qua sinh li tử biệt vì sự tàn khốc của thiên tai."
      },
 
      {
@@ -132,7 +132,7 @@
           "genre" : "romance",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Chuyển thể từ tiểu thuyết nổi tiếng cùng tên. Kusunoki, một thanh niên chán đời tình cờ nghe được tin đồn về cửa tiệm kì quái chuyên thu mua tuổi thọ. Do quá túng tiền, anh quyết định bán phần lớn tuổi thọ của mình và phải sống chung với cô gái giám sát viên Miyagi trong suốt ba tháng ngắn ngủi cuối đời…"
      },
 
      {
@@ -149,7 +149,7 @@
           "genre": "tragedy",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "“Tôi chết rồi. Anh tính sao đây?”\nMùa thu năm 22 tuổi, tôi, một thanh niên đơn độc bị tất cả ruồng bỏ, đáng lẽ đã thành kẻ sát nhân…\nNhưng cô gái thiệt mạng dưới tay tôi lại có thể “trì hoãn” cái chết trong mười ngày. Cô quyết định dành mười ngày quý giá đó để trả thù những kẻ đã hủy hoại đời cô.\n“Tất nhiên, anh cũng phải giúp tôi một tay đấy, Sát Nhân ạ.”\nQuá trình trả thù đã vô tình dẫn chúng tôi đến với sự thật ẩn giấu đằng sau cuộc gặp gỡ giữa tôi và cô gái.\nĐó là kỉ niệm về những ngày đau thương mà ấm áp, cùng lời tạm biệt ngày ấy."
      },
 
      {
@@ -166,7 +166,7 @@
           "genre": "tragedy",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Khi Ấy Là Một Đêm Đầy Sao\nỞ một thiết lập hoàn toàn khác so với hiện tại, anh muốn gặp lại em một lần nữa.\nDù cho phải hiến tế thân thể này, tôi vẫn muốn cứu Yoshino. Tuy nhiên, tôi hiểu rất rõ nếu chỉ ao ước thôi thì không đủ để mang em về.\nMột ngày bình thường của Hanabishi Junta luôn quanh quẩn trong chu trình: thức dậy => đến trường => đi chơi => ngủ, chỉ có như vậy thôi. Tiêu chí của cậu ấy chính là tiết kiệm năng lượng và làm mọi thứ ở mức vừa đủ\nCòn Watarase Yoshino thì hoàn toàn ngược lại. Cô bé chính là dạng người thế này: nhạc nền dùng để nghe khi vẽ phải phù hợp với chủ đề của bức tranh, thức ăn phải để ở nhiệt độ thích hợp mới đủ ngon.\nHai con người trái ngược ấy lại tình cờ gặp nhau trong một buổi học phụ đạo nọ và giữa họ đã nảy sinh một thứ tình cảm rất gần với tình yêu. Tuy nhiên, Yoshino không thể nào chống chọi được với căn bệnh kỳ lạ đang tàn phá cơ thể mình…\nVà rồi, kỳ tích đã xảy đến. Cậu và cô bé lớp dưới của cậu đã trở thành hai người xa lạ, người thì tính cách không còn như xưa, người thì giữ lại được sinh mệnh sắp tàn lụi.\nĐây là một chuyện tình thanh xuân đẹp đẽ nhất nhưng cũng phù du nhất, một câu chuyện về những người đã chọn cách lướt qua đời nhau để đối phương có được hạnh phúc.\nMục lục:\nMở đầu\nChương 1: Cô bé lớp dưới hễ nhắc đến thứ mình thích là sẽ nói không ngừng\nChương 2: Cô bé lớp dưới hễ không chú ý lại cô đơn một mình\nChương 3: Cô bé lớp dưới sẽ cho tôi mượn đĩa CD những bài hát em giới thiệu\nChương 4: Cô bé lớp dưới lúc nào cũng ngưỡng mộ người khác\nChương 5: Cô bé lớp dưới đã sống một cách vô cùng vụng về\nChương 6: Cô bé lớp dưới đến quán có bánh ngọt và cà phê đắng\nChương 7: Cô bé lớp dưới đã mơ thấy một giấc mơ có kết thúc vô hậu nhưng hạnh phúc\nChương cuối: Senpai bầu bạn cùng tôi vào những giờ tan trường trong ký ức giả\nVĩ Thanh\nLời bạt\nThông tin tác giả:\nMilito Amasaki\nĐây là một câu chuyện viết về thời điểm chuyển giao, khi mùa đông sắp kết thúc và mùa xuân thì chớm nở. Tôi đã cố gắng khắc hoạ lứa tuổi mẫn cảm của các nhân vật chính, từ lúc họ còn là những đứa trẻ cho tới khi trưởng thành. Vì vậy, nhờ vào việc kể lại câu chuyện của họ thông qua cuốn light novel này, tôi cũng đã trưởng thành hơn nhiều.\nNagu\nMột hoạ sĩ vẽ tranh minh hoạ đến từ Canada. Tôi mê bánh quy lắm. Gần đây, tôi đang nghiên cứu xem “Liệu bánh gạo có phải là một loại bánh quy hay không?” Nhưng thôi kệ đi, vì cái nào cũng ngon hết."
      },
 
      {
@@ -183,7 +183,7 @@
           "genre": "tragedy",
           "packagingSize": "13 x 18 cm",
           "category": "normal, special",
-          "description": "....."
+          "description": "Đêm Nay Dẫu Tình Yêu Này Biến Mất Khỏi Thế Gian\n“Liệu tớ có thể thích Hino được không?”\n“Không được đâu. Tớ… bị mắc một căn bệnh, gọi là chứng quên thuận chiều. Sau mỗi đêm đi ngủ, tớ sẽ lại quên hết tất cả những gì đã xảy ra ngày hôm đó.”\nCuộc sống của tôi là những chuỗi ngày tẻ nhạt không màu, cho tới khi tôi gặp được Hino Maori…\nVì không thể phản kháng yêu cầu của bạn học, tôi đã thực hiện một màn tỏ tình dối trá với cô ấy. Nhưng thật bất ngờ, cô ấy lại chấp nhận lời tỏ tình của tôi với điều kiện “đôi bên không được nảy sinh tình cảm thật sự”. Cũng chính từ khoảnh khắc đó, câu chuyện của chúng tôi đã bắt đầu.\nTrích dẫn trong sách:\nĐối với tôi, tình yêu từng là thứ chẳng thể lý giải được thành lời. Vậy mà giờ đây, bằng một cách thật bất ngờ và nhẹ nhàng, tôi lại rơi vào lưới tình với người con gái ấy.\n“Tớ đã nghe thấy… giọng nói của một người. Người đó đã bảo sẽ tiếp tục mang lại niềm vui cho tớ vào ngày mai. Tuy tớ vẫn không thể nhớ ra được rõ ràng. Nhưng nhất định tớ sẽ lạc quan bước tiếp. Rồi một ngày nào đó, tớ sẽ nhớ hết tất cả mọi chuyện cho mà xem.”"
      },
 
      {

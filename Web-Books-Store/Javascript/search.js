@@ -1,7 +1,7 @@
 "use strict";
 
 import * as Bridge from "./Bridge.js";
-import { formatPrices } from "./Interface.js";
+import { formatPrices, resizeImages } from "./Interface.js";
 import { execQueryHandler } from "./Navigate.js";
 import { getProductBooks, renderProducts } from "./Products.js";
 
@@ -49,7 +49,8 @@ function displayProducts(productList, searchQuery, elementsObj) {
     return;
   if (filteredProducts.length > 0) {
     renderProducts(filteredProducts, productContainer);
-    formatPrices(Bridge.default());
+    formatPrices(elementsObj);
+    resizeImages(elementsObj);
   } 
   else
     productContainer.innerHTML = '<div class="font-size-13 font-bold">Không tìm thấy sản phẩm nào phù hợp</div>';

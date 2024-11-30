@@ -108,7 +108,7 @@ function urlHandler(pathName, docsURL) {
           return false;
      }
 
-     let newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/HTML/") + 5)}${pathName}.html`;
+     let newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/HTML/") + 5)}${pathName}`;
      window.history.pushState({}, "", newURL);
      return true;
 }
