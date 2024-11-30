@@ -5,7 +5,11 @@ import { formatPrices, resizeImages } from "./Interface.js";
 import { execQueryHandler } from "./Navigate.js";
 import { getProductBooks, renderProducts } from "./Products.js";
 
-  // Hàm áp dụng bộ lọc
+function renderSearchDOM () {
+  
+}
+
+// Hàm áp dụng bộ lọc
 function applyFilters(productList, searchQuery, elementsObj) {
   if (!elementsObj)
     elementsObj = Bridge.default();

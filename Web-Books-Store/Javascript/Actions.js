@@ -144,22 +144,22 @@ function accountEvents(elementsObj) {
 
      loginButtons?.forEach((btn) => {
           btn.addEventListener("click", Bridge.throttle(() => {
-               if (Navigate.urlHandler("/account/login", docsURL))
-                    (Navigate.renderDOMHandler("account", "login"));
+               // if (Navigate.urlHandler("/account/login", docsURL))
+               //      (Navigate.renderDOMHandler("account", "login"));
           }, 200, "login"));
      });
 
      registerButtons?.forEach((btn) => {
           btn.addEventListener("click", Bridge.throttle(() => {
-               if (Navigate.urlHandler("/account/register", docsURL))
-                    Navigate.renderDOMHandler("account", "register");
+               // if (Navigate.urlHandler("/account/register", docsURL))
+               //      Navigate.renderDOMHandler("account", "register");
           }, 200, "register"));
      });
 
      forgotButtons?.forEach((btn) => {
           btn.addEventListener("click", Bridge.throttle(() => {
-               if (Navigate.urlHandler("/account/forgot_password", docsURL))
-                    Navigate.renderDOMHandler("account", "forgotPassword");
+               // if (Navigate.urlHandler("/account/forgot_password", docsURL))
+               //      Navigate.renderDOMHandler("account", "forgotPassword");
           }, 200, "forgotPassword"));
      })
 }

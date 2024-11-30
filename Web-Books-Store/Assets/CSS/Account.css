@@ -147,6 +147,9 @@
 .account-container {
      margin-top: -1em;
      margin: 1em 0 2em;
+     padding: 1em;
+     background: var(--primary-white);
+     border-radius: var(--higher-radius);
 }
 
 .account-info .user-card .js-edit-btn {

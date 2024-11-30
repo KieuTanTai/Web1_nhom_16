@@ -93,28 +93,16 @@ function resizeSmNav(elementsObj) {
 // default add header footer and initProducts
 async function addDOMHeader(elementsObj) {
   try {
-    const headerDOM = await Bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/header.html");
-    const header = headerDOM.getElementById("header-container");
-    const subHeader = headerDOM.getElementById("sub-header");
+    const DOM = await Bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/headerFooter.html");
+    const header = DOM.getElementById("header-container");
+    const subHeader = DOM.getElementById("sub-header");
+    const footer = DOM.getElementById("footer-container");
     let placeInsert = elementsObj.getMainContainer();
     const webContent = elementsObj.getWebContent();
-
     // add elements into DOM
     webContent.before(header);
-    placeInsert.insertAdjacentElement("afterbegin", subHeader);
-  } catch (error) {
-    alert(error);
-  }
-}
-
-async function addDOMFooter(elementsObj) {
-  try {
-    const footerDOM = await Bridge.promiseDOMHandler( "/Web-Books-Store/HTML/header_footer/footer.html");
-    const footer = footerDOM.getElementById("footer-container");
-    const webContent = elementsObj.getWebContent();
-
-    // add elements into DOM
     webContent.after(footer);
+    placeInsert.insertAdjacentElement("afterbegin", subHeader);
   } catch (error) {
     alert(error);
   }
@@ -145,7 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //create check DOM of Header and Footer
   addDOMHeader(elementsObj);
-  addDOMFooter(elementsObj);
   const checkDOM = setInterval(() => {
     if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
       resizeSmNav(elementsObj);

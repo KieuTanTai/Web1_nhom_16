@@ -114,6 +114,7 @@ async function promiseDOMHandler(fileAddress) {
     if (!response.ok)
       throw new Error(`${response.status} (${response.statusText})`);
     const text = await response.text();
+    console.log(text);
     return new DOMParser().parseFromString(text, "text/html");
   } catch (error) {
     throw `error when fetch your address! \n ${error}`;

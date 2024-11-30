@@ -180,7 +180,6 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           placeInsert.innerHTML = content.innerHTML;
           // css for placeInsert and remove it when show
           placeInsert.style.height = placeInsert.offsetHeight + 5 + "em";
-          webContent.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 
           // overlay when loading 
           const overlay = document.createElement('div');
@@ -192,9 +191,12 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           overlay.style.fontSize = 3 + "em";
           overlay.style.color = "var(--primary-white)";
           document.body.appendChild(overlay); 
-          
+          await sleep(250);
+          if (!nameDOM === "/" || !nameDOM === "homepage")
+               webContent.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
           // scroll before show DOM
-          await sleep(500); // fake loading
+          await sleep(0); // fake loading
           document.body.removeChild(overlay);
           placeInsert.removeAttribute("style");
           placeInsert.classList.remove("hidden");
