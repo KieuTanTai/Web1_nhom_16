@@ -1,33 +1,67 @@
 'use strict'
-import * as bridge from "./Bridge.js";
+import * as Bridge from "./Bridge.js";
+import { activeFlashSale } from "./FlashSales.js";
+import * as Navigate from "./Navigate.js";
+import { getValueQuery } from "./Products.js";
+ import { slidesHandler } from "./Slides.js";
 
-function cancelAction (elementsObj) {
+// funcs event
+function cancelButtons(elementsObj) {
      const cancelBtn = elementsObj.getJsCancelBtn();
-     if (cancelBtn) {
-          cancelBtn.forEach((btn) => {
-               btn.addEventListener("click", () => {
-                    window.history.back();
-               });
-          });
-     }
+     if (cancelBtn)
+          cancelBtn.forEach((btn) => btn.addEventListener("click", () => window.history.back()));
+}
+
+function trackingNavigate(elementsObj) {
+     const docsURL = location.pathname;
+     const buttons = elementsObj.getOrderTrackingBtn();
+
+     if (!buttons) return;
+     buttons.forEach((btn) => {
+          btn.addEventListener("click", Bridge.throttle(() => {
+               if (Navigate.urlHandler("/order/status", docsURL))
+                    Navigate.renderDOMHandler("orderStatus");
+          }, 200, "statusNav"));
+     });
 }
 
 function returnHomepage(elementsObj, nowPath) {
      const webLogo = elementsObj.getWebLogo();
-
-     if (webLogo) {
-          webLogo.forEach((element) => {
-               // let temp = nowPath.match(/^\/(?!.*\/\/)([a-zA-Z-\/]+)$/g);
-               const originPath = nowPath.slice(0, nowPath.indexOf("/HTML/") + 6);
-               element.addEventListener("click", () => location.replace(`${location.origin}${originPath}`));
-          });
-     }
+     const originPath = nowPath.slice(0, nowPath.indexOf("/HTML/") + 6);
+     if (webLogo)
+          webLogo.forEach((element) => element.addEventListener("click", () => location.replace(`${location.origin}${originPath}`)));
 }
 
-// handle scroll 
+function historyNavigate(elementsObj) {
+     const docsURL = location.pathname;
+     const buttons = elementsObj.getHistoryBtn();
+
+     if (!buttons) return;
+     buttons.forEach((btn) => {
+          btn.addEventListener("click", Bridge.throttle(() => {
+               if (Navigate.urlHandler("/order/history", docsURL))
+                    Navigate.renderDOMHandler("orderHistory");
+          }, 200, "historyNav"));
+     });
+}
+
+
+function setQuantityBox (elementsObj) {
+     let reduceBtn = elementsObj.getQuantityBox().querySelector("input[type=button].reduce");
+     let increaseBtn = elementsObj.getQuantityBox().querySelector("input[type=button].increase");
+     let quantity = elementsObj.getQuantityBox().querySelector("input[type=text]#quantity");
+     let productID = Bridge.$(".product-id")?.innerHTML;
+     let realQuantity = Array.from(JSON.parse(localStorage.getItem("products"))).find((product) => product.productID === productID)?.quantity;
+
+     reduceBtn.addEventListener("click", () => quantity.value = parseInt(quantity.value) - 1 <= 0 ? 1 : parseInt(quantity.value) - 1);
+     increaseBtn.addEventListener("click", () => quantity.value = parseInt(quantity.value) + 1 <= realQuantity ? parseInt(quantity.value) + 1 : realQuantity);
+     quantity.addEventListener("change", () => quantity.value = parseInt(quantity.value) > realQuantity ? realQuantity : parseInt(quantity.value));
+}
+
+// handle scrolls
 function scrollToHandler(nameStaticPage) {
      let staticPage;
-     const elementsObj = bridge.default();
+     const elementsObj = Bridge.default();
 
      if (nameStaticPage === "news")
           staticPage = elementsObj.getNewsBlogs();
@@ -38,8 +72,10 @@ function scrollToHandler(nameStaticPage) {
      if (!staticPage && nameStaticPage === "news") {
           // edit state and render homepage where news has been located
           const nowPath = location.pathname;
-          window.history.pushState({}, "", `${nowPath.slice(0, nowPath.lastIndexOf("/HTML/") + 6)}index.html`);
-          renderDOMHandler("homepage");
+          //window.history.pushState({}, "", `${nowPath.slice(0, nowPath.lastIndexOf("/HTML/") + 6)}index.html`);
+          if (Navigate.urlHandler("/", nowPath))
+               Navigate.renderDOMHandler("homepage");
+
           const checkBlog = setInterval(() => {
                staticPage = elementsObj.getNewsBlogs();
                if (staticPage) {
@@ -50,240 +86,107 @@ function scrollToHandler(nameStaticPage) {
                     });
                     clearInterval(checkBlog);
                }
-          }, 200);
+          }, 600);
      }
      else if (!staticPage && nameStaticPage === "services") {
           alert("not found services!");
           return false;
      }
-     
+
      // check if action is scroll to top or not
-     if (nameStaticPage === "scrollTop") {
+     if (nameStaticPage === "top")
           window.scroll({
                top: 0,
                left: 0,
                behavior: "smooth"
           });
-     }
-     else 
+
+     else if (staticPage)
           window.scroll({
                top: staticPage.offsetTop + 3 * 16,
                left: 0,
                behavior: "smooth"
           });
+
 }
 
-// function for click nav btn on sub header or click to scroll top btn
+// func for click nav btn on sub header or click to scroll top btn
 function staticContents(elementsObj) {
-     const newsBtn = elementsObj.getNewsBtn();
-     const scrollTopBtn = elementsObj.getScrollTop();
-     const servicesBtn = elementsObj.getServicesBtn();
+     const newsButtons = elementsObj.getNewsBtn();
+     const scrollTopButtons = elementsObj.getScrollTop();
+     const servicesButtons = elementsObj.getServicesBtn();
 
      // add event listener
-     if (newsBtn) {
-          newsBtn.forEach((btn) => {
-               btn.addEventListener("click", () => {
-                    scrollToHandler("news");
-               });
+     if (newsButtons) {
+          newsButtons.forEach((btn) => {
+               btn.addEventListener("click", Bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn"));
           });
      }
 
-     if (servicesBtn) {
-          servicesBtn.forEach((btn) => {
-               btn.addEventListener("click", () => {
-                    scrollToHandler("services");
-               });
+     if (servicesButtons) {
+          servicesButtons.forEach((btn) => {
+               btn.addEventListener("click", Bridge.throttle(() => scrollToHandler("services"), 200, "servicesBtn"));
           });
      }
 
-     if (scrollTopBtn) {
-          scrollTopBtn.addEventListener("click", () => {
-               scrollToHandler("scrollTop");
-          });
+     if (scrollTopButtons) {
+          scrollTopButtons.addEventListener("click", Bridge.throttle(() => scrollToHandler("top"), 200, "ScrollTopBtn"));
      }
-
 }
 
-// function for popstate listener (it's will be very long)
-function popStateHandler(pathsObj, docsURL) {
-     window.addEventListener("popstate",
-          bridge.throttle((event) => {
-               const currentPath = event.target.location.pathname;
-               const path = currentPath.slice(docsURL.lastIndexOf("/HTML/") + 5, currentPath.length + 1);
-
-               // execute DOM with specific path
-               if (pathsObj[path]) {
-                    switch (path) {
-                         case "/account/login":
-                         case "/account/register":
-                         case "/account/forgot_password":
-                              renderDOMHandler("account", `${path.slice(path.lastIndexOf("/") + 1, path.length + 1)}`);
-                              break;
-
-                         case "/":
-                         case "/index.html":
-                              renderDOMHandler("homepage");
-                              break;
-
-                         case "Header_Footer/footer":
-                         case "Header_Footer/header":
-                              alert("forbidden!");
-                              throw new Error("forbidden!");
-                         default:
-                              renderDOMHandler("account", path.slice(1, path.length + 1));
-
-                    }
-               }
-     }, 500, "popstate"));
-}
-
-// handle url path changed
-function urlHandler(pathName, docsURL) {
-     if (typeof pathName !== "string" || !pathName) 
-          return false;
-
-     if (pathName[0] !== "/")
-          pathName = `/${pathName}`;
-
-     const pathsObj = bridge.pathNamesHandler();
-     if (!pathsObj[pathName]) {
-          alert("404 not found!");
-          return false;
-     }
-
-     // execute state for not duplicate path name
-     const nowPath = docsURL.slice(docsURL.lastIndexOf("/HTML/") + 6, docsURL.lastIndexOf("/")); //path after HTML path
-     const inputPath = pathName.slice(1, pathName.lastIndexOf("/")); //slice to substring for compare path
-     let newURL;
-     if (nowPath === inputPath)
-          newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/HTML/") + 5)}${pathName}`;
-     else
-          newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/"))}${pathName}`;
-     window.history.pushState({}, "", newURL);
-     return true;
-}
-
-// first params for checkActiveHTML would be added active class
-function checkActiveHTML(nameForm, ...restForm) {
-     restForm.forEach((form) => {
-          if (form.classList.contains("active"))
-               form.classList.remove("active");
-     });
-
-     if (!nameForm.classList.contains("active"))
-          nameForm.classList.add("active");
-     return nameForm;
-}
-
-// DOM navigate handler (SPA)
-// function account's events handle
+// DOM navigate handler (SPAs)
+// func account's events handle
 function accountEvents(elementsObj) {
      const docsURL = location.pathname;
-     const loginBtn = elementsObj.getJsLoginBtn();
-     const registerBtn = elementsObj.getJsRegisterBtn();
-     const forgotBtn = elementsObj.getJsForgotBtn();
+     const loginButtons = elementsObj.getJsLoginBtn();
+     const registerButtons = elementsObj.getJsRegisterBtn();
+     const forgotButtons = elementsObj.getJsForgotBtn();
 
-     if (!loginBtn || !registerBtn || !forgotBtn)
-          return false;
-
-     loginBtn.forEach((btn) => {
-          btn.addEventListener("click", bridge.throttle(() => {
-               if (urlHandler("/account/login", docsURL))
-                    (renderDOMHandler("account", "login"));
-          }, 500, "login"));
+     loginButtons?.forEach((btn) => {
+          btn.addEventListener("click", Bridge.throttle(() => {
+               if (Navigate.urlHandler("/account/login", docsURL))
+                    (Navigate.renderDOMHandler("account", "login"));
+          }, 200, "login"));
      });
 
-     registerBtn.forEach((btn) => {
-          btn.addEventListener("click", bridge.throttle(() => {
-               if (urlHandler("/account/register", docsURL))
-                    renderDOMHandler("account", "register");
-          }, 500, "register"));
+     registerButtons?.forEach((btn) => {
+          btn.addEventListener("click", Bridge.throttle(() => {
+               if (Navigate.urlHandler("/account/register", docsURL))
+                    Navigate.renderDOMHandler("account", "register");
+          }, 200, "register"));
      });
 
-     forgotBtn.forEach((btn) => {
-          btn.addEventListener("click", bridge.throttle(() => {
-               if (urlHandler("/account/forgot_password", docsURL))
-                    renderDOMHandler("account", "forgotPassword");
-          }, 500, "forgotPassword"));
+     forgotButtons?.forEach((btn) => {
+          btn.addEventListener("click", Bridge.throttle(() => {
+               if (Navigate.urlHandler("/account/forgot_password", docsURL))
+                    Navigate.renderDOMHandler("account", "forgotPassword");
+          }, 200, "forgotPassword"));
      })
 }
 
-// render html DOM
-async function renderDOMHandler(nameDOM, ...requestRest) {
-     try {
-          const elementsObj = bridge.default();
-          const webContent = elementsObj.getWebContent();
-          const mainContainer = elementsObj.getMainContainer();
-          if (!webContent || !mainContainer)
-               return false;
-
-          if (nameDOM === "account" && !requestRest) {
-               let loginStatus = localStorage.getItem("loginStatus");
-               if (!loginStatus)
-                    requestRest = "login";
-          }
-
-          // set await promise DOM
-          let scriptDOM;
-          if (nameDOM === "account") {
-               for (let request of requestRest)
-                    // validate request is one of these types or not
-                    if (request === "login" || request === "register" || request === "forgotPassword") {
-                         if (request === "forgotPassword")
-                              request = "forgot_password";
-                         scriptDOM = await bridge.promiseDOMHandler(`/Web-Books-Store/HTML/account/${request}.html`);
-                         break;
-                    }
-                    else
-                         throw new Error(`invalid request: ${request}\ntry again with request type 
-                                         "login", "register", "forgot_password" for account DOM`);
-          }
-          if (nameDOM === "homepage")
-               scriptDOM = await bridge.promiseDOMHandler(`/Web-Books-Store/HTML/index.html`);
-          if (!scriptDOM)
-               throw new Error("scripDOM: " + scriptDOM);
-
-          const title = scriptDOM.querySelector("title");
-          const content = scriptDOM.getElementById("main-content");
-          let placeInsert = Array.from(mainContainer.children).find((element) => element.id === "main-content");
-
-          // for account DOM
-          if (nameDOM === "account") {
-               bridge.query("title").innerText = title.innerText;
-               placeInsert.innerHTML = content.innerHTML;
-               webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
-          }
-
-          // for homepage DOM
-          if (nameDOM === "homepage") {
-               bridge.query("title").innerText = title.innerText;
-               placeInsert.innerHTML = content.innerHTML;
-               webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
-          }
-
-          // call some functions again after render DOM
-          cancelAction(elementsObj);
-          accountEvents(elementsObj);
-     } 
-     catch (error) {
-          alert("something went wrong!\n" + "Error type: " + error + "\nwe will navigate you to homepage!");
-          renderDOMHandler("homepage");
-     }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-     let elementsObj = bridge.default();
-     const pathsObj = bridge.pathNamesHandler();
+     let elementsObj = Bridge.default();
+     const pathsObj = Bridge.pathNamesHandler();
+
      // check DOM of header, sub header and footer
      const checkDOM = setInterval(() => {
           if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
+               // call funcs
                accountEvents(elementsObj);
                staticContents(elementsObj);
+               historyNavigate(elementsObj);
+               trackingNavigate(elementsObj);
                returnHomepage(elementsObj, location.pathname);
+               // remove Interval 
                clearInterval(checkDOM);
           }
      }, 200);
 
-     cancelAction(elementsObj);
-     popStateHandler(pathsObj, location.pathname);
+     // call funcs
+     cancelButtons(elementsObj);
+     slidesHandler("news");
+     Navigate.execQueryHandler();
+     Navigate.popStateHandler(pathsObj, location.pathname);
 })
+
+export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox }
