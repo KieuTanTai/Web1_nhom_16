@@ -1,11 +1,10 @@
 "use strict";
 import * as Bridge from "./Bridge.js";
-import { isEmpty } from "./Interface.js";
+import { formatPrices, isEmpty } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
 
 // get / set products
 function getProductBooks() {
-  console.log(Array.from(JSON.parse(localStorage.getItem("products"))));
   return Array.from(JSON.parse(localStorage.getItem("products")));
 }
 
@@ -13,9 +12,10 @@ function setProductBooks(product) {
   localStorage.setItem("products", JSON.stringify(product));
 }
 
-function getValueQuery (query) {
+function getValueQuery (request) {
   let newURL = new URLSearchParams(window.location.search);
-  return newURL.get(query);
+  let query = newURL.get(request);
+  return query ? query : "";
 }
 
 // for show detail products
@@ -67,14 +67,14 @@ function renderProducts(list, wrapper) {
                               </div>
                          </div>
 
-                         <div class="add-to-cart">
-                              <div title="thêm vào giỏ hàng" class="button">
-                                   <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-                              </div>
-                         </div>
-                    </div>
-               </div> 
-               `;
+          <div class="add-to-cart">
+            <div title="thêm vào giỏ hàng" class="button">
+              <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
   }
   if (wrapper) {
     wrapper.innerHTML = html;
@@ -116,14 +116,26 @@ function productContainers(productsList, container) {
 
       else if (wrapper && containerID === "other-books-container")
         list = productsList.sort((a, b) => a.releaseDate - b.releaseDate).toSpliced(5);
-      else list = productsList.sort((a, b) => a.author - b.author).toSpliced(5);
+      else 
+        list = productsList.sort((a, b) => a.author - b.author).toSpliced(5);
       // render script and add it to DOM
       renderProducts(list, wrapper);
     });
+
+  
     return;
   }
-
+  else {
+    let list;
+    let wrapper = container.querySelector(".product-container");
+    let containerID = container.getAttribute("id");
+    if ( wrapper && containerID === "same-author-container")
+      list = productsList.filter((product) => product.author === Bridge.$(".b-author")?.innerHTML).toSpliced(5);
+    else if (wrapper && containerID === "product-like-container")
+      list = productsList.filter((product) => (product.genre)?.includes(Bridge.$(".product-tags div:first-child p")?.innerHTML)).toSpliced(5);
+    renderProducts(list, wrapper);
+  }
   if (isEmpty(container)) return;
 }
 
-export { getProductBooks, setProductBooks, productContainers, getValueQuery };
+export { getProductBooks, setProductBooks, productContainers, getValueQuery, renderProductDetails, renderProducts };

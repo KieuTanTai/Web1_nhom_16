@@ -17,6 +17,8 @@ function getElementsHandler() {
     getFooter: () => $("#footer-container"),
     getCategories: () => $$(".category-tab"),
     getProductContainer: () => $$(".product-container"),
+    getSameAuthorContainer: () => $("#same-author-container"),
+    getProductLikeContainer: () => $("#product-like-container"),
     // news blogs
     getNewsBtn: () => $$(".news-nav"),
     getNewsBlogs: () => $("#news-blogs-container"),
@@ -39,6 +41,10 @@ function getElementsHandler() {
     getJsLoginBtn: () => $$(".js-login"),
     getJsRegisterBtn: () => $$(".js-register"),
     getJsForgotBtn: () => $$(".js-forgot-password"),
+    // search
+    getResultContainer: () => $("#search-results-container"),
+    getCategoryFilter: () => $("#category-filter"),
+    getPriceFilter: () => $("#price-filter"),
     // others
     getScrollTop: () => $("#scroll-top"),
     getDotsBar: () => $$(".dots-bar"),
@@ -59,6 +65,7 @@ function pathNamesHandler() {
     // news
     "/news/test": "news",
     // other pages url
+    "/search": "search",
     "/cart": "cart",
     "/detail_product": "detail_product",
     // account url
@@ -107,6 +114,7 @@ async function promiseDOMHandler(fileAddress) {
     if (!response.ok)
       throw new Error(`${response.status} (${response.statusText})`);
     const text = await response.text();
+    console.log(text);
     return new DOMParser().parseFromString(text, "text/html");
   } catch (error) {
     throw `error when fetch your address! \n ${error}`;

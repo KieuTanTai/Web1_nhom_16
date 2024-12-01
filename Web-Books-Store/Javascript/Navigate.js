@@ -4,24 +4,29 @@ import * as Action from "./Actions.js";
 import * as Bridge from "./Bridge.js";
 import * as FlashSale from "./FlashSales.js";
 import { slidesHandler } from "./Slides.js";
-import { getValueQuery } from "./Products.js";
+import { getProductBooks, getValueQuery, productContainers } from "./Products.js";
+import { test } from "./search.js";
 
 function sleep(ms) {
      return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // funcs execute url
-function execQueryHandler() {
-     let query = getValueQuery("name");
+function execQueryHandler(request) {
+     let query = getValueQuery(request);
+     let url = location.href;
+     url = url.slice(url.lastIndexOf("/") + 1);
      let productsList = JSON.parse(localStorage.getItem("products"));
-     if (query) {
+     if (query && request === "name") {
           let product = productsList.find((item) => (item.name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-") === query);
           renderDOMHandler("detail_product", product);
      }
-     else {
+     else if (url.includes("detail")) {
           urlHandler("/", location.href);
           renderDOMHandler("homepage");
      }
+     else if (query && request === "query")
+          return query;
 }
 
 // func for popstate listener (it's will be very long)
@@ -72,7 +77,11 @@ function popStateHandler(pathsObj, docsURL) {
                               break;
 
                          case "/detail_product":
-                              execQueryHandler();
+                              execQueryHandler("name");
+                              break;
+                         
+                         case "/search": 
+                              renderDOMHandler("search");
                               break;
 
                          case "/header_footer/footer":
@@ -128,11 +137,9 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                     if (request === "login" || request === "register" || request === "forgotPassword" || request === "user") {
                          if (request === "forgotPassword")
                               request = "forgot_password";
-
                          if (request === "user")
                               if (!localStorage.getItem("hasLogin"))
                                    throw new Error(`you must be login!`);
-
                          scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/account/${request}.html`);
                          break;
                     }
@@ -150,8 +157,8 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/order/${nameDOM}.html`);
           }
 
-          if ((nameDOM === "detail_product") && requestRests)
-               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/detail_product.html`);
+          if ((nameDOM === "detail_product") && requestRests || nameDOM === "search")
+               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/${nameDOM}.html`);
 
           // error if script DOM is invalid
           if (!scriptDOM)
@@ -173,7 +180,6 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           placeInsert.innerHTML = content.innerHTML;
           // css for placeInsert and remove it when show
           placeInsert.style.height = placeInsert.offsetHeight + 5 + "em";
-          webContent.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
 
           // overlay when loading 
           const overlay = document.createElement('div');
@@ -185,14 +191,20 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
           overlay.style.fontSize = 3 + "em";
           overlay.style.color = "var(--primary-white)";
           document.body.appendChild(overlay); 
-          
+          await sleep(250);
+          if (!nameDOM === "/" || !nameDOM === "homepage")
+               webContent.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
           // scroll before show DOM
-          await sleep(500); // fake loading
+          await sleep(0); // fake loading
           document.body.removeChild(overlay);
           placeInsert.removeAttribute("style");
           placeInsert.classList.remove("hidden");
           
           // execute after render
+          if (nameDOM === "search")
+               test();
+
           if (nameDOM === "detail_product" && requestRests) {
                // !book detail
                let product = requestRests[0];
@@ -277,6 +289,14 @@ async function renderDOMHandler(nameDOM, ...requestRests) {
                bookTags.innerText = genre;
                bookCategory.innerText = type;
                Action.setQuantityBox(Bridge.default());
+
+               // execute other container
+               let sameAuthor = elementsObj.getSameAuthorContainer();
+               let productLike = elementsObj.getProductLikeContainer();
+               let list = getProductBooks();
+               productContainers(list, sameAuthor);
+               productContainers(list, productLike);
+
           }
 
           // call some functions again after render DOM
