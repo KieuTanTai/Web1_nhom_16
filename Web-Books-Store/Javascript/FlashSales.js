@@ -14,6 +14,9 @@ function setTimeFS(elementsObj) {
   let countDown = elementsObj.getFSCountDown();
   let fSTime = elementsObj.getTimeFS();
 
+  if (localStorage.getItem("activeFlashSale"))
+    activeFlashSale();
+
   if (countDown && fSTime) {
     let stringTime = localStorage.getItem("flashSaleTime");
     fSTime = Array.from(fSTime.children);
@@ -73,9 +76,10 @@ async function startCountDown(timeArray, elementsObj) {
       if (!container) throw new Error("not found flash sale product!");
       container.innerHTML = "";
       categoryIsEmpty();
+      localStorage.removeItem("activeFlashSale");
     }
   } catch (error) {
-    // alert(error);
+    console.error(error);
   }
 }
 

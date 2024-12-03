@@ -1,52 +1,87 @@
 'use strict'
 import * as Bridge from "./Bridge.js";
 import { activeFlashSale } from "./FlashSales.js";
+import { hiddenException, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
 import { getValueQuery } from "./Products.js";
- import { slidesHandler } from "./Slides.js";
+import { test } from "./search.js";
+import { slidesHandler } from "./Slides.js";
 
 // funcs event
-function cancelButtons(elementsObj) {
-     const cancelBtn = elementsObj.getJsCancelBtn();
-     if (cancelBtn)
-          cancelBtn.forEach((btn) => btn.addEventListener("click", () => window.history.back()));
+function disableSiblingContainer(container) {
+     if (!container) return;
+     Array.of(...container.children).forEach((child) => {
+          child.classList.contains("active") ? child.classList.remove(active) : child;
+          child.offsetWidth > 0 ? child.classList.add("disable") : child;
+     });
 }
 
-function trackingNavigate(elementsObj) {
-     const docsURL = location.pathname;
-     const buttons = elementsObj.getOrderTrackingBtn();
+function returnHomepage(elementsObj) {
+     let testURL = location.pathname;
+     testURL = testURL.slice(testURL.lastIndexOf("/") + 1, testURL.length);
 
-     if (!buttons) return;
-     buttons.forEach((btn) => {
+     const webLogo = elementsObj.getWebLogo();
+     webLogo?.forEach((element) => element.addEventListener("click", () => {
+          if (testURL !== "index.html")
+               window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+          hiddenException();
+     }));
+}
+
+function cancelButtons(elementsObj) {
+     let loginForm = Bridge.$("#login");
+     let forgotForm = Bridge.$("#forgot-password");
+     const cancelBtn = elementsObj.getJsCancelBtn();
+     if (cancelBtn)
+          cancelBtn.forEach((btn) => btn.addEventListener("click", () => {
+               loginForm?.classList.add("active");
+               forgotForm?.classList.contains("active") ? forgotForm.classList.remove("active") : forgotForm;
+          }));
+}
+
+// navigate to order-tracking
+function trackingNavigate(elementsObj) {
+     const container = elementsObj.getStatusContainer();
+     const blankOrder = container?.querySelector("#blank-order");
+     const customerOrder = container?.querySelector("#customer-order");
+     const buttons = elementsObj.getOrderTrackingBtn();
+     const trackers = localStorage.getItem("trackers");
+     if (!buttons || !blankOrder || !customerOrder) return;
+
+     buttons.forEach((btn) => { 
           btn.addEventListener("click", Bridge.throttle(() => {
-               if (Navigate.urlHandler("/order/status", docsURL))
-                    Navigate.renderDOMHandler("orderStatus");
+               hiddenException("order-content");
+               disableSiblingContainer(elementsObj.getOrderContent());
+               (elementsObj.getStatusContainer())?.classList.remove("disable");
+               if (!trackers) {
+                    blankOrder.classList.add("active");
+                    customerOrder.classList.contains("active") ? customerOrder.classList.remove("active") : customerOrder;
+               }
+               else {
+                    customerOrder.classList.add("active");
+                    blankOrder.classList.contains("active") ? blankOrder.classList.remove("active") : blankOrder;
+               }
+
+
           }, 200, "statusNav"));
      });
 }
 
-function returnHomepage(elementsObj, nowPath) {
-     const webLogo = elementsObj.getWebLogo();
-     const originPath = nowPath.slice(0, nowPath.indexOf("/HTML/") + 6);
-     if (webLogo)
-          webLogo.forEach((element) => element.addEventListener("click", () => location.replace(`${location.origin}${originPath}`)));
-}
-
+// navigate to history tracking
 function historyNavigate(elementsObj) {
-     const docsURL = location.pathname;
-     const buttons = elementsObj.getHistoryBtn();
+     let historyBtn = elementsObj.getHistoryBtn();
+     let historyContainer = elementsObj.getHistoryOrder();
 
-     if (!buttons) return;
-     buttons.forEach((btn) => {
-          btn.addEventListener("click", Bridge.throttle(() => {
-               if (Navigate.urlHandler("/order/history", docsURL))
-                    Navigate.renderDOMHandler("orderHistory");
-          }, 200, "historyNav"));
-     });
+     historyBtn.forEach((btn) => btn.addEventListener("click", () => {
+          hiddenException("order-content");
+          disableSiblingContainer(elementsObj.getOrderContent());
+          (elementsObj.getHistoryContainer())?.classList.remove("disable");
+          historyContainer.classList.add("active");
+     }));
 }
 
-
-function setQuantityBox (elementsObj) {
+// set quantity box on detail product
+function setQuantityBox(elementsObj) {
      let reduceBtn = elementsObj.getQuantityBox().querySelector("input[type=button].reduce");
      let increaseBtn = elementsObj.getQuantityBox().querySelector("input[type=button].increase");
      let quantity = elementsObj.getQuantityBox().querySelector("input[type=text]#quantity");
@@ -63,31 +98,13 @@ function scrollToHandler(nameStaticPage) {
      let staticPage;
      const elementsObj = Bridge.default();
 
-     if (nameStaticPage === "news")
+     if (nameStaticPage === "news") {
           staticPage = elementsObj.getNewsBlogs();
+          hiddenException();
+     }
 
      if (nameStaticPage === "services")
           staticPage = elementsObj.getFooter();
-
-     if (!staticPage && nameStaticPage === "news") {
-          // edit state and render homepage where news has been located
-          const nowPath = location.pathname;
-          //window.history.pushState({}, "", `${nowPath.slice(0, nowPath.lastIndexOf("/HTML/") + 6)}index.html`);
-          if (Navigate.urlHandler("/", nowPath))
-               Navigate.renderDOMHandler("homepage");
-
-          const checkBlog = setInterval(() => {
-               staticPage = elementsObj.getNewsBlogs();
-               if (staticPage) {
-                    window.scroll({
-                         top: staticPage.offsetTop + 3 * 16,
-                         left: 0,
-                         behavior: "smooth"
-                    });
-                    clearInterval(checkBlog);
-               }
-          }, 600);
-     }
      else if (!staticPage && nameStaticPage === "services") {
           alert("not found services!");
           return false;
@@ -95,18 +112,10 @@ function scrollToHandler(nameStaticPage) {
 
      // check if action is scroll to top or not
      if (nameStaticPage === "top")
-          window.scroll({
-               top: 0,
-               left: 0,
-               behavior: "smooth"
-          });
+          window.scroll({ top: 0, left: 0, behavior: "smooth" });
 
      else if (staticPage)
-          window.scroll({
-               top: staticPage.offsetTop + 3 * 16,
-               left: 0,
-               behavior: "smooth"
-          });
+          window.scroll({ top: staticPage.offsetTop + 3 * 16, left: 0, behavior: "smooth" });
 
 }
 
@@ -137,36 +146,46 @@ function staticContents(elementsObj) {
 // DOM navigate handler (SPAs)
 // func account's events handle
 function accountEvents(elementsObj) {
-     const docsURL = location.pathname;
      const loginButtons = elementsObj.getJsLoginBtn();
+     let loginForm = Bridge.$("#login");
      const registerButtons = elementsObj.getJsRegisterBtn();
+     let registForm = Bridge.$("#register");
      const forgotButtons = elementsObj.getJsForgotBtn();
+     let forgotForm = Bridge.$("#forgot-password");
 
      loginButtons?.forEach((btn) => {
           btn.addEventListener("click", Bridge.throttle(() => {
-               // if (Navigate.urlHandler("/account/login", docsURL))
-               //      (Navigate.renderDOMHandler("account", "login"));
+               hiddenException("account-content");
+               loginForm?.classList.add("active");
+               registForm?.classList.contains("active") ? registForm.classList.remove("active") : registForm;
+               forgotForm?.classList.contains("active") ? forgotForm.classList.remove("active") : forgotForm;
+               scrollView();
           }, 200, "login"));
      });
 
      registerButtons?.forEach((btn) => {
           btn.addEventListener("click", Bridge.throttle(() => {
-               // if (Navigate.urlHandler("/account/register", docsURL))
-               //      Navigate.renderDOMHandler("account", "register");
+               hiddenException("account-content");
+               registForm?.classList.add("active");
+               loginForm?.classList.contains("active") ? loginForm.classList.remove("active") : loginForm;
+               forgotForm?.classList.contains("active") ? forgotForm.classList.remove("active") : forgotForm;
+               scrollView();
           }, 200, "register"));
      });
 
      forgotButtons?.forEach((btn) => {
           btn.addEventListener("click", Bridge.throttle(() => {
-               // if (Navigate.urlHandler("/account/forgot_password", docsURL))
-               //      Navigate.renderDOMHandler("account", "forgotPassword");
+               hiddenException("account-content");
+               forgotForm?.classList.add("active");
+               loginForm?.classList.contains("active") ? loginForm.classList.remove("active") : loginForm;
+               registForm?.classList.contains("active") ? registForm.classList.remove("active") : registForm;
+               scrollView();
           }, 200, "forgotPassword"));
      })
 }
 
 document.addEventListener("DOMContentLoaded", () => {
      let elementsObj = Bridge.default();
-     const pathsObj = Bridge.pathNamesHandler();
 
      // check DOM of header, sub header and footer
      const checkDOM = setInterval(() => {
@@ -176,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
                staticContents(elementsObj);
                historyNavigate(elementsObj);
                trackingNavigate(elementsObj);
-               returnHomepage(elementsObj, location.pathname);
+               returnHomepage(elementsObj);
                // remove Interval 
                clearInterval(checkDOM);
           }
@@ -186,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
      cancelButtons(elementsObj);
      slidesHandler("news");
      Navigate.execQueryHandler();
-     Navigate.popStateHandler(pathsObj, location.pathname);
+     Navigate.popStateHandler(location.href);
 })
 
 export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox }

@@ -19,7 +19,6 @@
 
           <main id="main-container">
                <!-- html for sub header -->
-
                <!-- breadcrumb -->
                <section class="breadcrumb-list disable">
                     <div class="grid wide">
@@ -248,8 +247,8 @@
                               </div>
 
                               <!-- account -->
-                              <div id="account-content" class="grid-col col-l-12 col-m-12 col-s-12 disable">
-                                   <section id="login-registration-form" class="js-account-form disable">
+                              <div id="account-content" class="grid-col col-l-12 col-m-12 col-s-12">
+                                   <section id="login-registration-form" class="js-account-form">
                                         <div class="user-box">
                                              <div id="login" class="text-center">
                                                   <div class="font-size-20 uppercase font-bold">đăng nhập</div>
@@ -352,13 +351,11 @@
                                                   <div class="font-size-20 uppercase font-bold">tài khoản của bạn</div>
                                                   <div class="margin-left-12 js-logout exit-color">Thoát</div>
                                              </div>
-                                             <p class="user-orders margin-bottom-16 font-size-14 font-light">
-                                                  Bạn chưa đặt mua sản phẩm.
-                                             </p>
+                                             <p class="user-orders margin-bottom-16 font-size-14 font-light">Bạn chưa đặt mua sản phẩm.</p>
      
-                                             <div class="account-history-bill disable">
+                                             <div class="account-history-bill">
                                                   <article class="history-order-link button flex justify-center align-center ">
-                                                       <div class="history-order-btn font-bold capitalize">xem lịch sử mua hàng</div>
+                                                       <div class="history-order-btn font-bold capitalize disable">xem lịch sử mua hàng</div>
                                                   </article>
                                              </div>
      
@@ -507,7 +504,7 @@
                               </div>
 
                               <!-- search -->
-                              <div id="search-content" class="grid-col col-l-12 col-m-12 col-s-12 disable">
+                              <div id="search-content" class="grid-col col-l-12 col-m-12 col-s-12">
                               <section id="filters">
                                    <label for="category-filter">Thể loại:</label>
                                    <select id="category-filter">
@@ -545,20 +542,18 @@
                               </div>
                               
                               <!-- order tracking, history order -->
-                              <div id="order-content" class="grid-col col-l-12 col-m-12 col-s-12 disable">
+                              <div id="order-content" class="grid-col col-l-12 col-m-12 col-s-12">
                                    <!-- status -->
-                                   <div class="order-status-container margin-y-24 grid-col col-l-12 col-m-12 col-s-12 disable">
-                                        <section id="blank-order">
+                                   <div class="order-status-container margin-y-24 grid-col col-l-12 col-m-12 col-s-12">
+                                        <section id="blank-order" class="margin-y-16">
                                              <img src="https://m.media-amazon.com/images/G/31/cart/empty/kettle-desaturated._CB424694257_.svg">
-                                             <span class="font-size-16 padding-bottom-16 margin-y-12">
-                                                  Không có đơn đặt hàng nào.
-                                             </span>
+                                             <span class="font-size-16 padding-bottom-16 margin-y-12">Không có đơn đặt hàng nào.</span>
                                              <section class="flex justify-center align-center font-bold capitalize margin-y-12">
                                                   <a href=" " target="_blank" class="category-btn button">trang chủ</a>
                                              </section>
                                         </section>
      
-                                        <section id="customer-order" class="active">
+                                        <section id="customer-order" class="">
                                              <div class="order-status-header grid-col col-l-12 col-m-12 col-s-12 padding-bottom-8 margin-bottom-8">
                                                   <div class="uppercase font-bold text-center font-size-20">đơn hàng của bạn</div>
                                              </div>
@@ -806,8 +801,8 @@
                                    </div>
 
                                    <!-- history -->
-                                   <div class="history-tracking-container margin-y-24 grid-col col-l-12 col-m-12 col-s-12 disable">
-                                        <section id="history-order-container" class="active">
+                                   <div class="history-tracking-container margin-y-24 grid-col col-l-12 col-m-12 col-s-12">
+                                        <section id="history-order-container" class="">
                                              <div class="order-status-header padding-bottom-8 margin-bottom-16">
                                                   <p class="uppercase font-bold text-center font-size-20">lịch sử mua hàng</p>
                                              </div>
@@ -1124,4 +1119,4 @@
      </div>
 </body>
 
-</html>
+ </html>

@@ -19,6 +19,20 @@ function getElementsHandler() {
     getProductContainer: () => $$(".product-container"),
     getSameAuthorContainer: () => $("#same-author-container"),
     getProductLikeContainer: () => $("#product-like-container"),
+    // other pages container
+    getIndexContainer: () => $("#index-content"),
+    getDetailContent: () => $("#detai-content"),
+    getSearchContent: () => $("#search-content"),
+    // block for order
+    getOrderContent: () => $("#order-content"),
+    getBlankOrder: () => $("#blank-order"),
+    getCustomerOrder: () => $("#customer-order"),
+    getStatusContainer: () => $(".order-status-container"),
+    getHistoryContainer: () => $(".history-tracking-container"),
+    // block for account
+    getAccountContainer: () => $("#account-content"),
+    getAccountForm: () => $("#login-registration-form"),
+    getUserDetail: () => $("#user-detail"),
     // news blogs
     getNewsBtn: () => $$(".news-nav"),
     getNewsBlogs: () => $("#news-blogs-container"),
@@ -26,6 +40,7 @@ function getElementsHandler() {
     getTimeFS: () => $(".fs-time"),
     getFSTable: () => $("#fs-container"),
     getFSCountDown: () => $(".fs-countdown"),
+    getHistoryOrder: () => $(".history-tracking-container #history-order-container"),
     // buttons
     getNavBtn: () => $$(".nav-btn"),
     getPrevBtn: () => $$(".prev-btn"),
@@ -54,35 +69,6 @@ function getElementsHandler() {
     getImages: () => $$(".product-image.js-item img"),
   };
   return getElements;
-}
-
-// obj of path name
-function pathNamesHandler() {
-  let pathNamesObj = {
-    // root url
-    "/": "homepage",
-    "/index": "homepage",
-    // news
-    "/news/test": "news",
-    // other pages url
-    "/search": "search",
-    "/cart": "cart",
-    "/detail_product": "detail_product",
-    // account url
-    "/account/": "account",
-    "/account/login": "login",
-    "/account/register": "sign up",
-    "/account/forgot_password": "forgot password",
-    "/account/user": "user",
-    // order url
-    "/order/": "order",
-    "/order/status": "status",
-    "/order/history": "history",
-    // forbidden url
-    "/header_footer/footer": "footer",
-    "/header_footer/header": "header",
-  };
-  return pathNamesObj;
 }
 
 function throttle(callback, delayTime, key) {
@@ -114,7 +100,6 @@ async function promiseDOMHandler(fileAddress) {
     if (!response.ok)
       throw new Error(`${response.status} (${response.statusText})`);
     const text = await response.text();
-    console.log(text);
     return new DOMParser().parseFromString(text, "text/html");
   } catch (error) {
     throw `error when fetch your address! \n ${error}`;
@@ -122,4 +107,4 @@ async function promiseDOMHandler(fileAddress) {
 }
 
 export default getElementsHandler;
-export { $, $$, pathNamesHandler, promiseDOMHandler, throttle, debounce };
+export { $, $$, promiseDOMHandler, throttle, debounce };

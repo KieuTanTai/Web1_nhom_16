@@ -19,10 +19,11 @@
 #blank-order, 
 #customer-order,
 #history-order-container {
-     padding: 1em;
+     padding: 1.25em;
      display: none;
      background: var(--primary-white);
      border-radius: var(--higher-radius);
+     position: relative;
 }
 
 .order-status-header {

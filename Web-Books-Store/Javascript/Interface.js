@@ -3,6 +3,32 @@ import * as Bridge from "./Bridge.js";
 import * as FlashSale from "./FlashSales.js";
 import * as RenderProducts from "./Products.js";
 
+function scrollView() {
+  let webContent = Bridge.default().getWebContent();
+  webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
+}
+
+async function fakeOverlay(container) {
+  const overlay = document.createElement('div');
+  overlay.className = 'overlay';
+  overlay.innerHTML = 'Loading... :3';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
+  overlay.style.fontSize = 3 + "em";
+  overlay.style.color = "var(--primary-white)";
+  document.body.appendChild(overlay);
+  await sleep(250);
+  if (!nameDOM === "/" || !nameDOM === "homepage")
+    webContent.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
+  // scroll before show DOM
+  await sleep(0); // fake loading
+  document.body.removeChild(overlay);
+  container.removeAttribute("style");
+  container.classList.remove("hidden");
+}
+
 // check container is empty or not
 function isEmpty(container) {
   let children = container.children;
@@ -23,9 +49,30 @@ function formatPrices(elementsObj) {
     });
     pricesContainer.forEach((element) => {
       if (!element.innerHTML.includes("₫"))
-          element.innerText = formatPricesHandler.format(element.innerText)
+        element.innerText = formatPricesHandler.format(element.innerText)
     });
   }
+}
+
+function hiddenException(exception) {
+  exception = !exception ? "index-content" : exception;
+  let getHandler = Bridge.default(); 
+  let container = getHandler.getMainContainer().querySelector("#main-content .grid-row")?.children;
+  let newsContainer = getHandler.getNewsBlogs();
+  container = Array.of(...container);
+
+  container.forEach((element) => {
+    if (element.getAttribute("id") !== exception)
+      element.classList.add("disable");
+    else
+      element.classList.remove("disable");
+  });
+
+  if (exception === "index-content") {
+    newsContainer?.classList.contains("disable") ? newsContainer.classList.remove("disable") : newsContainer;
+    return;
+  }
+  newsContainer?.classList.add("disable");
 }
 
 //change DOM on categories if it not have any product inside
@@ -33,11 +80,11 @@ function categoryIsEmpty() {
   Bridge.default().getCategories().forEach((category) => {
     const container = category.querySelector(".product-container");
     if (isEmpty(container)) {
-        container.innerHTML = '<div class="empty-mess font-size-20 font-bold">Không có sản phẩm trong phần này</div>';
-        container.classList.add( "flex", "full-height", "align-center", "justify-center");
-        container.querySelector(".nav-btn")?.classList.add("disable");
-        category.querySelector(".category-btn")?.classList.add("disable");
-      }
+      container.innerHTML = '<div class="empty-mess font-size-20 font-bold">Không có sản phẩm trong phần này</div>';
+      container.classList.add("flex", "full-height", "align-center", "justify-center");
+      container.querySelector(".nav-btn")?.classList.add("disable");
+      category.querySelector(".category-btn")?.classList.add("disable");
+    }
   });
 }
 
@@ -91,17 +138,16 @@ function resizeSmNav(elementsObj) {
 }
 
 // default add header footer and initProducts
-async function addDOMHeader(elementsObj) {
+async function addDOMHeaderFooter(elementsObj) {
   try {
     const DOM = await Bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/headerFooter.html");
     const header = DOM.getElementById("header-container");
     const subHeader = DOM.getElementById("sub-header");
     const footer = DOM.getElementById("footer-container");
     let placeInsert = elementsObj.getMainContainer();
-    const webContent = elementsObj.getWebContent();
     // add elements into DOM
-    webContent.before(header);
-    webContent.after(footer);
+    placeInsert.insertAdjacentElement("beforebegin",header);
+    placeInsert.insertAdjacentElement("afterEnd",footer);
     placeInsert.insertAdjacentElement("afterbegin", subHeader);
   } catch (error) {
     alert(error);
@@ -132,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const elementsObj = Bridge.default();
 
   //create check DOM of Header and Footer
-  addDOMHeader(elementsObj);
+  addDOMHeaderFooter(elementsObj);
   const checkDOM = setInterval(() => {
     if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
       resizeSmNav(elementsObj);
@@ -142,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // call funcs
   getInitProducts(elementsObj);
+  hiddenException();
 });
 
-export { formatPrices, resizeImages, isEmpty, categoryIsEmpty, getInitProducts };
+export { formatPrices, resizeImages, isEmpty, categoryIsEmpty, getInitProducts, hiddenException, scrollView, fakeOverlay };
