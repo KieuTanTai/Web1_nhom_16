@@ -18,8 +18,9 @@ function disableSiblingContainer(container) {
 
 function returnHomepage(elementsObj) {
      let testURL = location.pathname;
-     testURL = testURL.slice(testURL.lastIndexOf("/") + 1, testURL.length);
+     testURL = testURL.slice(testURL.lastIndexOf("/") + 1, testURL.indexOf("?") + 1);
 
+     // console.log(testURL);
      const webLogo = elementsObj.getWebLogo();
      webLogo?.forEach((element) => element.addEventListener("click", () => {
           if (testURL !== "index.html")

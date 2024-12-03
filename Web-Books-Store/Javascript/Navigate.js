@@ -4,7 +4,7 @@ import * as Action from "./Actions.js";
 import * as Bridge from "./Bridge.js";
 import * as FlashSale from "./FlashSales.js";
 import { slidesHandler } from "./Slides.js";
-import { getProductBooks, getValueQuery, productContainers } from "./Products.js";
+import { dynamicDetail, getProductBooks, getValueQuery, productContainers } from "./Products.js";
 import { test } from "./search.js";
 
 function sleep(ms) {
@@ -19,16 +19,24 @@ function execQueryHandler(request) {
      let productsList = JSON.parse(localStorage.getItem("products"));
      if (query && request === "name") {
           let product = productsList.find((item) => (item.name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-") === query);
-          // renderDOMHandler("detail_product", product);
-          console.log(query);
+          dynamicDetail(product);
      }
      else if (query && request === "query")
           return query;
 }
 
 // func for popstate listener (it's will be very long)
-function popStateHandler(docsURL) {
-     window.addEventListener("popstate", Bridge.throttle(() => execQueryHandler("name"), 200, "popstate"));
+function popStateHandler() {
+     window.addEventListener("popstate", Bridge.throttle(() => {
+          let url = location.href;
+          let path = url.slice(url.lastIndexOf("/") + 1, url.length);
+          if (!path) {
+               window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+               Interface.hiddenException();
+          }
+               
+          execQueryHandler("name");
+     }, 200, "popstate"));
 }
 
 // handle url path changed
@@ -157,4 +165,4 @@ function callAgain(elementsObj, ...names) {
 
 }
 
-export { popStateHandler, urlHandler, renderDOMHandler, callAgain, execQueryHandler }
+export { popStateHandler, urlHandler, renderDOMHandler, callAgain, execQueryHandler, sleep }

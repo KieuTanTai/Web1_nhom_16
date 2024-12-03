@@ -1,7 +1,7 @@
 "use strict";
 import { setQuantityBox } from "./Actions.js";
 import * as Bridge from "./Bridge.js";
-import { formatPrices, hiddenException, isEmpty, scrollView } from "./Interface.js";
+import { fakeOverlay, formatPrices, hiddenException, isEmpty, resizeImages, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
 
 // get / set products
@@ -19,8 +19,9 @@ function getValueQuery(request) {
   return query ? query : "";
 }
 
-function dynamicDetail(product, container) {
+async function dynamicDetail(product) {
   // !book detail
+  let container = Bridge.default().getMainContainer();
   const elementsObj = Bridge.default();
   let currentTitle = Bridge.$("title");
   let quantity = product.quantity;
@@ -47,6 +48,8 @@ function dynamicDetail(product, container) {
   let listOptions = container.querySelector("#product-selector-options");
   let selectOptions = Array.from(listOptions?.children);
 
+  await Navigate.sleep(20);
+  scrollView();
   // !set data (CONTINUE) GET FIELDS ON OBJ -> ADD DATA TO DOM 
   currentTitle.innerText = productName;
   // img
@@ -88,7 +91,7 @@ function dynamicDetail(product, container) {
   if (!productCategories)
     selectOptions.remove();
   if (!productCategories.includes("normal"))
-    (selectOptions.find((child) => child.value === "normal")).remove();
+    (selectOptions.find((child) => child.value === "normal"))?.remove();
   if (!productCategories.includes("special"))
     (selectOptions.find((child) => child.value === "special"))?.remove();
   if (productCategories.includes("collectible"))
@@ -113,8 +116,12 @@ function dynamicDetail(product, container) {
   // call other functions
   productContainers(list, sameAuthor);
   productContainers(list, productLike);
+  callFuncsAgain(elementsObj);
+}
+
+async function callFuncsAgain (elementsObj) {
+  resizeImages(elementsObj);
   formatPrices(elementsObj);
-  scrollView();
 }
 
 // for show detail products
@@ -127,10 +134,10 @@ async function renderProductDetails(list, wrapper) {
       child.querySelector(".block-product")?.addEventListener("click", () => {
         let bookName = (list[index].name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-");
         // change path with path request
-        let newURL = `${location.href.slice(0, location.href.lastIndexOf("/") + 1)}?name=${bookName}`;
+        let newURL = `${location.href.slice(0, location.href.lastIndexOf("/") + 1)}index.html?name=${bookName}`;
         window.history.pushState({}, "", newURL);
         hiddenException("detail-content");
-        dynamicDetail(list[index], Bridge.default().getMainContainer());
+        dynamicDetail(list[index]);
       });
     });
   } catch (error) {
@@ -237,4 +244,4 @@ function productContainers(productsList, container) {
   if (isEmpty(container)) return;
 }
 
-export { getProductBooks, setProductBooks, productContainers, getValueQuery, renderProductDetails, renderProducts };
+export { getProductBooks, setProductBooks, productContainers, getValueQuery, renderProductDetails, renderProducts, dynamicDetail, callFuncsAgain };

@@ -1,11 +1,13 @@
 "use strict";
 import * as Bridge from "./Bridge.js";
 import * as FlashSale from "./FlashSales.js";
+import { sleep } from "./Navigate.js";
 import * as RenderProducts from "./Products.js";
 
 function scrollView() {
   let webContent = Bridge.default().getWebContent();
-  webContent.scrollIntoView({ behavior: "instant", block: "start", inline: "nearest" });
+  webContent.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  // window.scrollTo(0, 0);
 }
 
 async function fakeOverlay(container) {
@@ -18,12 +20,11 @@ async function fakeOverlay(container) {
   overlay.style.fontSize = 3 + "em";
   overlay.style.color = "var(--primary-white)";
   document.body.appendChild(overlay);
-  await sleep(250);
-  if (!nameDOM === "/" || !nameDOM === "homepage")
-    webContent.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  await sleep(150);
+  scrollView();
 
   // scroll before show DOM
-  await sleep(0); // fake loading
+  await sleep(50); // fake loading
   document.body.removeChild(overlay);
   container.removeAttribute("style");
   container.classList.remove("hidden");
