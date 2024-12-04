@@ -103,7 +103,7 @@ async function promiseDOMHandler(fileAddress) {
     const text = await response.text();
     return new DOMParser().parseFromString(text, "text/html");
   } catch (error) {
-    throw `error when fetch your address! \n ${error}`;
+    console.error(`error when fetch your address! \n ${error}`);
   }
 }
 

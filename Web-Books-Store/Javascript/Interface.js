@@ -159,7 +159,7 @@ async function addDOMHeaderFooter(elementsObj) {
     placeInsert.insertAdjacentElement("afterEnd", footer);
     placeInsert.insertAdjacentElement("afterbegin", subHeader);
   } catch (error) {
-    alert(error);
+    console.error(error);
   }
 }
 
@@ -178,7 +178,7 @@ async function getInitProducts(elementsObj) {
     resizeImages(elementsObj);
     categoryIsEmpty();
   } catch (error) {
-    alert(error);
+    console.error(error);
   }
 }
 
