@@ -243,9 +243,7 @@
 }
 
 #sub-header .sub-menu-item.history-order-link:hover {
-     max-width: 26%;
-     padding: 0.5em;
-     margin: auto;
+
      cursor: pointer;
      box-shadow: unset;
      /* box-shadow: 0 0 1px var(--primary-dark); */

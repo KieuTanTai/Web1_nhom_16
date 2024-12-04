@@ -115,6 +115,9 @@
 }
 
 #customer-order .history-order-link {
+     max-width: 26%;
+     padding: 0.5em;
+     margin: auto;
      color: var(--primary-white);
      background: var(--main-color);
      border-radius: var(--normal-radius);
