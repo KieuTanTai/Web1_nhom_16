@@ -1,20 +1,11 @@
 'use strict'
 import * as Bridge from "./Bridge.js";
 import { activeFlashSale } from "./FlashSales.js";
-import { hiddenException, scrollView } from "./Interface.js";
+import { disableSiblingContainer, hiddenException, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
 import { getValueQuery } from "./Products.js";
 import { test } from "./search.js";
 import { slidesHandler } from "./Slides.js";
-
-// funcs event
-function disableSiblingContainer(container) {
-     if (!container) return;
-     Array.of(...container.children).forEach((child) => {
-          child.classList.contains("active") ? child.classList.remove(active) : child;
-          child.offsetWidth > 0 ? child.classList.add("disable") : child;
-     });
-}
 
 function returnHomepage(elementsObj) {
      let testURL = location.pathname;
@@ -27,6 +18,22 @@ function returnHomepage(elementsObj) {
                window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
           hiddenException();
      }));
+}
+
+// header navigation button on mobile
+function smNavigationMenu (elementsObj) {
+     let navigateBtn = elementsObj.getMobileNavigate();
+     navigateBtn.addEventListener("click", (event) => {
+          let overlay = navigateBtn.querySelector(".overlay");
+          overlay.classList.add("active"); 
+          overlay.classList.remove("overflowText");
+          overlay.classList.add("menu");
+          if (event.target.classList.contains("overlay")) {
+               overlay.classList.remove("menu");
+               overlay.classList.add("overflowText");
+               setTimeout(() => overlay.classList.remove("active"), 200);
+          }
+     });
 }
 
 function cancelButtons(elementsObj) {
@@ -72,10 +79,22 @@ function trackingNavigate(elementsObj) {
 function historyNavigate(elementsObj) {
      let historyBtn = elementsObj.getHistoryBtn();
      let historyContainer = elementsObj.getHistoryOrder();
+     let lists = localStorage.getItem("hadBought"); 
 
      historyBtn.forEach((btn) => btn.addEventListener("click", () => {
           hiddenException("order-content");
           disableSiblingContainer(elementsObj.getOrderContent());
+          if (!lists) {
+               let orderContainer = elementsObj.getOrderContent();
+               let statusContainer = orderContainer.querySelector(".order-status-container"); 
+               disableSiblingContainer(statusContainer);
+
+               (orderContainer)?.classList.remove("disable");
+               (statusContainer)?.classList.remove("disable");
+               (elementsObj.getBlankOrder()).classList.add("active");
+               return;
+          }
+          
           (elementsObj.getHistoryContainer())?.classList.remove("disable");
           historyContainer.classList.add("active");
      }));
@@ -197,6 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
                historyNavigate(elementsObj);
                trackingNavigate(elementsObj);
                returnHomepage(elementsObj);
+               smNavigationMenu(elementsObj);
                // remove Interval 
                clearInterval(checkDOM);
           }
@@ -207,6 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
      slidesHandler("news");
      Navigate.execQueryHandler();
      Navigate.popStateHandler(location.href);
+
 })
 
 export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox }

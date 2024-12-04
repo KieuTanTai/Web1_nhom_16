@@ -114,22 +114,11 @@
      position: relative;
 }
 
-.history-order-link {
-     max-width: 26%;
-     padding: 0.5em;
-     margin: auto;
-     cursor: pointer;
-}
-
 #customer-order .history-order-link {
      color: var(--primary-white);
      background: var(--main-color);
      border-radius: var(--normal-radius);
      border: 1px solid var(--main-color);
-}
-
-.history-order-link:hover {
-     box-shadow: 0 0 1px var(--primary-dark);
 }
 
 .history-order-table .block-product {

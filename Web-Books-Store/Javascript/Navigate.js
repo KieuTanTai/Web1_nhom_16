@@ -13,12 +13,21 @@ function sleep(ms) {
 
 // funcs execute url
 function execQueryHandler(request) {
+     // case not have
+     if (!request) {
+          let href = location.href; 
+          request = href.slice(href.lastIndexOf("?") + 1, href.lastIndexOf("="));
+     }
+
+     // case have request
      let query = getValueQuery(request);
      let url = location.href;
      url = url.slice(url.lastIndexOf("/") + 1);
      let productsList = JSON.parse(localStorage.getItem("products"));
      if (query && request === "name") {
           let product = productsList.find((item) => (item.name).replaceAll("&", "").replaceAll("!", "").replaceAll(" ", "-") === query);
+          if (Bridge.$("#detail-content").classList.contains("disable"))
+               Interface.hiddenException("detail-content");
           dynamicDetail(product);
      }
      else if (query && request === "query")
@@ -55,92 +64,6 @@ function urlHandler(pathName, docsURL) {
      return true;
 }
 
-// render html specific DOM with required is name of DOM and option is requests
-async function renderDOMHandler(nameDOM, ...requestRests) {
-     const originPath = location.pathname.slice(0, location.pathname.lastIndexOf("/HTML/") + 5);
-     try {
-          const webContent = elementsObj.getWebContent();
-          const mainContainer = elementsObj.getMainContainer();
-          const placeInsert = Array.from(mainContainer.children).find((element) => element.id === "main-content");
-
-          if (!webContent || !mainContainer) return false;
-          // set default request when name of DOM is account
-          if (nameDOM === "account" && !requestRests) {
-               let loginStatus = localStorage.getItem("loginStatus");
-               if (!loginStatus) requestRests = "login";
-          }
-          // set await promise DOM
-          let scriptDOM, request;
-          if (nameDOM === "account") {
-               for (request of requestRests)
-                    // validate request is one of these types or not
-                    if (request === "login" || request === "register" || request === "forgotPassword" || request === "user") {
-                         if (request === "forgotPassword")
-                              request = "forgot_password";
-                         if (request === "user")
-                              if (!localStorage.getItem("hasLogin"))
-                                   throw new Error(`you must be login!`);
-                         scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/account/${request}.html`);
-                         break;
-                    }
-                    else
-                         throw new Error(`invalid request: ${request}\ntry again with request type "login", "register", "forgotPassword" for account DOM`);
-          }
-
-          if (nameDOM === "homepage") {
-               // call again some funcs
-               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/index.html`);
-          }
-
-          if (nameDOM === "orderStatus" || nameDOM === "orderHistory") {
-               nameDOM = (nameDOM.replace("order", "")).toLowerCase();
-               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/order/${nameDOM}.html`);
-          }
-
-          if ((nameDOM === "detail_product") && requestRests || nameDOM === "search")
-               scriptDOM = await Bridge.promiseDOMHandler(`${originPath}/${nameDOM}.html`);
-
-          // error if script DOM is invalid
-          if (!scriptDOM)
-               throw new Error("scripDOM: " + scriptDOM);
-          let title = scriptDOM.querySelector("title");
-          let content = scriptDOM.getElementById("main-content");
-
-          // render DOM
-          // !for account DOM
-          if (nameDOM === "account" && request === "forgot_password")
-               placeInsert.style.paddingTop = 0.7 + "em";
-          else
-               placeInsert.removeAttribute("style");
-
-          // !for render DOM
-          let currentTitle = Bridge.$("title");
-          currentTitle.innerText = title.innerText;
-          placeInsert.classList.add("hidden"); // for fake loading
-          placeInsert.innerHTML = content.innerHTML;
-          // css for placeInsert and remove it when show
-          placeInsert.style.height = placeInsert.offsetHeight + 5 + "em";
-
-          // overlay when loading 
-
-
-          // execute after render
-          if (nameDOM === "search")
-               test();
-
-          if (nameDOM === "detail_product" && requestRests) {
-
-          }
-
-          // call some functions again after render DOM
-          callAgain(elementsObj, "homepage");
-
-     }
-     catch (error) {
-          alert("something went wrong!\n" + "Error type: " + error);
-     }
-}
-
 // call again
 function callAgain(elementsObj, ...names) {
      names.forEach((name) => {
@@ -165,4 +88,4 @@ function callAgain(elementsObj, ...names) {
 
 }
 
-export { popStateHandler, urlHandler, renderDOMHandler, callAgain, execQueryHandler, sleep }
+export { popStateHandler, urlHandler, callAgain, execQueryHandler, sleep }

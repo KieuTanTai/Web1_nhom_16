@@ -51,6 +51,7 @@ function getElementsHandler() {
     getHistoryBtn: () => $$(".history-order-link"),
     getOrderTrackingBtn: () => $$(".order-tracking"),
     getQuantityBox: () => $(".quantity-box"),
+    getMobileNavigate: () => $(".header-items.s-m-nav-btn"),
     // account buttons
     getJsAccountBtn: () => $("#user-account"),
     getJsLoginBtn: () => $$(".js-login"),

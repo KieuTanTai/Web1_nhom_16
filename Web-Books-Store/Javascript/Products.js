@@ -15,12 +15,13 @@ function setProductBooks(product) {
 
 function getValueQuery(request) {
   let newURL = new URLSearchParams(window.location.search);
-  let query = decodeURIComponent(newURL.get(request));
+  let query = newURL.get(request);
   return query ? query : "";
 }
 
 async function dynamicDetail(product) {
   // !book detail
+  if (!product) return;
   let container = Bridge.default().getMainContainer();
   const elementsObj = Bridge.default();
   let currentTitle = Bridge.$("title");
@@ -48,8 +49,7 @@ async function dynamicDetail(product) {
   let listOptions = container.querySelector("#product-selector-options");
   let selectOptions = Array.from(listOptions?.children);
 
-  await Navigate.sleep(20);
-  scrollView();
+  // fakeOverlay(container);
   // !set data (CONTINUE) GET FIELDS ON OBJ -> ADD DATA TO DOM 
   currentTitle.innerText = productName;
   // img
@@ -60,6 +60,9 @@ async function dynamicDetail(product) {
   saleLabel.innerText = (productSale * 100) + "%";
   bookTitle.innerText = productName;
   bookID.innerText = id;
+
+  await Navigate.sleep(50);
+  fakeOverlay(container, 150);
 
   // price
   (Array.from(bookPrice.children)).forEach((child) => {

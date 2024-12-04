@@ -6,11 +6,20 @@ import * as RenderProducts from "./Products.js";
 
 function scrollView() {
   let webContent = Bridge.default().getWebContent();
-  webContent.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
-  // window.scrollTo(0, 0);
+  // webContent.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
+  window.scrollTo(0, 0);
 }
 
-async function fakeOverlay(container) {
+// funcs event
+function disableSiblingContainer(container) {
+  if (!container) return;
+  Array.of(...container.children).forEach((child) => {
+    child.classList.contains("active") ? child.classList.remove("active") : child;
+    child.offsetWidth > 0 ? child.classList.add("disable") : child;
+  });
+}
+
+async function fakeOverlay(container, time) {
   const overlay = document.createElement('div');
   overlay.className = 'overlay';
   overlay.innerHTML = 'Loading... :3';
@@ -20,11 +29,10 @@ async function fakeOverlay(container) {
   overlay.style.fontSize = 3 + "em";
   overlay.style.color = "var(--primary-white)";
   document.body.appendChild(overlay);
-  await sleep(150);
+  await sleep(time);
   scrollView();
-
   // scroll before show DOM
-  await sleep(50); // fake loading
+  await sleep(time); // fake loading
   document.body.removeChild(overlay);
   container.removeAttribute("style");
   container.classList.remove("hidden");
@@ -57,7 +65,7 @@ function formatPrices(elementsObj) {
 
 function hiddenException(exception) {
   exception = !exception ? "index-content" : exception;
-  let getHandler = Bridge.default(); 
+  let getHandler = Bridge.default();
   let container = getHandler.getMainContainer().querySelector("#main-content .grid-row")?.children;
   let newsContainer = getHandler.getNewsBlogs();
   container = Array.of(...container);
@@ -147,8 +155,8 @@ async function addDOMHeaderFooter(elementsObj) {
     const footer = DOM.getElementById("footer-container");
     let placeInsert = elementsObj.getMainContainer();
     // add elements into DOM
-    placeInsert.insertAdjacentElement("beforebegin",header);
-    placeInsert.insertAdjacentElement("afterEnd",footer);
+    placeInsert.insertAdjacentElement("beforebegin", header);
+    placeInsert.insertAdjacentElement("afterEnd", footer);
     placeInsert.insertAdjacentElement("afterbegin", subHeader);
   } catch (error) {
     alert(error);
@@ -192,4 +200,4 @@ document.addEventListener("DOMContentLoaded", () => {
   hiddenException();
 });
 
-export { formatPrices, resizeImages, isEmpty, categoryIsEmpty, getInitProducts, hiddenException, scrollView, fakeOverlay };
+export { formatPrices, resizeImages, isEmpty, categoryIsEmpty, getInitProducts, hiddenException, scrollView, fakeOverlay, disableSiblingContainer };
