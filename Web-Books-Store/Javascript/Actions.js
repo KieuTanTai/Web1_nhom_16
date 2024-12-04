@@ -1,10 +1,7 @@
 'use strict'
 import * as Bridge from "./Bridge.js";
-import { activeFlashSale } from "./FlashSales.js";
 import { disableSiblingContainer, hiddenException, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
-import { getValueQuery } from "./Products.js";
-import { test } from "./search.js";
 import { slidesHandler } from "./Slides.js";
 
 function returnHomepage(elementsObj) {
@@ -23,17 +20,17 @@ function returnHomepage(elementsObj) {
 // header navigation button on mobile
 function smNavigationMenu (elementsObj) {
      let navigateBtn = elementsObj.getMobileNavigate();
-     navigateBtn.addEventListener("click", (event) => {
+     navigateBtn.addEventListener("click", Bridge.debounce((event) => {
           let overlay = navigateBtn.querySelector(".overlay");
           overlay.classList.add("active"); 
           overlay.classList.remove("overflowText");
           overlay.classList.add("menu");
           if (event.target.classList.contains("overlay")) {
+               setTimeout(() => overlay.classList.remove("active"), 200);
                overlay.classList.remove("menu");
                overlay.classList.add("overflowText");
-               setTimeout(() => overlay.classList.remove("active"), 200);
           }
-     });
+     }),200, "mobileHeaderNavigate");
 }
 
 function cancelButtons(elementsObj) {
@@ -227,6 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
      slidesHandler("news");
      Navigate.execQueryHandler();
      Navigate.popStateHandler(location.href);
+     Navigate.forbiddenDOM();
 
 })
 

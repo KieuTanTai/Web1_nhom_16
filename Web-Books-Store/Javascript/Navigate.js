@@ -1,11 +1,7 @@
 'use strict'
 import * as Interface from "./Interface.js";
-import * as Action from "./Actions.js";
 import * as Bridge from "./Bridge.js";
-import * as FlashSale from "./FlashSales.js";
-import { slidesHandler } from "./Slides.js";
-import { dynamicDetail, getProductBooks, getValueQuery, productContainers } from "./Products.js";
-import { test } from "./search.js";
+import { dynamicDetail, getValueQuery } from "./Products.js";
 
 function sleep(ms) {
      return new Promise(resolve => setTimeout(resolve, ms));
@@ -40,7 +36,7 @@ function popStateHandler() {
           let url = location.href;
           let path = url.slice(url.lastIndexOf("/") + 1, url.length);
           if (!path) {
-               window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+               window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("//") + 1)}`);
                Interface.hiddenException();
           }
                
@@ -48,44 +44,11 @@ function popStateHandler() {
      }, 200, "popstate"));
 }
 
-// handle url path changed
-function urlHandler(pathName, docsURL) {
-     if (typeof pathName !== "string" || !pathName) return false;
-     if (pathName[0] !== "/") pathName = `/${pathName}`;
-
-     const pathsObj = Bridge.pathNamesHandler();
-     if (!pathsObj[pathName]) {
-          alert("404 not found!");
-          return false;
-     }
-
-     let newURL = `${docsURL.slice(0, docsURL.lastIndexOf("/HTML/") + 5)}${pathName}`;
-     window.history.pushState({}, "", newURL);
-     return true;
+function forbiddenDOM() {
+     let href = location.href;
+     let path = href.slice(href.lastIndexOf("/HTML/") + 5, href.length);
+     if (path.includes("header_footer"))
+          window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/HTML/") + 6)}`);
 }
 
-// call again
-function callAgain(elementsObj, ...names) {
-     names.forEach((name) => {
-          if (name === "homepage") {
-               const checkBlog = setInterval(() => {
-                    let newsContainer = elementsObj.getNewsBlogs();
-                    let timeFS = elementsObj.getTimeFS();
-                    if (newsContainer && timeFS) {
-                         slidesHandler("news");
-                         FlashSale.setTimeFS(elementsObj);
-                         clearInterval(checkBlog);
-                    }
-               }, 400);
-          }
-     });
-
-     Action.cancelButtons(elementsObj);
-     Action.accountEvents(elementsObj);
-     Action.staticContents(elementsObj);
-     Interface.getInitProducts(elementsObj);
-     Action.historyNavigate(elementsObj);
-
-}
-
-export { popStateHandler, urlHandler, callAgain, execQueryHandler, sleep }
+export { popStateHandler, execQueryHandler, forbiddenDOM, sleep }
