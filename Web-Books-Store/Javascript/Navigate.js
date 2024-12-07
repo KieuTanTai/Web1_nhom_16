@@ -2,6 +2,7 @@
 import * as Interface from "./Interface.js";
 import * as Bridge from "./Bridge.js";
 import { dynamicDetail, getValueQuery } from "./Products.js";
+import { renderSearchDOM } from "./search.js";
 
 function sleep(ms) {
      return new Promise(resolve => setTimeout(resolve, ms));
@@ -35,11 +36,15 @@ function popStateHandler() {
      window.addEventListener("popstate", Bridge.throttle(() => {
           let url = location.href;
           let path = url.slice(url.lastIndexOf("/") + 1, url.length);
-          if (!path) {
-               window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("//") + 1)}`);
+          if (!path || path === "index.html" || path === "index") {
+               console.log(path);
+               window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
                Interface.hiddenException();
           }
-               
+          if (path.includes("?query=")) {
+               renderSearchDOM();
+          }
+
           execQueryHandler("name");
      }, 200, "popstate"));
 }

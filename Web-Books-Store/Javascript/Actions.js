@@ -2,6 +2,7 @@
 import * as Bridge from "./Bridge.js";
 import { disableSiblingContainer, hiddenException, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
+import { searchBtn } from "./search.js";
 import { slidesHandler } from "./Slides.js";
 
 function returnHomepage(elementsObj) {
@@ -214,6 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
                trackingNavigate(elementsObj);
                returnHomepage(elementsObj);
                smNavigationMenu(elementsObj);
+               searchBtn();
                // remove Interval 
                clearInterval(checkDOM);
           }
@@ -223,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
      cancelButtons(elementsObj);
      slidesHandler("news");
      Navigate.execQueryHandler();
-     Navigate.popStateHandler(location.href);
+     Navigate.popStateHandler();
      Navigate.forbiddenDOM();
 
 })

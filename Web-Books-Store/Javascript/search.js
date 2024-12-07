@@ -1,12 +1,63 @@
 "use strict";
 
 import * as Bridge from "./Bridge.js";
-import { formatPrices, resizeImages } from "./Interface.js";
+import { formatPrices, hiddenException, resizeImages, scrollView } from "./Interface.js";
 import { execQueryHandler } from "./Navigate.js";
 import { getProductBooks, renderProducts } from "./Products.js";
 
-function renderSearchDOM () {
-  
+function searchBtn() {
+  let searchBtn = Bridge.$("button[type=button].search-btn");
+  searchBtn.addEventListener("click", () => {
+    renderSearchDOM();
+  });
+}
+
+function renderSearchDOM (bookName) {
+  let searchContent = Bridge.default().getSearchContent();
+
+  hiddenException("search-content");
+  scrollView();
+  searchContent.innerHTML = searchDOM();
+  let newURL = `${location.href.slice(0, location.href.lastIndexOf("/") + 1)}index.html?query=${bookName ? bookName : ""}`;
+  window.history.pushState({}, "", newURL);
+  test();
+
+}
+
+function searchDOM() {
+  return `
+          <section id="filters">
+            <label for="category-filter">Thể loại:</label>
+            <select id="category-filter">
+                  <option value="">Tất cả</option>
+                  <option value="manga">Manga</option>
+                  <option value="light novel">Light Novel</option>
+                  <option value="education">Education</option>
+            </select>
+
+            <label for="price-filter" class="padding-left-12">Khoảng giá:</label>
+            <select id="price-filter">
+                  <option value="">Tất cả</option>
+                  <option value="0-100000">0đ - 100,000đ</option>
+                  <option value="100000-200000">100,000đ - 200,000đ</option>
+                  <option value="200000-300000">200,000đ - 300,000đ</option>
+                  <option value="300000-">300,000đ trở lên</option>
+            </select>
+        </section>
+
+        <!-- Vùng hiển thị sản phẩm -->
+        <section id="search-results-container" class="container flex grid-col col-l-12 col-m-12 col-s-12 no-gutter">
+            <div class="category-tab">
+                  <div class="heading">
+                      <div id="search-book-label" class="heading-label"></div>
+                      <div class="uppercase font-bold font-size-20 padding-left-8"> Kết quả tìm kiếm: </div>
+                  </div>
+
+                  <!-- container for products -->
+                  <div class="product-container" style="flex-flow: row wrap"></div>
+            </div>
+        </section>
+  `
 }
 
 // Hàm áp dụng bộ lọc
@@ -24,7 +75,7 @@ function applyFilters(productList, searchQuery, elementsObj) {
     const author = product.author?.toLowerCase() || "";
     const genre = product.genre?.toLowerCase() || "";
     const type = product.type?.toLowerCase() || "";
-    const queryMatch = searchQuery? name.includes(searchQuery) || author.includes(searchQuery) 
+    const queryMatch = searchQuery ? name.includes(searchQuery) || author.includes(searchQuery)
       || genre.includes(searchQuery) || type.includes(searchQuery) : true;
 
     // Lọc theo thể loại
@@ -42,7 +93,7 @@ function applyFilters(productList, searchQuery, elementsObj) {
   });
 }
 
-  // Hàm hiển thị sản phẩm
+// Hàm hiển thị sản phẩm
 function displayProducts(productList, searchQuery, elementsObj) {
   if (!elementsObj)
     elementsObj = Bridge.default();
@@ -55,16 +106,16 @@ function displayProducts(productList, searchQuery, elementsObj) {
     renderProducts(filteredProducts, productContainer);
     formatPrices(elementsObj);
     resizeImages(elementsObj);
-  } 
+  }
   else
     productContainer.innerHTML = '<div class="font-size-13 font-bold">Không tìm thấy sản phẩm nào phù hợp</div>';
 }
 
-function changeByFilter (elements ,query, productList) {
+function changeByFilter(elements, query, productList) {
   elements.forEach((filter) => filter?.addEventListener("change", () => displayProducts(productList, query)));
 }
 
-function test () {
+function test() {
   let elementsObj = Bridge.default();
   const query = execQueryHandler("query");
   // Lấy danh sách sản phẩm từ localStorage
@@ -75,8 +126,4 @@ function test () {
   changeByFilter([elementsObj.getCategoryFilter(), elementsObj.getPriceFilter()], query, productList);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  test();
-});
-
-export { test };
+export { test, searchBtn, renderSearchDOM };
