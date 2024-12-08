@@ -242,13 +242,21 @@
      border-right: 1px solid var(--border);
 }
 
+#sub-header .sub-menu-item.history-order-link:hover {
+
+     cursor: pointer;
+     box-shadow: unset;
+     /* box-shadow: 0 0 1px var(--primary-dark); */
+     
+}
+
 /*list-btn */
 .sub-menu .sub-menu-item .list-btn {
      padding-left: 0.25em;
      border-top-left-radius: 0.25em;
      border-top-right-radius: 0.25em;
      color: var(--primary-white);
-     justify-content: flex-start;
+     /* justify-content: flex-start; */
      background: var(--main-color);
 }
 
@@ -266,7 +274,7 @@
      z-index: 10;
      color: initial;
      position: absolute;
-     transform:translateX(-0.25em);    
+     transform:translateX(-0.12em);    
      border-bottom-left-radius: 0.25em;
      border-bottom-right-radius: 0.25em;
      box-shadow: 0 0.25em 0.5em var(--primary-dark);
@@ -475,6 +483,11 @@
      font-weight: 500;
 }
 
+.heading .fs-time {
+     display: flex;
+     flex-flow : row nowrap;
+}
+
 #fs-container .heading .fs-number {
      line-height: 2;
      font-weight: 700;
@@ -491,7 +504,11 @@
 #main-content .product-container {
      margin-bottom: 0.5em;
      display: flex;
-     flex-flow: row wrap;
+     flex-wrap: wrap;
+}
+
+.product-container .product-item {
+     position: relative;
 }
 
 #main-content .product-container::-webkit-scrollbar {
@@ -563,10 +580,10 @@
 }
 
 /* css for action */
-.block-product .action {
-     top: 68%;
-     left: 30%;
-     right: 30%;
+.product-item .action {
+     top:64%;
+     left: 28%;
+     right: 28%;
      min-width: 6.25em;
      padding-right: 0.5em;
      display: none;
@@ -575,7 +592,7 @@
      justify-content: space-between;
 }
 
-.block-product:hover .action {
+.product-item:hover .action {
      display: flex;
      animation: fadeIn linear 0.2s forwards;
 }
@@ -585,7 +602,7 @@
      animation: fadeIn linear 0.2s forwards;
 }
 
-.block-product .action div {
+.product-item .action div {
      width: 2.5em;
      height: 2.5em;
      margin: 0.25em 0;
@@ -649,7 +666,18 @@
      left: 1.4%;
      right: 1.4%;
 }
-
+   
+.page-button {
+     padding: 5px 10px;
+     background-color: var(--main-color);
+     border: none;
+     color: white;
+     cursor: pointer;
+     border-radius: 4px;
+ }
+.page-button:hover {
+     background-color: var( --btn-hover);
+ }
 #news-blogs-container .news-blogs-inner .news-blogs-items {
      margin: 1.25em 0;
      display: flex;

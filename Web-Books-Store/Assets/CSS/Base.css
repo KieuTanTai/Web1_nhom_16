@@ -79,6 +79,15 @@ ul {
      list-style: none;
 }
 
+input[type = text] {
+     display: -webkit-box;
+     line-clamp: 2;
+     overflow: hidden;
+     -webkit-line-clamp: 2;
+     text-overflow: ellipsis;
+     -webkit-box-orient: vertical;
+}
+
 /* CSS global */
 
 /* width & height */
@@ -487,6 +496,7 @@ ul {
 /* end css for cart ui */
 
 /* animation */
+
 @keyframes fadeIn {
      0% {
           opacity: 0;
@@ -525,6 +535,24 @@ ul {
      100% {
           font-size: 1rem;
      }
+}
+
+.menu {
+     animation: menu 0.2s linear;
+}
+
+@keyframes menu {
+     0% {
+          transform: translateX(-100%);
+     }
+
+     100% {
+          transform: translateX(0%);
+     }
+}
+
+.overflowText {
+     animation: overflowText 0.2s linear;
 }
 
 @keyframes overflowText {
@@ -573,6 +601,10 @@ ul {
 }
 
 /* other */
+.container {
+     position: relative;
+}
+
 .text-content {
      opacity: 0.95;
      font-size: 1em;
@@ -613,6 +645,14 @@ ul {
 
 .disable {
      display: none !important;
+}
+
+.hidden {
+     visibility: hidden;
+}
+
+.show {
+     visibility: visible;
 }
 
 .success-color {
