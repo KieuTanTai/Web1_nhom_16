@@ -33,11 +33,11 @@ function searchBtn() {
   });
 }
 
-function renderSearchDOM(bookName) {
+async function renderSearchDOM(bookName) {
   let searchContent = Bridge.default().getSearchContent();
   hiddenException("search-content");
-  scrollView();
   searchContent.innerHTML = searchDOM(); // Tạo giao diện tìm kiếm
+  scrollView();
   let newURL = `${location.href.slice(0, location.href.lastIndexOf("/") + 1)}index.html?query=${bookName}`;
   window.history.pushState({}, "", newURL); // Cập nhật URL
   test(); // Hiển thị sản phẩm theo từ khóa

@@ -27,8 +27,11 @@ function execQueryHandler(request) {
                Interface.hiddenException("detail-content");
           dynamicDetail(product);
      }
-     else if (query && request === "query")
+     else if (query && request === "query") {
           return query;
+     }
+     else
+          return "";
 }
 
 // func for popstate listener (it's will be very long)
@@ -40,8 +43,10 @@ function popStateHandler() {
                window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
                Interface.hiddenException();
           }
-          if (path.includes("?query="))
-               renderSearchDOM(execQueryHandler("query"));
+          if (path.includes("?query=")) {
+               let bookName = execQueryHandler("query");
+               renderSearchDOM(bookName);
+          }
 
           execQueryHandler("name");
      }, 200, "popstate"));

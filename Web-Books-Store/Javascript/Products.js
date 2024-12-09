@@ -16,7 +16,7 @@ function setProductBooks(product) {
 function getValueQuery(request) {
   let newURL = new URLSearchParams(window.location.search);
   let query = newURL.get(request);
-  return query ? query : "";
+  return query === "undefined" ? undefined : query;
 }
 
 async function dynamicDetail(product) {
