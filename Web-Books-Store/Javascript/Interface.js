@@ -1,7 +1,44 @@
 "use strict";
 import * as Bridge from "./Bridge.js";
 import * as FlashSale from "./FlashSales.js";
+import { sleep } from "./Navigate.js";
 import * as RenderProducts from "./Products.js";
+
+function scrollView() {
+  let webContent = Bridge.default().getWebContent();
+  // webContent.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" });
+  window.scrollTo(0, 0);
+}
+
+// funcs event
+function disableSiblingContainer(container) {
+  if (!container) return;
+  Array.of(...container.children).forEach((child) => {
+    child.classList.contains("active")
+      ? child.classList.remove("active")
+      : child;
+    child.offsetWidth > 0 ? child.classList.add("disable") : child;
+  });
+}
+
+async function fakeOverlay(container, time) {
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  overlay.innerHTML = "Loading... :3";
+  overlay.style.display = "flex";
+  overlay.style.alignItems = "center";
+  overlay.style.justifyContent = "center";
+  overlay.style.fontSize = 3 + "em";
+  overlay.style.color = "var(--primary-white)";
+  document.body.appendChild(overlay);
+  await sleep(time);
+  scrollView();
+  // scroll before show DOM
+  await sleep(time); // fake loading
+  document.body.removeChild(overlay);
+  container.removeAttribute("style");
+  container.classList.remove("hidden");
+}
 
 // check container is empty or not
 function isEmpty(container) {
@@ -22,34 +59,34 @@ function formatPrices(elementsObj) {
       minimumSignificantDigits: "3",
     });
     pricesContainer.forEach((element) => {
-      element.innerText = formatPricesHandler.format(element.innerText);
+      if (!element.innerHTML.includes("₫"))
+        element.innerText = formatPricesHandler.format(element.innerText);
     });
   }
 }
 
-// create Dots
-function createDots(parent, totalDots) {
-  let dotCount = 0,
-    breakpoint = 46.1875 * 16;
-  let container = parent.querySelector(".nav-tab-container");
-  let childInners = Array.from(container?.children);
-  let dotBar = parent.querySelector(".dots-bar");
+function hiddenException(exception) {
+  exception = !exception ? "index-content" : exception;
+  let getHandler = Bridge.default();
+  let container = getHandler
+    .getMainContainer()
+    .querySelector("#main-content .grid-row")?.children;
+  let newsContainer = getHandler.getNewsBlogs();
+  container = Array.of(...container);
 
-  if (window.innerWidth <= breakpoint) dotCount = childInners.length;
-  else dotCount = Math.ceil(childInners.length / totalDots);
+  container.forEach((element) => {
+    if (element.getAttribute("id") !== exception)
+      element.classList.add("disable");
+    else element.classList.remove("disable");
+  });
 
-  if (dotBar) {
-    dotBar.innerHTML = "";
-    if (dotCount === 1) return;
-
-    for (let i = 0; i < dotCount; i++) {
-      let dot = document.createElement("div");
-
-      if (i == 0) dot.classList.add("active");
-      dot.classList.add("dot");
-      dotBar.appendChild(dot);
-    }
+  if (exception === "index-content") {
+    newsContainer?.classList.contains("disable")
+      ? newsContainer.classList.remove("disable")
+      : newsContainer;
+    return;
   }
+  newsContainer?.classList.add("disable");
 }
 
 //change DOM on categories if it not have any product inside
@@ -123,36 +160,21 @@ function resizeSmNav(elementsObj) {
 }
 
 // default add header footer and initProducts
-async function addDOMHeader(elementsObj) {
+async function addDOMHeaderFooter(elementsObj) {
   try {
-    const headerDOM = await Bridge.promiseDOMHandler(
-      "/Web-Books-Store/HTML/header_footer/header.html"
+    const DOM = await Bridge.promiseDOMHandler(
+      "/Web-Books-Store/HTML/header_footer/headerFooter.html"
     );
-    const header = headerDOM.getElementById("header-container");
-    const subHeader = headerDOM.getElementById("sub-header");
+    const header = DOM.getElementById("header-container");
+    const subHeader = DOM.getElementById("sub-header");
+    const footer = DOM.getElementById("footer-container");
     let placeInsert = elementsObj.getMainContainer();
-    const webContent = elementsObj.getWebContent();
-
     // add elements into DOM
-    webContent.before(header);
+    placeInsert.insertAdjacentElement("beforebegin", header);
+    placeInsert.insertAdjacentElement("afterEnd", footer);
     placeInsert.insertAdjacentElement("afterbegin", subHeader);
   } catch (error) {
-    alert(error);
-  }
-}
-
-async function addDOMFooter(elementsObj) {
-  try {
-    const footerDOM = await Bridge.promiseDOMHandler(
-      "/Web-Books-Store/HTML/header_footer/footer.html"
-    );
-    const footer = footerDOM.getElementById("footer-container");
-    const webContent = elementsObj.getWebContent();
-
-    // add elements into DOM
-    webContent.after(footer);
-  } catch (error) {
-    alert(error);
+    console.error(error);
   }
 }
 
@@ -161,48 +183,49 @@ async function getInitProducts(elementsObj) {
     const storage = await fetch("/Web-Books-Store/Javascript/Storage.js");
     const jsonArray = await storage.json();
     const productsList = Array.from(jsonArray);
+    localStorage.setItem("products", JSON.stringify(productsList));
 
     // render init products
-    // RenderProducts.setProductBooks(productsList);
-    RenderProducts.geneProducts(productsList);
+    RenderProducts.productContainers(productsList);
+    FlashSale.setTimeFS(elementsObj);
+    RenderProducts.renderProducts(productsList);
     formatPrices(elementsObj);
     resizeImages(elementsObj);
     categoryIsEmpty();
   } catch (error) {
-    alert(error);
+    console.error(error);
   }
 }
 
 // call functions when DOM Loaded
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const elementsObj = Bridge.default();
-
   //create check DOM of Header and Footer
-  addDOMHeader(elementsObj);
-  addDOMFooter(elementsObj);
+  addDOMHeaderFooter(elementsObj);
   const checkDOM = setInterval(() => {
     if (
       elementsObj.getHeader() &&
       elementsObj.getSubHeader() &&
       elementsObj.getFooter()
     ) {
-      // call funcs
       resizeSmNav(elementsObj);
-      // remove Interval
       clearInterval(checkDOM);
     }
   }, 200);
 
   // call funcs
   getInitProducts(elementsObj);
-  FlashSale.setTimeFS(elementsObj);
+  hiddenException();
 });
 
 export {
   formatPrices,
   resizeImages,
-  createDots,
   isEmpty,
   categoryIsEmpty,
   getInitProducts,
+  hiddenException,
+  scrollView,
+  fakeOverlay,
+  disableSiblingContainer,
 };

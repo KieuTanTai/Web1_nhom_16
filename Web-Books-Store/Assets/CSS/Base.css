@@ -496,6 +496,7 @@ input[type = text] {
 /* end css for cart ui */
 
 /* animation */
+
 @keyframes fadeIn {
      0% {
           opacity: 0;
@@ -534,6 +535,24 @@ input[type = text] {
      100% {
           font-size: 1rem;
      }
+}
+
+.menu {
+     animation: menu 0.2s linear;
+}
+
+@keyframes menu {
+     0% {
+          transform: translateX(-100%);
+     }
+
+     100% {
+          transform: translateX(0%);
+     }
+}
+
+.overflowText {
+     animation: overflowText 0.2s linear;
 }
 
 @keyframes overflowText {
@@ -626,6 +645,14 @@ input[type = text] {
 
 .disable {
      display: none !important;
+}
+
+.hidden {
+     visibility: hidden;
+}
+
+.show {
+     visibility: visible;
 }
 
 .success-color {

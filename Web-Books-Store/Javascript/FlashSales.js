@@ -14,12 +14,16 @@ function setTimeFS(elementsObj) {
   let countDown = elementsObj.getFSCountDown();
   let fSTime = elementsObj.getTimeFS();
 
+  if (localStorage.getItem("activeFlashSale"))
+    activeFlashSale();
+
   if (countDown && fSTime) {
     let stringTime = localStorage.getItem("flashSaleTime");
     fSTime = Array.from(fSTime.children);
 
     // execute
-    if (!stringTime) return;
+    if (!stringTime)
+      activeFlashSale();
     if (stringTime.includes("-")) {
       localStorage.removeItem("flashSaleTime");
       return;
@@ -28,8 +32,7 @@ function setTimeFS(elementsObj) {
     if (stringTime === "00:00:00") {
       localStorage.removeItem("flashSaleTime");
       let timeCount = Bridge.$(".fs-countdown");
-      timeCount.innerHTML =
-        '<p class="s-m-hidden padding-right-8 font-size-20 font-bold">Đã hết hạn</p>';
+      timeCount.innerHTML = '<p class="s-m-hidden padding-right-8 font-size-20 font-bold">Đã hết hạn</p>';
     }
 
     let index = 0;
@@ -49,9 +52,7 @@ function setTimeFS(elementsObj) {
 async function startCountDown(timeArray, elementsObj) {
   try {
     window.addEventListener("beforeunload", () => {
-      localStorage.setItem(
-        "flashSaleTime",
-        `${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`
+      localStorage.setItem("flashSaleTime", `${timeArray[0].innerText}:${timeArray[1].innerText}:${timeArray[2].innerText}`
       );
     });
 
@@ -61,20 +62,12 @@ async function startCountDown(timeArray, elementsObj) {
     if (timeArray[2].innerText === "00" && timeArray[1].innerText !== "00") {
       timeArray[2].innerText = "60";
       timeArray[1].innerText = await countDown(timeArray[1], "minutes");
-    } else if (
-      timeArray[2].innerText === "00" &&
-      timeArray[1].innerText === "00" &&
-      timeArray[0].innerText !== "00"
-    ) {
+    } else if (timeArray[2].innerText === "00" && timeArray[1].innerText === "00" && timeArray[0].innerText !== "00") {
       timeArray[1].innerText = "60";
       timeArray[0].innerText = await countDown(timeArray[0], "minutes");
     }
 
-    if (
-      timeArray[2].innerText !== "00" ||
-      timeArray[1].innerText !== "00" ||
-      timeArray[0].innerText !== "00"
-    )
+    if (timeArray[1].innerText !== "00" || timeArray[2].innerText !== "00" || timeArray[0].innerText !== "00")
       startCountDown(timeArray);
     else {
       const container = elementsObj
@@ -83,9 +76,10 @@ async function startCountDown(timeArray, elementsObj) {
       if (!container) throw new Error("not found flash sale product!");
       container.innerHTML = "";
       categoryIsEmpty();
+      localStorage.removeItem("activeFlashSale");
     }
   } catch (error) {
-    // alert(error);
+    console.error(error);
   }
 }
 
@@ -115,4 +109,4 @@ function countDown(timeHandler, typeTime) {
   });
 }
 
-export { setTimeFS };
+export { setTimeFS, activeFlashSale };

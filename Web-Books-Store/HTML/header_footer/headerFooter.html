@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="shortcut icon"
-      href="/Web-Books-Store/Assets/Images/Icons/Web_logo/main-logo.ico"
+      href="../Assets/Images/Icons/Web_logo/main-logo.ico"
       type="image/x-icon"
     />
     <link
       rel="stylesheet"
       href="../../Assets/Font/fontawesome-6.6.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../Assets/CSS/CssBridge.css" />
+    <link rel="stylesheet" href="../../Assets/CSS/index.css" />
     <link rel="stylesheet" href="../../Assets/CSS/Responsive.css" />
-    <script type="module" src="../../Javascript/Bridge.js"></script>
-    <script type="module" src="../../Javascript/Interface.js"></script>
-    <script type="module" src="../../Javascript/Actions.js"></script>
+    <script type="module" src="../../Javascript/index.js"></script>
     <title>Light Novel World</title>
   </head>
+
   <body>
     <div class="web-content">
       <!-- html for header -->
@@ -26,7 +25,6 @@
         <section class="grid wide">
           <section class="grid-row flex justify-center">
             <!-- header bar with most useful function for users -->
-
             <!-- header for mobile and tablet -->
             <div
               class="s-m-header s-m-content flex justify-center align-center grid-col col-m-12 col-s-12 no-gutter"
@@ -64,12 +62,8 @@
                     </div>
 
                     <ul class="s-m-nav-list">
-                      <li class="">
+                      <li class="web-logo">
                         <div>Trang chủ</div>
-                      </li>
-
-                      <li class="account">
-                        <div>Tài khoản</div>
                       </li>
 
                       <li class="history-order-link">
@@ -95,7 +89,7 @@
               <div class="web-logo full-height">
                 <div>
                   <img
-                    src="/Web-Books-Store/Assets/Images/Icons/Web_logo/light-novel-world.png"
+                    src="../Assets/Images/Icons/Web_logo/light-novel-world.png"
                     alt="Light Novel World"
                   />
                 </div>
@@ -120,7 +114,7 @@
             <div class="grid-col col-l-2 col-m-8 col-s-8 web-logo s-m-hidden">
               <div>
                 <img
-                  src="/Web-Books-Store/Assets/Images/Icons/Web_logo/light-novel-world.png"
+                  src="../Assets/Images/Icons/Web_logo/light-novel-world.png"
                   alt="Light Novel World"
                 />
               </div>
@@ -132,23 +126,19 @@
               <div
                 class="search-form-container flex justify-center align-center"
               >
-                <form
-                  action="/Web-Books-Store/HTML/search.html"
-                  method="get"
-                  autocomplete="on"
-                >
-                  <label for="search">
+                <form method="get" autocomplete="on">
+                  <label for="search-input">
                     <input
                       type="text"
                       name="query"
-                      id="searchInput"
+                      id="search-input"
                       class="no-outline"
                       size="100%"
                       placeholder="Tìm kiếm sản phẩm...."
                     />
                   </label>
                   <button
-                    type="submit"
+                    type="button"
                     class="search-btn button flex justify-center align-center"
                   >
                     <i
@@ -164,10 +154,10 @@
               class="header-items grid-col col-l-5 col-m-2 col-s-2 s-m-hidden font-size-14"
             >
               <!-- <div id="change-bg-btn" class="full-height">
-                                   <a href="#" onclick="return false" title="Change background color" >
-                                        <i class="fa-solid fa-circle-half-stroke fa-xl btn" style="color: var(--main-color);"></i>
-                                   </a>
-                              </div> -->
+                  <a href="#" onclick="return false" title="Change background color" >
+                      <i class="fa-solid fa-circle-half-stroke fa-xl btn" style="color: var(--main-color);"></i>
+                  </a>
+            </div> -->
 
               <div class="hotline full-height">
                 <div class="flex align-center full-height">
@@ -222,9 +212,7 @@
                     class="header-user-info flex justify-center align-center disable"
                   >
                     <div class="user-img">
-                      <img
-                        src="/Web-Books-Store/Assets/Images/Icons/Web_logo/favicon.ico"
-                      />
+                      <img src="../Assets/Images/Icons/Web_logo/favicon.ico" />
                     </div>
                     <div class="user-name">Thiên Lang Vô Tri</div>
                   </div>
@@ -271,17 +259,19 @@
             <div class="grid-row">
               <!-- Items in sub header  -->
               <div class="sub-menu min-height-40 grid-col col-l-12">
-                <div class="sub-menu-item menu-nav grid-col col-l-2 no-gutter">
+                <div
+                  class="sub-menu-item menu-nav grid-col col-l-2-4 no-gutter"
+                >
                   <!-- Nav button -->
                   <div
                     class="flex justify-center align-center list-btn min-height-40 full-width"
                   >
-                    <span>
-                      <i
+                    <span
+                      ><i
                         class="fa-solid fa-list"
                         style="color: var(--primary-white)"
-                      ></i>
-                    </span>
+                      ></i
+                    ></span>
                     <p class="padding-left-8 font-size-13 font-bold">
                       Danh mục sản phẩm
                     </p>
@@ -291,7 +281,7 @@
                       <div class="nav-item">
                         <a href="">
                           <img
-                            src="/Web-Books-Store/Assets/Images/Icons/Other_icons/Manga.webp"
+                            src="../Assets/Images/Icons/Other_icons/Manga.webp"
                             alt="Manga"
                             width="20em"
                           />
@@ -304,7 +294,7 @@
                       <div class="nav-item">
                         <a href="">
                           <img
-                            src="/Web-Books-Store/Assets/Images/Icons/Other_icons/LN.webp"
+                            src="../Assets/Images/Icons/Other_icons/LN.webp"
                             alt="Light Novel"
                             width="20em"
                           />
@@ -317,7 +307,7 @@
                       <div class="nav-item">
                         <a href="">
                           <img
-                            src="/Web-Books-Store/Assets/Images/Icons/Other_icons/yang-icon-1.webp"
+                            src="../Assets/Images/Icons/Other_icons/yang-icon-1.webp"
                             alt="Sách văn học"
                             width="20em"
                           />
@@ -330,7 +320,7 @@
                       <div class="nav-item">
                         <a href="">
                           <img
-                            src="/Web-Books-Store/Assets/Images/Icons/Other_icons/yang-icon-2.webp"
+                            src="../Assets/Images/Icons/Other_icons/yang-icon-2.webp"
                             alt="Sách thiếu nhi"
                             width="20em"
                           />
@@ -343,7 +333,7 @@
                       <div class="nav-item">
                         <a href="">
                           <img
-                            src="/Web-Books-Store/Assets/Images/Icons/Other_icons/yang-icon-3.webp"
+                            src="../Assets/Images/Icons/Other_icons/yang-icon-3.webp"
                             alt="Sách công nghệ"
                             width="20em"
                           />
@@ -356,7 +346,7 @@
                       <div class="nav-item">
                         <a href="">
                           <img
-                            src="/Web-Books-Store/Assets/Images/Icons/Other_icons/yang-icon-4.webp"
+                            src="../Assets/Images/Icons/Other_icons/yang-icon-4.webp"
                             alt="Sách học ngữ"
                             width="20em"
                           />
@@ -369,21 +359,20 @@
                   </div>
                 </div>
 
-                <div class="sub-menu-item grid-col col-l-2 store-voucher">
-                  <div class="full-height full-width">
-                    <span>
-                      <i
-                        class="fa-solid fa-ticket fa-lg"
-                        style="color: var(--main-color)"
-                      ></i>
-                    </span>
-                    <p class="padding-left-8 font-size-13 font-bold">
-                      Săn voucher
-                    </p>
-                  </div>
+                <!-- <div class="sub-menu-item grid-col col-l-2 store-voucher">
+                <div class="full-height full-width">
+                  <span>
+                    <i class="fa-solid fa-ticket fa-lg" style="color: var(--main-color)"></i>
+                  </span>
+                  <p class="padding-left-8 font-size-13 font-bold">
+                    Săn voucher
+                  </p>
                 </div>
+              </div> -->
 
-                <div class="sub-menu-item history-order-link grid-col col-l-2">
+                <div
+                  class="sub-menu-item history-order-link grid-col col-l-2-4"
+                >
                   <div class="full-height full-width">
                     <span>
                       <i
@@ -397,35 +386,35 @@
                   </div>
                 </div>
 
-                <div class="sub-menu-item grid-col col-l-2 news-nav">
+                <div class="sub-menu-item grid-col col-l-2-4 news-nav">
                   <div class="full-width full-height">
-                    <span>
-                      <i
+                    <span
+                      ><i
                         class="fa-regular fa-newspaper fa-lg"
                         style="color: var(--main-color)"
-                      ></i>
-                    </span>
+                      ></i
+                    ></span>
                     <p class="padding-left-8 font-size-13 font-bold">
                       Tin tức & Sự kiện
                     </p>
                   </div>
                 </div>
 
-                <div class="sub-menu-item grid-col col-l-2 lnw-store">
+                <div class="sub-menu-item grid-col col-l-2-4 lnw-store">
                   <div class="full-height full-width">
-                    <span>
-                      <i
+                    <span
+                      ><i
                         class="fa-brands fa-fantasy-flight-games fa-lg"
                         style="color: var(--main-color)"
-                      ></i>
-                    </span>
+                      ></i
+                    ></span>
                     <p class="padding-left-8 font-size-13 font-bold">
                       Light Novel World
                     </p>
                   </div>
                 </div>
 
-                <div class="sub-menu-item grid-col col-l-2 services">
+                <div class="sub-menu-item grid-col col-l-2-4 services">
                   <div class="full-width full-height">
                     <span>
                       <i
@@ -441,6 +430,198 @@
           </div>
         </section>
       </main>
+
+      <footer id="footer-container">
+        <section class="grid wide">
+          <div class="grid-row">
+            <div class="footer-col-container grid-col col-l-4 col-m-4 col-s-12">
+              <div class="footer-logo">
+                <a href="#">
+                  <img
+                    src="../Assets/Images/Icons/Web_logo/light-novel-world.png"
+                    alt="Light Novel World"
+                  />
+                </a>
+              </div>
+              <div class="contact-info">
+                <div class="margin-bottom-16">
+                  <i
+                    class="fa-solid fa-map-location-dot fa-xl"
+                    style="color: var(--main-color)"
+                  ></i>
+                  <div class="line-height-1-6 font-size-14 padding-left-16">
+                    <p>
+                      Số 110 Nguyễn Ngọc Nại, Khương Mai, Thanh Xuân, Hà Nội
+                    </p>
+                  </div>
+                </div>
+                <div class="margin-bottom-16">
+                  <i
+                    class="fa-solid fa-phone fa-xl"
+                    style="color: var(--main-color)"
+                  ></i>
+                  <p class="padding-left-16">Hotline: 03 2838 xxxx</p>
+                </div>
+                <div class="margin-bottom-16">
+                  <i
+                    class="fa-regular fa-envelope fa-xl"
+                    style="color: var(--main-color)"
+                  ></i>
+                  <p class="padding-left-16">tanthi***la**@gmail.com</p>
+                </div>
+                <div>
+                  <i
+                    class="fa-solid fa-shield fa-xl"
+                    style="color: var(--main-color)"
+                  ></i>
+                  <p class="padding-left-16">
+                    Giấy phép DKKD số xxxxxx, cấp lần thứ x năm 2024
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="footer-col-container grid-col col-l-5 col-m-8 col-s-12">
+              <div class="block-footer margin-bottom-12">
+                <div class="flex-direction-y">
+                  <h4 class="uppercase margin-bottom-12">Hỗ trợ khách hàng</h4>
+                  <a href="">Câu hỏi thường gặp</a>
+                  <a href="">Điều khoản dịch vụ</a>
+                </div>
+
+                <div class="flex-direction-y">
+                  <h4 class="uppercase margin-bottom-12">Chính sách</h4>
+                  <a href="">Chính sách bảo mật</a>
+                  <a href="">Chính sách thanh toán</a>
+                  <a href="">Chính sách vận chuyển</a>
+                  <a href="">Chính sách đổi trả</a>
+                </div>
+              </div>
+              <div>
+                <h4 class="uppercase margin-y-12">đăng ký nhận tin</h4>
+                <p class="font-size-13 margin-y-12" style="max-width: 60%">
+                  Hãy nhập email của bạn vào ô dưới đây để có thể nhận được tất
+                  cả tin tức mới nhất của LNW
+                </p>
+                <div class="footer-input">
+                  <form method="post" class="full-width margin-right-16">
+                    <input
+                      type="email"
+                      name="user-email"
+                      id="user-email"
+                      placeholder="đăng ký email"
+                      autocomplete="on"
+                      required
+                      class="padding-16"
+                    />
+                    <button
+                      type="submit"
+                      class="subscribe-btn uppercase"
+                      name="subscribe"
+                      id="subscribe"
+                    >
+                      đăng ký
+                    </button>
+                  </form>
+                  <img
+                    src="../Assets/Images/Icons/Web_logo/bct_img.jpg"
+                    alt="bo cong thuong"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="footer-col-container grid-col col-l-3 col-m-12 col-s-12"
+            >
+              <h4 class="uppercase margin-bottom-16">kết nối với chúng tôi</h4>
+              <div class="footer-icon">
+                <div>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=100079218978533"
+                    target="_blank"
+                  >
+                    <img
+                      src="../Assets/Images/Icons/Social_media/facebook.svg"
+                      alt="facebook"
+                    />
+                  </a>
+                </div>
+                <!-- <div class="padding-left-8">
+                                        <a href="https://www.youtube.com/@KT-ThienLang" target="_blank">
+                                             <img src="../Assets/Images/Icons/Social_media/icons8-youtube.svg" alt="youtube">
+                                        </a>
+                                   </div> -->
+                <div class="padding-left-8">
+                  <a href="https://www.tiktok.com/@tlangvotri" target="_blank">
+                    <img
+                      src="../Assets/Images/Icons/Social_media/icons8-tiktok.svg"
+                      alt="tiktok"
+                    />
+                  </a>
+                </div>
+                <div class="padding-left-8">
+                  <a href="https://twitter.com/thien8224" target="_blank">
+                    <img
+                      src="../Assets/Images/Icons/Social_media/icons8-twitterx.svg"
+                      alt="Twitter/X"
+                    />
+                  </a>
+                </div>
+                <div class="padding-left-8">
+                  <a href="https://chat.zalo.me/" target="_blank">
+                    <img
+                      src="../Assets/Images/Icons/Social_media/icons8-zalo.svg"
+                      alt="zalo"
+                    />
+                  </a>
+                </div>
+              </div>
+              <h4 class="uppercase margin-bottom-16">
+                các phương thức thanh toán
+              </h4>
+              <div class="footer-image-container">
+                <div class="footer-image-item">
+                  <img
+                    src="../Assets/Images/Icons/Payment_method/internet_banking.jpg"
+                    alt="internet banking"
+                  />
+                </div>
+                <div class="footer-image-item">
+                  <img
+                    src="../Assets/Images/Icons/Payment_method/pay_7.jpg"
+                    alt="visa"
+                  />
+                </div>
+                <div class="footer-image-item">
+                  <img
+                    src="../Assets/Images/Icons/Payment_method/mastercard.jpg"
+                    alt="master card"
+                  />
+                </div>
+                <div class="footer-image-item">
+                  <img
+                    src="../Assets/Images/Icons/Payment_method/pay_5.jpg"
+                    alt="tiền mặt"
+                  />
+                </div>
+                <div class="footer-image-item">
+                  <img
+                    src="../Assets/Images/Icons/Payment_method/pay_4.jpg"
+                    alt="zalo pay"
+                  />
+                </div>
+                <div class="footer-image-item">
+                  <img
+                    src="../Assets/Images/Icons/Payment_method/pay_8.jpg"
+                    alt="Momo"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </footer>
     </div>
   </body>
 </html>

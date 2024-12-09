@@ -1,6 +1,5 @@
 "use strict";
 import "./Products.js";
-import * as jsInterface from "./Interface.js";
 
 const throttleList = {}; //object for throttle function
 const debounceList = {};
@@ -18,6 +17,22 @@ function getElementsHandler() {
     getFooter: () => $("#footer-container"),
     getCategories: () => $$(".category-tab"),
     getProductContainer: () => $$(".product-container"),
+    getSameAuthorContainer: () => $("#same-author-container"),
+    getProductLikeContainer: () => $("#product-like-container"),
+    // other pages container
+    getIndexContainer: () => $("#index-content"),
+    getDetailContent: () => $("#detai-content"),
+    getSearchContent: () => $("#search-content"),
+    // block for order
+    getOrderContent: () => $("#order-content"),
+    getBlankOrder: () => $("#blank-order"),
+    getCustomerOrder: () => $("#customer-order"),
+    getStatusContainer: () => $(".order-status-container"),
+    getHistoryContainer: () => $(".history-tracking-container"),
+    // block for account
+    getAccountContainer: () => $("#account-content"),
+    getAccountForm: () => $("#login-registration-form"),
+    getUserDetail: () => $("#user-detail"),
     // news blogs
     getNewsBtn: () => $$(".news-nav"),
     getNewsBlogs: () => $("#news-blogs-container"),
@@ -25,6 +40,8 @@ function getElementsHandler() {
     getTimeFS: () => $(".fs-time"),
     getFSTable: () => $("#fs-container"),
     getFSCountDown: () => $(".fs-countdown"),
+    getHistoryOrder: () =>
+      $(".history-tracking-container #history-order-container"),
     // buttons
     getNavBtn: () => $$(".nav-btn"),
     getPrevBtn: () => $$(".prev-btn"),
@@ -33,11 +50,19 @@ function getElementsHandler() {
     getServicesBtn: () => $$(".services"),
     getJsCartBtn: () => $$(".cart-btn"),
     getHistoryBtn: () => $$(".history-order-link"),
+    getOrderTrackingBtn: () => $$(".order-tracking"),
+    getQuantityBox: () => $(".quantity-box"),
+    getMobileNavigate: () => $(".header-items.s-m-nav-btn"),
     // account buttons
     getJsAccountBtn: () => $("#user-account"),
     getJsLoginBtn: () => $$(".js-login"),
     getJsRegisterBtn: () => $$(".js-register"),
     getJsForgotBtn: () => $$(".js-forgot-password"),
+    getJsSignoutBtn: () => $$(".js-signout"),
+    // search
+    getResultContainer: () => $("#search-results-container"),
+    getCategoryFilter: () => $("#category-filter"),
+    getPriceFilter: () => $("#price-filter"),
     // others
     getScrollTop: () => $("#scroll-top"),
     getDotsBar: () => $$(".dots-bar"),
@@ -49,35 +74,6 @@ function getElementsHandler() {
   return getElements;
 }
 
-// obj of path name
-function pathNamesHandler() {
-  let pathNamesObj = {
-    // root url
-    "/": "homepage",
-    "/index": "homepage",
-    // news
-    "/news/test": "news",
-    // other pages url
-    "/cart": "cart",
-    "/product": "product",
-    "/tracking": "order tracking",
-    // account url
-    "/account/": "account",
-    "/account/login": "login",
-    "/account/register": "sign up",
-    "/account/forgot_password": "forgot password",
-    "/account/user": "user",
-    // order url
-    "/order/": "order",
-    "/order/status": "status",
-    "/order/history": "history",
-    // forbidden url
-    "/header_footer/footer": "footer",
-    "/header_footer/header": "header",
-  };
-  return pathNamesObj;
-}
-
 function throttle(callback, delayTime, key) {
   // create obj key for multi throttle
   if (!throttleList[key]) throttleList[key] = { shouldWait: false };
@@ -86,7 +82,6 @@ function throttle(callback, delayTime, key) {
     let shouldWait = throttleList[key].shouldWait;
 
     if (shouldWait) return;
-
     callback(...restArgs);
     throttleList[key].shouldWait = true;
     setTimeout(() => (throttleList[key].shouldWait = false), delayTime);
@@ -99,9 +94,7 @@ function debounce(callback, delayTime, key) {
 
   return function (...restArgs) {
     clearTimeout(debounceList[key].time);
-    debounceList[key].time = setTimeout(() => {
-      callback(...restArgs);
-    }, delayTime);
+    debounceList[key].time = setTimeout(() => callback(...restArgs), delayTime);
   };
 }
 
@@ -109,16 +102,14 @@ function debounce(callback, delayTime, key) {
 async function promiseDOMHandler(fileAddress) {
   try {
     const response = await fetch(fileAddress);
-
     if (!response.ok)
       throw new Error(`${response.status} (${response.statusText})`);
-
     const text = await response.text();
     return new DOMParser().parseFromString(text, "text/html");
   } catch (error) {
-    throw `error when fetch your address! \n ${error}`;
+    console.error(`error when fetch your address! \n ${error}`);
   }
 }
 
 export default getElementsHandler;
-export { $, $$, pathNamesHandler, promiseDOMHandler, throttle, debounce };
+export { $, $$, promiseDOMHandler, throttle, debounce };
