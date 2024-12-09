@@ -5,7 +5,7 @@
      <meta charset="UTF-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
      <meta name="description" content="Mua tiểu thuyết, văn học, light novel, trinh thám kinh dị, manga, sách học ngữ..." />
-     <link rel="shortcut icon" href="/Web-Books-Store/Assets/Images/Icons/Web_logo/main-logo.ico" type="image/x-icon" />
+     <link rel="shortcut icon" href="../Assets/Images/Icons/Web_logo/main-logo.ico" type="image/x-icon" />
      <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css" />
      <link rel="stylesheet" href="../Assets/CSS/index.css" />
      <link rel="stylesheet" href="../Assets/CSS/Responsive.css" />
@@ -279,15 +279,12 @@
                                                        <form action="" method="post">
                                                             <div class="js-email-login">
                                                                  <input type="email" name="customer-email-login"
-                                                                      id="customer-email-login" placeholder="Email"
-                                                                      autocomplete="on" required>
+                                                                      id="customer-email-login" placeholder="Email" autocomplete="on" required>
                                                                  <div class="error-message"></div>
                                                             </div>
                                                             <div class="js-pass-login">
-                                                                 <input type="password" name="customer-password-login"
-                                                                      id="customer-password-login"
-                                                                      placeholder="Mật khẩu"
-                                                                      autocomplete="current-password" required>
+                                                                 <input type="password" name="customer-password-login" id="customer-password-login" 
+                                                                      placeholder="Mật khẩu" autocomplete="current-password" required>
                                                                  <div class="error-message"></div>
                                                             </div>
 
@@ -312,35 +309,28 @@
                                                   <div id="register-layout">
                                                        <form action="" method="post">
                                                             <div class="js-fname-register">
-                                                                 <input type="text" name="customer-last-name"
-                                                                      id="customer-last-name" placeholder="Họ" required>
+                                                                 <input type="text" name="customer-last-name" id="customer-last-name" placeholder="Họ" required>
                                                                  <div class="error-message"></div>
                                                             </div>
                                                             <div class="js-lname-register">
-                                                                 <input type="text" name="customer-first-name"
-                                                                      id="customer-first-name" placeholder="Tên"
-                                                                      required>
+                                                                 <input type="text" name="customer-first-name" id="customer-first-name" placeholder="Tên" required>
                                                                  <div class="error-message"></div>
                                                             </div>
                                                             <div class="js-email-register">
                                                                  <input type="email" name="customer-email-register"
-                                                                      id="customer-email-register" placeholder="Email"
-                                                                      autocomplete="on" required>
+                                                                      id="customer-email-register" placeholder="Email" autocomplete="on" required>
                                                                  <div class="error-message"></div>
                                                             </div>
                                                             <div class="js-password-register">
                                                                  <input type="password"
-                                                                      name="customer-password-register"
-                                                                      id="customer-password-register" autocomplete="off"
+                                                                      name="customer-password-register" id="customer-password-register" autocomplete="off"
                                                                       placeholder="Tạo mật khẩu" minlength="8" required>
                                                                  <div class="error-message"></div>
                                                             </div>
                                                             <div class="js-confirm-pass-register">
                                                                  <input type="password"
-                                                                      name="customer-confirm-password-register"
-                                                                      id="customer-confirm-password-register"
-                                                                      autocomplete="off" placeholder="Xác nhận mật khẩu"
-                                                                      minlength="8" required>
+                                                                      name="customer-confirm-password-register" id="customer-confirm-password-register"
+                                                                      autocomplete="off" placeholder="Xác nhận mật khẩu" minlength="8" required>
                                                                  <div class="error-message"></div>
                                                             </div>
                                                             <button type="submit" id="register-btn" class="button">
@@ -574,41 +564,7 @@
 
                               <!-- search -->
                               <div id="search-content" class="grid-col col-l-12 col-m-12 col-s-12">
-                                   <section id="filters">
-                                        <label for="category-filter">Thể loại:</label>
-                                        <select id="category-filter">
-                                             <option value="">Tất cả</option>
-                                             <option value="manga">Manga</option>
-                                             <option value="light novel">Light Novel</option>
-                                             <option value="education">Education</option>
-                                        </select>
 
-                                        <label for="price-filter" class="padding-left-12">Khoảng giá:</label>
-                                        <select id="price-filter">
-                                             <option value="">Tất cả</option>
-                                             <option value="0-100000">0đ - 100,000đ</option>
-                                             <option value="100000-200000">100,000đ - 200,000đ</option>
-                                             <option value="200000-300000">200,000đ - 300,000đ</option>
-                                             <option value="300000-">300,000đ trở lên</option>
-                                        </select>
-                                   </section>
-
-                                   <!-- Vùng hiển thị sản phẩm -->
-
-                                   <section id="search-results-container"
-                                        class="container flex grid-col col-l-12 col-m-12 col-s-12 no-gutter">
-                                        <div class="category-tab">
-                                             <div class="heading">
-                                                  <div id="search-book-label" class="heading-label"></div>
-                                                  <div class="uppercase font-bold font-size-20 padding-left-8">
-                                                       Kết quả tìm kiếm:
-                                                  </div>
-                                             </div>
-
-                                             <!-- container for products -->
-                                             <div class="product-container" style="flex-flow: row wrap"></div>
-                                        </div>
-                                   </section>
                               </div>
 
                               <!-- order tracking, history order -->

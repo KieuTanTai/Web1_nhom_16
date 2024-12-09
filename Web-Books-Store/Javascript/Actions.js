@@ -1,7 +1,8 @@
-'use strict'
+"use strict";
 import * as Bridge from "./Bridge.js";
 import { disableSiblingContainer, hiddenException, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
+import { searchBtn } from "./search.js";
 import { slidesHandler } from "./Slides.js";
 
 function returnHomepage(elementsObj) {
@@ -112,8 +113,8 @@ function setQuantityBox(elementsObj) {
 
 // handle scrolls
 function scrollToHandler(nameStaticPage) {
-     let staticPage;
-     const elementsObj = Bridge.default();
+  let staticPage;
+  const elementsObj = Bridge.default();
 
      if (nameStaticPage === "news") {
           staticPage = elementsObj.getNewsBlogs();
@@ -134,20 +135,36 @@ function scrollToHandler(nameStaticPage) {
      else if (staticPage)
           window.scroll({ top: staticPage.offsetTop + 3 * 16, left: 0, behavior: "smooth" });
 
+  // check if action is scroll to top or not
+  if (nameStaticPage === "top")
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  else if (staticPage)
+    window.scroll({
+      top: staticPage.offsetTop + 3 * 16,
+      left: 0,
+      behavior: "smooth",
+    });
 }
 
 // func for click nav btn on sub header or click to scroll top btn
 function staticContents(elementsObj) {
-     const newsButtons = elementsObj.getNewsBtn();
-     const scrollTopButtons = elementsObj.getScrollTop();
-     const servicesButtons = elementsObj.getServicesBtn();
+  const newsButtons = elementsObj.getNewsBtn();
+  const scrollTopButtons = elementsObj.getScrollTop();
+  const servicesButtons = elementsObj.getServicesBtn();
 
-     // add event listener
-     if (newsButtons) {
-          newsButtons.forEach((btn) => {
-               btn.addEventListener("click", Bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn"));
-          });
-     }
+  // add event listener
+  if (newsButtons) {
+    newsButtons.forEach((btn) => {
+      btn.addEventListener(
+        "click",
+        Bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn")
+      );
+    });
+  }
 
      if (servicesButtons) {
           servicesButtons.forEach((btn) => {
@@ -200,59 +217,6 @@ function accountEvents(elementsObj) {
           }, 200, "forgotPassword"));
      })
 }
-function handlecartNavigation() {
-     const categoryButtons = document.querySelectorAll('.cart-btn');
-   
-     categoryButtons.forEach(button => {
-         button.addEventListener('click', (event) => {
-             event.preventDefault(); // Ngăn hành vi mặc định của nút
-                 window.location.href = "cart.html"; // Chuyển hướng với tham số
-             
-         });
-     });
-   }
-   // Định nghĩa hàm để xử lý sự kiện chuyển trang khi bấm "Xem thêm"
-   function handleCategoryNavigation() {
-     const categoryButtons = document.querySelectorAll('.category-btn');
-   
-     categoryButtons.forEach(button => {
-         button.addEventListener('click', (event) => {
-             event.preventDefault(); // Ngăn hành vi mặc định của nút
-             const parentSection = button.closest('section'); // Tìm section cha của nút
-             if (parentSection && parentSection.id) {
-                 const categoryId = parentSection.id; // Lấy id của section
-                 window.location.href = `index.html?category=${categoryId}`; // Chuyển hướng với tham số
-             }
-         });
-     });
-   }
-document.addEventListener("DOMContentLoaded", () => {
-     let elementsObj = Bridge.default();
 
-     // check DOM of header, sub header and footer
-     const checkDOM = setInterval(() => {
-          if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
-               // call funcs
-               accountEvents(elementsObj);
-               staticContents(elementsObj);
-               historyNavigate(elementsObj);
-               trackingNavigate(elementsObj);
-               returnHomepage(elementsObj);
-               smNavigationMenu(elementsObj);
-               handlecartNavigation();
-               // remove Interval 
-               clearInterval(checkDOM);
-          }
-     }, 200);
 
-     // call funcs
-     handleCategoryNavigation();
-     cancelButtons(elementsObj);
-     slidesHandler("news");
-     Navigate.execQueryHandler();
-     Navigate.popStateHandler(location.href);
-     Navigate.forbiddenDOM();
-
-})
-
-export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox }
+export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox, returnHomepage, trackingNavigate, smNavigationMenu }

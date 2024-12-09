@@ -506,7 +506,25 @@
      display: flex;
      flex-wrap: wrap;
 }
-
+.pagination-controls {
+     display: flex;
+     justify-content: center;
+     gap: 10px;
+     margin-top: 20px;
+ }
+ 
+ .page-button {
+     padding: 5px 10px;
+     background-color: var(--main-color);
+     border: none;
+     color: white;
+     cursor: pointer;
+     border-radius: 4px;
+ }
+ 
+ .page-button:hover {
+     background-color: var(--btn-hover);
+ }
 .product-container .product-item {
      position: relative;
 }
@@ -666,18 +684,7 @@
      left: 1.4%;
      right: 1.4%;
 }
-   
-.page-button {
-     padding: 5px 10px;
-     background-color: var(--main-color);
-     border: none;
-     color: white;
-     cursor: pointer;
-     border-radius: 4px;
- }
-.page-button:hover {
-     background-color: var( --btn-hover);
- }
+
 #news-blogs-container .news-blogs-inner .news-blogs-items {
      margin: 1.25em 0;
      display: flex;

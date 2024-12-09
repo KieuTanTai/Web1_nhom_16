@@ -3,7 +3,7 @@ import { setQuantityBox } from "./Actions.js";
 import * as Bridge from "./Bridge.js";
 import { fakeOverlay, formatPrices, hiddenException, isEmpty, resizeImages, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
-
+import { attachAddToCartEvents } from "./Cart.js";
 // get / set products
 function getProductBooks() {
   return Array.from(JSON.parse(localStorage.getItem("products")));
@@ -16,7 +16,7 @@ function setProductBooks(product) {
 function getValueQuery(request) {
   let newURL = new URLSearchParams(window.location.search);
   let query = newURL.get(request);
-  return query ? query : "";
+  return query === "undefined" ? undefined : query;
 }
 
 async function dynamicDetail(product) {
@@ -65,7 +65,7 @@ async function dynamicDetail(product) {
   fakeOverlay(container, 150);
 
   // price
-  (Array.from(bookPrice.children)).forEach((child) => {
+  (Array.from(bookPrice.children)).forEach(() => {
     let oldPrice = bookPrice.querySelector(".old-price");
     let newPrice = bookPrice.querySelector(".new-price");
     if (oldPrice)
@@ -188,6 +188,7 @@ function renderProducts(list, wrapper) {
   if (wrapper) {
     wrapper.innerHTML = html;
     renderProductDetails(list, wrapper, "detail_product.html");
+    attachAddToCartEvents();
   } else
     return html;
 }

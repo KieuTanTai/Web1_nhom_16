@@ -1,11 +1,12 @@
 import { getProductBooks, renderProducts } from './Products.js';
-
+import {resizeImages } from './Interface.js';
+import {formatPrices} from "./Interface.js";
 // page.js: Xử lý hiển thị phần nội dung dựa trên URL
 document.addEventListener('DOMContentLoaded', () => {
     // Khởi chạy khi DOM đã tải xong
     initializePage();
 });
-const ITEMS_PER_PAGE = 10; // Số sản phẩm trên mỗi trang
+const ITEMS_PER_PAGE = 7; // Số sản phẩm trên mỗi trang
 /**
  * Hàm khởi tạo trang
  */
@@ -21,14 +22,16 @@ function initializePage() {
         showTargetSection(categoryId);
         // Lấy danh sách sản phẩm từ localStorage
         const allProducts = getProductBooks();
-
+        console.log("Dữ liệu sản phẩm từ localStorage:", allProducts);
         // Lọc sản phẩm theo danh mục
         const filteredProducts = filterProductsByCategory(allProducts, categoryId);
         console.log("Filtered Products:", filteredProducts);
         
 
         // Tích hợp phân trang
+        
         setupPagination(filteredProducts, categoryId);
+        
     }
 }
 /**
@@ -103,8 +106,20 @@ function displayPage(products, container, pageNumber) {
 
     // Hiển thị sản phẩm
     renderProducts(pageProducts, container);
+    // Chỉ định dạng giá khi đã chắc chắn sản phẩm đã được render
+    setTimeout(() => {
+        formatPrices({ getElementPrices: () => container.querySelectorAll('.price') });
+    }, 0);
 
     console.log(`Hiển thị trang ${pageNumber}:`, pageProducts);
+ 
+    const elementsObj = {
+        getImages: () => container.querySelectorAll('img'),
+    };
+
+    // Thay đổi kích thước hình ảnh
+    resizeImages(elementsObj);
+    
 }
 
 
@@ -130,6 +145,7 @@ function createPaginationControls(section, products, container, totalPages) {
         pageButton.style.cursor = 'pointer';
         pageButton.addEventListener('click', () => {
             displayPage(products, container, i);
+            
         });
 
         paginationContainer.appendChild(pageButton);
@@ -175,5 +191,6 @@ function showTargetSection(categoryId) {
     } else {
         console.error(`Section với ID "${categoryId}" không tồn tại.`);
     }
+    
 }
 

@@ -187,16 +187,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const elementsObj = Bridge.default();
 
   //create check DOM of Header and Footer
-  addDOMHeaderFooter(elementsObj);
   const checkDOM = setInterval(() => {
     if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
-      resizeSmNav(elementsObj);
       clearInterval(checkDOM);
     }
   }, 200);
+
   // call funcs
-  getInitProducts(elementsObj);
-  hiddenException();
+
 });
 
-export { formatPrices, resizeImages, isEmpty, categoryIsEmpty, getInitProducts, hiddenException, scrollView, fakeOverlay, disableSiblingContainer };
+export { formatPrices, isEmpty, categoryIsEmpty, getInitProducts, hiddenException, scrollView, fakeOverlay, disableSiblingContainer };
+export { resizeSmNav, resizeImages, addDOMHeaderFooter };
