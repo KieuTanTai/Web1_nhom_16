@@ -65,7 +65,7 @@ async function dynamicDetail(product) {
   fakeOverlay(container, 150);
 
   // price
-  (Array.from(bookPrice.children)).forEach((child) => {
+  (Array.from(bookPrice.children)).forEach(() => {
     let oldPrice = bookPrice.querySelector(".old-price");
     let newPrice = bookPrice.querySelector(".new-price");
     if (oldPrice)

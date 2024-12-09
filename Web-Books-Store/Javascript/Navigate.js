@@ -37,13 +37,11 @@ function popStateHandler() {
           let url = location.href;
           let path = url.slice(url.lastIndexOf("/") + 1, url.length);
           if (!path || path === "index.html" || path === "index") {
-               console.log(path);
                window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
                Interface.hiddenException();
           }
-          if (path.includes("?query=")) {
-               renderSearchDOM();
-          }
+          if (path.includes("?query="))
+               renderSearchDOM(execQueryHandler("query"));
 
           execQueryHandler("name");
      }, 200, "popstate"));

@@ -218,32 +218,5 @@ function accountEvents(elementsObj) {
      })
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-     let elementsObj = Bridge.default();
 
-     // check DOM of header, sub header and footer
-     const checkDOM = setInterval(() => {
-          if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
-               // call funcs
-               accountEvents(elementsObj);
-               staticContents(elementsObj);
-               historyNavigate(elementsObj);
-               trackingNavigate(elementsObj);
-               returnHomepage(elementsObj);
-               smNavigationMenu(elementsObj);
-               searchBtn();
-               // remove Interval 
-               clearInterval(checkDOM);
-          }
-     }, 200);
-
-     // call funcs
-     cancelButtons(elementsObj);
-     slidesHandler("news");
-     Navigate.execQueryHandler();
-     Navigate.popStateHandler();
-     Navigate.forbiddenDOM();
-
-})
-
-export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox }
+export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox, returnHomepage, trackingNavigate, smNavigationMenu }
