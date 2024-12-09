@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 import * as Bridge from "./Bridge.js";
 import { disableSiblingContainer, hiddenException, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
@@ -113,8 +113,8 @@ function setQuantityBox(elementsObj) {
 
 // handle scrolls
 function scrollToHandler(nameStaticPage) {
-     let staticPage;
-     const elementsObj = Bridge.default();
+  let staticPage;
+  const elementsObj = Bridge.default();
 
      if (nameStaticPage === "news") {
           staticPage = elementsObj.getNewsBlogs();
@@ -135,20 +135,36 @@ function scrollToHandler(nameStaticPage) {
      else if (staticPage)
           window.scroll({ top: staticPage.offsetTop + 3 * 16, left: 0, behavior: "smooth" });
 
+  // check if action is scroll to top or not
+  if (nameStaticPage === "top")
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  else if (staticPage)
+    window.scroll({
+      top: staticPage.offsetTop + 3 * 16,
+      left: 0,
+      behavior: "smooth",
+    });
 }
 
 // func for click nav btn on sub header or click to scroll top btn
 function staticContents(elementsObj) {
-     const newsButtons = elementsObj.getNewsBtn();
-     const scrollTopButtons = elementsObj.getScrollTop();
-     const servicesButtons = elementsObj.getServicesBtn();
+  const newsButtons = elementsObj.getNewsBtn();
+  const scrollTopButtons = elementsObj.getScrollTop();
+  const servicesButtons = elementsObj.getServicesBtn();
 
-     // add event listener
-     if (newsButtons) {
-          newsButtons.forEach((btn) => {
-               btn.addEventListener("click", Bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn"));
-          });
-     }
+  // add event listener
+  if (newsButtons) {
+    newsButtons.forEach((btn) => {
+      btn.addEventListener(
+        "click",
+        Bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn")
+      );
+    });
+  }
 
      if (servicesButtons) {
           servicesButtons.forEach((btn) => {
