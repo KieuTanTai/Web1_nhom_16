@@ -1,7 +1,7 @@
 'use strict';
 import * as Bridge from "./Bridge.js";
 import {getProductBooks} from "./Products.js";
-import {formatPrices} from "./Interface.js";
+import {formatPrices, hiddenException} from "./Interface.js";
 function updateCartTotal(elementsObj) {
     const cartItems = elementsObj.getCartItems();
     let total = 0;
@@ -289,17 +289,18 @@ function handleCategoryNavigation() {
     });
   }
   
-  function handleCartNavigation() {
+function handleCartNavigation() {
     const categoryButtons = document.querySelectorAll('.cart-btn');
-  
+
     categoryButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             event.preventDefault(); // Ngăn hành vi mặc định của nút
                 window.location.href = "cart.html"; // Chuyển hướng với tham số
+                console.log("hello world")
             
         });
     });
-  }
+}
 
 export {addToCart, attachAddToCartEvents,increaseCartCount, displayCartItems, updateCartCount, updateCartTotal};
 export {handleQuantityChange, handleCheckboxChange, handleSelectAllCheckbox, handleRemoveItem, handleCartNavigation, handleCategoryNavigation}

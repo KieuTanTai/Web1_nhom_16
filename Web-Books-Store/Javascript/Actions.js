@@ -1,9 +1,6 @@
 "use strict";
 import * as Bridge from "./Bridge.js";
 import { disableSiblingContainer, hiddenException, scrollView } from "./Interface.js";
-import * as Navigate from "./Navigate.js";
-import { searchBtn } from "./search.js";
-import { slidesHandler } from "./Slides.js";
 
 function returnHomepage(elementsObj) {
      let testURL = location.pathname;
@@ -84,7 +81,12 @@ function historyNavigate(elementsObj) {
           disableSiblingContainer(elementsObj.getOrderContent());
           if (!lists) {
                let orderContainer = elementsObj.getOrderContent();
-               let statusContainer = orderContainer.querySelector(".order-status-container"); 
+               if (!orderContainer) {
+                window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+              }
+              console.log("hello")
+              orderContainer = elementsObj.getOrderContent();
+              let statusContainer = orderContainer.querySelector(".order-status-container"); 
                disableSiblingContainer(statusContainer);
 
                (orderContainer)?.classList.remove("disable");
