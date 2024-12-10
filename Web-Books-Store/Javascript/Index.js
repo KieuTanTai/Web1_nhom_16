@@ -26,6 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
                // call funcs
                Interface.resizeSmNav(elementsObj);
+               Cart.increaseCartCount();
+               Cart.updateCartCount(elementsObj);
+               Cart.handleCartNavigation();
                Actions.accountEvents(elementsObj);
                Actions.staticContents(elementsObj);
                Actions.historyNavigate(elementsObj);
@@ -50,4 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
      Slides.slidesHandler("news");
      Login.validateAccount();
      Register.validateRegister();
+
+     // cart
+     Cart.handleCategoryNavigation();
+     Cart.displayCartItems(elementsObj);
+     Cart.updateCartTotal(elementsObj); 
+     Cart.handleQuantityChange(elementsObj);  
+     Cart.handleCheckboxChange(elementsObj); 
+     Cart.handleSelectAllCheckbox(elementsObj);  
+     Cart.handleRemoveItem(elementsObj); 
 })

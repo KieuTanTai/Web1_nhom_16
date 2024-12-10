@@ -152,7 +152,6 @@ function displayCartItems(elementsObj) {
 
     // Kiểm tra nếu giỏ hàng trống
     if (cart.length === 0) {
-        console.log(cartContainer);
         cartContainer.innerHTML = '<p>Giỏ hàng trống</p>';
         return;
     }
@@ -290,7 +289,7 @@ function handleCategoryNavigation() {
     });
   }
   
-  function handlecartNavigation() {
+  function handleCartNavigation() {
     const categoryButtons = document.querySelectorAll('.cart-btn');
   
     categoryButtons.forEach(button => {
@@ -301,24 +300,6 @@ function handleCategoryNavigation() {
         });
     });
   }
-document.addEventListener("DOMContentLoaded", function () {
-    const elementsObj = Bridge.default();
-    const checkDOM = setInterval(() => {
-        if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
-          increaseCartCount();
-          updateCartCount(elementsObj);
-          handlecartNavigation();
-          clearInterval(checkDOM);
-          
-        }
-      }, 200);
-    handleCategoryNavigation();
-    displayCartItems(elementsObj);
-    updateCartTotal(elementsObj); 
-    handleQuantityChange(elementsObj);  
-    handleCheckboxChange(elementsObj); 
-    handleSelectAllCheckbox(elementsObj);  
-    handleRemoveItem(elementsObj);  
-   
-});
-export{addToCart, attachAddToCartEvents,increaseCartCount};
+
+export {addToCart, attachAddToCartEvents,increaseCartCount, displayCartItems, updateCartCount, updateCartTotal};
+export {handleQuantityChange, handleCheckboxChange, handleSelectAllCheckbox, handleRemoveItem, handleCartNavigation, handleCategoryNavigation}
