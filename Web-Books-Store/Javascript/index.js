@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
      let elementsObj = Bridge.default();
 
      // DOM ON action.js
+     Navigate.forbiddenDOM();
      Interface.addDOMHeaderFooter(elementsObj);
      const checkDOM = setInterval(() => {
           if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
