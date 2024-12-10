@@ -137,11 +137,7 @@ function scrollToHandler(nameStaticPage) {
 
   // check if action is scroll to top or not
   if (nameStaticPage === "top")
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
   else if (staticPage)
     window.scroll({
       top: staticPage.offsetTop + 3 * 16,
