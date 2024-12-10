@@ -9,52 +9,86 @@ function updateCartTotal(elementsObj) {
     let shippingDiscount = 0;
     let voucherDiscount = 0;
     let Prices = 0;
-    let hasCheckedItem = false;
-    cartItems.forEach(item => {
-        const checkbox = item.querySelector('input[type="checkbox"]'); 
-        if (checkbox.checked) {  
-            hasCheckedItem = true;
-            const price = parseFloat(item.querySelector(".price").innerText);  
-            const quantity = parseInt(item.querySelector(".quantity-cart").value); 
-            shippingFee = 10000;
-            shippingDiscount = 5250;
-            voucherDiscount +=3000;
-            Prices += price * quantity;
-            total += price * quantity + shippingFee - shippingDiscount - voucherDiscount ;
-            
-        }
+
+    const formatter = new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+        minimumFractionDigits: 0,
     });
-    if (!hasCheckedItem) {
-        total = 0;
+
+    // Duyệt qua từng sản phẩm trong giỏ hàng
+    cartItems.forEach(item => {
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        const priceElement = item.querySelector(".price");
+        const quantityElement = item.querySelector(".quantity-cart");
+
+        // Kiểm tra nếu checkbox không tồn tại hoặc chưa được chọn
+        if (!checkbox || !checkbox.checked) return;
+
+        const rawPrice = priceElement ? priceElement.innerText.replace(/\D/g, "") : "0";
+        const price = parseFloat(rawPrice) || 0; // Giá trị mặc định là 0 nếu không hợp lệ
+        const quantity = quantityElement ? parseInt(quantityElement.value, 10) : 1; // Mặc định là 1
+
+        shippingFee = 10000;
+        shippingDiscount = 5250;
+        voucherDiscount += 3000;
+        Prices += price * quantity;
+        total += price * quantity + shippingFee - shippingDiscount - voucherDiscount;
+    });
+
+    // Xử lý giá trị mặc định khi không có sản phẩm nào được chọn
+    if (Prices === 0) {
         shippingFee = 0;
         shippingDiscount = 0;
         voucherDiscount = 0;
-        Prices = 0;
+        total = 0;
     }
 
-    elementsObj.getTotalPrice().innerText = `${total} `;
-    elementsObj.getshippingFee().innerText = `${shippingFee} `;
-    elementsObj.getshippingDiscount().innerText = `${shippingDiscount} `;
-    elementsObj.getvoucherDiscount().innerText = `${voucherDiscount} `;
-    elementsObj.getPrices().innerText = `${Prices} `;
-    formatPrices(elementsObj);
+    // Cập nhật giá trị hiển thị với định dạng
+    elementsObj.getTotalPrice().innerText = formatter.format(total).replace("₫", "đ");
+    elementsObj.getshippingFee().innerText = formatter.format(shippingFee).replace("₫", "đ");
+    elementsObj.getshippingDiscount().innerText = formatter.format(shippingDiscount).replace("₫", "đ");
+    elementsObj.getvoucherDiscount().innerText = formatter.format(voucherDiscount).replace("₫", "đ");
+    elementsObj.getPrices().innerText = formatter.format(Prices).replace("₫", "đ");
 }
+
+
 
 function handleQuantityChange(elementsObj) {
     const quantityInputs = elementsObj.getQuantityInputs();
+
     quantityInputs.forEach((input, index) => {
         input.addEventListener("change", () => {
             const cartItems = elementsObj.getCartItems();
             const item = cartItems[index];
             const pricePerItemElement = item.querySelector(".price-per-item");
-            const price = parseFloat(item.querySelector(".price").innerText);
-            const quantity = parseInt(input.value);
-            pricePerItemElement.innerText = `${(price * quantity)} `;
-            formatPrices(elementsObj);
+            const priceElement = item.querySelector(".price");
+
+            // Đảm bảo giá trị price được chuyển đổi chính xác
+            const rawPrice = priceElement.innerText.replace(/\D/g, ""); // Loại bỏ ký tự không phải số
+            const price = parseFloat(rawPrice);
+
+            // Lấy số lượng mới
+            const quantity = parseInt(input.value, 10);
+
+            if (isNaN(price) || isNaN(quantity)) {
+                console.error("Giá hoặc số lượng không hợp lệ:", { price, quantity });
+                return;
+            }
+
+            // Tính giá trị mới và cập nhật
+            const newPricePerItem = price * quantity;
+            pricePerItemElement.innerText = newPricePerItem;
+
+            // Định dạng giá trị mới
+            formatPrices({ getElementPrices: () => [pricePerItemElement] });
+
+            // Cập nhật tổng giỏ hàng
             updateCartTotal(elementsObj);
         });
     });
 }
+
 
 
 function handleCheckboxChange(elementsObj) {
@@ -112,6 +146,8 @@ function handleRemoveItem(elementsObj) {
 
             // Cập nhật số lượng sản phẩm trong icon giỏ hàng
             updateCartCount(elementsObj);
+            // Định dạng lại giá
+            formatPrices({ getElementPrices: () => document.querySelectorAll(".price") });
 
             // Cập nhật lại tổng giá trị giỏ hàng
             updateCartTotal(elementsObj);
@@ -189,9 +225,15 @@ function displayCartItems(elementsObj) {
                             class="quantity-cart"
                         />
                     </div>
-                    <div class="price-per-item font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">
-                        ${(item.price * item.quantity)} 
-                    </div>
+                    <div class="price-per-item price font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">
+            ${new Intl.NumberFormat("vi-VN", {
+                style: "currency",
+                currency: "VND",
+                minimumFractionDigits: 0,
+            }).format(item.price * item.quantity).replace("₫", "đ")}
+        </div>
+
+
                     <div class="rm-cart-btn col-l col-l-1 col-m-2 col-s-2 flex justify-center">
                         <div>
                             <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark)"></i>
@@ -201,7 +243,7 @@ function displayCartItems(elementsObj) {
             </div>
         `;
     });
-    formatPrices(elementsObj);
+    formatPrices({ getElementPrices: () => document.querySelectorAll(".price") });
     updateCartTotal(elementsObj);
     
 }
