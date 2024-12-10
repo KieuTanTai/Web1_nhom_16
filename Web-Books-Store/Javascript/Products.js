@@ -3,7 +3,7 @@ import { setQuantityBox } from "./Actions.js";
 import * as Bridge from "./Bridge.js";
 import { fakeOverlay, formatPrices, hiddenException, isEmpty, resizeImages, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
-
+import { attachAddToCartEvents } from "./Cart.js";
 // get / set products
 function getProductBooks() {
   return Array.from(JSON.parse(localStorage.getItem("products")));
@@ -188,6 +188,7 @@ function renderProducts(list, wrapper) {
   if (wrapper) {
     wrapper.innerHTML = html;
     renderProductDetails(list, wrapper, "detail_product.html");
+    attachAddToCartEvents();
   } else
     return html;
 }

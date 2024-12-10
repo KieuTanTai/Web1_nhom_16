@@ -41,6 +41,16 @@ function getElementsHandler() {
     getFSTable: () => $("#fs-container"),
     getFSCountDown: () => $(".fs-countdown"),
     getHistoryOrder: () => $(".history-tracking-container #history-order-container"),
+    //cart
+    getCartItems: () => $$(".block-product"), 
+     getQuantityInputs: () => $$(".quantity-cart"), 
+     getTotalPrice: () => $(".total-price"),  
+     getshippingFee: () => $(".shipping-fee"),
+     getshippingDiscount: () => $(".shipping-discount"),
+     getvoucherDiscount: () => $(".voucher-discount"),
+     getPrices:() =>$(".prices"),
+     getRemoveButtons: () => $$(".fa-trash"),  
+     getSelectAllCheckbox: () => $('#selection-item'),  
     // buttons
     getNavBtn: () => $$(".nav-btn"),
     getPrevBtn: () => $$(".prev-btn"),

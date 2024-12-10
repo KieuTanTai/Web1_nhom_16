@@ -12,6 +12,9 @@ import * as DonHang from "./donhang.js";
 import * as Login from "./Login.js";
 import * as Register from "./Register.js";
 import * as Slides from "./Slides.js";
+import * as Cart from "./Cart.js";
+import * as Pages from "./pages.js";
+
 
 document.addEventListener("DOMContentLoaded", () => {
      let elementsObj = Bridge.default();

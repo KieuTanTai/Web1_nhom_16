@@ -93,6 +93,15 @@ input[type="text"] {
   -webkit-box-orient: vertical;
 }
 
+input[type = text] {
+     display: -webkit-box;
+     line-clamp: 2;
+     overflow: hidden;
+     -webkit-line-clamp: 2;
+     text-overflow: ellipsis;
+     -webkit-box-orient: vertical;
+}
+
 /* CSS global */
 
 /* width & height */
@@ -574,6 +583,20 @@ input[type="text"] {
      }
 }
 
+.menu {
+     animation: menu 0.2s linear;
+}
+
+@keyframes menu {
+     0% {
+          transform: translateX(-100%);
+     }
+
+     100% {
+          transform: translateX(0%);
+     }
+}
+
 .overflowText {
      animation: overflowText 0.2s linear;
 }
@@ -625,7 +648,7 @@ input[type="text"] {
 
 /* other */
 .container {
-  position: relative;
+     position: relative;
 }
 
 .text-content {
@@ -676,6 +699,14 @@ input[type="text"] {
 
 .show {
   visibility: visible;
+}
+
+.hidden {
+     visibility: hidden;
+}
+
+.show {
+     visibility: visible;
 }
 
 .hidden {
