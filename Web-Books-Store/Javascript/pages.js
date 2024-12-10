@@ -2,11 +2,7 @@ import { getProductBooks, renderProducts } from './Products.js';
 import {resizeImages } from './Interface.js';
 import {formatPrices} from "./Interface.js";
 // page.js: Xử lý hiển thị phần nội dung dựa trên URL
-document.addEventListener('DOMContentLoaded', () => {
-    // Khởi chạy khi DOM đã tải xong
-    initializePage();
-});
-const ITEMS_PER_PAGE = 7; // Số sản phẩm trên mỗi trang
+const ITEMS_PER_PAGE = 10; // Số sản phẩm trên mỗi trang
 /**
  * Hàm khởi tạo trang
  */
@@ -194,3 +190,4 @@ function showTargetSection(categoryId) {
     
 }
 
+export {initializePage}

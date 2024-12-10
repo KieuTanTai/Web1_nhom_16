@@ -18,6 +18,8 @@ import * as Pages from "./pages.js";
 
 document.addEventListener("DOMContentLoaded", () => {
      let elementsObj = Bridge.default();
+     let lastPath = location.href;
+     lastPath = lastPath.slice(lastPath.lastIndexOf("/") + 1, lastPath.length);
 
      // DOM ON action.js
      Navigate.forbiddenDOM();
@@ -41,7 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
           }
      }, 200);
      // call funcs
-     Interface.hiddenException();
+     if (!lastPath)
+          Interface.hiddenException();
      Actions.cancelButtons(elementsObj);
      Interface.getInitProducts(elementsObj);
 
@@ -49,17 +52,51 @@ document.addEventListener("DOMContentLoaded", () => {
      Navigate.execQueryHandler();
      Navigate.popStateHandler();
      Navigate.forbiddenDOM();
-
-     Slides.slidesHandler("news");
+     // login
      Login.validateAccount();
      Register.validateRegister();
-
      // cart
-     Cart.handleCategoryNavigation();
-     Cart.displayCartItems(elementsObj);
-     Cart.updateCartTotal(elementsObj); 
-     Cart.handleQuantityChange(elementsObj);  
-     Cart.handleCheckboxChange(elementsObj); 
-     Cart.handleSelectAllCheckbox(elementsObj);  
-     Cart.handleRemoveItem(elementsObj); 
+     if (lastPath.includes("cart")) {
+          Cart.handleCategoryNavigation();
+          Cart.displayCartItems(elementsObj);
+          Cart.updateCartTotal(elementsObj);
+          Cart.handleQuantityChange(elementsObj);
+          Cart.handleCheckboxChange(elementsObj);
+          Cart.handleSelectAllCheckbox(elementsObj);
+          Cart.handleRemoveItem(elementsObj);
+     }
+     // other
+     Slides.slidesHandler("news");
+     Pages.initializePage();
 })
+
+window.addEventListener("load", () => {
+     let loginForm = Bridge.$("#login");
+     let registForm = Bridge.$("#register");
+     let forgotForm = Bridge.$("#forgot-password");
+     
+     if (sessionStorage.getItem("retryShowOrder") === "true") {
+          sessionStorage.removeItem("retryShowOrder");
+          Actions.showOrderContent();
+     }
+
+     if (sessionStorage.getItem("retryTracking") === "true") {
+          sessionStorage.removeItem("retryTracking");
+          Actions.showTracking(localStorage.getItem("trackers"));
+     }
+
+     if (sessionStorage.getItem("login") === "true") {
+          sessionStorage.removeItem("login");
+          Actions.showLogin(loginForm, registForm, forgotForm);
+     }
+
+     if (sessionStorage.getItem("register") === "true") {
+          sessionStorage.removeItem("register");
+          Actions.showRegister(loginForm, registForm, forgotForm);
+     }
+     
+     if (sessionStorage.getItem("forgotPassword") === "true") {
+          sessionStorage.removeItem("forggotPassword");
+          Actions.showForgotPassword(loginForm, registForm, forgotForm);
+     }
+});

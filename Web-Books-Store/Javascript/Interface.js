@@ -182,19 +182,5 @@ async function getInitProducts(elementsObj) {
   }
 }
 
-// call functions when DOM Loaded
-document.addEventListener("DOMContentLoaded", () => {
-  const elementsObj = Bridge.default();
-  //create check DOM of Header and Footer
-  const checkDOM = setInterval(() => {
-    if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
-      clearInterval(checkDOM);
-    }
-  }, 200);
-
-  // call funcs
-
-});
-
 export { formatPrices, isEmpty, categoryIsEmpty, getInitProducts, hiddenException, scrollView, fakeOverlay, disableSiblingContainer };
 export { resizeSmNav, resizeImages, addDOMHeaderFooter };

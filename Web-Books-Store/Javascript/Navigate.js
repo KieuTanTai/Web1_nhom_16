@@ -40,7 +40,7 @@ function popStateHandler() {
           let url = location.href;
           let container = Bridge.default().getMainContainer();
           let path = url.slice(url.lastIndexOf("/") + 1, url.length);
-          if (!path || path === "index.html" || path === "index") {
+          if (!path || path.includes("index")) {
                window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
                Interface.hiddenException();
           }

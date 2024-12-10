@@ -2,6 +2,7 @@
 import * as Bridge from "./Bridge.js";
 import {getProductBooks} from "./Products.js";
 import {formatPrices, hiddenException} from "./Interface.js";
+import { sleep } from "./Navigate.js";
 function updateCartTotal(elementsObj) {
     const cartItems = elementsObj.getCartItems();
     let total = 0;
@@ -9,12 +10,6 @@ function updateCartTotal(elementsObj) {
     let shippingDiscount = 0;
     let voucherDiscount = 0;
     let Prices = 0;
-
-    const formatter = new Intl.NumberFormat("vi-VN", {
-        style: "currency",
-        currency: "VND",
-        minimumFractionDigits: 0,
-    });
 
     // Duyệt qua từng sản phẩm trong giỏ hàng
     cartItems.forEach(item => {
@@ -45,11 +40,7 @@ function updateCartTotal(elementsObj) {
     }
 
     // Cập nhật giá trị hiển thị với định dạng
-    elementsObj.getTotalPrice().innerText = formatter.format(total).replace("₫", "đ");
-    elementsObj.getshippingFee().innerText = formatter.format(shippingFee).replace("₫", "đ");
-    elementsObj.getshippingDiscount().innerText = formatter.format(shippingDiscount).replace("₫", "đ");
-    elementsObj.getvoucherDiscount().innerText = formatter.format(voucherDiscount).replace("₫", "đ");
-    elementsObj.getPrices().innerText = formatter.format(Prices).replace("₫", "đ");
+    formatPrices(elementsObj);
 }
 
 
@@ -187,6 +178,7 @@ function displayCartItems(elementsObj) {
     const cartContainer = document.querySelector('.list-carts');
 
     // Kiểm tra nếu giỏ hàng trống
+    if (!cartContainer) return;
     if (cart.length === 0) {
         cartContainer.innerHTML = '<p>Giỏ hàng trống</p>';
         return;
@@ -197,12 +189,7 @@ function displayCartItems(elementsObj) {
     cart.forEach((item, index) => {
         cartContainer.innerHTML += `
             <div class="block-product">
-                <input
-                    type="checkbox"
-                    name="select-block-product"
-                    id="block-product-${index}"
-                    class="grid-col col-l-1 col-m-1 col-s-1"
-                />
+                <input type="checkbox" name="select-block-product" id="block-product-${index}" class="grid-col col-l-1 col-m-1 col-s-1"/>
                 <div class="product-cart grid-col col-l-1 col-m-1 col-s-1 no-gutter full-width">
                     <img src="${item.image}" alt="${item.name}" />
                 </div>
@@ -210,8 +197,8 @@ function displayCartItems(elementsObj) {
                     <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
                         <p class="font-bold capitalize margin-bottom-16">${item.name}</p>
                         <div class="block-product-price">
-                            <span class="new-price font-bold padding-right-8 price">${item.price}</span>
-                            <del class="price old-price">65000</del>
+                            <span class="new-price font-bold padding-right-8 price">${Math.round(item.price * (1 - item.sale))}</span>
+                            <del class="price old-price">${item.price}</del>
                         </div>
                     </div>
                     <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
@@ -337,9 +324,7 @@ function handleCartNavigation() {
     categoryButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             event.preventDefault(); // Ngăn hành vi mặc định của nút
-                window.location.href = "cart.html"; // Chuyển hướng với tham số
-                console.log("hello world")
-            
+            window.location.href = "cart.html"; // Chuyển hướng với tham số
         });
     });
 }
