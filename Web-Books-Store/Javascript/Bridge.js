@@ -41,6 +41,16 @@ function getElementsHandler() {
     getFSTable: () => $("#fs-container"),
     getFSCountDown: () => $(".fs-countdown"),
     getHistoryOrder: () => $(".history-tracking-container #history-order-container"),
+    //cart
+    getCartItems: () => $$(".block-product"), 
+     getQuantityInputs: () => $$(".quantity-cart"), 
+     getTotalPrice: () => $(".total-price"),  
+     getshippingFee: () => $(".shipping-fee"),
+     getshippingDiscount: () => $(".shipping-discount"),
+     getvoucherDiscount: () => $(".voucher-discount"),
+     getPrices:() =>$(".prices"),
+     getRemoveButtons: () => $$(".fa-trash"),  
+     getSelectAllCheckbox: () => $('#selection-item'),  
     // buttons
     getNavBtn: () => $$(".nav-btn"),
     getPrevBtn: () => $$(".prev-btn"),
@@ -57,6 +67,7 @@ function getElementsHandler() {
     getJsLoginBtn: () => $$(".js-login"),
     getJsRegisterBtn: () => $$(".js-register"),
     getJsForgotBtn: () => $$(".js-forgot-password"),
+    getJsSignoutBtn: () => $$(".js-signout"),
     // search
     getResultContainer: () => $("#search-results-container"),
     getCategoryFilter: () => $("#category-filter"),
@@ -91,7 +102,8 @@ function debounce(callback, delayTime, key) {
 
   return function (...restArgs) {
     clearTimeout(debounceList[key].time);
-    debounceList[key].time = setTimeout(() => callback(...restArgs), delayTime)};
+    debounceList[key].time = setTimeout(() => callback(...restArgs), delayTime);
+  };
 }
 
 // get promise DOM func (use async await with fetch api)
