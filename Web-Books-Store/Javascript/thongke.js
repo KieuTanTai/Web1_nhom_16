@@ -1,37 +1,21 @@
-var data_dh = [
-    ['DH001','KH001','No data','1.499.000','11/3/2025 8:11 PM','1'],
-    ['DH002','KH001','No data','11,499,000','11/4/2025 7:36 PM','2'],
-    ['DH003','KH002','No data','20,499,000','11/5/2024 7:38 PM','3'],
-    ['DH004','KH002','No data','20,499,000','11/4/2024 7:38 PM','1'],
-    ['DH005','KH002','No data','20,499,000','11/4/2024 7:38 PM','1'],
-    ['DH006','KH003','No data','20,499,000','11/4/2024 7:38 PM','1'],
-    ['DH007','KH004','No data','20,499,000','11/4/2024 7:38 PM','1'],
-    ['DH008','KH005','No data','20,499,000','11/4/2024 7:38 PM','3'],
-    ['DH009','KH001','No data','1,499,000','11/3/2024 8:11 PM','1']
-];
-var data_dh_chitiet = [
-    ['DH001','San pham A','300,000','10','400,000'],
-    ['DH001','San pham B','500,000','1','500,000'],
-    ['DH001','San pham C','100,000','4','400,000'],
-    ['DH002','San pham C','100,000','4','400,000'],
-    ['DH001','San pham D','100,000','5','400,000'],
-    ['DH009','San pham E','100,000','2','400,000']
-];
-var data_kh = [
-    ['DH001','KH001','Nguyễn Văn A','1,499,000','11/3/2025 8:11 PM'],
-    ['DH002','KH001','Nguyễn Văn A','11,499,000','11/4/2025 7:36 PM'],
-    ['DH003','KH002','Trần Văn B','20,499,000','11/5/2024 7:38 PM'],
-    ['DH004','KH002','Trần Văn B','20,499,000','11/4/2024 7:38 PM'],
-    ['DH005','KH002','Trần Văn B','20,499,000','11/4/2024 7:38 PM'],
-    ['DH006','KH003','Nguyễn Văn C','20,499,000','11/4/2024 7:38 PM'],
-    ['DH007','KH004','Trần Văn D','20,499,000','11/4/2024 7:38 PM'],
-    ['DH008','KH005','Nguyễn Văn E','20,499,000','11/4/2024 7:38 PM'],
-    ['DH009','KH001','Nguyễn Văn A','1,499,000','11/3/2024 8:11 PM']
-];
+// Lấy chuỗi JSON từ localStorage
+const tk_donhang_list = localStorage.getItem('donhang');
+// Chuyển chuỗi JSON thành mảng đối tượng
+const tk_donhangArray = JSON.parse(tk_donhang_list);
+// Tạo một mảng mới chỉ chứa các giá trị của đối tượng
+var data_dh = tk_donhangArray.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
+
+// Lấy chuỗi JSON từ localStorage
+const tk_chitiet_donhang_list = localStorage.getItem('chitiet_donhang');
+// Chuyển chuỗi JSON thành mảng đối tượng
+const tk_chitiet_donhangArray = JSON.parse(tk_chitiet_donhang_list);
+// Tạo một mảng mới chỉ chứa các giá trị của đối tượng
+var data_dh_chitiet = tk_chitiet_donhangArray.map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
+
+var data_kh = donhangArray.map(({ trang_thai,dia_chi, ...otherProps }) => Object.values(otherProps));
+
 var data_kh_temp = [];
-
 var data_dh_temp = [];
-
 var num_page = 1;
 
 // Cập nhật table (số trang về 1)
@@ -86,7 +70,7 @@ function thongke_mh(){
     info_thongke.innerHTML = `
         <div style="display: flex; width: 100%; height: 100%; background-color: rgb(220, 220, 220);">
             <div style="display: flex; justify-content: center; align-items: center; width: 70%; height: 100%; border-right: 1px solid black;">
-                <div style="width: 50%; height: 100%;">
+                <div style="width: 90%; height: 100%;">
                     <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
                         <h2 style="color: black;">Sản phẩm bán chạy</h2>
                     </div>
@@ -109,7 +93,7 @@ function thongke_mh(){
                 </div>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; width: 70%; height: 100%; border-left: 1px solid black;">
-                <div style="width: 50%; height: 100%;">
+                <div style="width: 90%; height: 100%;">
                     <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
                         <h2 style="color: black;">Sản phẩm bán chậm</h2>
                     </div>
@@ -332,7 +316,13 @@ function add_thongke_mh2(){
 function add_thongke_kh(thongke,f){
     var body = document.querySelector('#thongke_kh tbody');
     var top=0;
-    thongke.sort((a, b) => parseInt(b[2]) - parseInt(a[2]));
+    thongke.sort((a, b) => {
+        const valueA = parseInt(a[2].replace(/,/g, ''));
+        const valueB = parseInt(b[2].replace(/,/g, ''));
+        
+        return valueB - valueA;
+    });
+    console.log(thongke)
     for (let i = 0; i < thongke.length && top<5; i++) {
         var row = document.createElement('tr');
         for (let j = 0; j < thongke[i].length+2; j++) {
@@ -376,6 +366,7 @@ function xemhoadon_mh(obj){
             list_hd.push(data_dh_chitiet[i][0]);
         }
     }
+    console.log(list_hd)
     refresh_xemhd();
     var frame_xemhd = document.createElement('div');
     frame_xemhd.style.width = "100%";
@@ -433,14 +424,16 @@ function add_header_hd(){
 
 // Lập danh sách hóa đơn
 function add_list_hd(list_hd,f){
+    var k=0;
     if(!f){
         for (let i=(num_page-1)*5; i<(num_page-1)*5+5 && i<list_hd.length; i++){
             for (let j=0; j<data_dh.length; j++){
                 if (list_hd[i]==data_dh[j][0]){
+                    k++;
                     var new_hoadon = document.createElement('div');
                     new_hoadon.className = "table-donhang";
                     new_hoadon.innerHTML = `
-                        <div style="width: 5%">${j+1}</div>
+                        <div style="width: 5%">${k}</div>
                         <div style="width: 12%">${data_dh[j][0]}</div>
                         <div style="width: 12%">${data_dh[j][1]}</div>
                         <div style="width: 34%">${data_dh[j][2]}</div>
@@ -459,10 +452,11 @@ function add_list_hd(list_hd,f){
         for (let i=(num_page-1)*5; i<(num_page-1)*5+5 && i<list_hd.length; i++){
             for (let j=0; j<data_dh_temp.length; j++){
                 if (list_hd[i]==data_dh_temp[j][0]){
+                    k++;
                     var new_hoadon = document.createElement('div');
                     new_hoadon.className = "table-donhang";
                     new_hoadon.innerHTML = `
-                        <div style="width: 5%">${j+1}</div>
+                        <div style="width: 5%">${k}</div>
                         <div style="width: 12%">${data_dh_temp[j][0]}</div>
                         <div style="width: 12%">${data_dh_temp[j][1]}</div>
                         <div style="width: 34%">${data_dh_temp[j][2]}</div>
