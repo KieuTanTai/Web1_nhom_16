@@ -9,3 +9,4 @@ import * as Navigate from "./Navigate.js";
 import * as Search from "./search.js";
 import * as ThongKe from "./thongke.js";
 import * as DonHang from "./donhang.js";
+import * as Admin from "./AdminNavigate.js"

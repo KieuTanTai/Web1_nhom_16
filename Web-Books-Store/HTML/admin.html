@@ -10,15 +10,29 @@
     <link rel="shortcut icon" href="../Assets/Images/Icons/Web_logo/favicon.ico" />
     <link rel="stylesheet" href="../Assets/CSS/admin.css">
     <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css">
-
-    <script type="module" src="../Javascript/index.js"></script>
-    <!-- <script src="./assets/js/login.js"></script> -->
-
-
+    <script type="module" src="../Javascript/index.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 </head>
 <body>
+    <!-- Login component -->
+    <div class="login-component">
+        <form>
+            <div class="form-group">
+                <label for="username">Username *</label>
+                <input type="text" class="form-control" name="username" id="username"/>
+                <div class="username-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" class="form-control" name="password" id="password"/>
+                <div class="password-error"></div>
+            </div>
+            <button type="button" class="login-btn">Login</button>
+        </form>
+    </div>
+
+    <!-- Admin component -->
     <div class="body">
         <div class="header">
             <h2>Light Novel World - Admin</h2>
@@ -28,14 +42,12 @@
                 <aside class="sidebar">
                 <ul class="nav">
                     <li class="nav-title">MENU</li>
-                    <li class="nav-item js-opentrangchu"><a class="nav-link active "><i class="mr-6 ti-home"></i>Trang Chủ</a></li>
-                    <li class="nav-item js-opensanpham"><a class="nav-link "><i class="mr-6 ti-view-grid"></i>Sản Phẩm</a></li>
-                    <li class="nav-item js-opendonhang"><a class="nav-link"><i class="mr-6 ti-package"></i>Đơn Hàng</a></li>
-                    <li class="nav-item js-openkhachhang"><a class="nav-link"><i class="mr-6 ti-id-badge"></i>Khách Hàng</a></li>
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link" onclick="logOutAdmin(); return true;">
+                    <li class="nav-item opentrangchu"><a class="nav-link active "><i class="mr-6 ti-home"></i>Trang Chủ</a></li>
+                    <li class="nav-item opensanpham"><a class="nav-link "><i class="mr-6 ti-view-grid"></i>Sản Phẩm</a></li>
+                    <li class="nav-item opendonhang"><a class="nav-link"><i class="mr-6 ti-package"></i>Đơn Hàng</a></li>
+                    <li class="nav-item openkhachhang"><a class="nav-link"><i class="mr-6 ti-id-badge"></i>Khách Hàng</a></li>
+                    <li class="nav-item logout-btn">
                             <i class="mr-6 ti-arrow-circle-left"></i> Đăng xuất (về Trang chủ)
-                        </a>
                     </li>
                 </ul>
             </aside>
@@ -49,24 +61,37 @@
                     <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
                     <canvas id="myChart1" style="width:100%;max-width:1000px"></canvas>
                 </div>
+
                 <!-- Sản Phẩm -->
                 <div class="sanpham js-sanpham">
-                    <table class="table-header">
-                        <tr>
-                            <!-- Theo độ rộng của table content -->
-                            <th title="Sắp xếp" style="width: 5%" >Stt</th>
-                            <th title="Sắp xếp" style="width: 5%" >Mã</th>
-                            <th title="Sắp xếp" style="width: 40%" >Tên</th>
-                            <th title="Sắp xếp" style="width: 10%" >Loại</th>
-                            <th title="Sắp xếp" style="width: 10%" >Giá</th>
-                            
-                           
-                            
-                            <th title="Sắp xếp" style="width: 15%" >Hành Động</th>
-                        </tr>
+                    <table>
+                        <thead>
+                            <tr>
+                                <!-- Theo độ rộng của table content -->
+                                <th title="Sắp xếp" >ProductId</th>
+                                <th title="Sắp xếp" >Name</th>
+                                <th title="Sắp xếp" >Author</th>
+                                <th title="Sắp xếp" >Sale</th>
+                                <th title="Sắp xếp" >Price</th>
+                                <th title="Sắp xếp" >Quantity</th>
+                                <th title="Sắp xếp" >Release</th>
+                                <!-- <th title="Sắp xếp" >Format</th> -->
+                                <th title="Sắp xếp" > Type</th>
+                                <th title="Sắp xếp" >Genre</th>
+                                <!-- <th title="Sắp xếp" >PackagingSize</th> -->
+                                <!-- <th title="Sắp xếp" >Category</th> -->
+                                <!-- <th title="Sắp xếp" >Description</th>                            -->
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
                     </table>
+
+                    <!-- JS -->
                     <div class="table-content"> 
                     </div>
+
                     <div class="table-footer">
                         <button onclick="document.getElementById('khungThemSanPham').style.transform = 'scale(1)';">
                             Thêm sản phẩm
@@ -74,21 +99,21 @@
                     </div>
 
                     <div id="khungThemSanPham" class="overclass">
-                        <span class="close" onclick="this.parentElement.style.transform = 'scale(0)';"><i class="ti-close"></i></span>
+                        <span class="close" onclick="this.parentElement.style.transform = 'scale(0)';"><i class="fa-solid fa-xmark"></i></span>
                         <table class="overlayTable table-header table-content">
                             <tr>
-                                <th colspan="2">Thêm Sản Phẩm</th>
+                                <th colspan="2">Thêm Sách</th>
                             </tr>
                             <tr>
-                                <td>Mã sản phẩm:</td>
-                                <td><input type="text" id="maspThem"></td>
+                                <td>ProductId:</td>
+                                <td><input type="text" id="productid"></td>
                             </tr>
                             <tr>
-                                <td>Tên sản phẩm:</td>
-                                <td><input type="text"></td>
+                                <td>Name:</td>
+                                <td><input type="text" id="name"></td>
                             </tr>
                             <tr>
-                                <td>Thương Hiệu:</td>
+                                <td> :</td>
                                 <td>
                                     <select name="chonCompany">
                                         <script>
@@ -178,8 +203,5 @@
         <footer>
         </footer>
     </div>
-            <script>
-                
-            </script>
 </body>
 </html>
