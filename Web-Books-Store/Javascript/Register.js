@@ -1,13 +1,14 @@
+import { showLogin } from "./Actions.js";
 import * as Bridge from "./Bridge.js";
 
 function validateRegister () {
   const registerForm = document.querySelector("#register-layout form");
   if (!registerForm) return;
-  const firstName = Bridge.$("#customer-first-name");
-  const lastName = Bridge.$("#customer-last-name");
-  const email = Bridge.$("#customer-email-register");
-  const password = Bridge.$("#customer-password-register");
-  const confirmPassword = Bridge.$("#customer-confirm-password-register");
+  let firstName = Bridge.$("#customer-first-name");
+  let lastName = Bridge.$("#customer-last-name");
+  let email = Bridge.$("#customer-email-register");
+  let password = Bridge.$("#customer-password-register");
+  let confirmPassword = Bridge.$("#customer-confirm-password-register");
   let users = JSON.parse(localStorage.getItem("users")) || [];
   const emailExists = users.some((user) => user.email === email.value.trim());
   const errorMessages = registerForm.querySelectorAll(".error-message")
@@ -47,6 +48,11 @@ function validateRegister () {
 
     alert("Đăng ký thành công!");
     registerForm.reset();
+
+    let loginForm = Bridge.$("#login");
+    let registForm = Bridge.$("#register");
+    let forgotForm = Bridge.$("#forgot-password");
+    showLogin(loginForm, registForm, forgotForm);
   });
 }
 

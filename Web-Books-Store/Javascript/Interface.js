@@ -10,6 +10,36 @@ function scrollView() {
   window.scrollTo(0, 0);
 }
 
+// change header info when user has been login
+function headerUserInfo(elementsObj) {
+  let container = elementsObj.getHeaderUserInfo();
+  let noSignIn = elementsObj.getNoSignIn();
+  let loginBtn = elementsObj.getJsLoginBtn();
+  let registerBtn = elementsObj.getJsRegisterBtn();
+  let logoutBtn = elementsObj.getJsSignoutBtn();
+  let userName = container.querySelector(".user-name");
+  const hasLogin = sessionStorage.getItem("hasLogin");
+  let hasLoginAccount = sessionStorage.getItem("hasLoginAccount");
+  hasLoginAccount = hasLoginAccount ? JSON.parse(hasLoginAccount) : false;
+  if (hasLogin && hasLoginAccount) {
+    noSignIn.classList.add("disable");
+    // disable login - register btn
+    loginBtn?.forEach((btn) => btn.classList.add("disable"));
+    registerBtn?.forEach((btn) => btn.classList.add("disable"));
+    logoutBtn?.forEach((btn) => btn.classList.remove("disable"));
+    container.classList.remove("disable");
+    userName.innerHTML = hasLoginAccount.firstName + hasLoginAccount.lastName;
+  }
+  else {
+    noSignIn.classList.remove("disable");
+    loginBtn?.forEach((btn) => btn.classList.remove("disable"));
+    registerBtn?.forEach((btn) => btn.classList.remove("disable"));
+    logoutBtn?.forEach((btn) => btn.classList.add("disable"));
+    container.classList.add("disable");
+    userName.innerHTML = hasLoginAccount.firstName + hasLoginAccount.lastName;
+  }
+}
+
 // funcs event
 function disableSiblingContainer(container) {
   if (!container) return;
@@ -183,4 +213,4 @@ async function getInitProducts(elementsObj) {
 }
 
 export { formatPrices, isEmpty, categoryIsEmpty, getInitProducts, hiddenException, scrollView, fakeOverlay, disableSiblingContainer };
-export { resizeSmNav, resizeImages, addDOMHeaderFooter };
+export { resizeSmNav, resizeImages, addDOMHeaderFooter, headerUserInfo };

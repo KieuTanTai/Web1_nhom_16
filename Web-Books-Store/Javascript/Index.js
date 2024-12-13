@@ -7,8 +7,6 @@ import * as Actions from "./Actions.js";
 import * as FlashSales from "./FlashSales.js";
 import * as Navigate from "./Navigate.js";
 import * as Search from "./search.js";
-import * as ThongKe from "./thongke.js";
-import * as DonHang from "./donhang.js";
 import * as Login from "./Login.js";
 import * as Register from "./Register.js";
 import * as Slides from "./Slides.js";
@@ -28,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
                // call funcs
                Interface.resizeSmNav(elementsObj);
+               Interface.headerUserInfo(elementsObj);
                Cart.increaseCartCount();
                Cart.updateCartCount(elementsObj);
                Cart.handleCartNavigation();
@@ -42,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
                clearInterval(checkDOM);
           }
      }, 200);
+
      // call funcs
      if (!lastPath)
           Interface.hiddenException();
@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
      // login
      Login.validateAccount();
      Register.validateRegister();
-     // cart
      if (lastPath.includes("cart")) {
           
           Cart.displayCartItems(elementsObj);
@@ -84,7 +83,7 @@ window.addEventListener("load", () => {
 
      if (sessionStorage.getItem("retryTracking") === "true") {
           sessionStorage.removeItem("retryTracking");
-          Actions.showTracking(localStorage.getItem("trackers"));
+          Actions.showTracking(localStorage.getItem("pay"));
      }
 
      if (sessionStorage.getItem("login") === "true") {

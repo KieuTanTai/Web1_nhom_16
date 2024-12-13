@@ -52,6 +52,7 @@ function getElementsHandler() {
      getRemoveButtons: () => $$(".fa-trash"),  
      getSelectAllCheckbox: () => $('#selection-item'),  
     // buttons
+    getHomepageBtn: () => $$(".return-homepage"),
     getNavBtn: () => $$(".nav-btn"),
     getPrevBtn: () => $$(".prev-btn"),
     getNextBtn: () => $$(".next-btn"),
@@ -79,6 +80,8 @@ function getElementsHandler() {
     getElementPrices: () => $$(".price"),
     getWebLogo: () => $$(".web-logo div"),
     getImages: () => $$(".product-image.js-item img"),
+    getHeaderUserInfo: () => $(".header-user-info"),
+    getNoSignIn: () => $("#no-sign-in"),
   };
   return getElements;
 }
@@ -119,5 +122,9 @@ async function promiseDOMHandler(fileAddress) {
   }
 }
 
+function navigateRootURL() {
+  window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+}
+
 export default getElementsHandler;
-export { $, $$, promiseDOMHandler, throttle, debounce };
+export { $, $$, promiseDOMHandler, throttle, debounce, navigateRootURL };
