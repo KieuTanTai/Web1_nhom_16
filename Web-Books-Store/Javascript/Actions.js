@@ -52,6 +52,7 @@ function trackingNavigate(elementsObj) {
 }
 
 function showTracking(trackers) {
+  const elementsObj = Bridge.default();
   const container = elementsObj.getStatusContainer();
   const blankOrder = container?.querySelector("#blank-order");
   const customerOrder = container?.querySelector("#customer-order");
