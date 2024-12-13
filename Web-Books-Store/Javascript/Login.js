@@ -6,11 +6,11 @@ function validateAccount () {
   if (!loginForm) return;
   const email = Bridge.$("#customer-email-login");
   const password = Bridge.$("#customer-password-login");
-  const users = JSON.parse(localStorage.getItem("users")) || [];
   const errorMessages = loginForm.querySelectorAll(".error-message");
   
   loginForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    const users = JSON.parse(localStorage.getItem("users")) || [];
     const user = users.find((user) => user.email.trim() === email.value.trim());
     for (let key in errorMessages) {
       if (!user) {

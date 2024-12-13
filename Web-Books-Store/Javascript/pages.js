@@ -18,10 +18,10 @@ function initializePage() {
         showTargetSection(categoryId);
         // Lấy danh sách sản phẩm từ localStorage
         const allProducts = getProductBooks();
-        console.log("Dữ liệu sản phẩm từ localStorage:", allProducts);
+        // console.log("Dữ liệu sản phẩm từ localStorage:", allProducts);
         // Lọc sản phẩm theo danh mục
         const filteredProducts = filterProductsByCategory(allProducts, categoryId);
-        console.log("Filtered Products:", filteredProducts);
+        // console.log("Filtered Products:", filteredProducts);
         
 
         // Tích hợp phân trang
@@ -80,7 +80,7 @@ function setupPagination(products, categoryId) {
     }
 
     const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
-    console.log(`Tổng số trang: ${totalPages}, Tổng sản phẩm: ${products.length}`);
+    // console.log(`Tổng số trang: ${totalPages}, Tổng sản phẩm: ${products.length}`);
 
     displayPage(products, container, 1);
     createPaginationControls(targetSection, products, container, totalPages);
@@ -107,7 +107,7 @@ function displayPage(products, container, pageNumber) {
         formatPrices({ getElementPrices: () => container.querySelectorAll('.price') });
     }, 0);
 
-    console.log(`Hiển thị trang ${pageNumber}:`, pageProducts);
+    // console.log(`Hiển thị trang ${pageNumber}:`, pageProducts);
  
     const elementsObj = {
         getImages: () => container.querySelectorAll('img'),
@@ -172,7 +172,8 @@ function hideAllSections() {
 
     // Ẩn tất cả các nút "Xem thêm"
     allCategoryButtons.forEach(button => {
-        button.style.display = 'none';
+        if (!button.classList.contains("return-homepage"))
+            button.style.display = 'none';
     });
 }
 

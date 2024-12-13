@@ -3,15 +3,17 @@ import * as Bridge from "./Bridge.js";
 import { disableSiblingContainer, fakeOverlay, headerUserInfo, hiddenException, scrollView } from "./Interface.js";
 import { sleep } from "./Navigate.js";
 
+
 function returnHomepage(elementsObj) {
   let testURL = location.pathname;
+  const webLogo = elementsObj.getWebLogo();
+  let homepageBtns = elementsObj.getHomepageBtn();
   testURL = testURL.slice(testURL.lastIndexOf("/") + 1, testURL.indexOf("?") + 1);
 
-  // console.log(testURL);
-  const webLogo = elementsObj.getWebLogo();
+  homepageBtns?.forEach((btn) => btn.addEventListener("click", () => Bridge.navigateRootURL()))
   webLogo?.forEach((element) => element.addEventListener("click", () => {
     if (!testURL.includes("index"))
-      window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+      Bridge.navigateRootURL();
   }));
 }
 
@@ -59,13 +61,13 @@ function showTracking(trackers) {
   // navigate to index.html if not have any container
   if (!container) {
     sessionStorage.setItem("retryTracking", "true");
-    window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+    Bridge.navigateRootURL();
   }
 
   hiddenException("order-content");
   disableSiblingContainer(elementsObj.getOrderContent());
   (elementsObj.getStatusContainer())?.classList.remove("disable");
-  if (!trackers) {
+  if (!trackers || !sessionStorage.getItem("hasLogin")) {
     blankOrder.classList.add("active");
     customerOrder.classList.contains("active") ? customerOrder.classList.remove("active") : customerOrder;
   }
@@ -93,7 +95,7 @@ function showOrderContent() {
     // navigate to index.html if not have any container
     if (!orderContainer) {
       sessionStorage.setItem("retryShowOrder", "true");
-      window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+      Bridge.navigateRootURL();
     }
     let statusContainer = orderContainer.querySelector(".order-status-container");
     disableSiblingContainer(statusContainer);
@@ -210,7 +212,7 @@ function showLogin(loginForm, registForm, forgotForm) {
   hiddenException("account-content");
       if (!loginForm) {
         sessionStorage.setItem("login", "true");
-        window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+        Bridge.navigateRootURL();
       }
       loginForm?.classList.add("active");
       registForm?.classList.contains("active") ? registForm.classList.remove("active") : registForm;
@@ -223,7 +225,7 @@ function showRegister(loginForm, registForm, forgotForm) {
   hiddenException("account-content");
   if (!registForm) {
     sessionStorage.setItem("register", "true");
-    window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+    Bridge.navigateRootURL();
   }
   registForm?.classList.add("active");
   loginForm?.classList.contains("active") ? loginForm.classList.remove("active") : loginForm;
@@ -235,7 +237,7 @@ function showRegister(loginForm, registForm, forgotForm) {
 function showForgotPassword(loginForm, registForm, forgotForm) {
   if (!registForm) {
     sessionStorage.setItem("forgotPassword", "true");
-    window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+    Bridge.navigateRootURL();
   }
   hiddenException("account-content");
   forgotForm?.classList.add("active");
@@ -249,7 +251,7 @@ function singoutAccount(elementsObj) {
   sessionStorage.removeItem("hasLogin");
   sessionStorage.removeItem("hasLoginAccount");
   headerUserInfo(elementsObj);
-
+  Bridge.navigateRootURL();
 }
 
 export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox, returnHomepage, trackingNavigate, smNavigationMenu }
