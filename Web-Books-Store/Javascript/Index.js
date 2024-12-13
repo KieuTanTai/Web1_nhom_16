@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                Actions.trackingNavigate(elementsObj);
                Actions.smNavigationMenu(elementsObj);
                Search.searchBtn();
+               Pages.handleCategoryNavigation();
                // remove Interval 
                clearInterval(checkDOM);
           }
@@ -65,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
           Cart.handleOrderPlacement(elementsObj);
      }
      // other
-     Cart.handleCategoryNavigation();
      Slides.slidesHandler("news");
      Pages.initializePage();
 })

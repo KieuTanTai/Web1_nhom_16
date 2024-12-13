@@ -374,6 +374,10 @@ input[type = text] {
   flex-flow: row wrap;
 }
 
+.justify-start {
+  justify-content: start;
+}
+
 .justify-center {
   justify-content: center;
 }

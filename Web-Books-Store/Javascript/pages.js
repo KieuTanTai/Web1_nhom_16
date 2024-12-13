@@ -1,11 +1,41 @@
 import { getProductBooks, renderProducts } from './Products.js';
-import {resizeImages } from './Interface.js';
-import {formatPrices} from "./Interface.js";
+import { resizeImages } from './Interface.js';
+import { formatPrices } from "./Interface.js";
+import { $, $$ } from './Bridge.js';
+
+function handleCategoryNavigation() {
+    const categoryButtons = $$('.category-btn');
+    const navCategories = $$(".nav-categories .nav-item");
+
+    // show more buttons
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const parentSection = button.closest('section');
+            if (parentSection && parentSection.id) {
+                const categoryId = parentSection.id;
+                window.location.href = `index.html?category=${categoryId}`;
+            }
+        });
+    });
+
+    // sub header navigations
+    navCategories.forEach(item =>
+        item.addEventListener("click", ((event) => {
+            event.preventDefault();
+            const categoryType = item.querySelector("a.flex.full-width");
+            let type = categoryType ? categoryType.getAttribute("title") : "";
+            window.location.href = `index.html?category=${type}`;
+        })
+        ));
+}
+
 // page.js: Xử lý hiển thị phần nội dung dựa trên URL
 const ITEMS_PER_PAGE = 10; // Số sản phẩm trên mỗi trang
 /**
  * Hàm khởi tạo trang
  */
+
 function initializePage() {
     // Lấy tham số từ URL
     const categoryId = getCategoryFromURL();
@@ -22,12 +52,10 @@ function initializePage() {
         // Lọc sản phẩm theo danh mục
         const filteredProducts = filterProductsByCategory(allProducts, categoryId);
         // console.log("Filtered Products:", filteredProducts);
-        
+
 
         // Tích hợp phân trang
-        
         setupPagination(filteredProducts, categoryId);
-        
     }
 }
 /**
@@ -46,11 +74,17 @@ function filterProductsByCategory(products, categoryId) {
         case 'best-selling-container':
             return products.sort((a, b) => b.quantity - a.quantity);
         case 'light-novel-container':
+        case "light-novel":
             return products.filter((product) => product.type === 'light novel');
         case 'manga-container':
+        case "manga":
             return products.filter((product) => product.type === 'manga');
         case 'other-books-container':
             return products.sort((a, b) => a.releaseDate - b.releaseDate);
+        case "education":
+            return products.filter((product) => product.type === 'education');
+        case "literary":
+            return products.filter((product) => product.type === 'literary');
         default:
             return products;
     }
@@ -61,29 +95,37 @@ function filterProductsByCategory(products, categoryId) {
  * @param {Array} products Danh sách sản phẩm đã lọc
  * @param {string} categoryId ID của danh mục
  */
-function setupPagination(products, categoryId) {
+async function setupPagination(products, categoryId) {
     if (!products || products.length === 0) {
         console.error("Không có sản phẩm để phân trang.");
         return;
     }
-
-    const targetSection = document.getElementById(categoryId);
+    let container;
+    let totalPages;
+    let targetSection = document.getElementById(categoryId);
     if (!targetSection) {
-        console.error(`Không tìm thấy section với ID "${categoryId}".`);
-        return;
+        const checkTarget = setInterval(() => {
+            targetSection = document.getElementById(`${categoryId}-container`);
+            if (targetSection) {
+                container = targetSection.querySelector('.product-container');
+                totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+                displayPage(products, container, 1);
+                createPaginationControls(targetSection, products, container, totalPages);
+                clearInterval(checkTarget);            
+            }
+        })
     }
-
-    const container = targetSection.querySelector('.product-container');
-    if (!container) {
-        console.error("Không tìm thấy container sản phẩm.");
-        return;
+    else {
+        container = targetSection.querySelector('.product-container');
+        if (!container) {
+            console.error("Không tìm thấy container sản phẩm.");
+            return;
+        }
+        totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+        // console.log(`Tổng số trang: ${totalPages}, Tổng sản phẩm: ${products.length}`);
+        displayPage(products, container, 1);
+        createPaginationControls(targetSection, products, container, totalPages);
     }
-
-    const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
-    // console.log(`Tổng số trang: ${totalPages}, Tổng sản phẩm: ${products.length}`);
-
-    displayPage(products, container, 1);
-    createPaginationControls(targetSection, products, container, totalPages);
 }
 
 
@@ -108,14 +150,14 @@ function displayPage(products, container, pageNumber) {
     }, 0);
 
     // console.log(`Hiển thị trang ${pageNumber}:`, pageProducts);
- 
+
     const elementsObj = {
         getImages: () => container.querySelectorAll('img'),
     };
 
     // Thay đổi kích thước hình ảnh
     resizeImages(elementsObj);
-    
+
 }
 
 
@@ -139,10 +181,7 @@ function createPaginationControls(section, products, container, totalPages) {
         pageButton.style.margin = '0 5px';
         pageButton.style.padding = '5px 10px';
         pageButton.style.cursor = 'pointer';
-        pageButton.addEventListener('click', () => {
-            displayPage(products, container, i);
-            
-        });
+        pageButton.addEventListener('click', () => displayPage(products, container, i));
 
         paginationContainer.appendChild(pageButton);
     }
@@ -162,9 +201,9 @@ function getCategoryFromURL() {
  * Ẩn tất cả các section trên trang
  */
 function hideAllSections() {
-    const allSections = document.querySelectorAll('section.container');
-    const allCategoryButtons = document.querySelectorAll('.category-btn'); // Lấy tất cả các nút "Xem thêm"
-    
+    const allSections = $$('section.container');
+    const allCategoryButtons = $$('.category-btn'); // Lấy tất cả các nút "Xem thêm"
+
     // Ẩn tất cả các section
     allSections.forEach(section => {
         section.style.display = 'none';
@@ -185,10 +224,42 @@ function showTargetSection(categoryId) {
     const targetSection = document.getElementById(categoryId);
     if (targetSection) {
         targetSection.style.display = 'block';
-    } else {
-        console.error(`Section với ID "${categoryId}" không tồn tại.`);
+        return;
+    } 
+    else {
+        renderContainer(categoryId);    
+        return;
     }
-    
 }
 
-export {initializePage}
+function renderContainer(name) {
+    let script = `
+        <div class="category-tab">
+                <div class="heading">
+                    <div class="heading-label ${name}-label"></div>
+                    <div class="uppercase font-bold font-size-20 padding-left-8">${name.replace("-", " ")}</div>
+                </div>
+
+                <!-- container for products -->
+                <div class="product-container"></div>
+
+                <div
+                    class="flex justify-center align-center font-bold capitalize margin-bottom-16">
+                    <a href="#" class="category-btn button">Xem thêm</a>
+                </div>
+        </div>
+    `
+    let element = document.createElement("section");
+    element.setAttribute("id", `${name}-container`);
+    element.classList.add("flex");
+    element.classList.add("grid-col");
+    element.classList.add("col-l-12");
+    element.classList.add("col-m-12");
+    element.classList.add("col-s-12");
+    element.classList.add("no-gutter");
+    element.innerHTML = script;
+
+    $("#index-content")?.insertAdjacentElement("afterEnd", element);
+}
+
+export { initializePage, handleCategoryNavigation }
