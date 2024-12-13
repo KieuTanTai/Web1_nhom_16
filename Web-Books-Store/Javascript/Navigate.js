@@ -26,26 +26,28 @@ function execQueryHandler(request) {
           if (Bridge.$("#detail-content").classList.contains("disable"))
                Interface.hiddenException("detail-content");
           dynamicDetail(product);
+          return;
      }
      else if (query && request === "query") {
           return query;
      }
-     else
-          return "";
+     return "";
 }
 
 // func for popstate listener (it's will be very long)
 function popStateHandler() {
      window.addEventListener("popstate", Bridge.throttle(() => {
           let url = location.href;
+          let container = Bridge.default().getMainContainer();
           let path = url.slice(url.lastIndexOf("/") + 1, url.length);
-          if (!path || path === "index.html" || path === "index") {
+          if (!path || path.includes("index")) {
                window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
                Interface.hiddenException();
           }
           if (path.includes("?query=")) {
                let bookName = execQueryHandler("query");
                renderSearchDOM(bookName);
+               Interface.fakeOverlay(container, 150);
           }
 
           execQueryHandler("name");

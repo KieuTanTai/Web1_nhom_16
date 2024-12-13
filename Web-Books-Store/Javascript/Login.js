@@ -2,6 +2,7 @@ import * as Bridge from "./Bridge.js"
 
 function validateAccount () {
   const loginForm = Bridge.$("#login-layout form");
+  if (!loginForm) return;
   const email = Bridge.$("#customer-email-login");
   const password = Bridge.$("#customer-password-login");
   const users = JSON.parse(localStorage.getItem("users")) || [];

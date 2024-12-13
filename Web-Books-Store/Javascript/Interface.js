@@ -58,7 +58,7 @@ function formatPrices(elementsObj) {
     });
     pricesContainer.forEach((element) => {
       if (!element.innerHTML.includes("₫"))
-        element.innerText = formatPricesHandler.format(element.innerText)
+        element.innerText = formatPricesHandler.format(element.innerText);
     });
   }
 }
@@ -149,7 +149,7 @@ function resizeSmNav(elementsObj) {
 // default add header footer and initProducts
 async function addDOMHeaderFooter(elementsObj) {
   try {
-    const DOM = await Bridge.promiseDOMHandler("/Web-Books-Store/HTML/header_footer/headerFooter.html");
+    const DOM = await Bridge.promiseDOMHandler("../HTML/header_footer/headerFooter.html");
     const header = DOM.getElementById("header-container");
     const subHeader = DOM.getElementById("sub-header");
     const footer = DOM.getElementById("footer-container");
@@ -165,7 +165,7 @@ async function addDOMHeaderFooter(elementsObj) {
 
 async function getInitProducts(elementsObj) {
   try {
-    const storage = await fetch("/Web-Books-Store/Javascript/Storage.js");
+    const storage = await fetch("../Javascript/Storage.js");
     const jsonArray = await storage.json();
     const productsList = Array.from(jsonArray);
     localStorage.setItem("products", JSON.stringify(productsList));
@@ -181,21 +181,6 @@ async function getInitProducts(elementsObj) {
     console.error(error);
   }
 }
-
-// call functions when DOM Loaded
-document.addEventListener("DOMContentLoaded", () => {
-  const elementsObj = Bridge.default();
-
-  //create check DOM of Header and Footer
-  const checkDOM = setInterval(() => {
-    if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
-      clearInterval(checkDOM);
-    }
-  }, 200);
-
-  // call funcs
-
-});
 
 export { formatPrices, isEmpty, categoryIsEmpty, getInitProducts, hiddenException, scrollView, fakeOverlay, disableSiblingContainer };
 export { resizeSmNav, resizeImages, addDOMHeaderFooter };

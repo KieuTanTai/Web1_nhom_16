@@ -2,6 +2,7 @@ import * as Bridge from "./Bridge.js";
 
 function validateRegister () {
   const registerForm = document.querySelector("#register-layout form");
+  if (!registerForm) return;
   const firstName = Bridge.$("#customer-first-name");
   const lastName = Bridge.$("#customer-last-name");
   const email = Bridge.$("#customer-email-register");

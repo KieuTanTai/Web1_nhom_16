@@ -67,6 +67,7 @@ function getElementsHandler() {
     getJsLoginBtn: () => $$(".js-login"),
     getJsRegisterBtn: () => $$(".js-register"),
     getJsForgotBtn: () => $$(".js-forgot-password"),
+    getJsSignoutBtn: () => $$(".js-signout"),
     // search
     getResultContainer: () => $("#search-results-container"),
     getCategoryFilter: () => $("#category-filter"),
@@ -101,7 +102,8 @@ function debounce(callback, delayTime, key) {
 
   return function (...restArgs) {
     clearTimeout(debounceList[key].time);
-    debounceList[key].time = setTimeout(() => callback(...restArgs), delayTime)};
+    debounceList[key].time = setTimeout(() => callback(...restArgs), delayTime);
+  };
 }
 
 // get promise DOM func (use async await with fetch api)
