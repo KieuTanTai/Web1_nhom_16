@@ -12,7 +12,7 @@ const tk_chitiet_donhangArray = JSON.parse(tk_chitiet_donhang_list);
 // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
 var data_dh_chitiet = tk_chitiet_donhangArray.map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
 
-var data_kh = donhangArray.map(({ trang_thai,dia_chi, ...otherProps }) => Object.values(otherProps));
+var data_kh = tk_donhangArray.map(({ trang_thai,dia_chi, ...otherProps }) => Object.values(otherProps));
 
 var data_kh_temp = [];
 var data_dh_temp = [];

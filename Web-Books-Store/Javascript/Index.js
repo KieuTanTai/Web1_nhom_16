@@ -7,8 +7,6 @@ import * as Actions from "./Actions.js";
 import * as FlashSales from "./FlashSales.js";
 import * as Navigate from "./Navigate.js";
 import * as Search from "./search.js";
-import * as ThongKe from "./thongke.js";
-import * as DonHang from "./donhang.js";
 import * as Login from "./Login.js";
 import * as Register from "./Register.js";
 import * as Slides from "./Slides.js";
