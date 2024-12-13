@@ -1,6 +1,6 @@
 "use strict";
 import * as Bridge from "./Bridge.js";
-import { disableSiblingContainer, fakeOverlay, hiddenException, scrollView } from "./Interface.js";
+import { disableSiblingContainer, fakeOverlay, headerUserInfo, hiddenException, scrollView } from "./Interface.js";
 import { sleep } from "./Navigate.js";
 
 function returnHomepage(elementsObj) {
@@ -47,7 +47,7 @@ function trackingNavigate(elementsObj) {
   // navigate to index.html if not have any container
   const buttons = elementsObj.getOrderTrackingBtn();
   if (!buttons) return;
-  const trackers = localStorage.getItem("trackers");
+  const trackers = localStorage.getItem("pay");
   buttons.forEach((btn) => btn.addEventListener("click", Bridge.throttle(() => showTracking(trackers), 200, "statusNav")));
 }
 
@@ -190,18 +190,19 @@ function accountEvents(elementsObj) {
   let registForm = Bridge.$("#register");
   const forgotButtons = elementsObj.getJsForgotBtn();
   let forgotForm = Bridge.$("#forgot-password");
+  const signoutButtons = elementsObj.getJsSignoutBtn();
 
-  loginButtons?.forEach((btn) => {
-    btn.addEventListener("click", Bridge.throttle(() => showLogin(loginForm, registForm, forgotForm), 200, "login"));
-  });
+  loginButtons?.forEach((btn) =>
+    btn.addEventListener("click", Bridge.throttle(() => showLogin(loginForm, registForm, forgotForm), 200, "login")));
 
-  registerButtons?.forEach((btn) => {
-    btn.addEventListener("click", Bridge.throttle(() => showRegister(loginForm, registForm, forgotForm), 200, "register"));
-  });
+  registerButtons?.forEach((btn) =>
+    btn.addEventListener("click", Bridge.throttle(() => showRegister(loginForm, registForm, forgotForm), 200, "register")));
 
-  forgotButtons?.forEach((btn) => {
-    btn.addEventListener("click", Bridge.throttle(() => showForgotPassword(loginForm, registForm, forgotForm), 200, "forgotPassword"));
-  })
+  forgotButtons?.forEach((btn) => 
+    btn.addEventListener("click", Bridge.throttle(() => showForgotPassword(loginForm, registForm, forgotForm), 200, "forgotPassword")));
+
+  signoutButtons?.forEach((btn) => 
+    btn.addEventListener("click", Bridge.throttle(() => singoutAccount(elementsObj), 200, "signout")));
 }
 
 // for login 
@@ -241,6 +242,14 @@ function showForgotPassword(loginForm, registForm, forgotForm) {
   loginForm?.classList.contains("active") ? loginForm.classList.remove("active") : loginForm;
   registForm?.classList.contains("active") ? registForm.classList.remove("active") : registForm;
   scrollView();
+}
+
+// for signout account
+function singoutAccount(elementsObj) {
+  sessionStorage.removeItem("hasLogin");
+  sessionStorage.removeItem("hasLoginAccount");
+  headerUserInfo(elementsObj);
+
 }
 
 export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox, returnHomepage, trackingNavigate, smNavigationMenu }

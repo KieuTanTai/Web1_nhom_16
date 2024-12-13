@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (elementsObj.getHeader() && elementsObj.getSubHeader() && elementsObj.getFooter()) {
                // call funcs
                Interface.resizeSmNav(elementsObj);
+               Interface.headerUserInfo(elementsObj);
                Cart.increaseCartCount();
                Cart.updateCartCount(elementsObj);
                Cart.handleCartNavigation();
@@ -53,17 +54,18 @@ document.addEventListener("DOMContentLoaded", () => {
      // login
      Login.validateAccount();
      Register.validateRegister();
-     // cart
      if (lastPath.includes("cart")) {
-          Cart.handleCategoryNavigation();
+          
           Cart.displayCartItems(elementsObj);
           Cart.updateCartTotal(elementsObj);
           Cart.handleQuantityChange(elementsObj);
           Cart.handleCheckboxChange(elementsObj);
           Cart.handleSelectAllCheckbox(elementsObj);
           Cart.handleRemoveItem(elementsObj);
+          Cart.handleOrderPlacement(elementsObj);
      }
      // other
+     Cart.handleCategoryNavigation();
      Slides.slidesHandler("news");
      Pages.initializePage();
 })
@@ -80,7 +82,7 @@ window.addEventListener("load", () => {
 
      if (sessionStorage.getItem("retryTracking") === "true") {
           sessionStorage.removeItem("retryTracking");
-          Actions.showTracking(localStorage.getItem("trackers"));
+          Actions.showTracking(localStorage.getItem("pay"));
      }
 
      if (sessionStorage.getItem("login") === "true") {

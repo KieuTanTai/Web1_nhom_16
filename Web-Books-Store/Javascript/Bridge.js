@@ -79,6 +79,8 @@ function getElementsHandler() {
     getElementPrices: () => $$(".price"),
     getWebLogo: () => $$(".web-logo div"),
     getImages: () => $$(".product-image.js-item img"),
+    getHeaderUserInfo: () => $(".header-user-info"),
+    getNoSignIn: () => $("#no-sign-in"),
   };
   return getElements;
 }

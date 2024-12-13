@@ -33,8 +33,7 @@ function updateCartTotal(elementsObj) {
         voucherDiscount = 0;
         total = 0;
     }
-    const formatCurrency = (value) =>
-        value.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
+    const formatCurrency = (value) => value.toLocaleString("vi-VN", { style: "currency", currency: "VND" });
     const PricesPriceElement = document.querySelector(".prices");
     const totalPriceElement = document.querySelector(".total-price");
     const shippingFeeElement = document.querySelector(".shipping-fee");
