@@ -1,12 +1,12 @@
 // Lấy chuỗi JSON từ localStorage
-const tk_donhang_list = localStorage.getItem('donhang');
+const tk_donhang_list = localStorage.getItem('pay');
 // Chuyển chuỗi JSON thành mảng đối tượng
 const tk_donhangArray = JSON.parse(tk_donhang_list);
 // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
 var data_dh = tk_donhangArray.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
 
 // Lấy chuỗi JSON từ localStorage
-const tk_chitiet_donhang_list = localStorage.getItem('chitiet_donhang');
+const tk_chitiet_donhang_list = localStorage.getItem('pay');
 // Chuyển chuỗi JSON thành mảng đối tượng
 const tk_chitiet_donhangArray = JSON.parse(tk_chitiet_donhang_list);
 // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
