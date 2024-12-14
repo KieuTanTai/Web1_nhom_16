@@ -1,20 +1,31 @@
 "use strict";
 import * as Bridge from "./Bridge.js";
-import { disableSiblingContainer, fakeOverlay, headerUserInfo, hiddenException, scrollView } from "./Interface.js";
+import {
+  disableSiblingContainer,
+  fakeOverlay,
+  headerUserInfo,
+  hiddenException,
+  scrollView,
+} from "./Interface.js";
 import { sleep } from "./Navigate.js";
-
 
 function returnHomepage(elementsObj) {
   let testURL = location.pathname;
   const webLogo = elementsObj.getWebLogo();
   let homepageBtns = elementsObj.getHomepageBtn();
-  testURL = testURL.slice(testURL.lastIndexOf("/") + 1, testURL.indexOf("?") + 1);
+  testURL = testURL.slice(
+    testURL.lastIndexOf("/") + 1,
+    testURL.indexOf("?") + 1
+  );
 
-  homepageBtns?.forEach((btn) => btn.addEventListener("click", () => Bridge.navigateRootURL()))
-  webLogo?.forEach((element) => element.addEventListener("click", () => {
-    if (!testURL.includes("index"))
-      Bridge.navigateRootURL();
-  }));
+  homepageBtns?.forEach((btn) =>
+    btn.addEventListener("click", () => Bridge.navigateRootURL())
+  );
+  webLogo?.forEach((element) =>
+    element.addEventListener("click", () => {
+      if (!testURL.includes("index")) Bridge.navigateRootURL();
+    })
+  );
 }
 
 // header navigation button on mobile
@@ -58,8 +69,13 @@ function trackingNavigate(elementsObj) {
   // navigate to index.html if not have any container
   const buttons = elementsObj.getOrderTrackingBtn();
   if (!buttons) return;
-  const trackers = localStorage.getItem("donhang");
-  buttons.forEach((btn) => btn.addEventListener("click", Bridge.throttle(() => showTracking(trackers), 200, "statusNav")));
+  const trackers = localStorage.getItem("orders");
+  buttons.forEach((btn) =>
+    btn.addEventListener(
+      "click",
+      Bridge.throttle(() => showTracking(trackers), 200, "statusNav")
+    )
+  );
   if (trackers) orderInfo();
 }
 
@@ -76,7 +92,7 @@ function showTracking(trackers) {
 
   hiddenException("order-content");
   disableSiblingContainer(elementsObj.getOrderContent());
-  (elementsObj.getStatusContainer())?.classList.remove("disable");
+  elementsObj.getStatusContainer()?.classList.remove("disable");
   if (!trackers || !sessionStorage.getItem("hasLogin")) {
     blankOrder.classList.add("active");
     customerOrder.classList.contains("active")
@@ -92,25 +108,19 @@ function showTracking(trackers) {
 
 function orderInfo() {
   let orders = JSON.parse(localStorage.getItem("orders"));
-  let ordersList = [];
-  ordersList.push(orders);
-  let order = ordersList[ordersList.length - 1];
+  let order = orders[orders.length - 1];
   let container = Bridge.$$(".order-info .block-order-info span");
   container.forEach((block) => {
-    console.log(block)
-    if (block.classList.contains("order-code"))
-      block.innerHTML = order.orderId;
-    if (block.classList.contains("order-time"))
-      block.innerHTML = order.date;
+    console.log(block);
+    if (block.classList.contains("order-code")) block.innerHTML = order.orderId;
+    if (block.classList.contains("order-time")) block.innerHTML = order.date;
     if (block.classList.contains("expected-delivery-date"))
-      block.innerHTML = "3 ngày sau xác nhận đơn"
-    if (block.classList.contains("Consignee"))
-      block.innerHTML = order.userName;
+      block.innerHTML = "3 ngày sau xác nhận đơn";
+    if (block.classList.contains("Consignee")) block.innerHTML = order.userName;
     if (block.classList.contains("Consignee-phone"))
       block.innerHTML = order.phonenumber;
     if (block.classList.contains("Consignee-address"))
       block.innerHTML = order.address;
-
   });
 }
 
@@ -271,29 +281,61 @@ function accountEvents(elementsObj) {
   const signoutButtons = elementsObj.getJsSignoutBtn();
 
   loginButtons?.forEach((btn) =>
-    btn.addEventListener("click", Bridge.throttle(() => showLogin(loginForm, registForm, forgotForm), 200, "login")));
+    btn.addEventListener(
+      "click",
+      Bridge.throttle(
+        () => showLogin(loginForm, registForm, forgotForm),
+        200,
+        "login"
+      )
+    )
+  );
 
   registerButtons?.forEach((btn) =>
-    btn.addEventListener("click", Bridge.throttle(() => showRegister(loginForm, registForm, forgotForm), 200, "register")));
+    btn.addEventListener(
+      "click",
+      Bridge.throttle(
+        () => showRegister(loginForm, registForm, forgotForm),
+        200,
+        "register"
+      )
+    )
+  );
 
-  forgotButtons?.forEach((btn) => 
-    btn.addEventListener("click", Bridge.throttle(() => showForgotPassword(loginForm, registForm, forgotForm), 200, "forgotPassword")));
+  forgotButtons?.forEach((btn) =>
+    btn.addEventListener(
+      "click",
+      Bridge.throttle(
+        () => showForgotPassword(loginForm, registForm, forgotForm),
+        200,
+        "forgotPassword"
+      )
+    )
+  );
 
-  signoutButtons?.forEach((btn) => 
-    btn.addEventListener("click", Bridge.throttle(() => singoutAccount(elementsObj), 200, "signout")));
+  signoutButtons?.forEach((btn) =>
+    btn.addEventListener(
+      "click",
+      Bridge.throttle(() => singoutAccount(elementsObj), 200, "signout")
+    )
+  );
 }
 
 // for login
 function showLogin(loginForm, registForm, forgotForm) {
   hiddenException("account-content");
-      if (!loginForm) {
-        sessionStorage.setItem("login", "true");
-        Bridge.navigateRootURL();
-      }
-      loginForm?.classList.add("active");
-      registForm?.classList.contains("active") ? registForm.classList.remove("active") : registForm;
-      forgotForm?.classList.contains("active") ? forgotForm.classList.remove("active") : forgotForm;
-      scrollView();
+  if (!loginForm) {
+    sessionStorage.setItem("login", "true");
+    Bridge.navigateRootURL();
+  }
+  loginForm?.classList.add("active");
+  registForm?.classList.contains("active")
+    ? registForm.classList.remove("active")
+    : registForm;
+  forgotForm?.classList.contains("active")
+    ? forgotForm.classList.remove("active")
+    : forgotForm;
+  scrollView();
 }
 
 // for register
@@ -338,5 +380,20 @@ function singoutAccount(elementsObj) {
   Bridge.navigateRootURL();
 }
 
-export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox, returnHomepage, trackingNavigate, smNavigationMenu }
-export { showOrderContent, showTracking, showLogin, showRegister, showForgotPassword }
+export {
+  cancelButtons,
+  accountEvents,
+  staticContents,
+  historyNavigate,
+  setQuantityBox,
+  returnHomepage,
+  trackingNavigate,
+  smNavigationMenu,
+};
+export {
+  showOrderContent,
+  showTracking,
+  showLogin,
+  showRegister,
+  showForgotPassword,
+};
