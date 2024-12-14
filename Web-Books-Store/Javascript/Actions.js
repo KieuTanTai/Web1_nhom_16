@@ -147,6 +147,7 @@ function showOrderContent() {
   }
 
   elementsObj.getHistoryContainer()?.classList.remove("disable");
+  if(historyContainer.classList.contains("active")) return;
   historyContainer.classList.add("active");
   renderOrder(elementsObj);
 }
