@@ -178,7 +178,7 @@ function thongke_kh(f) {
                 <div style="width: 100%; border: 1px solid black;">
                     <table id="thongke_kh" style="width: 100%; border-bottom: 1px solid black;">
                         <thead>
-                            <tr class="font-size-14">
+                            <tr>
                                 <th style="width: 12%; color: black">STT</th>
                                 <th style="width: 20%; color: black">Mã khách hàng</th>
                                 <th style="width: 42%; color: black">Tên khách hàng</th>
