@@ -344,44 +344,15 @@ function accountEvents(elementsObj) {
   const signoutButtons = elementsObj.getJsSignoutBtn();
 
   loginButtons?.forEach((btn) =>
-    btn.addEventListener(
-      "click",
-      Bridge.throttle(
-        () => showLogin(loginForm, registForm, forgotForm),
-        200,
-        "login"
-      )
-    )
-  );
+    btn.addEventListener("click", Bridge.throttle(() => showLogin(loginForm, registForm, forgotForm), 200, "login")));
 
   registerButtons?.forEach((btn) =>
-    btn.addEventListener(
-      "click",
-      Bridge.throttle(
-        () => showRegister(loginForm, registForm, forgotForm),
-        200,
-        "register"
-      )
-    )
-  );
+    btn.addEventListener("click", Bridge.throttle(() => showRegister(loginForm, registForm, forgotForm), 200, "register")));
 
   forgotButtons?.forEach((btn) =>
-    btn.addEventListener(
-      "click",
-      Bridge.throttle(
-        () => showForgotPassword(loginForm, registForm, forgotForm),
-        200,
-        "forgotPassword"
-      )
-    )
-  );
+    btn.addEventListener("click", Bridge.throttle(() => showForgotPassword(loginForm, registForm, forgotForm), 200, "forgotPassword")));
 
-  signoutButtons?.forEach((btn) =>
-    btn.addEventListener(
-      "click",
-      Bridge.throttle(() => singoutAccount(elementsObj), 200, "signout")
-    )
-  );
+  signoutButtons?.forEach((btn) => btn.addEventListener("click", Bridge.throttle(() => singoutAccount(elementsObj), 200, "signout")));
 }
 
 // for login
@@ -443,20 +414,5 @@ function singoutAccount(elementsObj) {
   Bridge.navigateRootURL();
 }
 
-export {
-  cancelButtons,
-  accountEvents,
-  staticContents,
-  historyNavigate,
-  setQuantityBox,
-  returnHomepage,
-  trackingNavigate,
-  smNavigationMenu,
-};
-export {
-  showOrderContent,
-  showTracking,
-  showLogin,
-  showRegister,
-  showForgotPassword,
-};
+export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox, returnHomepage, trackingNavigate, smNavigationMenu};
+export { showOrderContent, showTracking, showLogin, showRegister, showForgotPassword };
