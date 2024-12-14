@@ -1,18 +1,18 @@
 // Lấy chuỗi JSON từ localStorage
-const tk_donhang_list = localStorage.getItem('pay');
+const tk_donhang_list = localStorage.getItem('donhang');
 // Chuyển chuỗi JSON thành mảng đối tượng
 const tk_donhangArray = JSON.parse(tk_donhang_list);
 // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
-var data_dh = tk_donhangArray.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
+var data_dh = tk_donhangArray?.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
 
 // Lấy chuỗi JSON từ localStorage
-const tk_chitiet_donhang_list = localStorage.getItem('pay');
+const tk_chitiet_donhang_list = localStorage.getItem('chitiet_donhang');
 // Chuyển chuỗi JSON thành mảng đối tượng
 const tk_chitiet_donhangArray = JSON.parse(tk_chitiet_donhang_list);
 // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
-var data_dh_chitiet = tk_chitiet_donhangArray.map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
+var data_dh_chitiet = tk_chitiet_donhangArray?.map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
 
-var data_kh = tk_donhangArray.map(({ trang_thai,dia_chi, ...otherProps }) => Object.values(otherProps));
+var data_kh = tk_donhangArray?.map(({ trang_thai,dia_chi, ...otherProps }) => Object.values(otherProps));
 
 var data_kh_temp = [];
 var data_dh_temp = [];

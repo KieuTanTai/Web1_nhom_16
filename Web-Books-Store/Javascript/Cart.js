@@ -334,8 +334,12 @@ function handleOrderPlacement(elementsObj) {
 
         const totalOrderPrice = Prices + shippingFee - shippingDiscount - voucherDiscount;
 
+        
+        const orders = JSON.parse(localStorage.getItem('donhang')) || [];
+        let id = orders[orders.length - 1].id_donhang;
         const order = {
-            products: selectedItems,
+            id_donhang: `DH${id?.slice(1, id.length) + 1}`,
+            id_khachhang: selectedItems,
             date: new Date().toLocaleString("vi-VN"),
             paymentMethod: paymentOption.id,
             address: userAddress,
@@ -343,10 +347,9 @@ function handleOrderPlacement(elementsObj) {
             voucherCode: voucherCode || null,
             totalPrice: totalOrderPrice
         };
-        const orders = JSON.parse(localStorage.getItem('pay')) || [];
         orders.push(order);
 
-        localStorage.setItem('pay', JSON.stringify(orders));
+        localStorage.setItem('donhang', JSON.stringify(orders));
 
         const updatedCart = Array.from(cartItems).filter(item => {
             const checkbox = item.querySelector('input[type="checkbox"]');
