@@ -53,7 +53,6 @@ function initializePage() {
         const filteredProducts = filterProductsByCategory(allProducts, categoryId);
         // console.log("Filtered Products:", filteredProducts);
 
-
         // Tích hợp phân trang
         setupPagination(filteredProducts, categoryId);
     }
@@ -150,7 +149,6 @@ function displayPage(products, container, pageNumber) {
     }, 0);
 
     // console.log(`Hiển thị trang ${pageNumber}:`, pageProducts);
-
     const elementsObj = {
         getImages: () => container.querySelectorAll('img'),
     };

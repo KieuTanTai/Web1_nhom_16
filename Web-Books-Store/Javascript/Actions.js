@@ -20,17 +20,22 @@ function returnHomepage(elementsObj) {
 // header navigation button on mobile
 function smNavigationMenu(elementsObj) {
   let navigateBtn = elementsObj.getMobileNavigate();
-  navigateBtn.addEventListener("click", Bridge.debounce((event) => {
-    let overlay = navigateBtn.querySelector(".overlay");
-    overlay.classList.add("active");
-    overlay.classList.remove("overflowText");
-    overlay.classList.add("menu");
-    if (event.target.classList.contains("overlay")) {
-      setTimeout(() => overlay.classList.remove("active"), 200);
-      overlay.classList.remove("menu");
-      overlay.classList.add("overflowText");
-    }
-  }), 200, "mobileHeaderNavigate");
+  navigateBtn.addEventListener(
+    "click",
+    Bridge.debounce((event) => {
+      let overlay = navigateBtn.querySelector(".overlay");
+      overlay.classList.add("active");
+      overlay.classList.remove("overflowText");
+      overlay.classList.add("menu");
+      if (event.target.classList.contains("overlay")) {
+        setTimeout(() => overlay.classList.remove("active"), 200);
+        overlay.classList.remove("menu");
+        overlay.classList.add("overflowText");
+      }
+    }),
+    200,
+    "mobileHeaderNavigate"
+  );
 }
 
 function cancelButtons(elementsObj) {
@@ -38,10 +43,14 @@ function cancelButtons(elementsObj) {
   let forgotForm = Bridge.$("#forgot-password");
   const cancelBtn = elementsObj.getJsCancelBtn();
   if (cancelBtn)
-    cancelBtn.forEach((btn) => btn.addEventListener("click", () => {
-      loginForm?.classList.add("active");
-      forgotForm?.classList.contains("active") ? forgotForm.classList.remove("active") : forgotForm;
-    }));
+    cancelBtn.forEach((btn) =>
+      btn.addEventListener("click", () => {
+        loginForm?.classList.add("active");
+        forgotForm?.classList.contains("active")
+          ? forgotForm.classList.remove("active")
+          : forgotForm;
+      })
+    );
 }
 
 // navigate to order-tracking
@@ -69,11 +78,14 @@ function showTracking(trackers) {
   (elementsObj.getStatusContainer())?.classList.remove("disable");
   if (!trackers || !sessionStorage.getItem("hasLogin")) {
     blankOrder.classList.add("active");
-    customerOrder.classList.contains("active") ? customerOrder.classList.remove("active") : customerOrder;
-  }
-  else {
+    customerOrder.classList.contains("active")
+      ? customerOrder.classList.remove("active")
+      : customerOrder;
+  } else {
     customerOrder.classList.add("active");
-    blankOrder.classList.contains("active") ? blankOrder.classList.remove("active") : blankOrder;
+    blankOrder.classList.contains("active")
+      ? blankOrder.classList.remove("active")
+      : blankOrder;
   }
 }
 
@@ -97,30 +109,59 @@ function showOrderContent() {
       sessionStorage.setItem("retryShowOrder", "true");
       Bridge.navigateRootURL();
     }
-    let statusContainer = orderContainer.querySelector(".order-status-container");
+    let statusContainer = orderContainer.querySelector(
+      ".order-status-container"
+    );
     disableSiblingContainer(statusContainer);
 
-    (orderContainer)?.classList.remove("disable");
-    (statusContainer)?.classList.remove("disable");
-    (elementsObj.getBlankOrder()).classList.add("active");
+    orderContainer?.classList.remove("disable");
+    statusContainer?.classList.remove("disable");
+    elementsObj.getBlankOrder().classList.add("active");
     return;
   }
 
-  (elementsObj.getHistoryContainer())?.classList.remove("disable");
+  elementsObj.getHistoryContainer()?.classList.remove("disable");
   historyContainer.classList.add("active");
 }
 
 // set quantity box on detail product
 function setQuantityBox(elementsObj) {
-  let reduceBtn = elementsObj.getQuantityBox().querySelector("input[type=button].reduce");
-  let increaseBtn = elementsObj.getQuantityBox().querySelector("input[type=button].increase");
-  let quantity = elementsObj.getQuantityBox().querySelector("input[type=text]#quantity");
+  let reduceBtn = elementsObj
+    .getQuantityBox()
+    .querySelector("input[type=button].reduce");
+  let increaseBtn = elementsObj
+    .getQuantityBox()
+    .querySelector("input[type=button].increase");
+  let quantity = elementsObj
+    .getQuantityBox()
+    .querySelector("input[type=text]#quantity");
   let productID = Bridge.$(".product-id")?.innerHTML;
-  let realQuantity = Array.from(JSON.parse(localStorage.getItem("products"))).find((product) => product.productID === productID)?.quantity;
+  let realQuantity = Array.from(
+    JSON.parse(localStorage.getItem("products"))
+  ).find((product) => product.productID === productID)?.quantity;
 
-  reduceBtn.addEventListener("click", () => quantity.value = parseInt(quantity.value) - 1 <= 0 ? 1 : parseInt(quantity.value) - 1);
-  increaseBtn.addEventListener("click", () => quantity.value = parseInt(quantity.value) + 1 <= realQuantity ? parseInt(quantity.value) + 1 : realQuantity);
-  quantity.addEventListener("change", () => quantity.value = parseInt(quantity.value) > realQuantity ? realQuantity : parseInt(quantity.value));
+  reduceBtn.addEventListener(
+    "click",
+    () =>
+      (quantity.value =
+        parseInt(quantity.value) - 1 <= 0 ? 1 : parseInt(quantity.value) - 1)
+  );
+  increaseBtn.addEventListener(
+    "click",
+    () =>
+      (quantity.value =
+        parseInt(quantity.value) + 1 <= realQuantity
+          ? parseInt(quantity.value) + 1
+          : realQuantity)
+  );
+  quantity.addEventListener(
+    "change",
+    () =>
+      (quantity.value =
+        parseInt(quantity.value) > realQuantity
+          ? realQuantity
+          : parseInt(quantity.value))
+  );
 }
 
 // handle scrolls
@@ -133,8 +174,7 @@ function scrollToHandler(nameStaticPage) {
     hiddenException();
   }
 
-  if (nameStaticPage === "services")
-    staticPage = elementsObj.getFooter();
+  if (nameStaticPage === "services") staticPage = elementsObj.getFooter();
   else if (!staticPage && nameStaticPage === "services") {
     alert("not found services!");
     return false;
@@ -143,9 +183,12 @@ function scrollToHandler(nameStaticPage) {
   // check if action is scroll to top or not
   if (nameStaticPage === "top")
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
-
   else if (staticPage)
-    window.scroll({ top: staticPage.offsetTop + 3 * 16, left: 0, behavior: "smooth" });
+    window.scroll({
+      top: staticPage.offsetTop + 3 * 16,
+      left: 0,
+      behavior: "smooth",
+    });
 
   // check if action is scroll to top or not
   if (nameStaticPage === "top")
@@ -167,19 +210,27 @@ function staticContents(elementsObj) {
   // add event listener
   if (newsButtons) {
     newsButtons.forEach((btn) => {
-      btn.addEventListener("click", Bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn")
+      btn.addEventListener(
+        "click",
+        Bridge.throttle(() => scrollToHandler("news"), 200, "newsBtn")
       );
     });
   }
 
   if (servicesButtons) {
     servicesButtons.forEach((btn) => {
-      btn.addEventListener("click", Bridge.throttle(() => scrollToHandler("services"), 200, "servicesBtn"));
+      btn.addEventListener(
+        "click",
+        Bridge.throttle(() => scrollToHandler("services"), 200, "servicesBtn")
+      );
     });
   }
 
   if (scrollTopButtons) {
-    scrollTopButtons.addEventListener("click", Bridge.throttle(() => scrollToHandler("top"), 200, "ScrollTopBtn"));
+    scrollTopButtons.addEventListener(
+      "click",
+      Bridge.throttle(() => scrollToHandler("top"), 200, "ScrollTopBtn")
+    );
   }
 }
 
@@ -207,7 +258,7 @@ function accountEvents(elementsObj) {
     btn.addEventListener("click", Bridge.throttle(() => singoutAccount(elementsObj), 200, "signout")));
 }
 
-// for login 
+// for login
 function showLogin(loginForm, registForm, forgotForm) {
   hiddenException("account-content");
       if (!loginForm) {
@@ -228,12 +279,16 @@ function showRegister(loginForm, registForm, forgotForm) {
     Bridge.navigateRootURL();
   }
   registForm?.classList.add("active");
-  loginForm?.classList.contains("active") ? loginForm.classList.remove("active") : loginForm;
-  forgotForm?.classList.contains("active") ? forgotForm.classList.remove("active") : forgotForm;
+  loginForm?.classList.contains("active")
+    ? loginForm.classList.remove("active")
+    : loginForm;
+  forgotForm?.classList.contains("active")
+    ? forgotForm.classList.remove("active")
+    : forgotForm;
   scrollView();
 }
 
-// for show forgot password 
+// for show forgot password
 function showForgotPassword(loginForm, registForm, forgotForm) {
   if (!registForm) {
     sessionStorage.setItem("forgotPassword", "true");
@@ -241,8 +296,12 @@ function showForgotPassword(loginForm, registForm, forgotForm) {
   }
   hiddenException("account-content");
   forgotForm?.classList.add("active");
-  loginForm?.classList.contains("active") ? loginForm.classList.remove("active") : loginForm;
-  registForm?.classList.contains("active") ? registForm.classList.remove("active") : registForm;
+  loginForm?.classList.contains("active")
+    ? loginForm.classList.remove("active")
+    : loginForm;
+  registForm?.classList.contains("active")
+    ? registForm.classList.remove("active")
+    : registForm;
   scrollView();
 }
 

@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
                clearInterval(checkDOM);
           }
      }, 200);
+
      // call funcs
      if (!lastPath)
           Interface.hiddenException();
