@@ -200,7 +200,7 @@
           "genre": "tragedy",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Giới thiệu sách: Câu chuyện này xoay quanh gặp gỡ và chia ly giữa hai người trẻ tuyệt vọng. Cô tuyệt vọng vì sắp chết. Cậu tuyệt vọng vì phải sống tiếp. Bọn họ vốn học cùng lớp nhưng chưa từng gặp nhau, không biết tên nhau."
      },
 
      {
@@ -217,7 +217,7 @@
           "genre": "romance, fantasy",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Suzu là một cô bé 17 tuổi mờ nhạt, luôn thu mình trong góc lớp. Vì sự việc nọ, Suzu đánh mất khả năng hát những bài ca mình hằng yêu thích. Cô bạn thân Hiro bèn rủ Suzu tham gia thế giới mạng “U”, nơi ai cũng có thể “sống như một phiên bản khác của bản thân”.\n“Ở thế giới này, mình có thể ca hát…!”\nTrở thành nữ danh ca “Belle” trong “U” và rồi nổi tiếng khắp thế giới, Suzu tình cờ gặp Rồng, một quái vật bí ẩn mang rất nhiều vết bầm trên lưng. Thường ngày bị ghét bỏ vì hành động hung hăng thô lỗ, song đâu đó trong thâm tâm, anh ta luôn thấy cô đơn. Suzu và Rồng dần thấu hiểu lẫn nhau, song hiểm nguy bỗng ập tới chia rẽ họ…!?\nĐây là câu chuyện về hành trình “tìm thấy bản thân” nhờ sự dẫn lối của những bài ca!"
      },
 
      {
@@ -251,7 +251,7 @@
           "genre": "comedy",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Từ oẳn tù tì, chơi cầu lông đến câu cá, Yotsuba vui vẻ tận hưởng mùa hè sôi động! \nBỗng ngày nọ, cô bé nhận tin chấn động từ Fuka!? Đáng lẽ phải giữ bí mật, song với sự ngây ngô của mình, Yotsuba trót gây ra hàng loạt tình huống “khó đỡ”, khiến Fuka chẳng biết nên khóc hay nên cười…\nMột mùa hè với bao điều mới lạ, vẫn đang chờ Yotsuba khám phá!   "
      },
 
      {
@@ -387,7 +387,7 @@
           "genre": "tragedy",
           "packagingSize": "13 x 19 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Tạm Biệt Trời Xanh\nSau khi lên cấp ba, bằng tinh thần chính nghĩa vốn có của mình, Kawahara Aoi đã ra mặt giúp đỡ một người bạn cùng lớp bị bắt nạt, kết cục cô lại trở thành nạn nhân tiếp theo thay thế cho người bạn đó. Quá tuyệt vọng khi phải trải qua những ngày bị giày vò cả về thể xác lẫn tinh thần ở trường, Aoi đi tới bờ sông, nơi có cây cầu bắc qua hai khu phố và chuẩn bị kết thúc cuộc đời mình ở đó. Tuy nhiên Midori, một chàng trai có phong thái kỳ lạ đã bất ngờ xuất hiện và ngăn cô lại. Kể từ đó, sau mỗi ngày hẹn gặp nhau ở bờ sông, trò chuyện và lắng nghe những lời khuyên của Midori, Aoi dần lấy lại được lòng dũng cảm và sự tự tin để đối mặt với mọi chuyện. Tuy nhiên, đó cũng chính là lúc sự thật về Midori được phơi bày, mở ra đoạn hồi ức đau buồn thời thơ ấu của hai người mà cô đã vô tình lãng quên…  \nTrích dẫn trong sách:\n“Đối với tớ, sự tồn tại của Aoi tựa như một khoảng trời xanh mà cuộc đời tớ thiếu vắng bấy lâu vậy. Mỗi khi ở bên cậu, tớ cảm thấy tâm hồn mình như được gột rửa, bình yên và hạnh phúc lắm.”"
      },
 
      {
@@ -404,7 +404,7 @@
           "genre": "fantasy, detective",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Thám tử mà hay quên thì làm ăn gì?\nKhông, thật ra trí nhớ của cô nàng thám tử có tên Okitegami Kyoko tốt hơn đa số mọi người… nếu chỉ tính trong một ngày!\nKí ức trong ngày của cô sẽ bị xóa vào chính cuối mỗi ngày, nên cô còn được gọi là “thám tử lãng quên”.\nKyoko sẽ làm thế nào để phá án khi chỉ có thời gian là một ngày?\nChưa kể anh chàng khách hàng Kakushidate Yakusuke, bạn thân của “xui xẻo”, kẻ luôn bị cuốn vào các vụ án, sẽ mang đến cho cô những bí ẩn tưởng chừng không thể phá giải trong một ngày!"
      },
 
      {
@@ -421,7 +421,7 @@
           "genre": "fantasy, detective",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Ở tập 2 này, chúng ta sẽ theo chân cô nàng thám tử lãng quên Okaitegami Kyoko, người có kí ức bị cài đặt lại mỗi ngày, đến… bảo tàng mỹ thuật để xem tranh. Đời tư của cô sẽ tiếp tục được hé lộ, (vẫn) bên cạnh những màn phá án tài tình chỉ trong một ngày.\nĐây là một tập truyện dài, vì diễn tả đầy đủ quá trình suy luận bằng phương pháp loại trừ: liệt kê mọi khả năng có thể xảy ra, rồi gạch bỏ từng cái một cho đến khi còn lại chân tướng. Nếu đủ kiên nhẫn, độc giả sẽ biết Kyoko cũng rất kiên nhẫn (với vụ án và cả với anh chàng khách hàng mới) và giỏi bao quát tình hình tới nhường nào - chỉ có điều là cô \"nhanh bậc nhất\".\nCuốn sách là tập thứ hai thuộc series Thám tử lãng quên của Nisioisin, nhà văn nổi tiếng với những pha bẻ lái ngoạn mục trong tình tiết và sự vui tính thường gây trầm trồ trong sử dụng ngôn từ, đã được khẳng định qua nhiều series, trong đó có series Monogatari, cũng do VOFAN minh họa, và truyện ngắn DEATH NOTE: ANOTHER NOTE - LABB liên hoàn án."
      },
 
      {
