@@ -124,6 +124,7 @@ function showOrderContent() {
   disableSiblingContainer(orderContainer);
   if (!lists || !sessionStorage.getItem("hasLogin")) {
     blankOrder(elementsObj);
+    return;
   }
   // navigate to index.html if not have any container
   if (!orderContainer) {
@@ -131,8 +132,8 @@ function showOrderContent() {
     Bridge.navigateRootURL();
   }
 
-  elementsObj.getHistoryContainer()?.classList.remove("disable");
   if(historyContainer.classList.contains("active")) return;
+  elementsObj.getHistoryContainer()?.classList.remove("disable");
   historyContainer.classList.add("active");
   renderOrder(elementsObj);
 }
@@ -196,7 +197,7 @@ function renderOrder(elementsObj) {
   let ordersList = JSON.parse(localStorage.getItem("donhang"));
   let detailOrders = JSON.parse(localStorage.getItem("chitiet_donhang"));
   let loginAccount = JSON.parse(localStorage.getItem("hasLoginAccount"));
-  let customer = ordersList.find((order) => order.id_khachhang === "KH007");
+  let customer = ordersList.find((order) => order.id_khachhang === "KH011");
   // console.log(ordersList);
   // console.log(detailOrders);
 
@@ -210,7 +211,7 @@ function renderOrder(elementsObj) {
         // reduce array of detail order on local
         detailOrders = detailOrders.filter((element) => element.id_donhang !== detail.id_donhang || element.id_sanpham !== detail.id_sanpham);
         if (detailOrders.filter((element) => element.id_donhang === customer.id_donhang).length === 0)
-          ordersList = ordersList.filter((order) => order.id_khachhang !== "KH007");
+          ordersList = ordersList.filter((order) => order.id_khachhang !== "KH011");
         // update arrays
         localStorage.setItem("donhang", JSON.stringify(ordersList));
         localStorage.setItem("chitiet_donhang", JSON.stringify(detailOrders));

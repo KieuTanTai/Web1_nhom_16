@@ -1,212 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Since 1985</title>
-    
+
     <link rel="shortcut icon" href="../Assets/Images/Icons/Web_logo/favicon.ico" />
+    <link rel="stylesheet" href="../Assets/CSS/index.css">
     <link rel="stylesheet" href="../Assets/CSS/admin.css">
     <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css">
-
-    <!-- <script type="module" src="../Javascript/Index.js"></script> -->
-    <!-- <script src="./assets/js/login.js"></script> -->
-    <script src="../Javascript/donhang.js"></script>
+    <scrip src="../Javascript/donhang.js"></script>
     <script src="../Javascript/thongke.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 </head>
+
 <body>
     <div class="body">
         <div class="header">
             <h2>Light Novel World - Admin</h2>
         </div>
         <div class="bheader"></div>
-            <!-- Menu -->
-                <aside class="sidebar">
-                <ul class="nav">
-                    <li class="nav-title">MENU</li>
-                    <li class="nav-item js-opentrangchu"><a class="nav-link active "><i class="mr-6 ti-home"></i>Trang Chủ</a></li>
-                    <li class="nav-item js-opensanpham"><a class="nav-link "><i class="mr-6 ti-view-grid"></i>Sản Phẩm</a></li>
-                    <li class="nav-item js-opendonhang">
-                        <a class="nav-link" onClick="
-                        update_table_donhang();
+        <!-- Menu -->
+        <aside class="sidebar">
+            <ul class="nav">
+                <li class="nav-title">MENU</li>
+                <li class="nav-item font-size-14 js-opentrangchu"><a class="nav-link active "><i class="mr-6 ti-home"></i>Trang Chủ</a></li>
+                <li class="nav-item font-size-14 js-opensanpham"><a class="nav-link "><i class="mr-6 ti-view-grid"></i>Sản Phẩm</a>
+                </li>
+                <li class="nav-item font-size-14 js-opendonhang">
+                    <a class="nav-link" onClick="update_table_donhang();
                         document.querySelector('.js-donhang').style.display = 'block';
                         document.querySelector('.js-thongke').style.display = 'none';">
-                            <i class="mr-6 ti-package"></i>Đơn Hàng
-                        </a>
-                    </li>
-                    <li class="nav-item js-openkhachhang">
-                        <a class="nav-link" onClick="
+                        <i class="mr-6 ti-package"></i>Đơn Hàng
+                    </a>
+                </li>
+                <li class="nav-item font-size-14 js-openkhachhang">
+                    <a class="nav-link" onClick="
                         update_thongke('mh',false);
                         document.querySelector('.js-thongke').style.display = 'block';
                         document.querySelector('.js-donhang').style.display = 'none';">
-                            <i class="mr-6 ti-id-badge"></i>Thống kê
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link" onclick="logOutAdmin(); return true;">
-                            <i class="mr-6 ti-arrow-circle-left"></i> Đăng xuất (về Trang chủ)
-                        </a>
-                    </li>
-                </ul>
-            </aside>
-            
-            <!-- Khung hiển thị chính -->
-            <div class="main">
+                        <i class="mr-6 ti-id-badge"></i>Thống kê
+                    </a>
+                </li>
+                <li class="nav-item font-size-14">
+                    <a href="index.html" class="nav-link" onclick="logOutAdmin(); return true;">
+                        <i class="mr-6 ti-arrow-circle-left"></i> Đăng xuất (về Trang chủ)
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-                <!-- trangchu -->
-                <div class="js-trangchu trangchu">
-                    <div class="trangchu1"></div>
-                    <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
-                    <canvas id="myChart1" style="width:100%;max-width:1000px"></canvas>
+        <!-- Khung hiển thị chính -->
+        <div class="main">
+
+            <!-- trangchu -->
+            <div class="js-trangchu trangchu">
+                <div class="trangchu1"></div>
+                <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+                <canvas id="myChart1" style="width:100%;max-width:1000px"></canvas>
+            </div>
+            <!-- Sản Phẩm -->
+            <div class="sanpham js-sanpham">
+                <table class="table-header">
+                    <tr>
+                        <!-- Theo độ rộng của table content -->
+                        <th title="Sắp xếp" style="width: 5%">Stt</th>
+                        <th title="Sắp xếp" style="width: 5%">Mã</th>
+                        <th title="Sắp xếp" style="width: 40%">Tên</th>
+                        <th title="Sắp xếp" style="width: 10%">Loại</th>
+                        <th title="Sắp xếp" style="width: 10%">Giá</th>
+                        <th title="Sắp xếp" style="width: 5%">Số sao</th>
+                        <th title="Sắp xếp" style="width: 5%">Nồng Độ</th>
+                        <th title="Sắp xếp" style="width: 10%">Dung Tích</th>
+                        <th title="Sắp xếp" style="width: 15%">Hành Động</th>
+                    </tr>
+                </table>
+                <div class="table-content"></div>
+                <div class="table-footer">
+                    <button onclick="document.getElementById('khungThemSanPham').style.transform = 'scale(1)';">
+                        Thêm sản phẩm
+                    </button>
                 </div>
-                <!-- Sản Phẩm -->
-                <div class="sanpham js-sanpham">
-                    <table class="table-header">
+
+                <div id="khungThemSanPham" class="overclass">
+                    <span class="close" onclick="this.parentElement.style.transform = 'scale(0)';"><i
+                            class="ti-close"></i></span>
+                    <table class="overlayTable table-header table-content">
                         <tr>
-                            <!-- Theo độ rộng của table content -->
-                            <th title="Sắp xếp" style="width: 5%" >Stt</th>
-                            <th title="Sắp xếp" style="width: 5%" >Mã</th>
-                            <th title="Sắp xếp" style="width: 40%" >Tên</th>
-                            <th title="Sắp xếp" style="width: 10%" >Loại</th>
-                            <th title="Sắp xếp" style="width: 10%" >Giá</th>
-                            <th title="Sắp xếp" style="width: 5%" >Số sao</th>
-                            <th title="Sắp xếp" style="width: 5%" >Nồng Độ</th>
-                            <th title="Sắp xếp" style="width: 10%" >Dung Tích</th>
-                            <th title="Sắp xếp" style="width: 15%" >Hành Động</th>
+                            <th colspan="2">Thêm Sản Phẩm</th>
+                        </tr>
+                        <tr>
+                            <td>Mã sản phẩm:</td>
+                            <td><input type="text" id="maspThem"></td>
+                        </tr>
+                        <tr>
+                            <td>Tên sản phẩm:</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>Thương Hiệu:</td>
+                            <td>
+                                <select name="chonCompany">
+                                    <script>
+                                        var company = ["Whisky", "Rum", "Vodka"];
+                                        for (var c of company) {
+                                            document.writeln(`<option value="` + c + `">` + c + `</option>`);
+                                        }
+                                    </script>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Hình:</td>
+                            <td>
+                                <img class="hinhDaiDien" id="anhDaiDienSanPhamThem" src="">
+                                <input type="file" accept="image/*"
+                                    onchange="capNhatAnhSanPham(this.files, 'anhDaiDienSanPhamThem')">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Giá tiền (₫):</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>Số sao (số nguyên 0->5):</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>Nồng độ:</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>Dung tích:</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="table-footer"> <button onclick="themSanPham()">THÊM</button> </td>
                         </tr>
                     </table>
-                    <div class="table-content"> 
+                </div>
+
+                <div id="khungSuaSanPham" class="overclass"></div>
+
+            </div>
+
+            <!-- Đơn Hàng -->
+            <div class="donhang js-donhang">
+                <form>
+                    <div id="loc">
+                        Ngày:
+                        <input id="date_start" type="date" class="locdon">
+                        -
+                        <input id="date_end" type="date" class="locdon" style="margin-right: 10px;margin-left: 10px;">
+                        Tình trạng:
+                        <select id="state" style="color: black; margin-right: 10px;">
+                            <option value="none" style="color: black">-</option>
+                            <option value="chua_xu_ly" style="color: black">Chưa xử lý</option>
+                            <option value="xac_nhan" style="color: black">Đã xác nhận</option>
+                            <option value="da_giao" style="color: black">Đã giao</option>
+                            <option value="huy" style="color: black">Đã hủy</optison>
+                        </select>
+                        Sắp xếp theo quận:
+                        <input id="sort_quan" type="checkbox" style="margin-right: 10px;">
+                        <input type="button" value="Lọc" style="width: 40px; color: black"
+                            onClick="loc(date_start, date_end, state, sort_quan)">
+                        <input type="reset" value="Reset" style="width: 40px; color: black">
                     </div>
-                    <div class="table-footer">
-                        <button onclick="document.getElementById('khungThemSanPham').style.transform = 'scale(1)';">
-                            Thêm sản phẩm
-                        </button>
-                    </div>
+                </form>
 
-                    <div id="khungThemSanPham" class="overclass">
-                        <span class="close" onclick="this.parentElement.style.transform = 'scale(0)';"><i class="ti-close"></i></span>
-                        <table class="overlayTable table-header table-content">
-                            <tr>
-                                <th colspan="2">Thêm Sản Phẩm</th>
-                            </tr>
-                            <tr>
-                                <td>Mã sản phẩm:</td>
-                                <td><input type="text" id="maspThem"></td>
-                            </tr>
-                            <tr>
-                                <td>Tên sản phẩm:</td>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <td>Thương Hiệu:</td>
-                                <td>
-                                    <select name="chonCompany">
-                                        <script>
-                                            var company = ["Whisky","Rum","Vodka"];
-                                            for(var c of company) {
-                                                document.writeln(`<option value="`+c+`">`+c+`</option>`);
-                                            }
-                                        </script>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hình:</td>
-                                <td>
-                                    <img class="hinhDaiDien" id="anhDaiDienSanPhamThem" src="">
-                                    <input type="file" accept="image/*" onchange="capNhatAnhSanPham(this.files, 'anhDaiDienSanPhamThem')">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Giá tiền (₫):</td>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <td>Số sao (số nguyên 0->5):</td>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <td>Nồng độ:</td>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <td>Dung tích:</td>
-                                <td><input type="text"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="table-footer"> <button onclick="themSanPham()">THÊM</button> </td>
-                            </tr>
-                        </table>
-                    </div>
+                <table class="table-header">
+                    <tr>
+                        <!-- Theo độ rộng của table content -->
+                        <th title="Sắp xếp" style="width: 5%">STT</th>
+                        <th title="Sắp xếp" style="width: 12%">Mã đơn</th>
+                        <th title="Sắp xếp" style="width: 12%">Khách hàng</th>
+                        <th title="Sắp xếp" style="width: 24%">Địa chỉ</th>
+                        <th title="Sắp xếp" style="width: 15%">Tổng tiền</th>
+                        <th title="Sắp xếp" style="width: 12%">Ngày giờ</th>
+                        <th title="Sắp xếp" style="width: 10%">Trạng thái</th>
+                        <th style="width: 10%">Hành động</th>
+                    </tr>
+                </table>
 
-                    <div id="khungSuaSanPham" class="overclass" ></div>
+                <div class="table-content"></div>
+            </div> <!-- // don hang -->
+            <!-- Thống kê -->
+            <div class="thongke js-thongke">
+                <div style="display: grid; place-items: center;">
+                    <nav>
+                        <ul class="button_thongke">
+                            <li><a href="" id="mh" style="pointer-events: none; background-color: gray;"
+                                    onClick="update_thongke(this.id,false)">Thống kê mặt hàng</a></li>
+                            <li><a href="" id="kh" onClick="update_thongke(this.id,false)">Thống kê khách hàng</a></li>
+                        </ul>
+                    </nav>
+                </div>
 
-                </div> 
-
-                <!-- Đơn Hàng -->
-                <div class="donhang js-donhang">
-                    <form>
-                        <div id="loc">
-                            Ngày:
-                            <input id="date_start" type="date" class="locdon">
-                            -
-                            <input id="date_end" type="date" class="locdon" style="margin-right: 10px;margin-left: 10px;">
-                            Tình trạng:
-                            <select id="state" style="color: black; margin-right: 10px;">
-                                <option value="none" style="color: black">-</option>
-                                <option value="chua_xu_ly" style="color: black">Chưa xử lý</option>
-                                <option value="xac_nhan" style="color: black">Đã xác nhận</option>
-                                <option value="da_giao" style="color: black">Đã giao</option>
-                                <option value="huy" style="color: black">Đã hủy</optison>
-                            </select>
-                            Sắp xếp theo quận:
-                            <input id="sort_quan" type="checkbox" style="margin-right: 10px;">
-                            <input type="button" value="Lọc" style="width: 40px; color: black" onClick="loc(date_start, date_end, state, sort_quan)">
-                            <input type="reset" value="Reset" style="width: 40px; color: black">
-                        </div>
-                    </form>
-                    
-                    <table class="table-header">
-                        <tr>
-                            <!-- Theo độ rộng của table content -->
-                            <th title="Sắp xếp" style="width: 5%" >STT</th>
-                            <th title="Sắp xếp" style="width: 12%" >Mã đơn</th>
-                            <th title="Sắp xếp" style="width: 12%" >Khách hàng</th>
-                            <th title="Sắp xếp" style="width: 24%" >Địa chỉ</th>
-                            <th title="Sắp xếp" style="width: 15%" >Tổng tiền</th>
-                            <th title="Sắp xếp" style="width: 12%" >Ngày giờ</th>
-                            <th title="Sắp xếp" style="width: 10%" >Trạng thái</th>
-                            <th style="width: 10%">Hành động</th>
-                        </tr>
-                    </table>
-
-                    <div class="table-content"></div>
-                </div> <!-- // don hang -->
-                <!-- Thống kê -->
-                <div class="thongke js-thongke">
-                    <div style="display: grid; place-items: center;">
-                        <nav>
-                            <ul class="button_thongke">
-                                <li><a href="#" id="mh" style="pointer-events: none; background-color: gray;" onClick="update_thongke(this.id,false)">Thống kê mặt hàng</a></li>
-                                <li><a href="#" id="kh" onClick="update_thongke(this.id,false)">Thống kê khách hàng</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                    <div class="table-content" id="table-thongke">
-                    </div>
-                </div> <!-- // Thống kê -->
-            </div> <!-- // main -->
-            <div class="clear"></div>
+                <div class="table-content flex flex-direction-y" id="table-thongke">
+                </div>
+            </div> <!-- // Thống kê -->
+        </div> <!-- // main -->
+        <div class="clear"></div>
         <footer>
         </footer>
     </div>
-            <script>
-                
-            </script>
+    <script>
+
+    </script>
 </body>
+
 </html>

@@ -59,16 +59,19 @@ table{
     height: auto;
     position: fixed;
     z-index: 10;
-
+    border-top: 1px solid var(--bg-red);
+    border-right: 1px solid var(--bg-red);
+    border-bottom: 1px solid var(--bg-red);
+    background-color: var(--primary-dark);
 }
 .sidebar li{
     cursor: pointer;
 }
 .sidebar .nav-title{
-    
     line-height: 50px;
     text-align: center;
     font-size: 25px;
+    border-bottom: 1px solid var(--bg-red);
 }
 .sidebar .nav-item{
     line-height: 30px;

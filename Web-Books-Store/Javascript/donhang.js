@@ -71,7 +71,7 @@ const chitiet_donhang = [
     sanpham: "Ám Hắc Quán – Combo 2 Tập",
     don_gia: 350000,
     sl: 2,
-    tong: "700,000",
+    tong: 700000,
   },
   {
     id_donhang: "DH006",
