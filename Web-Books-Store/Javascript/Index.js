@@ -83,7 +83,7 @@ window.addEventListener("load", () => {
 
      if (sessionStorage.getItem("retryTracking") === "true") {
           sessionStorage.removeItem("retryTracking");
-          Actions.showTracking(localStorage.getItem("pay"));
+          Actions.showTracking(localStorage.getItem("donhang"));
      }
 
      if (sessionStorage.getItem("login") === "true") {

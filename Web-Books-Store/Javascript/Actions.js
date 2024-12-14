@@ -58,8 +58,9 @@ function trackingNavigate(elementsObj) {
   // navigate to index.html if not have any container
   const buttons = elementsObj.getOrderTrackingBtn();
   if (!buttons) return;
-  const trackers = localStorage.getItem("pay");
+  const trackers = localStorage.getItem("donhang");
   buttons.forEach((btn) => btn.addEventListener("click", Bridge.throttle(() => showTracking(trackers), 200, "statusNav")));
+  if (trackers) orderInfo();
 }
 
 function showTracking(trackers) {
@@ -87,6 +88,30 @@ function showTracking(trackers) {
       ? blankOrder.classList.remove("active")
       : blankOrder;
   }
+}
+
+function orderInfo() {
+  let orders = JSON.parse(localStorage.getItem("orders"));
+  let ordersList = [];
+  ordersList.push(orders);
+  let order = ordersList[ordersList.length - 1];
+  let container = Bridge.$$(".order-info .block-order-info span");
+  container.forEach((block) => {
+    console.log(block)
+    if (block.classList.contains("order-code"))
+      block.innerHTML = order.orderId;
+    if (block.classList.contains("order-time"))
+      block.innerHTML = order.date;
+    if (block.classList.contains("expected-delivery-date"))
+      block.innerHTML = "3 ngày sau xác nhận đơn"
+    if (block.classList.contains("Consignee"))
+      block.innerHTML = order.userName;
+    if (block.classList.contains("Consignee-phone"))
+      block.innerHTML = order.phonenumber;
+    if (block.classList.contains("Consignee-address"))
+      block.innerHTML = order.address;
+
+  });
 }
 
 // navigate to history tracking
