@@ -65,40 +65,26 @@ function addTableProducts() {
   for (var i = 0; i < bookList.length; i++) {
     var a = bookList[i];
     xuat +=
-      `<tr>
-                    <td style="width: 5%">` +
-      (i + 1) +
-      `</td>
-                    <td style="width: 5%">` +
-      a.masp +
-      `</td>
-                    <td style="width: 40%">` +
-      a.tensp;
+      `
+            <tr>
+              <td style="width: 5%">` + (i + 1) + `</td>
+              <td style="width: 5%">` + a.masp + `</td>
+              <td style="width: 40%">` + a.tensp;
     if (a.hinh != null) xuat += `<img src="` + a.hinh + `"></img>`;
-    xuat +=
-      `        
-                    </td>
-                    <td style="width: 10%">` +
-      a.loaisach +
-      `</td>
-                    <td style="width: 10%">` +
-      a.gia +
-      `</td>
-                    <td style="width: 15%">
-                        <div class="tooltip">
-                            <i class="ti-pencil-alt" onclick="addKhungSuaSanPham('` +
-      a.masp +
-      `')"></i>
-                        </div>
-                        <div class="tooltip" >
-                            <i class="ti-trash" onclick="xoaSanPham('` +
-      a.masp +
-      `','` +
-      a.tensp +
-      `')"></i>
-                        </div>
-                    </td>
-                </tr>`;
+    xuat += `        
+            </td>
+              <td style="width: 10%">` + a.loaisach + `</td>
+              <td style="width: 10%">` + a.gia + `</td>
+              <td style="width: 15%">
+                  <div class="tooltip">
+                      <i class="ti-pencil-alt" onclick="addKhungSuaSanPham('` + a.masp + `')"></i>
+                  </div>
+                  <div class="tooltip" >
+                      <i class="ti-trash" onclick="xoaSanPham('` + a.masp + `','` + a.tensp + `')"></i>
+                  </div>
+              </td>
+          </tr>
+          `;
   }
   xuat += `</table>`;
   tc.innerHTML = xuat;
@@ -115,20 +101,17 @@ function addKhungSuaSanPham(masp) {
     `<span class="close" onclick="this.parentElement.style.transform = 'scale(0)';"><i class="ti-close"></i></span>
         <table class="overlayTable table-content table-header">
             <tr>
-                <th colspan="2">Sửa Sản Phẩm: ` +
-    sp.tensp +
+                <th colspan="2">Sửa Sản Phẩm: ` +sp.tensp +
     `</th>
             </tr>
             <tr>
                 <td>Mã sản phẩm:</td>
-                <td><input type="text" value="` +
-    sp.masp +
+                <td><input type="text" value="` + sp.masp +
     `"></td>
             </tr>
             <tr>
                 <td>Tên sản phẩm:</td>
-                <td><input type="text" value="` +
-    sp.tensp +
+                <td><input type="text" value="` + sp.tensp +
     `"></td>
             </tr>
             <tr>
@@ -167,31 +150,22 @@ function addKhungSuaSanPham(masp) {
             <tr>
                 <td>Giá tiền (₫):</td>
                 <td><input type="text" value="` +
-    stringToNum(sp.gia) +
-    `"></td>
+    stringToNum(sp.gia) + `"></td>
             </tr>
             <tr>
                 <td>Số sao (số nguyên 0->5):</td>
-                <td><input type="text" value="` +
-    sp.sosao +
-    `"></td>
+                <td><input type="text" value="` + sp.sosao + `"></td>
             </tr>
             <tr>
                 <td>Nồng độ:</td>
-                <td><input type="text" value="` +
-    sp.nongdo +
-    `"></td>
+                <td><input type="text" value="` + sp.nongdo + `"></td>
             </tr>
             <tr>
                 <td>Dung tích:</td>
-                <td><input type="text" value="` +
-    sp.dungtich +
-    `"></td>
+                <td><input type="text" value="` + sp.dungtich + `"></td>
             </tr>
             <tr>
-                <td colspan="2" class="table-footer"><button onclick="suaSanPham('` +
-    sp.masp +
-    `')">LƯU THAY ĐỔI</button> </td>
+                <td colspan="2" class="table-footer"><button onclick="suaSanPham('` + sp.masp + `')">LƯU THAY ĐỔI</button> </td>
             </tr>
         </table>`;
   var khung = document.getElementById("khungSuaSanPham");

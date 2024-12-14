@@ -4,10 +4,6 @@ import { isEmail, isEmpty, isExistedProductID, isExistedUserEmail, isExistedUser
 const loginComponent = document.querySelector(".login-component");
 const body = document.querySelector(".body");
 const adminAccount = { username: "admin", password: "123" };
-if (sessionStorage.getItem("loginAdmin")) {
-  loginComponent.classList.add("disable");
-  sessionStorage.removeItem("loginAdmin");
-}
 
 // Check login
 (() => {

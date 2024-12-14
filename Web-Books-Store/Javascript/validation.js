@@ -20,7 +20,7 @@ export const isValidProductID = (value) => {
 };
 
 export const isValidUserID = (value) => {
-  const regex = /^(U)\d{4}$/g;
+  const regex = /^KH\d{3,}$/;
   return regex.test(String(value));
 };
 
