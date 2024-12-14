@@ -687,10 +687,6 @@
 }
 
 /* load more item */
-.category-btn {
-  padding: var(--btn-height) 4em;
-  background: var(--main-color);
-}
 
 /* news and blogs container */
 #news-blogs-container {

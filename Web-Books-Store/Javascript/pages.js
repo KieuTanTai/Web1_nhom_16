@@ -221,7 +221,8 @@ function hideAllSections() {
 function showTargetSection(categoryId) {
     const targetSection = document.getElementById(categoryId);
     if (targetSection) {
-        targetSection.style.display = 'block';
+        targetSection.style.display = 'flex';
+        targetSection.style.justifyContent = 'center';
         return;
     } 
     else {
@@ -250,6 +251,7 @@ function renderContainer(name) {
     let element = document.createElement("section");
     element.setAttribute("id", `${name}-container`);
     element.classList.add("flex");
+    element.classList.add("justify-center");
     element.classList.add("grid-col");
     element.classList.add("col-l-12");
     element.classList.add("col-m-12");

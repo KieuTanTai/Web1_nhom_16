@@ -460,6 +460,16 @@ input[type = text] {
   background: var(--btn-hover) !important;
 }
 
+.category-btn {
+  padding: var(--btn-height) 4em;
+  background: var(--main-color);
+}
+
+.remove-btn.button {
+  padding: 0.5em 1.5em;
+  background: var(--bg-red);
+}
+
 .search-btn {
   top: 0;
   right: 0;
@@ -723,6 +733,10 @@ input[type = text] {
 
 .success-color {
   color: var(--primary-IPM-green);
+}
+
+.waiting-color {
+  color: var(--bg-red);
 }
 
 .error-color,

@@ -3,6 +3,7 @@ import * as Bridge from "./Bridge.js";
 import {
   disableSiblingContainer,
   fakeOverlay,
+  formatPrices,
   headerUserInfo,
   hiddenException,
   scrollView,
@@ -111,7 +112,6 @@ function orderInfo() {
   let order = orders[orders.length - 1];
   let container = Bridge.$$(".order-info .block-order-info span");
   container.forEach((block) => {
-    console.log(block);
     if (block.classList.contains("order-code")) block.innerHTML = order.orderId;
     if (block.classList.contains("order-time")) block.innerHTML = order.date;
     if (block.classList.contains("expected-delivery-date"))
@@ -133,30 +133,125 @@ function historyNavigate(elementsObj) {
 function showOrderContent() {
   let elementsObj = Bridge.default();
   let historyContainer = elementsObj.getHistoryOrder();
-  let lists = localStorage.getItem("hadBought");
+  let lists = localStorage.getItem("donhang");
+  let orderContainer = elementsObj.getOrderContent();
   hiddenException("order-content");
-  disableSiblingContainer(elementsObj.getOrderContent());
-  if (!lists) {
-    let orderContainer = elementsObj.getOrderContent();
-    orderContainer = elementsObj.getOrderContent();
-    // navigate to index.html if not have any container
-    if (!orderContainer) {
-      sessionStorage.setItem("retryShowOrder", "true");
-      Bridge.navigateRootURL();
-    }
-    let statusContainer = orderContainer.querySelector(
-      ".order-status-container"
-    );
-    disableSiblingContainer(statusContainer);
-
-    orderContainer?.classList.remove("disable");
-    statusContainer?.classList.remove("disable");
-    elementsObj.getBlankOrder().classList.add("active");
-    return;
+  disableSiblingContainer(orderContainer);
+  if (!lists || !sessionStorage.getItem("hasLogin")) {
+    blankOrder(elementsObj);
+  }
+  // navigate to index.html if not have any container
+  if (!orderContainer) {
+    sessionStorage.setItem("retryShowOrder", "true");
+    Bridge.navigateRootURL();
   }
 
   elementsObj.getHistoryContainer()?.classList.remove("disable");
   historyContainer.classList.add("active");
+  renderOrder(elementsObj);
+}
+
+function scriptOrder(customer, detailOrder) {
+  let status;
+  let productsList = JSON.parse(localStorage.getItem("products"));
+  let product = productsList.find((product) => product.productID === detailOrder.id_sanpham);
+
+  // get status of this order
+  if (status == 1) status = "chờ xử lý";
+  else if (status == 2) status = "chờ lấy hàng";
+  else if (status == 3) status = "chờ giao hàng";
+  else if (status == 4) status = "đã giao hàng";
+  // get script html and append it 
+  let script = `
+          <div class="block-product">
+              <div class="cart-content">
+                  <div class="completed-order-info margin-bottom-8">
+                        <img
+                            src="${product?.img}">
+                        <div class="full-width padding-left-12">
+                            <p class="capitalize padding-bottom-8">${product.name}</p>
+                            <div class="block-product-price text-end">
+                                  <div class="quantity-cart">x${detailOrder.sl}</div>
+                                  <div class="new-price price">${detailOrder.don_gia * product.sale}</div>
+                            </div>
+                        </div>
+                  </div>
+                  <div
+                        class="flex justify-space-between padding-bottom-8 padding-top-8">
+                        <div class="total-item opacity-0-6">${detailOrder.sl} item</div>
+                        <div class="price total-price font-bold text-end">${Math.round(detailOrder.don_gia * product.sale * detailOrder.sl)}</div>
+                  </div>
+                  <div class="order-status flex justify-space-between padding-top-8 padding-bottom-8">
+                        <span class="opacity-0-8 font-size-13 ${status === "đã giao hàng" ? "success-color" : "waiting-color"}">${status ? status : "chờ xử lý"}</span>
+                        <div><i class="fa-solid fa-chevron-right fa-xs" style="color: var(--main-color);"></i></div></div>
+                  <div class="flex align-center justify-space-between padding-top-8">
+                        <span class="delivered-day flex opacity-0-8">
+                            <div>${customer.date}</div>
+                        </span>
+
+                        <div class="flex">
+                          <span class="remove-btn button ${customer.status != 4 ? "" : "disable"}">
+                                <div class="capitalize"> Hủy Đơn</div>
+                          </span>
+
+                          <span class="buy-btn button margin-left-16 ${customer.status == 4 ? "" : "disable"}">
+                                <div class="capitalize"> mua lại</div>
+                          </span>
+                        </div>
+                  </div>
+              </div>
+        </div>
+  `
+  return new DOMParser().parseFromString(script, "text/html").body.firstChild;
+}
+
+function renderOrder(elementsObj) {
+  let container = elementsObj.getHistoryOrderTable();
+  let ordersList = JSON.parse(localStorage.getItem("donhang"));
+  let detailOrders = JSON.parse(localStorage.getItem("chitiet_donhang"));
+  let loginAccount = JSON.parse(localStorage.getItem("hasLoginAccount"));
+  let customer = ordersList.find((order) => order.id_khachhang === "KH007");
+  // console.log(ordersList);
+  // console.log(detailOrders);
+
+  if (customer && container) {
+    let details = detailOrders.filter((detail) => detail.id_donhang === customer.id_donhang);
+    details.forEach((detail) => {
+      let script = scriptOrder(customer, detail);
+      let removeBtn = script.querySelector(".remove-btn");
+      removeBtn.addEventListener("click", () => {
+        container.removeChild(removeBtn.offsetParent);
+        // reduce array of detail order on local
+        detailOrders = detailOrders.filter((element) => element.id_donhang !== detail.id_donhang || element.id_sanpham !== detail.id_sanpham);
+        if (detailOrders.filter((element) => element.id_donhang === customer.id_donhang).length === 0)
+          ordersList = ordersList.filter((order) => order.id_khachhang !== "KH007");
+        // update arrays
+        localStorage.setItem("donhang", JSON.stringify(ordersList));
+        localStorage.setItem("chitiet_donhang", JSON.stringify(detailOrders));
+
+        // change container when not have any product
+        if (container.childNodes.length === 0) 
+          blankOrder(elementsObj);
+      });
+      container.appendChild(script);
+    });
+    formatPrices(elementsObj);
+  }
+  if (container.childNodes.length === 0) 
+    blankOrder(elementsObj);
+}
+
+function blankOrder(elementsObj) {
+  let orderContainer = elementsObj.getOrderContent();
+  hiddenException("order-content");
+  disableSiblingContainer(orderContainer);
+    // navigate to index.html if not have any container
+    let statusContainer = orderContainer.querySelector(".order-status-container");
+    disableSiblingContainer(statusContainer);
+    orderContainer?.classList.remove("disable");
+    statusContainer?.classList.remove("disable");
+    elementsObj.getBlankOrder().classList.add("active");
+    return;
 }
 
 // set quantity box on detail product
@@ -175,28 +270,9 @@ function setQuantityBox(elementsObj) {
     JSON.parse(localStorage.getItem("products"))
   ).find((product) => product.productID === productID)?.quantity;
 
-  reduceBtn.addEventListener(
-    "click",
-    () =>
-      (quantity.value =
-        parseInt(quantity.value) - 1 <= 0 ? 1 : parseInt(quantity.value) - 1)
-  );
-  increaseBtn.addEventListener(
-    "click",
-    () =>
-      (quantity.value =
-        parseInt(quantity.value) + 1 <= realQuantity
-          ? parseInt(quantity.value) + 1
-          : realQuantity)
-  );
-  quantity.addEventListener(
-    "change",
-    () =>
-      (quantity.value =
-        parseInt(quantity.value) > realQuantity
-          ? realQuantity
-          : parseInt(quantity.value))
-  );
+  reduceBtn.addEventListener("click", () => (quantity.value = parseInt(quantity.value) - 1 <= 0 ? 1 : parseInt(quantity.value) - 1));
+  increaseBtn.addEventListener("click", () => (quantity.value = parseInt(quantity.value) + 1 <= realQuantity ? parseInt(quantity.value) + 1 : realQuantity));
+  quantity.addEventListener("change", () => (quantity.value = parseInt(quantity.value) > realQuantity ? realQuantity : parseInt(quantity.value)));
 }
 
 // handle scrolls

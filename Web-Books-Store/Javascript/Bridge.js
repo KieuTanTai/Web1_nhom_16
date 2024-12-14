@@ -29,6 +29,7 @@ function getElementsHandler() {
     getCustomerOrder: () => $("#customer-order"),
     getStatusContainer: () => $(".order-status-container"),
     getHistoryContainer: () => $(".history-tracking-container"),
+    getHistoryOrderTable: () => $(".history-order-table"),
     // block for account
     getAccountContainer: () => $("#account-content"),
     getAccountForm: () => $("#login-registration-form"),
