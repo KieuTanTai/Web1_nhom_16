@@ -14,10 +14,7 @@ function returnHomepage(elementsObj) {
   let testURL = location.pathname;
   const webLogo = elementsObj.getWebLogo();
   let homepageBtns = elementsObj.getHomepageBtn();
-  testURL = testURL.slice(
-    testURL.lastIndexOf("/") + 1,
-    testURL.indexOf("?") + 1
-  );
+  testURL = testURL.slice(testURL.lastIndexOf("/") + 1, testURL.indexOf("?") + 1);
 
   homepageBtns?.forEach((btn) =>
     btn.addEventListener("click", () => Bridge.navigateRootURL())
@@ -32,9 +29,7 @@ function returnHomepage(elementsObj) {
 // header navigation button on mobile
 function smNavigationMenu(elementsObj) {
   let navigateBtn = elementsObj.getMobileNavigate();
-  navigateBtn.addEventListener(
-    "click",
-    Bridge.debounce((event) => {
+  navigateBtn.addEventListener("click", Bridge.debounce((event) => {
       let overlay = navigateBtn.querySelector(".overlay");
       overlay.classList.add("active");
       overlay.classList.remove("overflowText");
@@ -43,11 +38,7 @@ function smNavigationMenu(elementsObj) {
         setTimeout(() => overlay.classList.remove("active"), 200);
         overlay.classList.remove("menu");
         overlay.classList.add("overflowText");
-      }
-    }),
-    200,
-    "mobileHeaderNavigate"
-  );
+      }}), 200, "mobileHeaderNavigate");
 }
 
 function cancelButtons(elementsObj) {
@@ -58,9 +49,7 @@ function cancelButtons(elementsObj) {
     cancelBtn.forEach((btn) =>
       btn.addEventListener("click", () => {
         loginForm?.classList.add("active");
-        forgotForm?.classList.contains("active")
-          ? forgotForm.classList.remove("active")
-          : forgotForm;
+        forgotForm?.classList.contains("active") ? forgotForm.classList.remove("active") : forgotForm;
       })
     );
 }
@@ -72,11 +61,7 @@ function trackingNavigate(elementsObj) {
   if (!buttons) return;
   const trackers = localStorage.getItem("orders");
   buttons.forEach((btn) =>
-    btn.addEventListener(
-      "click",
-      Bridge.throttle(() => showTracking(trackers), 200, "statusNav")
-    )
-  );
+    btn.addEventListener("click", Bridge.throttle(() => showTracking(trackers), 200, "statusNav")));
   if (trackers) orderInfo();
 }
 

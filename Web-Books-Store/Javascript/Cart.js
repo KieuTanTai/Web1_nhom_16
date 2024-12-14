@@ -473,7 +473,7 @@ function attachAddToCartInDetails() {
   addToCartButton.forEach((button) => {
     if (button.dataset.eventAttached)
       return;
-    button.addEventListener("click", () => {
+    button.addEventListener("click", Bridge.throttle(() => {
       const productName = document.querySelector(".product-title h1")?.textContent.trim();
       const productPrice = parseFloat(document.querySelector(".new-price")?.textContent.replace(/\D/g, "")) || 0;
       const productImage = document.querySelector(".product-image img")?.src;
@@ -492,11 +492,11 @@ function attachAddToCartInDetails() {
   
       addToCart(productName);
       increaseCartCount();
-    });
+    }), 200, "add-to-cart");
     button.dataset.eventAttached = true;
   });
 
-  buyNowButton.forEach((button) => button.addEventListener("click", () => {
+  buyNowButton.forEach((button) => button.addEventListener("click", Bridge.throttle(() => {
     if (!sessionStorage.getItem("hasLogin")) {
       alert("Bạn cần đăng nhập để mua ngay.");
       return;
@@ -521,7 +521,7 @@ function attachAddToCartInDetails() {
     addToCart(productName);
     increaseCartCount();
     window.location.href = "cart.html";
-  }));
+  })), 200, "buy-now");
 
 }
 

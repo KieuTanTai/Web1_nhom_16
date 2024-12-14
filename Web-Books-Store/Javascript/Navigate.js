@@ -41,7 +41,7 @@ function popStateHandler() {
           let container = Bridge.default().getMainContainer();
           let path = url.slice(url.lastIndexOf("/") + 1, url.length);
           if (!path || path.includes("index")) {
-               Bridge.navigateRootURL();
+               // Bridge.navigateRootURL();
                Interface.hiddenException();
           }
           if (path.includes("?query=")) {
