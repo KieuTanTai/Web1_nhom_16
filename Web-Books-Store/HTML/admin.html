@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css" />
     <!-- <script type="module" src="../Javascript/Index.js"></script> -->
     <script type="module" src="../Javascript/JSAdmin.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
@@ -63,6 +64,11 @@
                 </li>
                 <li class="nav-item openkhachhang">
                     <a class="nav-link"><i class="mr-6 ti-id-badge"></i>Khách Hàng</a>
+                </li>
+                <li class="nav-item openthongke">
+                    <a class="nav-link">
+                        <i class="mr-6 ti-id-badge"></i>Thống kê
+                    </a>
                 </li>
                 <li class="nav-item logout-btn">
                     <i class="mr-6 ti-arrow-circle-left"></i> Đăng xuất
@@ -295,11 +301,7 @@
                         <tr>
                             <td>User ID</td>
                             <td>
-<<<<<<< HEAD
                                 <input type="text" name="userID" placeholder="E.g. KH0001" />
-=======
-                                <input type="text" name="userID" placeholder="E.g. U0001" />
->>>>>>> HieuLe
                                 <div class="error-message"></div>
                             </td>
                         </tr>
@@ -507,6 +509,60 @@
                 </form>
             </div>
 
+            <!-- Đơn Hàng -->
+            <div class="donhang js-donhang">
+                <form>
+                    <div id="loc">
+                        Ngày:
+                        <input id="date_start" type="date" class="locdon">
+                        -
+                        <input id="date_end" type="date" class="locdon" style="margin-right: 10px;margin-left: 10px;">
+                        Tình trạng:
+                        <select id="state" style="color: black; margin-right: 10px;">
+                            <option value="none" style="color: black">-</option>
+                            <option value="chua_xu_ly" style="color: black">Chưa xử lý</option>
+                            <option value="xac_nhan" style="color: black">Đã xác nhận</option>
+                            <option value="da_giao" style="color: black">Đã giao</option>
+                            <option value="huy" style="color: black">Đã hủy</optison>
+                        </select>
+                        Sắp xếp theo quận:
+                        <input id="sort_quan" type="checkbox" style="margin-right: 10px;">
+                        <input type="button" value="Lọc" style="width: 50px; color: black" class="loc_donhang">
+                        <input type="reset" value="Reset" style="width: 50px; color: black">
+                    </div>
+                </form>
+                
+                <table class="table-header">
+                    <tr>
+                        <!-- Theo độ rộng của table content -->
+                        <th title="Sắp xếp" style="width: 3%" >STT</th>
+                        <th title="Sắp xếp" style="width: 7%" >Mã đơn</th>
+                        <th title="Sắp xếp" style="width: 12%" >Khách hàng</th>
+                        <th title="Sắp xếp" style="width: 24%" >Địa chỉ</th>
+                        <th title="Sắp xếp" style="width: 12%" >SDT</th>
+                        <th title="Sắp xếp" style="width: 10%" >Tổng tiền</th>
+                        <th title="Sắp xếp" style="width: 12%" >Ngày giờ</th>
+                        <th title="Sắp xếp" style="width: 10%" >Trạng thái</th>
+                        <th style="width: 10%">Hành động</th>
+                    </tr>
+                </table>
+
+                <div class="table-content"></div>
+            </div> <!-- // don hang -->
+            <!-- Thống kê -->
+            <div class="thongke js-thongke">
+                <div style="display: grid; place-items: center;">
+                    <nav>
+                        <ul class="button_thongke">
+                            <li><a href="#" id="mh" style="pointer-events: none; background-color: gray;">Thống kê mặt hàng</a></li>
+                            <li><a href="#" id="kh">Thống kê khách hàng</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="table-content" id="table-thongke">
+                </div>
+            </div> <!-- // Thống kê -->
         </div>
         <div class="clear"></div>
         <footer></footer>

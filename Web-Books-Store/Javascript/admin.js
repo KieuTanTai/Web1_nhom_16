@@ -40,6 +40,9 @@ function eventab() {
   const openkhachhang = document.querySelector(".openkhachhang");
   const khungkhachhang = document.querySelector(".js-khachhang");
 
+  const opendonhang = document.querySelector(".opendonhang");
+  const khungdonhang = document.querySelector(".js-donhang");
+
   function showsanpham() {
     khungsanpham.classList.add("open");
     khungdonhang.classList.remove("open");
