@@ -282,6 +282,14 @@
 //   return randomDate.toLocaleString("en-US", options).replace(",", "");
 // }
 
+// // Hàm tạo số điện thoại ngẫu nhiên
+// function generateRandomPhoneNumber() {
+//   const prefixes = ["03", "05", "07", "08", "09"]; // Các đầu số phổ biến
+//   const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+//   const suffix = Math.floor(Math.random() * 10000000).toString().padStart(7, "0");
+//   return `${prefix}${suffix}`;
+// }
+
 // // Hàm tạo đối tượng đơn hàng ngẫu nhiên
 // function generateRandomOrder(orderId) {
 //   const customer = customers[Math.floor(Math.random() * customers.length)];
@@ -301,12 +309,14 @@
 //   }, 0);
 
 //   const status = Math.floor(Math.random() * 4) + 1; // Trạng thái từ 1 đến 4
+//   const phoneNumber = generateRandomPhoneNumber(); // Gọi hàm tạo số điện thoại
 
 //   return {
 //     id_donhang: orderId,
 //     id_khachhang: customer.id_khachhang,
 //     ten_khach_hang: customer.ten_khach_hang,
 //     dia_chi: address,
+//     sdt: phoneNumber, 
 //     tong: total.toLocaleString("vi-VN").replace(/\./g, ","),
 //     date: generateRandomDate(),
 //     trang_thai: status.toString(),
@@ -325,17 +335,20 @@
 // var donhangJSON = JSON.stringify(donhang);
 // localStorage.setItem("donhang", donhangJSON);
 
-// // Lấy chuỗi JSON từ localStorage
-// const donhang_list = localStorage.getItem("donhang");
-// // Chuyển chuỗi JSON thành mảng đối tượng
-// const donhangArray = JSON.parse(donhang_list);
-// // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
-// var data_temp = donhangArray?.map(({ id_khachhang, ...otherProps }) =>
-//   Object.values(otherProps)
-// );
-// var data = donhangArray?.map(({ id_khachhang, ...otherProps }) =>
-//   Object.values(otherProps)
-// );
+
+
+// Lấy chuỗi JSON từ localStorage
+const donhang_list = localStorage.getItem("donhang");
+// Chuyển chuỗi JSON thành mảng đối tượng
+const donhangArray = JSON.parse(donhang_list);
+// Tạo một mảng mới chỉ chứa các giá trị của đối tượng
+var data_temp = donhangArray?.map(({ id_khachhang, ...otherProps }) =>
+  Object.values(otherProps)
+);
+var data = donhangArray?.map(({ id_khachhang, ...otherProps }) =>
+  Object.values(otherProps)
+);
+
 
 // Lấy chuỗi JSON từ localStorage
 const chitiet_donhang_list = localStorage.getItem("chitiet_donhang");
@@ -347,6 +360,25 @@ var data_chitiet = chitiet_donhangArray?.map(({ id_sanpham, ...otherProps }) =>
 );
 
 var num_page = 1;
+
+function showdonhang(){
+  update_table_donhang();
+  document.querySelector('.js-donhang').style.display = 'block';
+  document.querySelector('.js-thongke').style.display = 'none';
+  document.querySelector(".opendonhang").classList.add("action");
+  document.querySelector(".openthongke").classList.remove("action");
+
+}
+const opendonhang = document.querySelector(".opendonhang");
+opendonhang.addEventListener("click", showdonhang);
+const locdonhang = document.querySelector(".loc_donhang");
+const date_start = document.getElementById("date_start");
+const date_end = document.getElementById("date_end");
+const state = document.getElementById("state");
+const sort_quan = document.getElementById("sort_quan");
+locdonhang.addEventListener("click", function () {
+  loc(date_start, date_end, state, sort_quan);
+});
 
 function storage_to_array() {
   // Lấy chuỗi JSON từ localStorage
@@ -361,7 +393,7 @@ function storage_to_array() {
 
 // Cập nhật table (số trang về 1)
 function update_table_donhang(flag) {
-  var parent = document.getElementsByClassName("table-content")[2];
+  var parent = document.getElementsByClassName("table-content")[3];
   var children = parent.children;
   Array.from(children).forEach((child) => {
     parent.removeChild(child);
@@ -378,7 +410,7 @@ function update_table_donhang(flag) {
 
 // Cập nhật table (giữ số trang)
 function update_table_donhang_now() {
-  var parent = document.getElementsByClassName("table-content")[2];
+  var parent = document.getElementsByClassName("table-content")[3];
   var children = parent.children;
   Array.from(children).forEach((child) => {
     parent.removeChild(child);
@@ -396,17 +428,18 @@ function add_table_donhang(objData) {
   ) {
     var new_donhang = document.createElement("div");
     new_donhang.className = "table-donhang";
-    switch (objData[i][5]) {
+    switch (objData[i][6]) {
       case "1":
         new_donhang.innerHTML = `
-                     <div style="width: 5%">${i + 1}</div>
-                     <div style="width: 12%">${objData[i][0]}</div>
+                     <div style="width: 3%">${i + 1}</div>
+                     <div style="width: 7%">${objData[i][0]}</div>
                      <div style="width: 12%">${objData[i][1]}</div>
                      <div style="width: 24%">${objData[i][2]}</div>
-                     <div style="width: 15%">${objData[i][3]}</div>
-                     <div style="width: 12%">${objData[i][4]}</div>
+                     <div style="width: 12%">${objData[i][3]}</div>
+                     <div style="width: 10%">${objData[i][4]}</div>
+                     <div style="width: 12%">${objData[i][5]}</div>
                      <div style="width: 10%">
-                         <select style="color: black" onChange="state_donhang(this, this.closest('.table-donhang').children[1])" data-previous-value="chua_xu_ly">
+                         <select style="color: black" data-previous-value="chua_xu_ly" class="state">
                              <option value="chua_xu_ly" style="color: black" selected>Chưa xử lý</option>
                              <option value="xac_nhan" style="color: black">Đã xác nhận</option>
                              <option value="da_giao" style="color: black">Đã giao</option>
@@ -414,20 +447,31 @@ function add_table_donhang(objData) {
                          </select>
                      </div>
                      <div style="width: 10%">
-                         <a onClick="xemchitiet(this.closest('.table-donhang').children[1])">Xem chi tiết</a>
+                          <a class="xemchitiet">Xem chi tiết</a>
                      </div>
                  `;
+                 var selectElement = new_donhang.querySelector('.state');
+                 selectElement.addEventListener('change', function () {
+                     const donHangElement = this.closest('.table-donhang').children[1];
+                     state_donhang(this, donHangElement);
+                 });
+                 var xemchitietElement = new_donhang.querySelector('.xemchitiet');
+                 xemchitietElement.addEventListener('click', function () {
+                     const donHangElement = this.closest('.table-donhang').children[1];
+                     xemchitiet(donHangElement); 
+                 });
         break;
       case "2":
         new_donhang.innerHTML = `
-                     <div style="width: 5%">${i + 1}</div>
-                     <div style="width: 12%">${objData[i][0]}</div>
+                     <div style="width: 3%">${i + 1}</div>
+                     <div style="width: 7%">${objData[i][0]}</div>
                      <div style="width: 12%">${objData[i][1]}</div>
                      <div style="width: 24%">${objData[i][2]}</div>
-                     <div style="width: 15%">${objData[i][3]}</div>
-                     <div style="width: 12%">${objData[i][4]}</div>
+                     <div style="width: 12%">${objData[i][3]}</div>
+                     <div style="width: 10%">${objData[i][4]}</div>
+                     <div style="width: 12%">${objData[i][5]}</div>
                      <div style="width: 10%">
-                         <select style="color: black" onChange="state_donhang(this, this.closest('.table-donhang').children[1])" data-previous-value="xac_nhan">
+                         <select style="color: black" data-previous-value="xac_nhan" class="state">
                              <option value="chua_xu_ly" style="color: black" disabled>Chưa xử lý</option>
                              <option value="xac_nhan" style="color: black" selected>Đã xác nhận</option>
                              <option value="da_giao" style="color: black">Đã giao</option>
@@ -435,20 +479,31 @@ function add_table_donhang(objData) {
                          </select>
                      </div>
                      <div style="width: 10%">
-                         <a onClick="xemchitiet(this.closest('.table-donhang').children[1])">Xem chi tiết</a>
+                          <a class="xemchitiet">Xem chi tiết</a>
                      </div>
                  `;
+                 var selectElement = new_donhang.querySelector('.state');
+                 selectElement.addEventListener('change', function () {
+                     const donHangElement = this.closest('.table-donhang').children[1];
+                     state_donhang(this, donHangElement);
+                 });
+                 var xemchitietElement = new_donhang.querySelector('.xemchitiet');
+                 xemchitietElement.addEventListener('click', function () {
+                     const donHangElement = this.closest('.table-donhang').children[1];
+                     xemchitiet(donHangElement);
+                 });
         break;
       case "3":
         new_donhang.innerHTML = `
-                     <div style="width: 5%">${i + 1}</div>
-                     <div style="width: 12%">${objData[i][0]}</div>
-                     <div style="width: 12%">${objData[i][1]}</div>
-                     <div style="width: 24%">${objData[i][2]}</div>
-                     <div style="width: 15%">${objData[i][3]}</div>
-                     <div style="width: 12%">${objData[i][4]}</div>
+                    <div style="width: 3%">${i + 1}</div>
+                    <div style="width: 7%">${objData[i][0]}</div>
+                    <div style="width: 12%">${objData[i][1]}</div>
+                    <div style="width: 24%">${objData[i][2]}</div>
+                    <div style="width: 12%">${objData[i][3]}</div>
+                    <div style="width: 10%">${objData[i][4]}</div>
+                    <div style="width: 12%">${objData[i][5]}</div>
                      <div style="width: 10%">
-                         <select style="color: black" onChange="state_donhang(this, this.closest('.table-donhang').children[1])" data-previous-value="da_giao" disabled>
+                         <select style="color: black" data-previous-value="da_giao" disabled>
                              <option value="chua_xu_ly" style="color: black" disabled>Chưa xử lý</option>
                              <option value="xac_nhan" style="color: black" disabled>Đã xác nhận</option>
                              <option value="da_giao" style="color: black" selected>Đã giao</option>
@@ -456,18 +511,24 @@ function add_table_donhang(objData) {
                          </select>
                      </div>
                      <div style="width: 10%">
-                         <a onClick="xemchitiet(this.closest('.table-donhang').children[1])">Xem chi tiết</a>
+                         <a class="xemchitiet">Xem chi tiết</a>
                      </div>
                  `;
+                 var xemchitietElement = new_donhang.querySelector('.xemchitiet');
+                 xemchitietElement.addEventListener('click', function () {
+                     const donHangElement = this.closest('.table-donhang').children[1];
+                     xemchitiet(donHangElement); 
+                 });
         break;
       case "4":
         new_donhang.innerHTML = `
-                     <div style="width: 5%">${i + 1}</div>
-                     <div style="width: 12%">${objData[i][0]}</div>
-                     <div style="width: 12%">${objData[i][1]}</div>
-                     <div style="width: 24%">${objData[i][2]}</div>
-                     <div style="width: 15%">${objData[i][3]}</div>
-                     <div style="width: 12%">${objData[i][4]}</div>
+                    <div style="width: 3%">${i + 1}</div>
+                    <div style="width: 7%">${objData[i][0]}</div>
+                    <div style="width: 12%">${objData[i][1]}</div>
+                    <div style="width: 24%">${objData[i][2]}</div>
+                    <div style="width: 12%">${objData[i][3]}</div>
+                    <div style="width: 10%">${objData[i][4]}</div>
+                    <div style="width: 12%">${objData[i][5]}</div>        
                      <div style="width: 10%">
                          <select style="color: black" disabled>
                              <option value="chua_xu_ly" style="color: black">Chưa xử lý</option>
@@ -477,22 +538,81 @@ function add_table_donhang(objData) {
                          </select>
                      </div>
                      <div style="width: 10%">
-                         <a onClick="xemchitiet(this.closest('.table-donhang').children[1])">Xem chi tiết</a>
+                         <a class="xemchitiet">Xem chi tiết</a>
                      </div>
                  `;
+                 var xemchitietElement = new_donhang.querySelector('.xemchitiet');
+                 xemchitietElement.addEventListener('click', function () {
+                     const donHangElement = this.closest('.table-donhang').children[1];
+                     xemchitiet(donHangElement); 
+                 });
         break;
+
     }
+
     document
-      .getElementsByClassName("table-content")[2]
+      .getElementsByClassName("table-content")[3]
       .appendChild(new_donhang);
   }
 }
 
-// Chuyển trạng thái đơn hàng
+
+// Chuyển trạng thái đơn hàng và trừ số lượng sản phẩm
 function state_donhang(select, id_donhang) {
   var prevalue = select.getAttribute("data-previous-value");
   if (confirm("Bạn có chắc chắn muốn tiếp tục?")) {
     var index = -1;
+    var donhang = JSON.parse(localStorage.getItem('donhang'));
+    var chitiet_donhang = JSON.parse(localStorage.getItem('chitiet_donhang'));
+    var products = JSON.parse(localStorage.getItem('products'));
+    
+    // Tìm đơn hàng tương ứng trong donhang
+    for (let i = 0; i < donhang.length; i++) {
+      if (donhang[i].id_donhang == id_donhang.innerHTML) {
+        index = i;
+        break;
+      }
+    }
+
+    // Lấy trạng thái trước khi thay đổi
+    const currentStatus = donhang[index].trang_thai;
+
+    // Lấy các chi tiết đơn hàng theo id_donhang
+    const orderDetails = chitiet_donhang.filter(detail => detail.id_donhang === id_donhang.innerHTML);
+    // Trừ số lượng sản phẩm trong kho nếu điều kiện thỏa mãn
+    if (currentStatus === "1" && (select.value === "xac_nhan" || select.value === "da_giao")) {
+      console.log('a')
+      orderDetails.forEach(detail => {
+        const productId = detail.id_sanpham;
+        const quantityOrdered = parseInt(detail.sl); 
+
+        // Tìm sản phẩm trong mảng products và trừ số lượng
+        for (let i = 0; i < products.length; i++) {
+          if (products[i].productID === productId) {
+            console.log(quantityOrdered)
+            products[i].quantity -= quantityOrdered; 
+            break;
+          }
+        }
+      });
+    }
+    // Cập nhật trạng thái trong donhang và lưu lại localStorage
+    switch (select.value) {
+      case "xac_nhan":
+        donhang[index].trang_thai = "2"; 
+        break;
+      case "da_giao":
+        donhang[index].trang_thai = "3"; 
+        break;
+      case "huy":
+        donhang[index].trang_thai = "4"; 
+        break;
+    }
+
+    // Lưu lại thay đổi vào localStorage
+    localStorage.setItem('donhang', JSON.stringify(donhang));
+    localStorage.setItem('products', JSON.stringify(products));
+    
     for (let i = 0; i < data.length; i++) {
       if (data[i][0] == id_donhang.innerHTML) {
         index = i;
@@ -501,18 +621,16 @@ function state_donhang(select, id_donhang) {
     }
     switch (select.value) {
       case "xac_nhan":
-        data[index][5] = "2";
-        updateStateInLocalStorage(id_donhang.innerHTML, "2");
+        data[index][6] = "2";
         break;
       case "da_giao":
-        data[index][5] = "3";
-        updateStateInLocalStorage(id_donhang.innerHTML, "3");
+        data[index][6] = "3";
         break;
       case "huy":
-        data[index][5] = "4";
-        updateStateInLocalStorage(id_donhang.innerHTML, "4");
+        data[index][6] = "4";
         break;
     }
+
     for (let i = 0; i < data_temp.length; i++) {
       if (data_temp[i][0] == id_donhang.innerHTML) {
         index = i;
@@ -521,15 +639,16 @@ function state_donhang(select, id_donhang) {
     }
     switch (select.value) {
       case "xac_nhan":
-        data_temp[index][5] = "2";
+        data_temp[index][6] = "2";
         break;
       case "da_giao":
-        data_temp[index][5] = "3";
+        data_temp[index][6] = "3";
         break;
       case "huy":
-        data_temp[index][5] = "4";
+        data_temp[index][6] = "4";
         break;
     }
+    // Thông báo
     switch (select.value) {
       case "xac_nhan":
         alert("Đã xác nhận đơn hàng !");
@@ -541,6 +660,8 @@ function state_donhang(select, id_donhang) {
         alert("Đã hủy đơn hàng !");
         break;
     }
+
+    // Cập nhật lại bảng và phân trang
     update_table_donhang_now();
     updatePaginationButtons();
   } else {
@@ -558,24 +679,44 @@ function add_page(data_f) {
     page.innerHTML = `
              <nav>
                  <ul class="pagination">
-                     <li><a href="#" id="prev" style="pointer-events: none; color: gray;" onClick="change_page(-1)">&laquo; Trang trước</a></li>
+                     <li><a href="#" id="prev" style="pointer-events: none; color: gray;">&laquo; Trang trước</a></li>
                      <li id="current_page">1</li>
-                     <li><a href="#" id="next" style="pointer-events: none; color: gray;" onClick="change_page(1)">Trang sau &raquo;</a></li>
+                     <li><a href="#" id="next" style="pointer-events: none; color: gray;">Trang sau &raquo;</a></li>
                  </ul>
              </nav>
          `;
+        const prevButton = page.querySelector('#prev');
+        prevButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            change_page(-1);
+        });
+        const nextButton = page.querySelector('#next');
+        nextButton.addEventListener('click', function (event) {
+            event.preventDefault(); 
+            change_page(1);
+        });
   } else {
     page.innerHTML = `
              <nav>
                  <ul class="pagination">
-                     <li><a href="#" id="prev" style="pointer-events: none; color: gray;" onClick="change_page(-1)">&laquo; Trang trước</a></li>
+                     <li><a href="#" id="prev" style="pointer-events: none; color: gray;">&laquo; Trang trước</a></li>
                      <li id="current_page">1</li>
-                     <li><a href="#" id="next" onClick="change_page(1)">Trang sau &raquo;</a></li>
+                     <li><a href="#" id="next">Trang sau &raquo;</a></li>
                  </ul>
              </nav>
          `;
+         const prevButton = page.querySelector('#prev');
+         prevButton.addEventListener('click', function (event) {
+             event.preventDefault();
+             change_page(-1);
+         });
+         const nextButton = page.querySelector('#next');
+         nextButton.addEventListener('click', function (event) {
+             event.preventDefault(); 
+             change_page(1);
+         });
   }
-  document.getElementsByClassName("table-content")[2].appendChild(page);
+  document.getElementsByClassName("table-content")[3].appendChild(page);
 }
 
 // Chuyển trang
@@ -651,7 +792,7 @@ function filter_date_start(f_data, date_start) {
   var f_date_start = new Date(date_start);
   f_date_start.setDate(f_date_start.getDate());
   return f_data.filter((row) => {
-    var dateStr = row[4];
+    var dateStr = row[5];
     var dateObj = new Date(dateStr);
     return dateObj >= f_date_start;
   });
@@ -661,7 +802,7 @@ function filter_date_end(f_data, date_end) {
   var f_date_end = new Date(date_end);
   f_date_end.setDate(f_date_end.getDate() + 1);
   return f_data.filter((row) => {
-    var dateStr = row[4];
+    var dateStr = row[5];
     var dateObj = new Date(dateStr);
     return dateObj <= f_date_end;
   });
@@ -670,21 +811,28 @@ function filter_date_end(f_data, date_end) {
 function filter_state(f_data, state) {
   switch (state) {
     case "chua_xu_ly":
-      f_data = f_data.filter((item) => item[5] === "1");
+      f_data = f_data.filter((item) => item[6] === "1");
       break;
     case "xac_nhan":
-      f_data = f_data.filter((item) => item[5] === "2");
+      f_data = f_data.filter((item) => item[6] === "2");
       break;
     case "da_giao":
-      f_data = f_data.filter((item) => item[5] === "3");
+      f_data = f_data.filter((item) => item[6] === "3");
       break;
     case "huy":
-      f_data = f_data.filter((item) => item[5] === "4");
+      f_data = f_data.filter((item) => item[6] === "4");
       break;
   }
   return f_data;
 }
 
+// Đóng chi tiết đơn hàng
+function close_ctdh() {
+  var modal = document.querySelector(".chitietdonhang");
+  if (modal) {
+    modal.remove();
+  }
+}
 // Chi tiết đơn hàng
 function xemchitiet(id_donhang) {
   var donhangDetails = [];
@@ -699,7 +847,7 @@ function xemchitiet(id_donhang) {
   model_ctdh.className = "chitietdonhang";
   model_ctdh.innerHTML = `
          <div class="modal-content">
-             <span class="close" onclick="close_ctdh()">×</span>
+             <span class="close">×</span>
              <h2>Chi tiết đơn hàng ${id_donhang.innerHTML}</h2>
              <table class="table-chitiet_donhang-header">
                  <tr>
@@ -711,7 +859,9 @@ function xemchitiet(id_donhang) {
              </table>
          </div>
      `;
-  document.getElementsByClassName("table-content")[2].appendChild(model_ctdh);
+     const closeButton = model_ctdh.querySelector('.close');
+     closeButton.addEventListener('click', close_ctdh);
+  document.getElementsByClassName("table-content")[3].appendChild(model_ctdh);
 
   // Chi tiết đơn hàng
   for (let i = 0; i < donhangDetails.length; i++) {
@@ -727,27 +877,15 @@ function xemchitiet(id_donhang) {
   }
 }
 
-// Đóng chi tiết đơn hàng
-function close_ctdh() {
-  var modal = document.querySelector(".chitietdonhang");
-  if (modal) {
-    modal.remove();
-  }
-}
 
-// Hàm cập nhật state của một đối tượng trong localStorage
+
 function updateStateInLocalStorage(donhangId, newState) {
   const donhangJSON = localStorage.getItem("donhang");
-  // Kiểm tra nếu có dữ liệu trong localStorage
   if (donhangJSON) {
-    // Chuyển chuỗi JSON thành mảng đối tượng
     const donhangArray = JSON.parse(donhangJSON);
-    // Tìm đối tượng trong mảng dựa trên id_donhang
     const donhang = donhangArray.find((dh) => dh.id_donhang === donhangId);
     if (donhang) {
-      // Cập nhật giá trị của trạng thái (state) trong đối tượng
       donhang.trang_thai = newState;
-      // Lưu lại mảng đối tượng vào localStorage sau khi thay đổi
       localStorage.setItem("donhang", JSON.stringify(donhangArray));
     } else {
       console.log("Không tìm thấy đơn hàng với id:", donhangId);

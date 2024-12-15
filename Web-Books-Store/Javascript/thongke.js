@@ -1,11 +1,33 @@
-
+function showthongke(){
+    update_thongke('mh',false);
+    document.querySelector('.js-donhang').style.display = 'none';
+    document.querySelector('.js-thongke').style.display = 'block';
+    document.querySelector(".openthongke").classList.add("action");
+    document.querySelector(".opendonhang").classList.remove("action");
+  
+  }
+const openthongke = document.querySelector(".openthongke");
+openthongke.addEventListener("click", showthongke);
+const mh = document.getElementById("mh");
+const kh = document.getElementById("kh");
+mh.addEventListener("click", function () {
+update_thongke("mh",false);
+});
+kh.addEventListener("click", function () {
+update_thongke("kh",false);
+});
 
 // Lấy chuỗi JSON từ localStorage
 const tk_donhang_list = localStorage.getItem('donhang');
 // Chuyển chuỗi JSON thành mảng đối tượng
 const tk_donhangArray = JSON.parse(tk_donhang_list);
+
+// Lọc các đơn hàng có trang_thai là 2 hoặc 3
+const filteredOrders = tk_donhangArray?.filter(order => order.trang_thai === "2" || order.trang_thai === "3");
+
 // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
-var data_dh = tk_donhangArray?.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
+var data_dh = filteredOrders?.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
+
 
 // Lấy chuỗi JSON từ localStorage
 const tk_chitiet_donhang_list = localStorage.getItem('chitiet_donhang');
@@ -14,8 +36,8 @@ const tk_chitiet_donhangArray = JSON.parse(tk_chitiet_donhang_list);
 // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
 var data_dh_chitiet = tk_chitiet_donhangArray?.map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
 
-var data_kh = tk_donhangArray?.map(({ trang_thai, dia_chi, ...otherProps }) => Object.values(otherProps));
-
+var data_kh = filteredOrders?.map(({ trang_thai, dia_chi, sdt, ...otherProps }) => Object.values(otherProps));
+console.log(data_dh)
 var data_kh_temp = [];
 var data_dh_temp = [];
 var num_page = 1;
@@ -37,7 +59,7 @@ function formatPrice() {
 
 // Cập nhật table (số trang về 1)
 function update_thongke(type, f) {
-    var parent = document.getElementsByClassName("table-content")[3];
+    var parent = document.getElementsByClassName("table-content")[4];
     var children = parent.children;
     if (type == 'kh') {
         Array.from(children).forEach(child => {
@@ -80,7 +102,7 @@ function thongke_mh() {
             <h1 style="color: black;">Thống kê mặt hàng</h1>
         </div>
         `;
-    document.getElementsByClassName('table-content')[3].appendChild(header_thongkemh);
+    document.getElementsByClassName('table-content')[4].appendChild(header_thongkemh);
 
     var info_thongke = document.createElement('div');
     info_thongke.className = 'info_thongke';
@@ -134,7 +156,7 @@ function thongke_mh() {
             </div>
         </div>
     `;
-    document.getElementsByClassName('table-content')[3].appendChild(info_thongke);
+    document.getElementsByClassName('table-content')[4].appendChild(info_thongke);
     add_thongke_mh1();
     add_thongke_mh2();
     add_tongthu();
@@ -148,14 +170,20 @@ function thongke_kh(f) {
         loc_date.innerHTML = `
             <form>
                 Ngày:
-                <input id="date_start" type="date" class="locdon">
+                <input id="tk_date_start" type="date" class="locdon">
                 -
-                <input id="date_end" type="date" class="locdon" style="margin-right: 20px;margin-left: 10px;">
-                <input type="button" value=" Thống kê " style="color: black" onClick="loc_thongkekh(date_start,date_end)">
-                <input type="reset" value="Reset" style="width: 40px; color: black">
+                <input id="tk_date_end" type="date" class="locdon" style="margin-right: 20px;margin-left: 10px;">
+                <input type="button" value=" Thống kê " style="color: black" id="thongke_button">
+                <input type="reset" value="Reset" style="width: 50px; color: black">
             </form>
         `;
-        document.getElementsByClassName('table-content')[3].appendChild(loc_date);
+        const thongKeButton = loc_date.querySelector("#thongke_button");
+        thongKeButton.addEventListener("click", function () {
+            const dateStart = document.getElementById("tk_date_start");
+            const dateEnd = document.getElementById("tk_date_end");
+            loc_thongkekh(dateStart, dateEnd);
+        });
+        document.getElementsByClassName('table-content')[4].appendChild(loc_date);
     }
 
     var header_thongkekh = document.createElement('div');
@@ -164,7 +192,7 @@ function thongke_kh(f) {
             <h1 style="color: black;">Thống kê khách hàng</h1>
         </div>
         `;
-    document.getElementsByClassName('table-content')[3].appendChild(header_thongkekh);
+    document.getElementsByClassName('table-content')[4].appendChild(header_thongkekh);
 
     var info_thongke = document.createElement('div');
     info_thongke.className = 'info_thongke';
@@ -195,7 +223,7 @@ function thongke_kh(f) {
         </div>
     </div>
     `;
-    document.getElementsByClassName('table-content')[3].appendChild(info_thongke);
+    document.getElementsByClassName('table-content')[4].appendChild(info_thongke);
     if (!f) {
         add_thongke_kh(get_thongke_kh(), false);
     } else {
@@ -211,12 +239,8 @@ function add_tongthu() {
         sum = sum + data_dh_chitiet[i][4];
     }
     tongthu.classList.add('tongthu');
-    tongthu.classList.add('flex');
-    tongthu.classList.add('tongthu');
-    tongthu.classList.add('tongthu');
-    tongthu.classList.add('tongthu');
     tongthu.innerHTML = `<h1 style="color: black">Tổng thu: <span class="price">${sum}</span></h1>`;
-    document.getElementsByClassName('table-content')[3].appendChild(tongthu);
+    document.getElementsByClassName('table-content')[4].appendChild(tongthu);
     formatPrice();
 }
 
@@ -293,7 +317,15 @@ function add_thongke_mh1() {
                 continue;
             }
             if (j == thongke[i].length + 1) {
-                cell.innerHTML = `<a style="text-decoration: underline; color: blue; cursor: default;" onClick="xemhoadon_mh('${thongke[i][0]}')">Xem</a>`;
+                const link = document.createElement("a");
+                link.style.textDecoration = "underline";
+                link.style.color = "blue";
+                link.style.cursor = "pointer";
+                link.textContent = "Xem";
+                link.addEventListener("click", function () {
+                    xemhoadon_mh(thongke[i][0]);
+                });
+                cell.appendChild(link);
                 row.appendChild(cell);
                 break;
             }
@@ -322,7 +354,15 @@ function add_thongke_mh2() {
                 continue;
             }
             if (j == thongke[i].length + 1) {
-                cell.innerHTML = `<a style="text-decoration: underline; color: blue; cursor: default;"onClick="xemhoadon_mh('${thongke[i][0]}')">Xem</a>`;
+                const link = document.createElement("a");
+                link.style.textDecoration = "underline";
+                link.style.color = "blue";
+                link.style.cursor = "pointer";
+                link.textContent = "Xem";
+                link.addEventListener("click", function () {
+                    xemhoadon_mh(thongke[i][0]);
+                });
+                cell.appendChild(link);
                 row.appendChild(cell);
                 break;
             }
@@ -339,12 +379,11 @@ function add_thongke_kh(thongke, f) {
     var body = document.querySelector('#thongke_kh tbody');
     var top = 0;
     thongke.sort((a, b) => {
-        const valueA = a[2];
-        const valueB = b[2];
-
-        return valueB - valueA;
+        const valueA = parseFloat(a[2].replace(/,/g, "")); 
+        const valueB = parseFloat(b[2].replace(/,/g, "")); 
+    
+        return valueB - valueA; 
     });
-    console.log(thongke)
     for (let i = 0; i < thongke.length && top < 5; i++) {
         var row = document.createElement('tr');
         for (let j = 0; j < thongke[i].length + 2; j++) {
@@ -356,7 +395,15 @@ function add_thongke_kh(thongke, f) {
                 continue;
             }
             if (j == thongke[i].length + 1) {
-                cell.innerHTML = `<a style="text-decoration: underline; color: blue; cursor: default;"onClick="xemhoadon_kh('${thongke[i][0]}',${f})">Xem</a>`;
+                const link = document.createElement("a");
+                link.style.textDecoration = "underline";
+                link.style.color = "blue";
+                link.style.cursor = "pointer";
+                link.textContent = "Xem";
+                link.addEventListener("click", function () {
+                    xemhoadon_kh(thongke[i][0], f);
+                });
+                cell.appendChild(link);
                 row.appendChild(cell);
                 break;
             }
@@ -388,12 +435,11 @@ function xemhoadon_mh(obj) {
             list_hd.push(data_dh_chitiet[i][0]);
         }
     }
-    console.log(list_hd)
     refresh_xemhd();
     var frame_xemhd = document.createElement('div');
     frame_xemhd.style.width = "100%";
     frame_xemhd.id = "frame_xemhd";
-    document.getElementsByClassName('table-content')[3].appendChild(frame_xemhd);
+    document.getElementsByClassName('table-content')[4].appendChild(frame_xemhd);
 
     add_header_hd();
     add_list_hd(list_hd);
@@ -412,7 +458,7 @@ function xemhoadon_kh(obj, f) {
     var frame_xemhd = document.createElement('div');
     frame_xemhd.style.width = "100%";
     frame_xemhd.id = "frame_xemhd";
-    document.getElementsByClassName('table-content')[3].appendChild(frame_xemhd);
+    document.getElementsByClassName('table-content')[4].appendChild(frame_xemhd);
 
     add_header_hd();
     add_list_hd(list_hd, f);
@@ -462,9 +508,14 @@ function add_list_hd(list_hd, f) {
                         <div style="width: 15%">${data_dh[j][3]}</div>
                         <div style="width: 12%">${data_dh[j][4]}</div>
                         <div style="width: 10%">
-                            <a onClick="xemchitiet_dh(this.closest('.table-donhang').children[1])">Xem chi tiết</a>
+                            <a class="xem-chi-tiet">Xem chi tiết</a>
                         </div>
                     `;
+                    const xemChiTietLink = new_hoadon.querySelector(".xem-chi-tiet");
+                    xemChiTietLink.addEventListener("click", function () {
+                        const closestElement = xemChiTietLink.closest('.table-donhang').children[1];
+                        xemchitiet_dh(closestElement);
+                    });
                     document.getElementById('frame_xemhd').appendChild(new_hoadon);
                     break;
                 }
@@ -485,9 +536,14 @@ function add_list_hd(list_hd, f) {
                         <div style="width: 15%">${data_dh_temp[j][3]}</div>
                         <div style="width: 12%">${data_dh_temp[j][4]}</div>
                         <div style="width: 10%">
-                            <a onClick="xemchitiet_dh(this.closest('.table-donhang').children[1])">Xem chi tiết</a>
+                            <a class="xem-chi-tiet">Xem chi tiết</a>
                         </div>
                     `;
+                    const xemChiTietLink = new_hoadon.querySelector(".xem-chi-tiet");
+                    xemChiTietLink.addEventListener("click", function () {
+                        const closestElement = xemChiTietLink.closest('.table-donhang').children[1];
+                        xemchitiet_dh(closestElement);
+                    });
                     document.getElementById('frame_xemhd').appendChild(new_hoadon);
                     break;
                 }
@@ -506,22 +562,42 @@ function add_page_hd(data) {
         page.innerHTML = `
             <nav>
                 <ul class="pagination">
-                    <li><a href="#" id="prev" style="pointer-events: none; color: gray;" onClick="change_page(-1)">&laquo; Trang trước</a></li>
+                    <li><a href="#" id="prev" style="pointer-events: none; color: gray;">&laquo; Trang trước</a></li>
                     <li id="current_page">1</li>
-                    <li><a href="#" id="next" style="pointer-events: none; color: gray;" onClick="change_page(1)">Trang sau &raquo;</a></li>
+                    <li><a href="#" id="next" style="pointer-events: none; color: gray;">Trang sau &raquo;</a></li>
                 </ul>
             </nav>
         `;
+        const prevButton = page.querySelector('#prev');
+        prevButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        change_page(-1);
+        });
+        const nextButton = page.querySelector('#next');
+        nextButton.addEventListener('click', function (event) {
+        event.preventDefault(); 
+        change_page(1);
+        });
     } else {
         page.innerHTML = `
             <nav>
                 <ul class="pagination">
-                    <li><a href="#" id="prev" style="pointer-events: none; color: gray;" onClick="change_page(-1)">&laquo; Trang trước</a></li>
+                    <li><a href="#" id="prev" style="pointer-events: none; color: gray;">&laquo; Trang trước</a></li>
                     <li id="current_page">1</li>
-                    <li><a href="#" id="next" onClick="change_page(1)">Trang sau &raquo;</a></li>
+                    <li><a href="#" id="next">Trang sau &raquo;</a></li>
                 </ul>
             </nav>
         `;
+        const prevButton = page.querySelector('#prev');
+        prevButton.addEventListener('click', function (event) {
+            event.preventDefault();
+            change_page(-1);
+        });
+        const nextButton = page.querySelector('#next');
+        nextButton.addEventListener('click', function (event) {
+            event.preventDefault(); 
+            change_page(1);
+        });
     }
     document.getElementById('frame_xemhd').appendChild(page);
 }
@@ -540,7 +616,7 @@ function xemchitiet_dh(id_donhang) {
     model_ctdh.className = 'chitietdonhang';
     model_ctdh.innerHTML = `
         <div class="modal-content">
-            <span class="close" onclick="close_ctdh()">×</span>
+            <span class="close">×</span>
             <h2>Chi tiết đơn hàng ${id_donhang.innerHTML}</h2>
             <table class="table-chitiet_donhang-header">
                 <tr>
@@ -552,7 +628,9 @@ function xemchitiet_dh(id_donhang) {
             </table>
         </div>
     `;
-    document.getElementsByClassName('table-content')[3].appendChild(model_ctdh);
+    const closeButton = model_ctdh.querySelector('.close');
+    closeButton.addEventListener('click', close_ctdh);
+    document.getElementsByClassName('table-content')[4].appendChild(model_ctdh);
 
     // Chi tiết đơn hàng
     for (let i = 0; i < donhangDetails.length; i++) {
@@ -567,7 +645,13 @@ function xemchitiet_dh(id_donhang) {
         document.getElementsByClassName('modal-content')[0].appendChild(new_ctdh);
     }
 }
-
+// Đóng chi tiết đơn hàng
+function close_ctdh() {
+    var modal = document.querySelector(".chitietdonhang");
+    if (modal) {
+      modal.remove();
+    }
+  }
 function loc_thongkekh(date_start, date_end) {
     var filtered_data_kh = [...data_kh];
     data_kh_temp = [];
@@ -585,8 +669,6 @@ function loc_thongkekh(date_start, date_end) {
     }
     data_kh_temp = filtered_data_kh;
     data_dh_temp = filtered_data_dh;
-    console.log(data_kh_temp);
-    console.log(data_dh_temp);
     update_thongke('kh', true);
 }
 
