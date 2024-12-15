@@ -4,10 +4,6 @@ function showthongke(){
     document.querySelector('.js-thongke').style.display = 'block';
     document.querySelector(".openthongke").classList.add("action");
     document.querySelector(".opendonhang").classList.remove("action");
-    document.querySelector(".opensanpham").classList.remove("action");
-    document.querySelector(".openkhachang").classList.remove("action");
-    document.querySelector(".js-sanpham").classList.remove("open");
-    document.querySelector(".js-khachang").classList.remove("open");
   
   }
 const openthongke = document.querySelector(".openthongke");
