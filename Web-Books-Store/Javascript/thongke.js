@@ -1,21 +1,21 @@
 import { activeSideBar, hiddenException } from "./JSAdmin.js";
 
-function showthongke() {
-    update_thongke('mh', false);
-    document.querySelector('.js-donhang').style.display = 'none';
-    document.querySelector('.js-thongke').style.display = 'block';
+function showthongke(){
+    update_thongke('mh',false);
+    document.querySelector('.thongke').classList.add("open");
+    document.querySelector(".openthongke").classList.add("action");
     activeSideBar("openthongke");
     hiddenException("thongke");
-}
+  }
 const openthongke = document.querySelector(".openthongke");
 openthongke.addEventListener("click", showthongke);
 const mh = document.getElementById("mh");
 const kh = document.getElementById("kh");
 mh.addEventListener("click", function () {
-    update_thongke("mh", false);
+update_thongke("mh",false);
 });
 kh.addEventListener("click", function () {
-    update_thongke("kh", false);
+update_thongke("kh",false);
 });
 
 var data_kh_temp = [];
@@ -25,23 +25,28 @@ var data_kh = [];
 var data_dh = [];
 var data_dh_chitiet = [];
 update_array();
-export function update_array() {
+export function update_array(){
     // Lấy chuỗi JSON từ localStorage
     const tk_donhang_list = localStorage.getItem('donhang');
     // Chuyển chuỗi JSON thành mảng đối tượng
     const tk_donhangArray = JSON.parse(tk_donhang_list);
+
     // Lọc các đơn hàng có trang_thai là 2 hoặc 3
     const filteredOrders = tk_donhangArray?.filter(order => order.trang_thai === "2" || order.trang_thai === "3");
+
     // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
     data_dh = filteredOrders?.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
+
+
     // Lấy chuỗi JSON từ localStorage
     const tk_chitiet_donhang_list = localStorage.getItem('chitiet_donhang');
     // Chuyển chuỗi JSON thành mảng đối tượng
     const tk_chitiet_donhangArray = JSON.parse(tk_chitiet_donhang_list);
     // Lọc `chitiet_donhang` 
-    data_dh_chitiet = tk_chitiet_donhangArray?.filter(detail =>
+    data_dh_chitiet = tk_chitiet_donhangArray?.filter(detail => 
         filteredOrders.some(order => order.id_donhang === detail.id_donhang)
     ).map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
+
     data_kh = filteredOrders?.map(({ trang_thai, dia_chi, sdt, ...otherProps }) => Object.values(otherProps));
 }
 
@@ -62,7 +67,7 @@ function formatPrice() {
 
 // Cập nhật table (số trang về 1)
 function update_thongke(type, f) {
-    var parent = document.getElementsByClassName("table-content")[4];
+    var parent = document.getElementsByClassName("table-content")[5];
     var children = parent.children;
     if (type == 'kh') {
         Array.from(children).forEach(child => {
@@ -99,66 +104,67 @@ function thongke(type, f) {
 
 // Thống kê mặt hàng
 function thongke_mh() {
-    var header_thongkemh = `
+    var header_thongkemh = document.createElement('div');
+    header_thongkemh.innerHTML = `
         <div class="header_thongkemh">
             <h1 style="color: black;">Thống kê mặt hàng</h1>
         </div>
         `;
-    document.getElementsByClassName('table-content')[5].innerHTML = header_thongkemh;
+    document.getElementsByClassName('table-content')[5].appendChild(header_thongkemh);
 
-    var info_thongke = `
-        <div class=info_thongke>
-            <div style="display: flex; width: 100%; height: 100%; background-color: rgb(220, 220, 220);">
-                <div class="padding-bottom-8" style="display: flex; justify-content: center; align-items: center; width: 60%; height: 100%; border-right: 1px solid black;">
-                    <div style="width: 90%; height: 100%;">
-                        <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
-                            <h2 style="color: black;">Sản phẩm bán chạy</h2>
-                        </div>
-                        <div style="width: 100%; border: 1px solid black;">
-                            <table id="thongke_mh1" style="width: 100%; border-bottom: 1px solid black;">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 12%; color: black">STT</th>
-                                        <th style="width: 42%; color: black">Sản phẩm</th>
-                                        <th style="width: 20%; color: black">Số lượng</th>
-                                        <th style="width: 30%; color: black">Thu</th>
-                                        <th style="width: 10%; color: black"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                
-                                </tbody>
-                            </table>
-                        </div>
+    var info_thongke = document.createElement('div');
+    info_thongke.className = 'info_thongke';
+    info_thongke.innerHTML = `
+        <div style="display: flex; width: 100%; height: 100%; background-color: rgb(220, 220, 220);">
+            <div style="display: flex; justify-content: center; align-items: center; width: 60%; height: 100%; border-right: 1px solid black;">
+                <div style="width: 90%; height: 100%;">
+                    <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
+                        <h2 style="color: black;">Sản phẩm bán chạy</h2>
+                    </div>
+                    <div style="width: 100%; border: 1px solid black;">
+                        <table id="thongke_mh1" style="width: 100%; border-bottom: 1px solid black;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 12%; color: black">STT</th>
+                                    <th style="width: 42%; color: black">Sản phẩm</th>
+                                    <th style="width: 20%; color: black">Số lượng</th>
+                                    <th style="width: 30%; color: black">Thu</th>
+                                    <th style="width: 10%; color: black"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div style="display: flex; justify-content: center; align-items: center; width: 60%; height: 100%; border-left: 1px solid black;">
-                    <div style="width: 90%; height: 100%;">
-                        <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
-                            <h2 style="color: black;">Sản phẩm bán chậm</h2>
-                        </div>
-                        <div style="width: 100%; border: 1px solid black;">
-                            <table id="thongke_mh2" style="width: 100%; border-bottom: 1px solid black;">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 12%; color: black">STT</th>
-                                        <th style="width: 42%; color: black">Sản phẩm</th>
-                                        <th style="width: 20%; color: black">Số lượng</th>
-                                        <th style="width: 30%; color: black">Thu</th>
-                                        <th style="width: 10%; color: black"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                
-                                </tbody>
-                            </table>
-                        </div>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; width: 60%; height: 100%; border-left: 1px solid black;">
+                <div style="width: 90%; height: 100%;">
+                    <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
+                        <h2 style="color: black;">Sản phẩm bán chậm</h2>
+                    </div>
+                    <div style="width: 100%; border: 1px solid black;">
+                        <table id="thongke_mh2" style="width: 100%; border-bottom: 1px solid black;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 12%; color: black">STT</th>
+                                    <th style="width: 42%; color: black">Sản phẩm</th>
+                                    <th style="width: 20%; color: black">Số lượng</th>
+                                    <th style="width: 30%; color: black">Thu</th>
+                                    <th style="width: 10%; color: black"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     `;
-    document.getElementsByClassName('table-content')[5].innerHTML += info_thongke;
+    document.getElementsByClassName('table-content')[5].appendChild(info_thongke);
     add_thongke_mh1();
     add_thongke_mh2();
     add_tongthu();
@@ -168,17 +174,16 @@ function thongke_mh() {
 function thongke_kh(f) {
     if (!f) {
         var loc_date = document.createElement('div');
+        loc_date.id = "filter";
         loc_date.innerHTML = `
-            <div id="filter">
-                <form>
-                    Ngày:
-                    <input id="tk_date_start" type="date" class="locdon">
-                    -
-                    <input id="tk_date_end" type="date" class="locdon" style="margin-right: 20px;margin-left: 10px;">
-                    <input type="button" value=" Thống kê " style="color: black" id="thongke_button">
-                    <input type="reset" value="Reset" style="width: 50px; color: black">
-                </form>
-            </div>
+            <form>
+                Ngày:
+                <input id="tk_date_start" type="date" class="locdon">
+                -
+                <input id="tk_date_end" type="date" class="locdon" style="margin-right: 20px;margin-left: 10px;">
+                <input type="button" value=" Thống kê " style="color: black" id="thongke_button">
+                <input type="reset" value="Reset" style="width: 50px; color: black">
+            </form>
         `;
         const thongKeButton = loc_date.querySelector("#thongke_button");
         thongKeButton.addEventListener("click", function () {
@@ -186,20 +191,21 @@ function thongke_kh(f) {
             const dateEnd = document.getElementById("tk_date_end");
             loc_thongkekh(dateStart, dateEnd);
         });
-        document.getElementsByClassName('table-content')[5].innerHTML = loc_date.innerHTML;
+        document.getElementsByClassName('table-content')[5].appendChild(loc_date);
     }
 
-    var header_thongkekh = `
+    var header_thongkekh = document.createElement('div');
+    header_thongkekh.innerHTML = `
         <div class="header_thongkekh">
             <h1 style="color: black;">Thống kê khách hàng</h1>
         </div>
         `;
-    document.getElementsByClassName('table-content')[5].innerHTML = header_thongkekh;
+    document.getElementsByClassName('table-content')[5].appendChild(header_thongkekh);
 
     var info_thongke = document.createElement('div');
+    info_thongke.className = 'info_thongke';
     info_thongke.innerHTML = `
-            <div class="info_thongke">
-                <div style="display: flex; width: 100%; height: 100%; background-color: rgb(220, 220, 220);">
+    <div style="display: flex; width: 100%; height: 100%; background-color: rgb(220, 220, 220);">
         <div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; border-right: 1px solid black;">
             <div style="width: 50%; height: 100%;">
                 <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
@@ -224,10 +230,8 @@ function thongke_kh(f) {
             </div>
         </div>
     </div>
-
-            </div>
     `;
-    document.getElementsByClassName('table-content')[5].innerHTML += info_thongke.innerHTML;
+    document.getElementsByClassName('table-content')[5].appendChild(info_thongke);
     if (!f) {
         add_thongke_kh(get_thongke_kh(), false);
     } else {
@@ -243,8 +247,8 @@ function add_tongthu() {
         sum = sum + data_dh_chitiet[i][4];
     }
     tongthu.classList.add('tongthu');
-    tongthu.innerHTML = `<div class="tongthu"><h1 style="color: black">Tổng thu: <span class="price">${sum}</span></h1></div>`;
-    document.getElementsByClassName('table-content')[5].innerHTML += tongthu.innerHTML;
+    tongthu.innerHTML = `<h1 style="color: black">Tổng thu: <span class="price">${sum}</span></h1>`;
+    document.getElementsByClassName('table-content')[5].appendChild(tongthu);
     formatPrice();
 }
 
@@ -383,10 +387,10 @@ function add_thongke_kh(thongke, f) {
     var body = document.querySelector('#thongke_kh tbody');
     var top = 0;
     thongke.sort((a, b) => {
-        const valueA = parseFloat(a[2].replace(/,/g, ""));
-        const valueB = parseFloat(b[2].replace(/,/g, ""));
-
-        return valueB - valueA;
+        const valueA = parseFloat(a[2].replace(/,/g, "")); 
+        const valueB = parseFloat(b[2].replace(/,/g, "")); 
+    
+        return valueB - valueA; 
     });
     for (let i = 0; i < thongke.length && top < 5; i++) {
         var row = document.createElement('tr');
@@ -440,8 +444,10 @@ function xemhoadon_mh(obj) {
         }
     }
     refresh_xemhd();
-    var frame_xemhd =  `<div id="frame_xemhd" style="width:100%"></div>`
-    document.getElementsByClassName('table-content')[5].innerHTML = frame_xemhd;
+    var frame_xemhd = document.createElement('div');
+    frame_xemhd.style.width = "100%";
+    frame_xemhd.id = "frame_xemhd";
+    document.getElementsByClassName('table-content')[5].appendChild(frame_xemhd);
 
     add_header_hd();
     add_list_hd(list_hd);
@@ -457,8 +463,10 @@ function xemhoadon_kh(obj, f) {
         }
     }
     refresh_xemhd();
-    var frame_xemhd = `<div id="frame_xemhd" style="width:100%"></div>`
-    document.getElementsByClassName('table-content')[5].innerHTML += frame_xemhd;
+    var frame_xemhd = document.createElement('div');
+    frame_xemhd.style.width = "100%";
+    frame_xemhd.id = "frame_xemhd";
+    document.getElementsByClassName('table-content')[5].appendChild(frame_xemhd);
 
     add_header_hd();
     add_list_hd(list_hd, f);
@@ -570,13 +578,13 @@ function add_page_hd(data) {
         `;
         const prevButton = page.querySelector('#prev');
         prevButton.addEventListener('click', function (event) {
-            event.preventDefault();
-            change_page(-1);
+        event.preventDefault();
+        change_page(-1);
         });
         const nextButton = page.querySelector('#next');
         nextButton.addEventListener('click', function (event) {
-            event.preventDefault();
-            change_page(1);
+        event.preventDefault(); 
+        change_page(1);
         });
     } else {
         page.innerHTML = `
@@ -595,7 +603,7 @@ function add_page_hd(data) {
         });
         const nextButton = page.querySelector('#next');
         nextButton.addEventListener('click', function (event) {
-            event.preventDefault();
+            event.preventDefault(); 
             change_page(1);
         });
     }
@@ -630,7 +638,7 @@ function xemchitiet_dh(id_donhang) {
     `;
     const closeButton = model_ctdh.querySelector('.close');
     closeButton.addEventListener('click', close_ctdh);
-    document.getElementsByClassName('table-content')[4].appendChild(model_ctdh);
+    document.getElementsByClassName('table-content')[5].appendChild(model_ctdh);
 
     // Chi tiết đơn hàng
     for (let i = 0; i < donhangDetails.length; i++) {
@@ -649,9 +657,9 @@ function xemchitiet_dh(id_donhang) {
 function close_ctdh() {
     var modal = document.querySelector(".chitietdonhang");
     if (modal) {
-        modal.remove();
+      modal.remove();
     }
-}
+  }
 function loc_thongkekh(date_start, date_end) {
     var filtered_data_kh = [...data_kh];
     data_kh_temp = [];
