@@ -297,7 +297,7 @@ window.showEditBookForm = function (productID) {
         </tr>
         <tr>
           <td colspan="2" class="table-footer">
-            <button type="button" class="btn-save" onclick="suaSanPham('${sp.productID}')">LƯU THAY ĐỔI</button>
+            <button type="button" class="btn-save">LƯU THAY ĐỔI</button>
           </td>
         </tr>
       </table>
@@ -492,7 +492,7 @@ const showCustomerTable = (filteredUsers) => {
                 <td title="Sắp xếp">${user.lastName}</td>
                 <td title="Sắp xếp">${user.email}</td>
                 <td title="Sắp xếp" style="text-align: center">
-                    <i class="fa-solid fa-pen-to-square" style="cursor:pointer;margin: 0 4px" onclick="showEditBookForm('${user.userID}')"></i>
+                    <i class="fa-solid fa-pen-to-square" style="cursor:pointer;margin: 0 4px" onclick="showEditUser('${user.userID}')"></i>
                     <i class="fa-regular fa-trash-can" style="cursor:pointer;margin: 0 4px" onclick="handleDeleteUser('${user.userID}')"></i>
                 </td>
               </tr>`;
@@ -591,3 +591,49 @@ const onSearchInputChange = (e) => {
   else showCustomerTable(filteredUsers);
 };
 searchInput.addEventListener("change", onSearchInputChange);
+
+window.showEditUser = function (userID) {
+  try {
+    // Lấy dữ liệu người dùng từ localStorage
+    const users = JSON.parse(localStorage.getItem("users"));
+    if (!users || users.length === 0) {
+      console.error("Danh sách người dùng trống hoặc không tồn tại");
+      return;
+    }
+
+    // Tìm user có ID khớp
+    const user = users.find((u) => u.userID === userID);
+    if (!user) {
+      console.error("Không tìm thấy người dùng với ID:", userID);
+      return;
+    }
+
+    console.log("Thông tin người dùng:", user);
+
+    // Tìm khung sửa user
+    const khung = document.getElementById("khungSuaUser");
+    if (!khung) {
+      console.error("Không tìm thấy khung chỉnh sửa user");
+      return;
+    }
+
+    // Hiển thị form chỉnh sửa
+    khung.style.transform = "scale(1)";
+
+    // Điền dữ liệu vào các input fields
+    document.querySelector("input[name='userID']").value = user.userID;
+    document.querySelector("input[name='firstName']").value = user.firstName;
+    document.querySelector("input[name='lastName']").value = user.lastName;
+    document.querySelector("input[name='email']").value = user.email;
+    document.querySelector("input[name='password']").value = user.password;
+    document.querySelector("input[name='confirmPassword']").value = user.password;
+
+    // Ẩn ô thông báo lỗi nếu có
+    document.querySelectorAll(".error-message").forEach((el) => el.innerText = "");
+  } catch (error) {
+    console.error("Lỗi khi hiển thị form chỉnh sửa user:", error);
+  }
+};
+
+
+

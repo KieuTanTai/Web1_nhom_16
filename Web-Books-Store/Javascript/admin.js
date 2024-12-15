@@ -165,12 +165,56 @@ function addKhungSuaSanPham(masp) {
                 <td><input type="text" value="` + sp.dungtich + `"></td>
             </tr>
             <tr>
-                <td colspan="2" class="table-footer"><button onclick="suaSanPham('` + sp.masp + `')">LƯU THAY ĐỔI</button> </td>
+                <td colspan="2" class="table-footer"><button>LƯU THAY ĐỔI</button> </td>
             </tr>
         </table>`;
   var khung = document.getElementById("khungSuaSanPham");
   khung.innerHTML = xuat;
   khung.style.transform = "scale(1)";
 }
+
+function suaSanPham(masp) {
+  // Tìm đối tượng sản phẩm cần sửa
+  let spIndex = bookList.findIndex((sp) => sp.masp === masp);
+  if (spIndex === -1) {
+    alert("Không tìm thấy sản phẩm cần sửa!");
+    return;
+  }
+
+  // Lấy thông tin từ các ô input trong khung sửa
+  const inputs = document.querySelectorAll("#khungSuaSanPham input, #khungSuaSanPham select");
+  const newSP = {
+    masp: inputs[0].value.trim(),
+    tensp: inputs[1].value.trim(),
+    thuonghieu: inputs[2].value.trim(),
+    hinh: previewSrc || bookList[spIndex].hinh, // Ảnh mới hoặc giữ ảnh cũ
+    gia: numToString(stringToNum(inputs[3].value.trim())), // Chuyển đổi giá tiền
+    sosao: parseInt(inputs[4].value.trim()) || 0,
+    nongdo: inputs[5].value.trim(),
+    dungtich: inputs[6].value.trim(),
+  };
+
+  // Kiểm tra hợp lệ
+  if (!newSP.masp || !newSP.tensp || !newSP.gia) {
+    alert("Mã sản phẩm, tên sản phẩm và giá tiền không được để trống!");
+    return;
+  }
+
+  // Cập nhật thông tin vào bookList
+  bookList[spIndex] = newSP;
+
+  // Lưu vào localStorage
+  setbookList(bookList);
+
+  // Cập nhật lại bảng sản phẩm
+  addTableProducts();
+
+  // Đóng khung sửa
+  document.getElementById("khungSuaSanPham").style.transform = "scale(0)";
+  alert("Cập nhật sản phẩm thành công!");
+}
+
+export { suaSanPham };
+
 //biến lưu ảnh sản phẩm
 let previewSrc;
