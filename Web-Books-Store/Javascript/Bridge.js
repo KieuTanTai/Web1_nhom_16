@@ -40,9 +40,19 @@ function getElementsHandler() {
     getTimeFS: () => $(".fs-time"),
     getFSTable: () => $("#fs-container"),
     getFSCountDown: () => $(".fs-countdown"),
-    getHistoryOrder: () =>
-      $(".history-tracking-container #history-order-container"),
+    getHistoryOrder: () => $(".history-tracking-container #history-order-container"),
+    //cart
+    getCartItems: () => $$(".block-product"), 
+     getQuantityInputs: () => $$(".quantity-cart"), 
+     getTotalPrice: () => $(".total-price"),  
+     getshippingFee: () => $(".shipping-fee"),
+     getshippingDiscount: () => $(".shipping-discount"),
+     getvoucherDiscount: () => $(".voucher-discount"),
+     getPrices:() =>$(".prices"),
+     getRemoveButtons: () => $$(".fa-trash"),  
+     getSelectAllCheckbox: () => $('#selection-item'),  
     // buttons
+    getHomepageBtn: () => $$(".return-homepage"),
     getNavBtn: () => $$(".nav-btn"),
     getPrevBtn: () => $$(".prev-btn"),
     getNextBtn: () => $$(".next-btn"),
@@ -70,6 +80,8 @@ function getElementsHandler() {
     getElementPrices: () => $$(".price"),
     getWebLogo: () => $$(".web-logo div"),
     getImages: () => $$(".product-image.js-item img"),
+    getHeaderUserInfo: () => $(".header-user-info"),
+    getNoSignIn: () => $("#no-sign-in"),
   };
   return getElements;
 }
@@ -80,12 +92,11 @@ function throttle(callback, delayTime, key) {
 
   return function (...restArgs) {
     let shouldWait = throttleList[key].shouldWait;
-
+  
     if (shouldWait) return;
     callback(...restArgs);
     throttleList[key].shouldWait = true;
-    setTimeout(() => (throttleList[key].shouldWait = false), delayTime);
-  };
+    setTimeout(() => (throttleList[key].shouldWait = false), delayTime)};
 }
 
 function debounce(callback, delayTime, key) {
@@ -111,5 +122,9 @@ async function promiseDOMHandler(fileAddress) {
   }
 }
 
+function navigateRootURL() {
+  window.location.replace(`${location.href.slice(0, location.href.lastIndexOf("/") + 1)}`);
+}
+
 export default getElementsHandler;
-export { $, $$, promiseDOMHandler, throttle, debounce };
+export { $, $$, promiseDOMHandler, throttle, debounce, navigateRootURL };

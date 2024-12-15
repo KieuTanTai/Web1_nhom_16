@@ -3,16 +3,16 @@
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">     
-     <link rel="shortcut icon" href="/Web-Books-Store/Assets/Images/Icons/Web_logo/main-logo.ico" type="image/x-icon">
+     <link rel="shortcut icon" href="../Assets/Images/Icons/Web_logo/main-logo.ico" type="image/x-icon">
      <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css">
      <link rel="stylesheet" href="../Assets/CSS/index.css" />
      <link rel="stylesheet" href="../Assets/CSS/Responsive.css" />
-     <script type="module" src="../Javascript/index.js"></script>
+     <script type="module" src="../Javascript/Index.js"></script>
      <title>Giỏ hàng</title>
 </head>
 <body>
      <div class="web-content">
-          <main id="main-container" style="padding:0 0 40em;">
+          <main id="main-container">
                <!-- breadcrumb -->
                <section class="breadcrumb-list disable">
                     <div class="grid wide">
@@ -38,7 +38,7 @@
                <section id="main-content">
                     <div class="grid wide">
                          <div class="grid-row">
-                              <section class="cart grid-col col-l-12 col-m-12 col-s-12 margin-y-12">
+                              <section id="cart-content" class="cart grid-col col-l-12 col-m-12 col-s-12 margin-y-12">
                                    <div class="cart-title padding-bottom-8">
                                         <span class="uppercase font-size-20">giỏ hàng</span>
                                         <span class="cart-count font-size-16 padding-left-8">(0 sản phẩm)</span>
@@ -77,17 +77,17 @@
                                                             </div>
                                                             <div class="grid-col col-l-10 col-m-10 col-s-10 no-gutter flex align-center">
                                                                  <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
-                                                                      <p class="font-bold capitalize margin-bottom-16">khẽ hát lời yêu 1</p>
+                                                                      <p class="font-bold capitalize margin-bottom-16"></p>
                                                                       <div class="block-product-price">
-                                                                           <span class="new-price font-bold padding-right-8 price">55250</span>
-                                                                           <del class="price old-price">65000</del>
+                                                                           <span class="new-price font-bold padding-right-8 price"></span>
+                                                                           <del class="price old-price"></del>
                                                                       </div>
                                                                  </div>   
                                                                  <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
                                                                       <input type="number" name="quantity-cart" id="update_12320" value="1" 
                                                                            min="1" max="2" class="quantity-cart">
                                                                  </div>                                                    
-                                                                 <div class="price-per-item price font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">55250</div>
+                                                                 <div class="price-per-item price font-bold grid-col col-l-3 s-m-hidden no-gutter text-center"></div>
                                                                  <div class="rm-cart-btn col-l col-l-1 col-m-2 col-s-2 flex justify-center"> 
                                                                       <div>
                                                                            <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> 
@@ -96,140 +96,6 @@
                                                             </div>
                                                        </div>
                                                        
-                                                       <div class="block-product">
-                                                            <input type="checkbox" name="select-block-product" id="block-product-2" 
-                                                                 class="grid-col col-l-1 col-m-1 col-s-1">
-                                                            <div class="product-cart grid-col col-l-1 col-m-1 col-s-1 no-gutter full-width">
-                                                                 <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp" alt="khe hat loi yeu 1">
-                                                            </div>
-                                                            <div class="grid-col col-l-10 col-m-10 col-s-10 no-gutter flex align-center">
-                                                                 <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
-                                                                      <p class="font-bold capitalize margin-bottom-16">khẽ hát lời yêu 1</p>
-                                                                      <div class="block-product-price">
-                                                                           <span class="new-price font-bold padding-right-8 price">55250</span>
-                                                                           <del class="price old-price">65000</del>
-                                                                      </div>
-                                                                 </div>   
-                                                                 <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
-                                                                      <input type="number" name="quantity-cart" id="update_12321" value="1" 
-                                                                           min="1" max="2" class="quantity-cart">
-                                                                 </div>                                                    
-                                                                 <div class="price-per-item price font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">55250</div>
-                                                                 <div class="rm-cart-btn col-l col-l-1 col-m-2 col-s-2 flex justify-center"> 
-                                                                      <div>
-                                                                           <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> 
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-     
-                                                       <div class="block-product">
-                                                            <input type="checkbox" name="select-block-product" id="block-product-3" 
-                                                                 class="grid-col col-l-1 col-m-1 col-s-1">
-                                                            <div class="product-cart grid-col col-l-1 col-m-1 col-s-1 no-gutter full-width">
-                                                                 <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp" alt="khe hat loi yeu 1">
-                                                            </div>
-                                                            <div class="grid-col col-l-10 col-m-10 col-s-10 no-gutter flex align-center">
-                                                                 <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
-                                                                      <p class="font-bold capitalize margin-bottom-16">khẽ hát lời yêu 1</p>
-                                                                      <div class="block-product-price">
-                                                                           <span class="new-price font-bold padding-right-8 price">55250</span>
-                                                                           <del class="price old-price">65000</del>
-                                                                      </div>
-                                                                 </div>   
-                                                                 <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
-                                                                      <input type="number" name="quantity-cart" id="update_12322" value="1" 
-                                                                           min="1" max="2" class="quantity-cart">
-                                                                 </div>                                                    
-                                                                 <div class="price-per-item price font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">55250</div>
-                                                                 <div class="rm-cart-btn col-l col-l-1 col-m-2 col-s-2 flex justify-center"> 
-                                                                      <div>
-                                                                           <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> 
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-     
-                                                       <div class="block-product">
-                                                            <input type="checkbox" name="select-block-product" id="block-product-4" 
-                                                                 class="grid-col col-l-1 col-m-1 col-s-1">
-                                                            <div class="product-cart grid-col col-l-1 col-m-1 col-s-1 no-gutter full-width">
-                                                                 <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp" alt="khe hat loi yeu 1">
-                                                            </div>
-                                                            <div class="grid-col col-l-10 col-m-10 col-s-10 no-gutter flex align-center">
-                                                                 <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
-                                                                      <p class="font-bold capitalize margin-bottom-16">khẽ hát lời yêu 1</p>
-                                                                      <div class="block-product-price">
-                                                                           <span class="new-price font-bold padding-right-8 price">55250</span>
-                                                                           <del class="price old-price">65000</del>
-                                                                      </div>
-                                                                 </div>   
-                                                                 <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
-                                                                      <input type="number" name="quantity-cart" id="update_12324" value="1" 
-                                                                           min="1" max="2" class="quantity-cart">
-                                                                 </div>                                                    
-                                                                 <div class="price-per-item price font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">55250</div>
-                                                                 <div class="rm-cart-btn col-l col-l-1 col-m-2 col-s-2 flex justify-center"> 
-                                                                      <div>
-                                                                           <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> 
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-     
-                                                       <div class="block-product">
-                                                            <input type="checkbox" name="select-block-product" id="block-product-5" 
-                                                                 class="grid-col col-l-1 col-m-1 col-s-1">
-                                                            <div class="product-cart grid-col col-l-1 col-m-1 col-s-1 no-gutter full-width">
-                                                                 <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp" alt="khe hat loi yeu 1">
-                                                            </div>
-                                                            <div class="grid-col col-l-10 col-m-10 col-s-10 no-gutter flex align-center">
-                                                                 <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
-                                                                      <p class="font-bold capitalize margin-bottom-16">khẽ hát lời yêu 1</p>
-                                                                      <div class="block-product-price">
-                                                                           <span class="new-price font-bold padding-right-8 price">55250</span>
-                                                                           <del class="price old-price">65000</del>
-                                                                      </div>
-                                                                 </div>   
-                                                                 <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
-                                                                      <input type="number" name="quantity-cart" id="update_12325" value="1" 
-                                                                           min="1" max="2" class="quantity-cart">
-                                                                 </div>                                                    
-                                                                 <div class="price-per-item price font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">55250</div>
-                                                                 <div class="rm-cart-btn col-l col-l-1 col-m-2 col-s-2 flex justify-center"> 
-                                                                      <div>
-                                                                           <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> 
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
-     
-                                                       <div class="block-product">
-                                                            <input type="checkbox" name="select-block-product" id="block-product-6" 
-                                                                 class="grid-col col-l-1 col-m-1 col-s-1">
-                                                            <div class="product-cart grid-col col-l-1 col-m-1 col-s-1 no-gutter full-width">
-                                                                 <img src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp" alt="khe hat loi yeu 1">
-                                                            </div>
-                                                            <div class="grid-col col-l-10 col-m-10 col-s-10 no-gutter flex align-center">
-                                                                 <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
-                                                                      <p class="font-bold capitalize margin-bottom-16">khẽ hát lời yêu 1</p>
-                                                                      <div class="block-product-price">
-                                                                           <span class="new-price font-bold padding-right-8 price">55250</span>
-                                                                           <del class="price old-price">65000</del>
-                                                                      </div>
-                                                                 </div>   
-                                                                 <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
-                                                                      <input type="number" name="quantity-cart" id="update_12326" value="1" 
-                                                                           min="1" max="2" class="quantity-cart">
-                                                                 </div>                                                    
-                                                                 <div class="price-per-item price font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">55250</div>
-                                                                 <div class="rm-cart-btn col-l col-l-1 col-m-2 col-s-2 flex justify-center"> 
-                                                                      <div>
-                                                                           <i class="fa-solid fa-trash fa-lg" style="color: var(--primary-dark);"></i> 
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                       </div>
                                                   </div>
                                              </div>
                                              
@@ -277,23 +143,23 @@
                                                             <h4 class="capitalize margin-bottom-8">chi tiết thanh toán</h4>
                                                             <div>
                                                                  <p class="font-size-14">thành tiền</p>
-                                                                 <span class="price font-size-14">55250</span>
+                                                                 <span class="price prices font-size-14"></span>
                                                             </div>
                                                             <div>
                                                                  <p class="font-size-14">tổng tiền phí vận chuyển</p>
-                                                                 <span class="price font-size-14">10000</span>
+                                                                 <span class="price shipping-fee font-size-14"></span>
                                                             </div>
                                                             <div>
                                                                  <p class="font-size-14">giảm giá phí vận chuyển</p>
-                                                                 <span class="price font-size-14">5250</span>
+                                                                 <span class="price shipping-discount font-size-14"></span>
                                                             </div>
                                                             <div>
                                                                  <p class="font-size-14">voucher giảm giá</p>
-                                                                 <span class="price font-size-14">5000</span>
+                                                                 <span class="price voucher-discount font-size-14"></span>
                                                             </div>
                                                             <div>
                                                                  <p class="font-bold">tổng số tiền</p>
-                                                                 <span class="price total-price font-bold">55000</span>
+                                                                 <span class="price total-price font-bold"></span>
                                                             </div>
      
                                                             <button type="submit" class="checkout-btn button margin-top-12">

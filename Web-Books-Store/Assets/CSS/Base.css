@@ -46,7 +46,7 @@
 
 @font-face {
   font-family: "Open Sans";
-  src: url(../Font/GFont/Open_Sans/OpenSans-VariableFont_wdth\wght.ttf);
+  src: url(../Font/GFont/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf);
   /* src: url(../Font/GFont/Open_Sans/OpenSans-Italic-VariableFont_wdth\,wght.ttf); */
 }
 
@@ -91,6 +91,15 @@ input[type="text"] {
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
+}
+
+input[type = text] {
+     display: -webkit-box;
+     line-clamp: 2;
+     overflow: hidden;
+     -webkit-line-clamp: 2;
+     text-overflow: ellipsis;
+     -webkit-box-orient: vertical;
 }
 
 /* CSS global */
@@ -560,6 +569,38 @@ input[type="text"] {
   animation: overflowText 0.2s linear;
 }
 
+.menu {
+     animation: menu 0.2s linear;
+}
+
+@keyframes menu {
+     0% {
+          transform: translateX(-100%);
+     }
+
+     100% {
+          transform: translateX(0%);
+     }
+}
+
+.menu {
+     animation: menu 0.2s linear;
+}
+
+@keyframes menu {
+     0% {
+          transform: translateX(-100%);
+     }
+
+     100% {
+          transform: translateX(0%);
+     }
+}
+
+.overflowText {
+     animation: overflowText 0.2s linear;
+}
+
 @keyframes overflowText {
   0% {
     transform: translateX(0%);
@@ -607,7 +648,7 @@ input[type="text"] {
 
 /* other */
 .container {
-  position: relative;
+     position: relative;
 }
 
 .text-content {
@@ -658,6 +699,22 @@ input[type="text"] {
 
 .show {
   visibility: visible;
+}
+
+.hidden {
+     visibility: hidden;
+}
+
+.show {
+     visibility: visible;
+}
+
+.hidden {
+     visibility: hidden;
+}
+
+.show {
+     visibility: visible;
 }
 
 .success-color {

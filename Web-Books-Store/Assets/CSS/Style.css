@@ -2,6 +2,7 @@
   overflow: hidden;
   padding-top: calc(var(--max-height-header));
 }
+
 /* CSS for header */
 #header-container {
   top: 0;
@@ -61,7 +62,7 @@
   justify-content: space-around;
 }
 
-#header-container .header-items > div {
+#header-container .header-items>div {
   cursor: pointer;
   font-size: var(--font-size-13);
 }
@@ -129,7 +130,7 @@
 }
 
 .header-user-info .user-img img {
-  width: 100%;
+  width: 70%;
 }
 
 .header-user-info .user-name {
@@ -208,7 +209,7 @@
   padding: 0.5em 0;
 }
 
-.s-m-nav-content .s-m-nav-list li + li {
+.s-m-nav-content .s-m-nav-list li+li {
   border-top: 1px solid var(--main-color);
 }
 
@@ -217,6 +218,7 @@
   background: var(--primary-white);
   border-bottom: 1px solid var(--border);
 }
+
 #sub-header .sub-menu {
   display: flex;
   list-style-type: none;
@@ -228,21 +230,31 @@
 }
 
 .sub-menu .sub-menu-item a,
-.sub-menu .sub-menu-item > div {
+.sub-menu .sub-menu-item>div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#sub-header .sub-menu .sub-menu-item + .sub-menu-item {
+#sub-header .sub-menu .sub-menu-item+.sub-menu-item {
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
 }
 
 #sub-header .sub-menu-item.history-order-link:hover {
+
   cursor: pointer;
   box-shadow: unset;
   /* box-shadow: 0 0 1px var(--primary-dark); */
+
+}
+
+#sub-header .sub-menu-item.history-order-link:hover {
+
+  cursor: pointer;
+  box-shadow: unset;
+  /* box-shadow: 0 0 1px var(--primary-dark); */
+
 }
 
 /*list-btn */
@@ -310,12 +322,12 @@
   align-items: center;
 }
 
-.breadcrumb-list ol > li + li {
+.breadcrumb-list ol>li+li {
   opacity: 0.6;
   font-weight: 200;
 }
 
-.breadcrumb-list ol > li + li::before {
+.breadcrumb-list ol>li+li::before {
   content: "/";
   opacity: 0.6;
   font-weight: 500;
@@ -349,7 +361,7 @@
   position: relative;
 }
 
-#main-content .homepage > img {
+#main-content .homepage>img {
   max-width: 100%;
   border-radius: var(--higher-radius);
 }
@@ -425,7 +437,7 @@
   opacity: 0.8;
 }
 
-.services-container .service-content > img {
+.services-container .service-content>img {
   max-width: 4em;
   margin-left: 1.5em;
 }
@@ -483,6 +495,11 @@
   flex-flow: row nowrap;
 }
 
+.heading .fs-time {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 #fs-container .heading .fs-number {
   line-height: 2;
   font-weight: 700;
@@ -499,7 +516,27 @@
 #main-content .product-container {
   margin-bottom: 0.5em;
   display: flex;
-  flex-flow: row nowrap;
+  flex-wrap: wrap;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.page-button {
+  padding: 5px 10px;
+  background-color: var(--main-color);
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.page-button:hover {
+  background-color: var(--btn-hover);
 }
 
 .product-container .product-item {
@@ -608,41 +645,36 @@
   background: var(--main-color);
   box-shadow: 0 0 0.25em var(--primary-dark);
 }
+
 /* end css for action */
 /* end container css using on other html */
 
 .category-tab .heading #new-book-label {
-  background: url("../Images/Icons/Other_icons/new-book.jpg") top left / cover
-    no-repeat;
+  background: url("../Images/Icons/Other_icons/new-book.jpg") top left / cover no-repeat;
 }
 
 .category-tab .heading #best-selling-label {
-  background: url("../Images/Icons/Other_icons/best-selling.jpg") top left /
-    cover no-repeat;
+  background: url("../Images/Icons/Other_icons/best-selling.jpg") top left / cover no-repeat;
 }
 
 .category-tab .heading #ln-label {
   border-radius: var(--higher-radius);
-  background: url("../Images/Icons/Other_icons/LN.webp") top left / cover
-    no-repeat;
+  background: url("../Images/Icons/Other_icons/LN.webp") top left / cover no-repeat;
 }
 
 .category-tab .heading #manga-label {
   border-radius: var(--higher-radius);
-  background: url("../Images/Icons/Other_icons/Manga.webp") top left / cover
-    no-repeat;
+  background: url("../Images/Icons/Other_icons/Manga.webp") top left / cover no-repeat;
 }
 
 .category-tab .heading #other-book-label {
   border-radius: var(--higher-radius);
-  background: url("../Images/Icons/Other_icons/Manga-list.jpg") top left / cover
-    no-repeat;
+  background: url("../Images/Icons/Other_icons/Manga-list.jpg") top left / cover no-repeat;
 }
 
 .category-tab .heading #search-book-label {
   border-radius: var(--higher-radius);
-  background: url("../Images/Icons/Other_icons/search.jpg") top left / cover
-    no-repeat;
+  background: url("../Images/Icons/Other_icons/search.jpg") top left / cover no-repeat;
 }
 
 /* load more item */
@@ -679,12 +711,12 @@
   flex-flow: row nowrap;
 }
 
-.news-blogs-items > .news-item {
+.news-blogs-items>.news-item {
   display: none;
   min-height: 34em;
 }
 
-.news-blogs-items > .news-item.active {
+.news-blogs-items>.news-item.active {
   animation: fadeIn linear 0.4s;
 }
 
@@ -741,6 +773,7 @@
 #news-container {
   overflow: hidden;
 }
+
 .title-group {
   border-bottom: 0.1em solid var(--border);
 }
@@ -771,9 +804,11 @@
 .content-wrapper .image-container {
   margin: 0.75em 0;
 }
+
 .content-wrapper .image-container img {
   width: 100%;
 }
+
 /* end for news content */
 
 /* CSS for footer */
@@ -783,7 +818,7 @@
   background: var(--footer-bg);
 }
 
-#footer-container .footer-col-container + .footer-col-container {
+#footer-container .footer-col-container+.footer-col-container {
   border-left: 1px solid var(--main-color);
 }
 
@@ -823,7 +858,7 @@
   justify-content: space-between;
 }
 
-.footer-input > form {
+.footer-input>form {
   position: relative;
 }
 

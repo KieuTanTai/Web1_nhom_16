@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="../Assets/CSS/admin.css">
     <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css">
 
-    <script type="module" src="../Javascript/index.js"></script>
+    <script type="module" src="../Javascript/Index.js"></script>
     <!-- <script src="./assets/js/login.js"></script> -->
+    <script src="../Javascript/donhang.js"></script>
+    <script src="../Javascript/thongke.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
@@ -28,8 +30,22 @@
                     <li class="nav-title">MENU</li>
                     <li class="nav-item js-opentrangchu"><a class="nav-link active "><i class="mr-6 ti-home"></i>Trang Chủ</a></li>
                     <li class="nav-item js-opensanpham"><a class="nav-link "><i class="mr-6 ti-view-grid"></i>Sản Phẩm</a></li>
-                    <li class="nav-item js-opendonhang"><a class="nav-link"><i class="mr-6 ti-package"></i>Đơn Hàng</a></li>
-                    <li class="nav-item js-openkhachhang"><a class="nav-link"><i class="mr-6 ti-id-badge"></i>Khách Hàng</a></li>
+                    <li class="nav-item js-opendonhang">
+                        <a class="nav-link" onClick="
+                        update_table_donhang();
+                        document.querySelector('.js-donhang').style.display = 'block';
+                        document.querySelector('.js-thongke').style.display = 'none';">
+                            <i class="mr-6 ti-package"></i>Đơn Hàng
+                        </a>
+                    </li>
+                    <li class="nav-item js-openkhachhang">
+                        <a class="nav-link" onClick="
+                        update_thongke('mh',false);
+                        document.querySelector('.js-thongke').style.display = 'block';
+                        document.querySelector('.js-donhang').style.display = 'none';">
+                            <i class="mr-6 ti-id-badge"></i>Thống kê
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="index.html" class="nav-link" onclick="logOutAdmin(); return true;">
                             <i class="mr-6 ti-arrow-circle-left"></i> Đăng xuất (về Trang chủ)
@@ -133,44 +149,57 @@
 
                 <!-- Đơn Hàng -->
                 <div class="donhang js-donhang">
-                    <div id="loctheongay">
-                        <input type="datetime-local" class="locdon" value="2022-01-01T01:40">
-                        <input type="datetime-local" class="locdon">
-                        <input type="button" value="Lọc" onclick="addTableDonHang()">
-                    </div>
+                    <form>
+                        <div id="loc">
+                            Ngày:
+                            <input id="date_start" type="date" class="locdon">
+                            -
+                            <input id="date_end" type="date" class="locdon" style="margin-right: 10px;margin-left: 10px;">
+                            Tình trạng:
+                            <select id="state" style="color: black; margin-right: 10px;">
+                                <option value="none" style="color: black">-</option>
+                                <option value="chua_xu_ly" style="color: black">Chưa xử lý</option>
+                                <option value="xac_nhan" style="color: black">Đã xác nhận</option>
+                                <option value="da_giao" style="color: black">Đã giao</option>
+                                <option value="huy" style="color: black">Đã hủy</optison>
+                            </select>
+                            Sắp xếp theo quận:
+                            <input id="sort_quan" type="checkbox" style="margin-right: 10px;">
+                            <input type="button" value="Lọc" style="width: 40px; color: black" onClick="loc(date_start, date_end, state, sort_quan)">
+                            <input type="reset" value="Reset" style="width: 40px; color: black">
+                        </div>
+                    </form>
+                    
                     <table class="table-header">
                         <tr>
                             <!-- Theo độ rộng của table content -->
-                            <th title="Sắp xếp" style="width: 5%" >Stt</th>
-                            <th title="Sắp xếp" style="width: 13%" >Mã đơn</th>
-                            <th title="Sắp xếp" style="width: 7%" >Khách</th>
-                            <th title="Sắp xếp" style="width: 20%" >Sản phẩm</th>
+                            <th title="Sắp xếp" style="width: 5%" >STT</th>
+                            <th title="Sắp xếp" style="width: 12%" >Mã đơn</th>
+                            <th title="Sắp xếp" style="width: 12%" >Khách hàng</th>
+                            <th title="Sắp xếp" style="width: 24%" >Địa chỉ</th>
                             <th title="Sắp xếp" style="width: 15%" >Tổng tiền</th>
-                            <th title="Sắp xếp" style="width: 10%" >Ngày giờ</th>
+                            <th title="Sắp xếp" style="width: 12%" >Ngày giờ</th>
                             <th title="Sắp xếp" style="width: 10%" >Trạng thái</th>
                             <th style="width: 10%">Hành động</th>
                         </tr>
                     </table>
 
-                    <div class="table-content">
-                    </div>
+                    <div class="table-content"></div>
                 </div> <!-- // don hang -->
-                <!-- Khách hàng -->
-                <div class="khachhang js-khachhang">
-                    <table class="table-header">
-                        <tr>
-                            <!-- Theo độ rộng của table content -->
-                            <th title="Sắp xếp" style="width: 5%" >Stt</th>
-                            <th title="Sắp xếp" style="width: 15%" >Họ tên</th>
-                            <th title="Sắp xếp" style="width: 20%" >Email</th>
-                            <th title="Sắp xếp" style="width: 20%" >Tài khoản</th>
-                            <th title="Sắp xếp" style="width: 10%" >Mật khẩu</th>
-                            <th style="width: 10%">Hành động</th>
-                        </tr>
-                    </table>
-                    <div class="table-content">
+                <!-- Thống kê -->
+                <div class="thongke js-thongke">
+                    <div style="display: grid; place-items: center;">
+                        <nav>
+                            <ul class="button_thongke">
+                                <li><a href="#" id="mh" style="pointer-events: none; background-color: gray;" onClick="update_thongke(this.id,false)">Thống kê mặt hàng</a></li>
+                                <li><a href="#" id="kh" onClick="update_thongke(this.id,false)">Thống kê khách hàng</a></li>
+                            </ul>
+                        </nav>
                     </div>
-                </div> <!-- // khach hang -->
+
+                    <div class="table-content" id="table-thongke">
+                    </div>
+                </div> <!-- // Thống kê -->
             </div> <!-- // main -->
             <div class="clear"></div>
         <footer>

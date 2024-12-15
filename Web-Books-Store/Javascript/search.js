@@ -28,18 +28,14 @@ function searchBtn() {
   });
 }
 
-function renderSearchDOM(bookName) {
+async function renderSearchDOM(bookName) {
   let searchContent = Bridge.default().getSearchContent();
-
   hiddenException("search-content");
+  searchContent.innerHTML = searchDOM(); // Tạo giao diện tìm kiếm
   scrollView();
-  searchContent.innerHTML = searchDOM();
-  let newURL = `${location.href.slice(
-    0,
-    location.href.lastIndexOf("/") + 1
-  )}index.html?query=${encodeURIComponent(bookName || "")}`;
-  window.history.pushState({}, "", newURL);
-  initSearchFilters();
+  let newURL = `${location.href.slice(0, location.href.lastIndexOf("/") + 1)}index.html?query=${bookName}`;
+  window.history.pushState({}, "", newURL); // Cập nhật URL
+  initSearchFilters(); // Hiển thị sản phẩm theo từ khóa
 }
 
 function searchDOM() {
@@ -86,45 +82,33 @@ function applyFilters(productList, searchQuery, elementsObj) {
   const category = categoryFilter?.value;
   const priceRange = priceFilter?.value;
 
+  // Lọc theo từ khóa (nếu có)
   return productList.filter((product) => {
     const name = product.name?.toLowerCase() || "";
     const author = product.author?.toLowerCase() || "";
     const genre = product.genre?.toLowerCase() || "";
     const type = product.type?.toLowerCase() || "";
-    const queryMatch = searchQuery
-      ? name.includes(searchQuery) ||
-        author.includes(searchQuery) ||
-        genre.includes(searchQuery) ||
-        type.includes(searchQuery)
-      : true;
+    const queryMatch = searchQuery ? name.includes(searchQuery) || author.includes(searchQuery) || genre.includes(searchQuery) || type.includes(searchQuery) : true;
+
+    // Lọc theo thể loại
     const categoryMatch = category ? product.type === category : true;
 
-    const price = product.price * (1 - product.sale);
+    // Lọc theo khoảng giá
+    const price = product.price * (1 - product.sale); // Giá sau giảm giá
     let priceMatch = true;
     if (priceRange) {
       const [min, max] = priceRange.split("-").map(Number);
       priceMatch = max ? price >= min && price <= max : price >= min;
     }
-
     return queryMatch && categoryMatch && priceMatch;
   });
 }
 
-function displayProducts(
-  productList,
-  searchQuery,
-  elementsObj,
-  currentPage = 1,
-  itemsPerPage = 15
-) {
+function displayProducts(productList, searchQuery, elementsObj, currentPage = 1, itemsPerPage = 15) {
   if (!elementsObj) elementsObj = Bridge.default();
   const filteredProducts = applyFilters(productList, searchQuery);
-  const productContainer = elementsObj
-    .getResultContainer()
-    ?.querySelector(".product-container");
-  const paginationContainer = elementsObj
-    .getResultContainer()
-    ?.querySelector("#pagination-controls");
+  const productContainer = elementsObj.getResultContainer()?.querySelector(".product-container");
+  const paginationContainer = elementsObj.getResultContainer()?.querySelector("#pagination-controls");
 
   if (!productContainer || !paginationContainer) return;
 
@@ -138,42 +122,21 @@ function displayProducts(
     renderProducts(productsToShow, productContainer);
     formatPrices(elementsObj);
     resizeImages(elementsObj);
-  } else {
-    productContainer.innerHTML =
-      '<div class="font-size-13 font-bold">Không tìm thấy sản phẩm nào phù hợp</div>';
-  }
-
-  renderPaginationControls(
-    paginationContainer,
-    currentPage,
-    totalPages,
-    (page) => {
-      displayProducts(
-        productList,
-        searchQuery,
-        elementsObj,
-        page,
-        itemsPerPage
-      );
-    }
-  );
+  } 
+  else
+    productContainer.innerHTML = '<div class="font-size-13 font-bold">Không tìm thấy sản phẩm nào phù hợp</div>';
+  renderPaginationControls(paginationContainer, currentPage, totalPages,
+    (page) => displayProducts(productList, searchQuery, elementsObj, page, itemsPerPage));
 }
 
-function renderPaginationControls(
-  container,
-  currentPage,
-  totalPages,
-  onPageChange
-) {
+function renderPaginationControls(container, currentPage, totalPages, onPageChange) {
   container.innerHTML = "";
   if (totalPages <= 1) return;
 
   for (let i = 1; i <= totalPages; i++) {
     const pageButton = document.createElement("button");
     pageButton.textContent = i;
-    pageButton.className = `pagination-btn ${
-      i === currentPage ? "active" : ""
-    }`;
+    pageButton.className = `pagination-btn ${i === currentPage ? "active" : ""}`;
     pageButton.addEventListener("click", () => onPageChange(i));
     container.appendChild(pageButton);
   }
@@ -184,19 +147,11 @@ function initSearchFilters() {
   const query = execQueryHandler("query");
   let productList = getProductBooks();
   displayProducts(productList, query, elementsObj, 1, 15);
-  changeByFilter(
-    [elementsObj.getCategoryFilter(), elementsObj.getPriceFilter()],
-    query,
-    productList
-  );
+  changeByFilter([elementsObj.getCategoryFilter(), elementsObj.getPriceFilter()], query, productList);
 }
 
 function changeByFilter(elements, query, productList) {
-  elements.forEach((filter) =>
-    filter?.addEventListener("change", () =>
-      displayProducts(productList, query, null, 1)
-    )
-  );
+  elements.forEach((filter) => filter?.addEventListener("change", () => displayProducts(productList, query, null, 1)));
 }
 
 export { searchBtn, renderSearchDOM };

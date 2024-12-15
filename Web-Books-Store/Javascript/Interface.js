@@ -10,24 +10,52 @@ function scrollView() {
   window.scrollTo(0, 0);
 }
 
+// change header info when user has been login
+function headerUserInfo(elementsObj) {
+  let container = elementsObj.getHeaderUserInfo();
+  let noSignIn = elementsObj.getNoSignIn();
+  let loginBtn = elementsObj.getJsLoginBtn();
+  let registerBtn = elementsObj.getJsRegisterBtn();
+  let logoutBtn = elementsObj.getJsSignoutBtn();
+  let userName = container.querySelector(".user-name");
+  const hasLogin = sessionStorage.getItem("hasLogin");
+  let hasLoginAccount = sessionStorage.getItem("hasLoginAccount");
+  hasLoginAccount = hasLoginAccount ? JSON.parse(hasLoginAccount) : false;
+  if (hasLogin && hasLoginAccount) {
+    noSignIn.classList.add("disable");
+    // disable login - register btn
+    loginBtn?.forEach((btn) => btn.classList.add("disable"));
+    registerBtn?.forEach((btn) => btn.classList.add("disable"));
+    logoutBtn?.forEach((btn) => btn.classList.remove("disable"));
+    container.classList.remove("disable");
+    userName.innerHTML = hasLoginAccount.firstName + hasLoginAccount.lastName;
+  }
+  else {
+    noSignIn.classList.remove("disable");
+    loginBtn?.forEach((btn) => btn.classList.remove("disable"));
+    registerBtn?.forEach((btn) => btn.classList.remove("disable"));
+    logoutBtn?.forEach((btn) => btn.classList.add("disable"));
+    container.classList.add("disable");
+    userName.innerHTML = hasLoginAccount.firstName + hasLoginAccount.lastName;
+  }
+}
+
 // funcs event
 function disableSiblingContainer(container) {
   if (!container) return;
   Array.of(...container.children).forEach((child) => {
-    child.classList.contains("active")
-      ? child.classList.remove("active")
-      : child;
+    child.classList.contains("active") ? child.classList.remove("active") : child;
     child.offsetWidth > 0 ? child.classList.add("disable") : child;
   });
 }
 
 async function fakeOverlay(container, time) {
-  const overlay = document.createElement("div");
-  overlay.className = "overlay";
-  overlay.innerHTML = "Loading... :3";
-  overlay.style.display = "flex";
-  overlay.style.alignItems = "center";
-  overlay.style.justifyContent = "center";
+  const overlay = document.createElement('div');
+  overlay.className = 'overlay';
+  overlay.innerHTML = 'Loading... :3';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
   overlay.style.fontSize = 3 + "em";
   overlay.style.color = "var(--primary-white)";
   document.body.appendChild(overlay);
@@ -68,22 +96,19 @@ function formatPrices(elementsObj) {
 function hiddenException(exception) {
   exception = !exception ? "index-content" : exception;
   let getHandler = Bridge.default();
-  let container = getHandler
-    .getMainContainer()
-    .querySelector("#main-content .grid-row")?.children;
+  let container = getHandler.getMainContainer().querySelector("#main-content .grid-row")?.children;
   let newsContainer = getHandler.getNewsBlogs();
   container = Array.of(...container);
 
   container.forEach((element) => {
     if (element.getAttribute("id") !== exception)
       element.classList.add("disable");
-    else element.classList.remove("disable");
+    else
+      element.classList.remove("disable");
   });
 
   if (exception === "index-content") {
-    newsContainer?.classList.contains("disable")
-      ? newsContainer.classList.remove("disable")
-      : newsContainer;
+    newsContainer?.classList.contains("disable") ? newsContainer.classList.remove("disable") : newsContainer;
     return;
   }
   newsContainer?.classList.add("disable");
@@ -91,23 +116,15 @@ function hiddenException(exception) {
 
 //change DOM on categories if it not have any product inside
 function categoryIsEmpty() {
-  Bridge.default()
-    .getCategories()
-    .forEach((category) => {
-      const container = category.querySelector(".product-container");
-      if (isEmpty(container)) {
-        container.innerHTML =
-          '<div class="empty-mess font-size-20 font-bold">Không có sản phẩm trong phần này</div>';
-        container.classList.add(
-          "flex",
-          "full-height",
-          "align-center",
-          "justify-center"
-        );
-        container.querySelector(".nav-btn")?.classList.add("disable");
-        category.querySelector(".category-btn")?.classList.add("disable");
-      }
-    });
+  Bridge.default().getCategories().forEach((category) => {
+    const container = category.querySelector(".product-container");
+    if (isEmpty(container)) {
+      container.innerHTML = '<div class="empty-mess font-size-20 font-bold">Không có sản phẩm trong phần này</div>';
+      container.classList.add("flex", "full-height", "align-center", "justify-center");
+      container.querySelector(".nav-btn")?.classList.add("disable");
+      category.querySelector(".category-btn")?.classList.add("disable");
+    }
+  });
 }
 
 // fix bug interface func
@@ -162,9 +179,7 @@ function resizeSmNav(elementsObj) {
 // default add header footer and initProducts
 async function addDOMHeaderFooter(elementsObj) {
   try {
-    const DOM = await Bridge.promiseDOMHandler(
-      "/Web-Books-Store/HTML/header_footer/headerFooter.html"
-    );
+    const DOM = await Bridge.promiseDOMHandler("../HTML/header_footer/headerFooter.html");
     const header = DOM.getElementById("header-container");
     const subHeader = DOM.getElementById("sub-header");
     const footer = DOM.getElementById("footer-container");
@@ -180,7 +195,7 @@ async function addDOMHeaderFooter(elementsObj) {
 
 async function getInitProducts(elementsObj) {
   try {
-    const storage = await fetch("/Web-Books-Store/Javascript/Storage.js");
+    const storage = await fetch("../Javascript/Storage.js");
     const jsonArray = await storage.json();
     const productsList = Array.from(jsonArray);
     localStorage.setItem("products", JSON.stringify(productsList));
@@ -197,35 +212,5 @@ async function getInitProducts(elementsObj) {
   }
 }
 
-// call functions when DOM Loaded
-document.addEventListener("DOMContentLoaded", () => {
-  const elementsObj = Bridge.default();
-  //create check DOM of Header and Footer
-  addDOMHeaderFooter(elementsObj);
-  const checkDOM = setInterval(() => {
-    if (
-      elementsObj.getHeader() &&
-      elementsObj.getSubHeader() &&
-      elementsObj.getFooter()
-    ) {
-      resizeSmNav(elementsObj);
-      clearInterval(checkDOM);
-    }
-  }, 200);
-
-  // call funcs
-  getInitProducts(elementsObj);
-  hiddenException();
-});
-
-export {
-  formatPrices,
-  resizeImages,
-  isEmpty,
-  categoryIsEmpty,
-  getInitProducts,
-  hiddenException,
-  scrollView,
-  fakeOverlay,
-  disableSiblingContainer,
-};
+export { formatPrices, isEmpty, categoryIsEmpty, getInitProducts, hiddenException, scrollView, fakeOverlay, disableSiblingContainer };
+export { resizeSmNav, resizeImages, addDOMHeaderFooter, headerUserInfo };
