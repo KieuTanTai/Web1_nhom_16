@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Cart.updateCartCount(elementsObj);
       Cart.handleCartNavigation();
       Cart.handlePaymentOptionChange();
+      Cart.handleDefaultAddressCheckbox();
       Actions.accountEvents(elementsObj);
       Actions.staticContents(elementsObj);
       Actions.historyNavigate(elementsObj);

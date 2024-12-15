@@ -234,12 +234,19 @@ table {
     padding: 12px 30px;
 }
 
+#lockUserBtn,
 .table-footer.btn-form-add button {
     background-color: #454e58;
     cursor: pointer;
     padding: 12px 30px;
     margin: 0 auto;
     display: block;
+}
+
+#lockUserBtn {
+    text-transform: uppercase;
+    min-width: 10em;
+    transform: translateX(-56%);
 }
 
 /*khung them san pham */

@@ -63,17 +63,10 @@ function validateRegister() {
 
 function generateId(users) {
   const prefix = "KH";
-  const existingIds = users.map((user) => {
-    if (user.userID && typeof user.userID === "string" && user.userID.length > 2) {
-      return parseInt(user.userID.slice(2)); 
-    } else {
-      return 0;
-    }
-  });
-  const maxId = existingIds.length > 0 ? Math.max(...existingIds) : 0; 
-  const newIdNumber = maxId + 1; 
-  return prefix + newIdNumber.toString().padStart(3, "0"); 
+  const existingIds = users.map((user) => parseInt(user.userID.slice(2))); // Lấy tất cả số ID hiện có
+  const maxId = existingIds.length > 0 ? Math.max(...existingIds) : 0; // Lấy ID lớn nhất hoặc 0 nếu chưa có
+  const newIdNumber = maxId + 1; // Tăng ID lên 1
+  return prefix + newIdNumber.toString().padStart(3, "0"); // Format ID mới
 }
-
 
 export { validateRegister };

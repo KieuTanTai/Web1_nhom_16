@@ -19,7 +19,13 @@
 <body>
     <!-- Login component -->
     <div class="login-component flex justify-center">
+<<<<<<< HEAD
+        <h1 class="message disable"
+            style="background-color:pink; color:red; width:100%; text-align:center; margin: 50px;"> BạnChưa Đăng Nhập
+            ADMIN </h1>
+=======
         <h1 class="message disable" style="background-color:pink; color:red; width:100%; text-align:center; margin: 50px;"> BạnChưa Đăng Nhập ADMIN </h1>
+>>>>>>> HieuLe
         <form class="flex flex-direction-y ">
             <h3 class="text-center">Login Admin</h3>
             <div class="form-group flex flex-direction-y margin-bottom-8">
@@ -289,7 +295,11 @@
                         <tr>
                             <td>User ID</td>
                             <td>
+<<<<<<< HEAD
+                                <input type="text" name="userID" placeholder="E.g. KH0001" />
+=======
                                 <input type="text" name="userID" placeholder="E.g. U0001" />
+>>>>>>> HieuLe
                                 <div class="error-message"></div>
                             </td>
                         </tr>
@@ -336,6 +346,167 @@
                     </table>
                 </form>
             </div>
+
+            <div id="khungSuaUser" class="overclass">
+                <!-- Nút đóng khung -->
+                <span class="close" onclick="this.parentElement.style.transform = 'scale(0)';">
+                    <i class="fa-solid fa-xmark"></i>
+                </span>
+
+                <!-- Form chỉnh sửa User -->
+                <form class="edit-user-form">
+                    <table class="overlayTable table-header table-content">
+                        <!-- Tiêu đề -->
+                        <tr>
+                            <th colspan="2">Chỉnh Sửa Khách Hàng</th>
+                        </tr>
+
+                        <!-- User ID (readonly) -->
+                        <tr>
+                            <td>User ID</td>
+                            <td>
+                                <input type="text" name="userID" readonly />
+                            </td>
+                        </tr>
+
+                        <!-- First Name -->
+                        <tr>
+                            <td>First Name</td>
+                            <td>
+                                <input type="text" name="firstName" />
+                                <div class="error-message"></div>
+                            </td>
+                        </tr>
+
+                        <!-- Last Name -->
+                        <tr>
+                            <td>Last Name</td>
+                            <td>
+                                <input type="text" name="lastName" />
+                                <div class="error-message"></div>
+                            </td>
+                        </tr>
+
+                        <!-- Email -->
+                        <tr>
+                            <td>Email</td>
+                            <td>
+                                <input type="email" name="email" />
+                                <div class="error-message"></div>
+                            </td>
+                        </tr>
+
+                        <!-- Password -->
+                        <tr>
+                            <td>Password</td>
+                            <td>
+                                <input type="password" name="password" />
+                                <div class="error-message"></div>
+                            </td>
+                        </tr>
+
+                        <!-- Trạng thái Khóa/Mở Khóa -->
+                        <tr>
+                            <td>Trạng Thái</td>
+                            <td>
+                                <button type="button" id="lockUserBtn" onclick="toggleUserLock()">Khóa</button>
+                            </td>
+                        </tr>
+
+                        <!-- Footer: Nút Lưu -->
+                        <tr>
+                            <td colspan="2" class="table-footer btn-form-add">
+                                <button type="button" class="btn-save-user" onclick="saveEditUser()">LƯU</button>
+                            </td>
+                        </tr>
+
+                        <script>
+                            let isLocked = false; 
+                            let currentUserID = "";
+
+                            function showEditUser(userID) {
+                                try {
+                                    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+                                    const user = users.find((u) => u.userID === userID);
+                                    if (!user) {
+                                        alert("Không tìm thấy người dùng!");
+                                        return;
+                                    }
+
+                                    currentUserID = userID;
+                                    console.log(currentUserID);
+
+                                    document.querySelector("#khungSuaUser input[name='userID']").value = user.userID;
+                                    document.querySelector("#khungSuaUser input[name='firstName']").value = user.firstName;
+                                    document.querySelector("#khungSuaUser input[name='lastName']").value = user.lastName;
+                                    document.querySelector("#khungSuaUser input[name='email']").value = user.email;
+                                    document.querySelector("#khungSuaUser input[name='password']").value = user.password;
+
+                                    isLocked = user.isLocked || false;
+                                    updateLockButton();
+
+                                    document.getElementById("khungSuaUser").style.transform = "scale(1)";
+                                } catch (error) {
+                                    console.error("Lỗi khi hiển thị form chỉnh sửa:", error);
+                                }
+                            }
+
+                            function updateLockButton() {
+                                const lockBtn = document.getElementById("lockUserBtn");
+                                if (isLocked) {
+                                    lockBtn.textContent = "Mở Khóa";
+                                    lockBtn.classList.add("unlocked");
+                                } else {
+                                    lockBtn.textContent = "Khóa";
+                                    lockBtn.classList.remove("unlocked");
+                                }
+                            }
+
+                            function toggleUserLock() {
+                                isLocked = !isLocked;
+                                updateLockButton();
+                            }
+
+                            function saveEditUser() {
+                                try {
+                                    console.log(currentUserID);
+                                    const firstName = document.querySelector("#khungSuaUser input[name='firstName']").value;
+                                    const lastName = document.querySelector("#khungSuaUser input[name='lastName']").value;
+                                    const email = document.querySelector("#khungSuaUser input[name='email']").value;
+                                    const password = document.querySelector("#khungSuaUser input[name='password']").value;
+
+                                    const users = JSON.parse(localStorage.getItem("users")) || [];
+                                    const userIndex = users.findIndex((u) => u.userID === currentUserID);
+
+                                    if (userIndex !== -1) {
+                                        users[userIndex] = {
+                                            userID: currentUserID, // Giữ nguyên userID
+                                            firstName,
+                                            lastName,
+                                            email,
+                                            password,
+                                            isLocked: isLocked, // Lưu trạng thái khóa
+                                        };
+
+                                        localStorage.setItem("users", JSON.stringify(users));
+
+                                        alert("Cập nhật thành công!");
+                                        document.getElementById("khungSuaUser").style.transform = "scale(0)";
+                                    } else {
+                                        alert("Không tìm thấy người dùng để cập nhật!");
+                                    }
+                                } catch (error) {
+                                    console.error("Lỗi khi lưu thông tin người dùng:", error);
+                                }
+                            }
+
+                        </script>
+
+                    </table>
+                </form>
+            </div>
+
         </div>
         <div class="clear"></div>
         <footer></footer>
