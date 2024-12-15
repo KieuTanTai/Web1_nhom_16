@@ -606,7 +606,7 @@ function state_donhang(select, id_donhang) {
           if (products[i].productID === productId) {
             products[i].quantity -= quantityOrdered; 
             if (products[i].quantity < 0){
-              products[i].quantity = 0
+              products[i].quantity = 0;
             }
             break;
           }
