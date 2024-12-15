@@ -73,7 +73,7 @@ function showTracking(trackers) {
      hiddenException("order-content");
      disableSiblingContainer(elementsObj.getOrderContent());
      elementsObj.getStatusContainer()?.classList.remove("disable");
-     if (!trackers || !sessionStorage.getItem("hasLogin")) {
+     if (!trackers || !JSON.parse(sessionStorage.getItem("hasLogin"))) {
           blankOrder.classList.add("active");
           customerOrder.classList.contains("active") ? customerOrder.classList.remove("active") : customerOrder;
      } else {
@@ -83,7 +83,7 @@ function showTracking(trackers) {
 }
 
 function orderInfo() {
-     if (!sessionStorage.getItem("hasLogin")) return;
+     if (!JSON.parse(sessionStorage.getItem("hasLogin"))) return;
      let ordersList = JSON.parse(localStorage.getItem("donhang"));
      let loginAccount = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
      let customer = ordersList.find((order) => order.id_khachhang === loginAccount.userID);
@@ -114,7 +114,7 @@ function showOrderContent() {
      let orderContainer = elementsObj.getOrderContent();
      hiddenException("order-content");
      disableSiblingContainer(orderContainer);
-     if (!lists || !sessionStorage.getItem("hasLogin")) {
+     if (!lists || !JSON.parse(sessionStorage.getItem("hasLogin"))) {
           blankOrder(elementsObj);
           return;
      }
@@ -429,9 +429,13 @@ function changeInfoUser(elementsObj) {
      let submitInfoBtn = elementsObj.getJsSubmitBtn();
      let userCard = elementsObj.getUserCard();
      let accountLogin = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
-     let inputFields = userCard.querySelectorAll("input[type=text]");
+     let inputFields = userCard.querySelectorAll("input");
      // change default value to user value
      inputFields.forEach((fields) => {
+          if (fields.getAttribute("id") === "user-password") {
+               fields.style.border = "none";
+               fields.style.outline = "none";
+          }
           fields.style.borderLeft = "1px solid var(--main-color)";
           if (fields.getAttribute("id") === "user-last-name")
                fields.value = accountLogin.lastName;
@@ -439,6 +443,8 @@ function changeInfoUser(elementsObj) {
                fields.value = accountLogin.firstName;
           if (fields.getAttribute("id") === "user-email")
                fields.value = accountLogin.email;
+          if (fields.getAttribute("id") === "user-password")
+               fields.value = accountLogin.password;
           if (fields.getAttribute("id") === "user-phone")
                fields.value = accountLogin.phone;
           if (fields.getAttribute("id") === "user-address")
@@ -457,7 +463,7 @@ function changeInfoUser(elementsObj) {
      }, 200, "editInfo"));
      // submit btn
      submitInfoBtn.addEventListener("click", Bridge.throttle(() => {
-          if (sessionStorage.getItem("editing")) {
+          if (JSON.parse(sessionStorage.getItem("editing"))) {
                // disable edit mode
                inputFields.forEach((fields) => {
                     // get new info
@@ -467,17 +473,37 @@ function changeInfoUser(elementsObj) {
                          newInfo.firstName = fields.value;
                     if (fields.getAttribute("id") === "user-email")
                          newInfo.email = fields.value;
+                    if (fields.getAttribute("id") === "user-password")
+                         newInfo.password = fields.value;
                     if (fields.getAttribute("id") === "user-phone")
                          newInfo.phone = fields.value;
                     if (fields.getAttribute("id") === "user-address")
                          newInfo.address = fields.value;
                     fields.setAttribute("disabled", "");
                });
+               // change account handler
+               updateListAccount(newInfo);
                sessionStorage.setItem("editing", false);
-               sessionStorage.setItem("hasLoginAccount", JSON.stringify(newInfo));
           }
-          console.log(newInfo);
      }, 200, "submitNewInfo"));
+}
+
+function updateListAccount(newInfo) {
+     let listAccount = JSON.parse(localStorage.getItem("users"));
+     sessionStorage.setItem("hasLoginAccount", JSON.stringify(newInfo));
+     console.log(listAccount);
+     listAccount.forEach((account) => {
+          if (account.userID === newInfo.userID) {
+               account.password = newInfo.password;
+               account.email = newInfo.email;
+               account.lastName = newInfo.lastName;
+               account.firstName = newInfo.firstName;
+               account.phone = newInfo.phone;
+               account.address = newInfo.address;
+          }
+     });
+     console.log(listAccount);
+     localStorage.setItem("users", JSON.stringify(listAccount));
 }
 
 export { cancelButtons, accountEvents, staticContents, historyNavigate, setQuantityBox, returnHomepage, trackingNavigate, smNavigationMenu };

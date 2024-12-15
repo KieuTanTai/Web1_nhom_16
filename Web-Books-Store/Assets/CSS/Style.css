@@ -134,9 +134,14 @@
 }
 
 .header-user-info .user-name {
+  max-width: 8em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  -webkit-box-orient: horizontal;
 }
 
 .header-items #user-account .nav-account {

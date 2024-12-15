@@ -77,32 +77,32 @@ window.addEventListener("load", () => {
   let registForm = Bridge.$("#register");
   let forgotForm = Bridge.$("#forgot-password");
 
-  if (sessionStorage.getItem("retryShowOrder")) {
+  if (JSON.parse(sessionStorage.getItem("retryShowOrder"))) {
     sessionStorage.removeItem("retryShowOrder");
     Actions.showOrderContent();
   }
 
-  if (sessionStorage.getItem("retryTracking")) {
+  if (JSON.parse(sessionStorage.getItem("retryTracking"))) {
     sessionStorage.removeItem("retryTracking");
     Actions.showTracking(localStorage.getItem("donhang"));
   }
 
-  if (sessionStorage.getItem("login")) {
+  if (JSON.parse(sessionStorage.getItem("login"))) {
     sessionStorage.removeItem("login");
     Actions.showLogin(loginForm, registForm, forgotForm);
   }
 
-  if (sessionStorage.getItem("register")) {
+  if (JSON.parse(sessionStorage.getItem("register"))) {
     sessionStorage.removeItem("register");
     Actions.showRegister(loginForm, registForm, forgotForm);
   }
 
-  if (sessionStorage.getItem("forgotPassword")) {
+  if (JSON.parse(sessionStorage.getItem("forgotPassword"))) {
     sessionStorage.removeItem("forggotPassword");
     Actions.showForgotPassword(loginForm, registForm, forgotForm);
   }
 
-  if (sessionStorage.getItem("userDetail")) {
+  if (JSON.parse(sessionStorage.getItem("userDetail"))) {
     sessionStorage.removeItem("userDetail");
     Actions.userDetail(Bridge.default());
   }
