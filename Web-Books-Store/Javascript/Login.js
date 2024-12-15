@@ -23,7 +23,12 @@ function validateAccount () {
         password.addEventListener("focus", () => errorMessages[key].innerHTML = "");
         return;
       }
- 
+      
+      if (user.isLocked) {
+        errorMessages[0].innerHTML = "Tài khoản đã bị khóa! vui lòng liên hệ cskh !";
+        return;
+      }
+
     alert(`Đăng nhập thành công! Chào mừng ${user.lastName} ${user.firstName}`);
     sessionStorage.setItem("hasLogin", true);
     sessionStorage.setItem("hasLoginAccount", JSON.stringify(user));

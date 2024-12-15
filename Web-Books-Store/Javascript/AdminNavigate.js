@@ -592,48 +592,4 @@ const onSearchInputChange = (e) => {
 };
 searchInput.addEventListener("change", onSearchInputChange);
 
-window.showEditUser = function (userID) {
-  try {
-    // Lấy dữ liệu người dùng từ localStorage
-    const users = JSON.parse(localStorage.getItem("users"));
-    if (!users || users.length === 0) {
-      console.error("Danh sách người dùng trống hoặc không tồn tại");
-      return;
-    }
-
-    // Tìm user có ID khớp
-    const user = users.find((u) => u.userID === userID);
-    if (!user) {
-      console.error("Không tìm thấy người dùng với ID:", userID);
-      return;
-    }
-
-    console.log("Thông tin người dùng:", user);
-
-    // Tìm khung sửa user
-    const khung = document.getElementById("khungSuaUser");
-    if (!khung) {
-      console.error("Không tìm thấy khung chỉnh sửa user");
-      return;
-    }
-
-    // Hiển thị form chỉnh sửa
-    khung.style.transform = "scale(1)";
-
-    // Điền dữ liệu vào các input fields
-    document.querySelector("input[name='userID']").value = user.userID;
-    document.querySelector("input[name='firstName']").value = user.firstName;
-    document.querySelector("input[name='lastName']").value = user.lastName;
-    document.querySelector("input[name='email']").value = user.email;
-    document.querySelector("input[name='password']").value = user.password;
-    document.querySelector("input[name='confirmPassword']").value = user.password;
-
-    // Ẩn ô thông báo lỗi nếu có
-    document.querySelectorAll(".error-message").forEach((el) => el.innerText = "");
-  } catch (error) {
-    console.error("Lỗi khi hiển thị form chỉnh sửa user:", error);
-  }
-};
-
-
 
