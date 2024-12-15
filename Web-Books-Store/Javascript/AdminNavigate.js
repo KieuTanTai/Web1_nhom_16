@@ -406,11 +406,23 @@ window.handleDeleteBook = (productID) => {
 // Show products table
 const productNavItem = document.querySelector(".opensanpham");
 const productConponent = document.querySelector(".sanpham");
+const tk_comp = document.querySelector('.thongke');
+const tk_nav = document.querySelector(".openthongke");
+const dh_comp = document.querySelector('.donhang');
+const dh_nav = document.querySelector(".opendonhang");
 const showProductTable = () => {
   if (customerComponent) {
     if (productConponent) {
       customerComponent.classList.remove("open");
       customerNavItem.classList.remove("action");
+    }
+    if(tk_comp){
+      tk_comp.classList.remove("open");
+      tk_nav.classList.remove("action");
+    }
+    if(dh_comp){
+      dh_comp.classList.remove("open");
+      dh_nav.classList.remove("action");
     }
     productConponent.classList.add("open");
     activeSideBar("opensanpham");
@@ -475,6 +487,14 @@ const showCustomerTable = (filteredUsers) => {
     if (productConponent) {
       productConponent.classList.remove("open");
       productNavItem.classList.remove("action");
+    }
+    if(dh_comp){
+      dh_comp.classList.remove("open");
+      dh_nav.classList.remove("action");
+    }
+    if(tk_comp){
+      tk_comp.classList.remove("open");
+      tk_nav.classList.remove("action");
     }
     customerComponent.classList.add("open");
     activeSideBar("openkhachhang");
