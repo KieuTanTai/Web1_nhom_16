@@ -1,3 +1,4 @@
+import {update_array} from "./thongke.js";
 // localStorage.clear();
 // const chitiet_donhang = [
 //   {
@@ -367,6 +368,10 @@ function showdonhang(){
   document.querySelector('.js-thongke').style.display = 'none';
   document.querySelector(".opendonhang").classList.add("action");
   document.querySelector(".openthongke").classList.remove("action");
+  document.querySelector(".opensanpham").classList.remove("action");
+  document.querySelector(".openkhachang").classList.remove("action");
+  document.querySelector(".js-sanpham").classList.remove("open");
+  document.querySelector(".js-khachang").classList.remove("open");
 
 }
 const opendonhang = document.querySelector(".opendonhang");
@@ -662,6 +667,7 @@ function state_donhang(select, id_donhang) {
     }
 
     // Cập nhật lại bảng và phân trang
+    update_array();
     update_table_donhang_now();
     updatePaginationButtons();
   } else {

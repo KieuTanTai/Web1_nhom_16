@@ -4,6 +4,10 @@ function showthongke(){
     document.querySelector('.js-thongke').style.display = 'block';
     document.querySelector(".openthongke").classList.add("action");
     document.querySelector(".opendonhang").classList.remove("action");
+    document.querySelector(".opensanpham").classList.remove("action");
+    document.querySelector(".openkhachang").classList.remove("action");
+    document.querySelector(".js-sanpham").classList.remove("open");
+    document.querySelector(".js-khachang").classList.remove("open");
   
   }
 const openthongke = document.querySelector(".openthongke");
@@ -17,30 +21,37 @@ kh.addEventListener("click", function () {
 update_thongke("kh",false);
 });
 
-// Lấy chuỗi JSON từ localStorage
-const tk_donhang_list = localStorage.getItem('donhang');
-// Chuyển chuỗi JSON thành mảng đối tượng
-const tk_donhangArray = JSON.parse(tk_donhang_list);
-
-// Lọc các đơn hàng có trang_thai là 2 hoặc 3
-const filteredOrders = tk_donhangArray?.filter(order => order.trang_thai === "2" || order.trang_thai === "3");
-
-// Tạo một mảng mới chỉ chứa các giá trị của đối tượng
-var data_dh = filteredOrders?.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
-
-
-// Lấy chuỗi JSON từ localStorage
-const tk_chitiet_donhang_list = localStorage.getItem('chitiet_donhang');
-// Chuyển chuỗi JSON thành mảng đối tượng
-const tk_chitiet_donhangArray = JSON.parse(tk_chitiet_donhang_list);
-// Tạo một mảng mới chỉ chứa các giá trị của đối tượng
-var data_dh_chitiet = tk_chitiet_donhangArray?.map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
-
-var data_kh = filteredOrders?.map(({ trang_thai, dia_chi, sdt, ...otherProps }) => Object.values(otherProps));
-console.log(data_dh)
 var data_kh_temp = [];
 var data_dh_temp = [];
 var num_page = 1;
+var data_kh = [];
+var data_dh = [];
+var data_dh_chitiet = [];
+update_array();
+export function update_array(){
+    // Lấy chuỗi JSON từ localStorage
+    const tk_donhang_list = localStorage.getItem('donhang');
+    // Chuyển chuỗi JSON thành mảng đối tượng
+    const tk_donhangArray = JSON.parse(tk_donhang_list);
+
+    // Lọc các đơn hàng có trang_thai là 2 hoặc 3
+    const filteredOrders = tk_donhangArray?.filter(order => order.trang_thai === "2" || order.trang_thai === "3");
+
+    // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
+    data_dh = filteredOrders?.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
+
+
+    // Lấy chuỗi JSON từ localStorage
+    const tk_chitiet_donhang_list = localStorage.getItem('chitiet_donhang');
+    // Chuyển chuỗi JSON thành mảng đối tượng
+    const tk_chitiet_donhangArray = JSON.parse(tk_chitiet_donhang_list);
+    // Lọc `chitiet_donhang` 
+    data_dh_chitiet = tk_chitiet_donhangArray?.filter(detail => 
+        filteredOrders.some(order => order.id_donhang === detail.id_donhang)
+    ).map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
+
+    data_kh = filteredOrders?.map(({ trang_thai, dia_chi, sdt, ...otherProps }) => Object.values(otherProps));
+}
 
 function formatPrice() {
     const pricesContainer = document.querySelectorAll(".price");
