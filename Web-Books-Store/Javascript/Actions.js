@@ -134,6 +134,15 @@ function scriptOrder(customer, detailOrder) {
      let status;
      let productsList = JSON.parse(localStorage.getItem("products"));
      let product = productsList.find((product) => product.productID === detailOrder.id_sanpham);
+     let deliveried = addDaysToDate(customer.date, 3).toLocaleDateString("vi-VN", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false, 
+          timeZone: "Asia/Ho_Chi_Minh",
+     });
 
      // get status of this order
      if (status == 1) status = "chờ xử lý";
@@ -164,7 +173,7 @@ function scriptOrder(customer, detailOrder) {
                         <div><i class="fa-solid fa-chevron-right fa-xs" style="color: var(--main-color);"></i></div></div>
                   <div class="flex align-center justify-space-between padding-top-8">
                         <span class="delivered-day flex opacity-0-8">
-                            <div>${customer.date}</div>
+                            <div>${deliveried}</div>
                         </span>
 
                         <div class="flex">
@@ -188,7 +197,6 @@ function renderOrder(elementsObj) {
 
      if (customer && container) {
           let details = detailOrders.filter((detail) => detail.id_donhang === customer.id_donhang);
-          console.log(details);
           details.forEach((detail) => {
                let script = scriptOrder(customer, detail);
                let removeBtn = script.querySelector(".remove-btn");
@@ -226,6 +234,18 @@ function blankOrder(elementsObj) {
      elementsObj.getBlankOrder().classList.add("active");
      return;
 }
+
+// update date deliveried
+function addDaysToDate(dateString, daysToAdd) {
+     const date = new Date(dateString); // Chuyển chuỗi thành đối tượng Date
+     if (isNaN(date)) {
+       throw new Error("Invalid date format");
+     }
+   
+     date.setDate(date.getDate() + daysToAdd); // Thêm 3 ngày vào ngày hiện tại
+     return date; // Trả về đối tượng Date mới
+   }
+   
 
 // set quantity box on detail product
 function setQuantityBox(elementsObj) {
@@ -395,6 +415,8 @@ function userDetail(elementsObj) {
      let userOrders = elementsObj.getUserOrders();
      // for checking account have order or not
      let ordersList = JSON.parse(localStorage.getItem("donhang"));
+     if (!ordersList) return;
+     
      let loginAccount = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
      let customer = ordersList.find((order) => order.id_khachhang === loginAccount.userID);
 
