@@ -597,7 +597,6 @@ function state_donhang(select, id_donhang) {
     const orderDetails = chitiet_donhang.filter(detail => detail.id_donhang === id_donhang.innerHTML);
     // Trừ số lượng sản phẩm trong kho nếu điều kiện thỏa mãn
     if (currentStatus === "1" && (select.value === "xac_nhan" || select.value === "da_giao")) {
-      console.log('a')
       orderDetails.forEach(detail => {
         const productId = detail.id_sanpham;
         const quantityOrdered = parseInt(detail.sl); 
@@ -605,8 +604,10 @@ function state_donhang(select, id_donhang) {
         // Tìm sản phẩm trong mảng products và trừ số lượng
         for (let i = 0; i < products.length; i++) {
           if (products[i].productID === productId) {
-            console.log(quantityOrdered)
             products[i].quantity -= quantityOrdered; 
+            if (products[i].quantity < 0){
+              products[i].quantity = 0
+            }
             break;
           }
         }
