@@ -1,3 +1,5 @@
+import { activeSideBar, hiddenException } from "./JSAdmin.js";
+import {update_array} from "./thongke.js";
 // localStorage.clear();
 // const chitiet_donhang = [
 //   {
@@ -363,19 +365,14 @@ var num_page = 1;
 
 function showdonhang(){
   update_table_donhang();
-  let main = Array.from(document.querySelector(".main").children);
-  console.log(main);
-  let childNodes = Array.from(document.querySelector(".nav").children);
+
   document.querySelector('.js-donhang').style.display = 'block';
   document.querySelector('.js-thongke').style.display = 'none';
   document.querySelector(".opendonhang").classList.add("action");
   document.querySelector(".openthongke").classList.remove("action");
-  childNodes?.forEach((child) => {
-    if (!child.classList.contains(".openkhachhang"))
-      child.classList.remove("action");
-    else
-      child.classList.add("action");
-  });
+  // remove active on sidebar
+  activeSideBar("opendonhang");
+  hiddenException("donhang")
 }
 const opendonhang = document.querySelector(".opendonhang");
 opendonhang.addEventListener("click", showdonhang);
@@ -670,6 +667,7 @@ function state_donhang(select, id_donhang) {
     }
 
     // Cập nhật lại bảng và phân trang
+    update_array();
     update_table_donhang_now();
     updatePaginationButtons();
   } else {

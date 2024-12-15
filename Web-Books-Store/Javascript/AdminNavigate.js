@@ -1,3 +1,4 @@
+import { activeSideBar, hiddenException } from "./JSAdmin.js";
 import { convertBase64, getItemFromLocalStorage, setItemFromLocalStorage } from "./utils.js";
 import { isEmail, isEmpty, isExistedProductID, isExistedUserEmail, isExistedUserID, isNumber, isValidProductID, isValidUserID } from "./validation.js";
 
@@ -412,7 +413,8 @@ const showProductTable = () => {
       customerNavItem.classList.remove("action");
     }
     productConponent.classList.add("open");
-    productNavItem.classList.add("action");
+    activeSideBar("opensanpham");
+    hiddenException("sanpham");
     showProductContent();
   }
 
@@ -469,16 +471,15 @@ const customerNavItem = document.querySelector(".openkhachhang");
 const customerComponent = document.querySelector(".khachhang");
 const showCustomerTable = (filteredUsers) => {
   const users = filteredUsers || getItemFromLocalStorage("users");
-  console.log(users);
   if (customerComponent) {
     if (productConponent) {
       productConponent.classList.remove("open");
       productNavItem.classList.remove("action");
     }
     customerComponent.classList.add("open");
-    customerNavItem.classList.add("action");
+    activeSideBar("openkhachhang");
+    hiddenException("khachhang")
     showUserContent(users);
-    console.log(users);
   }
 
   function showUserContent(users) {

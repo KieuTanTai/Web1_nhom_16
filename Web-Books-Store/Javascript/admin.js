@@ -1,3 +1,5 @@
+import { activeSideBar } from "./JSAdmin.js";
+
 //
 window.onload = function () {
   if (window.localStorage.getItem("admin")) {
@@ -44,14 +46,12 @@ function eventab() {
   const khungdonhang = document.querySelector(".js-donhang");
 
   function showsanpham() {
+    activeSideBar("opensanpham");
     khungsanpham.classList.add("open");
     khungdonhang.classList.remove("open");
     khungkhachhang.classList.remove("open");
     khungtrangchu.classList.remove("open");
-    opensanpham.classList.add("action");
-    opentrangchu.classList.remove("action");
-    openkhachhang.classList.remove("action");
-    opendonhang.classList.remove("action");
+
   }
 
   opensanpham.addEventListener("click", showsanpham);
