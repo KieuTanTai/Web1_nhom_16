@@ -364,15 +364,26 @@ var num_page = 1;
 
 function showdonhang(){
   update_table_donhang();
-  document.querySelector('.js-donhang').style.display = 'block';
-  document.querySelector('.js-thongke').style.display = 'none';
+  document.querySelector('.donhang').classList.add("open");
   document.querySelector(".opendonhang").classList.add("action");
-  document.querySelector(".openthongke").classList.remove("action");
-  document.querySelector(".opensanpham").classList.remove("action");
-  document.querySelector(".openkhachang").classList.remove("action");
-  document.querySelector(".js-sanpham").classList.remove("open");
-  document.querySelector(".js-khachang").classList.remove("open");
-
+  const tk_comp = document.querySelector('.thongke');
+  const tk_nav = document.querySelector(".openthongke");
+  const sp_comp = document.querySelector('.sanpham');
+  const sp_nav = document.querySelector(".opensanpham");
+  const kh_comp = document.querySelector('.khachhang');
+  const kh_nav = document.querySelector(".openkhachhang");
+  if(tk_comp){
+    tk_comp.classList.remove("open");
+    tk_nav.classList.remove("action");
+  }
+  if(sp_comp){
+    sp_comp.classList.remove("open");
+    sp_nav.classList.remove("action");
+  }
+  if(kh_comp){
+    kh_comp.classList.remove("open");
+    kh_nav.classList.remove("action");
+  }
 }
 const opendonhang = document.querySelector(".opendonhang");
 opendonhang.addEventListener("click", showdonhang);

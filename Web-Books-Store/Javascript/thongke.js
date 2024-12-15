@@ -1,10 +1,26 @@
 function showthongke(){
     update_thongke('mh',false);
-    document.querySelector('.js-donhang').style.display = 'none';
-    document.querySelector('.js-thongke').style.display = 'block';
+    document.querySelector('.thongke').classList.add("open");
     document.querySelector(".openthongke").classList.add("action");
-    document.querySelector(".opendonhang").classList.remove("action");
-  
+    const dh_comp = document.querySelector('.donhang');
+    const dh_nav = document.querySelector(".opendonhang");
+    const sp_comp = document.querySelector('.sanpham');
+    const sp_nav = document.querySelector(".opensanpham");
+    const kh_comp = document.querySelector('.khachhang');
+    const kh_nav = document.querySelector(".openkhachhang");
+    if(dh_comp){
+      dh_comp.classList.remove("open");
+      dh_nav.classList.remove("action");
+    }
+    if(sp_comp){
+      sp_comp.classList.remove("open");
+      sp_nav.classList.remove("action");
+    }
+    if(kh_comp){
+      kh_comp.classList.remove("open");
+      kh_nav.classList.remove("action");
+    }
+    
   }
 const openthongke = document.querySelector(".openthongke");
 openthongke.addEventListener("click", showthongke);
