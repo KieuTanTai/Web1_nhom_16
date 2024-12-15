@@ -3,7 +3,7 @@ import { setQuantityBox } from "./Actions.js";
 import * as Bridge from "./Bridge.js";
 import { fakeOverlay, formatPrices, hiddenException, isEmpty, resizeImages, scrollView } from "./Interface.js";
 import * as Navigate from "./Navigate.js";
-import { attachAddToCartEvents } from "./Cart.js";
+import { attachAddToCartEvents, attachAddToCartInDetails } from "./Cart.js";
 // get / set products
 function getProductBooks() {
   return Array.from(JSON.parse(localStorage.getItem("products")));
@@ -122,7 +122,7 @@ async function dynamicDetail(product) {
   callFuncsAgain(elementsObj);
 }
 
-async function callFuncsAgain (elementsObj) {
+async function callFuncsAgain(elementsObj) {
   resizeImages(elementsObj);
   formatPrices(elementsObj);
 }
@@ -154,41 +154,42 @@ function renderProducts(list, wrapper) {
   let html = "";
   for (let product of list) {
     html += `
-            <div class="product-item grid-col col-l-2-4 col-m-3 col-s-6">
-                    <div class="block-product product-resize">
-                         <span class="product-image js-item">
-                              <img src="${product.img}" alt="${product.name}">
-                         </span>
-                         <div class="sale-label">${product.sale * 100}%</div>
-                         <div class="sale-off font-bold capitalize ${product.quantity > 0 ? "" : "active"}">hết hàng</div>
-                         <div class="info-inner flex justify-center align-center line-height-1-6">
-                              <h4 class="font-light capitalize" title="${product.name}">${product.name}</h4>
-                              <div class="margin-y-4">
-                                   <span class="price font-bold">${Math.round(product.price * (1 - product.sale))}</span>
-                                   <del class="price old-price padding-left-8 font-size-14">${product.price}</del>
-                              </div>
-                         </div>
+      <div class="product-item grid-col col-l-2-4 col-m-3 col-s-6">
+              <div class="block-product product-resize">
+                    <span class="product-image js-item">
+                        <img src="${product.img}" alt="${product.name}">
+                    </span>
+                    <div class="sale-label">${product.sale * 100}%</div>
+                    <div class="sale-off font-bold capitalize ${product.quantity > 0 ? "" : "active"}">hết hàng</div>
+                    <div class="info-inner flex justify-center align-center line-height-1-6">
+                        <h4 class="font-light capitalize" title="${product.name}">${product.name}</h4>
+                        <div class="margin-y-4">
+                              <span class="price font-bold">${Math.round(product.price * (1 - product.sale))}</span>
+                              <del class="price old-price padding-left-8 font-size-14">${product.price}</del>
+                        </div>
                     </div>
-                    <div class="action ${product.quantity > 0 ? "" : "disable"}">
-                         <div class="buy-btn">
-                              <div title="mua ngay" class="button">
-                                   <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
-                              </div>
-                         </div>
+              </div>
+              <div class="action ${product.quantity > 0 ? "" : "disable"}">
+                    <div class="buy-btn">
+                        <div title="mua ngay" class="button">
+                              <i class="fa-solid fa-bag-shopping fa-lg" style="color: var(--primary-white);"></i>
+                        </div>
+                    </div>
 
-          <div class="add-to-cart">
-            <div title="thêm vào giỏ hàng" class="button">
-              <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
-            </div>
-          </div>
+                  <div class="add-to-cart">
+                    <div title="thêm vào giỏ hàng" class="button">
+                      <i class="fa-solid fa-basket-shopping fa-lg" style="color: var(--primary-white);"></i>
+                    </div>
+                  </div>
+              </div>
         </div>
-      </div>
     `;
   }
   if (wrapper) {
     wrapper.innerHTML = html;
     renderProductDetails(list, wrapper, "detail_product.html");
     attachAddToCartEvents();
+    attachAddToCartInDetails();
   } else
     return html;
 }

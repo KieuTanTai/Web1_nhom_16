@@ -22,9 +22,9 @@ function setTimeFS(elementsObj) {
     fSTime = Array.from(fSTime.children);
 
     // execute
-    if (!stringTime)
-      activeFlashSale();
-    if (stringTime.includes("-")) {
+    if (!stringTime) 
+      stringTime = activeFlashSale();
+    if (stringTime?.includes("-")) {
       localStorage.removeItem("flashSaleTime");
       return;
     }
@@ -37,7 +37,7 @@ function setTimeFS(elementsObj) {
 
     let index = 0;
     let timeArray = [];
-    stringTime = stringTime.split(":");
+    stringTime = stringTime?.split(":");
     fSTime.forEach((time) => {
       if (time.classList.contains("fs-number")) {
         time.innerText = stringTime[index];

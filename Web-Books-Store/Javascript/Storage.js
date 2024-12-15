@@ -1,7 +1,7 @@
 [
      {
           "productID": "BK0001",
-          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp",
+          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp",
           "name": "Khẽ Hát Lời Yêu-1",
           "author": "Eku Takeshima",
           "sale": 0.15,
@@ -18,7 +18,7 @@
 
      {
           "productID": "BK0002",
-          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_2.webp",
+          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_2.webp",
           "name": "Khẽ Hát Lời Yêu-2",
           "author": "Eku Takeshima",
           "sale": 0.15,
@@ -35,7 +35,7 @@
 
      {
           "productID": "BK0003",
-          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_3.webp",
+          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_3.webp",
           "name": "Khẽ Hát Lời Yêu-3",
           "author": "Eku Takeshima",
           "sale": 0.15,
@@ -52,7 +52,7 @@
 
      {
           "productID": "BK0004",
-          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_4.webp",
+          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_4.webp",
           "name": "Khẽ Hát Lời Yêu-4",
           "author": "Eku Takeshima",
           "sale": 0.15,
@@ -69,7 +69,7 @@
 
      {
           "productID": "BK0005",
-          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_5.webp",
+          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_5.webp",
           "name": "Khẽ Hát Lời Yêu-5",
           "author": "Eku Takeshima",
           "sale": 0.15,
@@ -86,7 +86,7 @@
 
      {
           "productID": "BK0006",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/suzume__bia_cung_bia_cung.webp",
+          "img": "../Assets/Images/Books/Light_Novel/suzume__bia_cung_bia_cung.webp",
           "name": "Khóa Chặt Cửa Nào Suzume (Bìa Cứng)",
           "author": "Shinkai Makoto",
           "sale": 0.2,
@@ -103,7 +103,7 @@
  
      {
           "productID": "BK0007",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/suzume__bia_mem.webp",
+          "img": "../Assets/Images/Books/Light_Novel/suzume__bia_mem.webp",
           "name": "Khóa Chặt Cửa Nào Suzume (Bìa Mềm)",
           "author": "Shinkai Makoto",
           "sale": 0.2,
@@ -120,7 +120,7 @@
 
      {
           "productID": "BK0008",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/3_ngay_hanh_phuc.webp",
+          "img": "../Assets/Images/Books/Light_Novel/3_ngay_hanh_phuc.webp",
           "name": "3 ngày hạnh phúc",
           "author": "Sugaru Miaki",
           "sale": 0.31,
@@ -137,7 +137,7 @@
 
      {
           "productID": "BK0009",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/dau_oi_bay_di.webp",
+          "img": "../Assets/Images/Books/Light_Novel/dau_oi_bay_di.webp",
           "name": "đau ơi bay đi",
           "author": "Sugaru Miaki",
           "sale": 0.45,
@@ -154,7 +154,7 @@
 
      {
           "productID": "P00010",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/dem-day-sao.webp",
+          "img": "../Assets/Images/Books/Light_Novel/dem-day-sao.webp",
           "name": "Khi ấy là một đêm đầy sao",
           "author": "Milito Amasaki, Nagu",
           "sale": 0.2,
@@ -171,7 +171,7 @@
 
      {
           "productID": "P00011",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/dem_nay_dau_tinh_yeu_bien_mat.webp",
+          "img": "../Assets/Images/Books/Light_Novel/dem_nay_dau_tinh_yeu_bien_mat.webp",
           "name": "đêm nay dẫu tình yêu biến mất khỏi thế gian",
           "author": "Misaki Ichijo",
           "sale": 0.4,
@@ -188,7 +188,7 @@
 
      {
           "productID": "P00012",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/em_la_anh_sang_giua_dem_trang.webp",
+          "img": "../Assets/Images/Books/Light_Novel/em_la_anh_sang_giua_dem_trang.webp",
           "name": "em là ánh sáng giữa đêm trăng",
           "author": " Sano Tetsuya",
           "sale": 0.26,
@@ -200,12 +200,12 @@
           "genre": "tragedy",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Giới thiệu sách: Câu chuyện này xoay quanh gặp gỡ và chia ly giữa hai người trẻ tuyệt vọng. Cô tuyệt vọng vì sắp chết. Cậu tuyệt vọng vì phải sống tiếp. Bọn họ vốn học cùng lớp nhưng chưa từng gặp nhau, không biết tên nhau."
      },
 
      {
           "productID": "P00013",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/belle.webp",
+          "img": "../Assets/Images/Books/Light_Novel/belle.webp",
           "name": "BELLE-Rồng Và Công Chúa Tàn Nhang",
           "author": "Mamoru Hosoda",
           "sale": 0.7,
@@ -217,12 +217,12 @@
           "genre": "romance, fantasy",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Suzu là một cô bé 17 tuổi mờ nhạt, luôn thu mình trong góc lớp. Vì sự việc nọ, Suzu đánh mất khả năng hát những bài ca mình hằng yêu thích. Cô bạn thân Hiro bèn rủ Suzu tham gia thế giới mạng “U”, nơi ai cũng có thể “sống như một phiên bản khác của bản thân”.\n“Ở thế giới này, mình có thể ca hát…!”\nTrở thành nữ danh ca “Belle” trong “U” và rồi nổi tiếng khắp thế giới, Suzu tình cờ gặp Rồng, một quái vật bí ẩn mang rất nhiều vết bầm trên lưng. Thường ngày bị ghét bỏ vì hành động hung hăng thô lỗ, song đâu đó trong thâm tâm, anh ta luôn thấy cô đơn. Suzu và Rồng dần thấu hiểu lẫn nhau, song hiểm nguy bỗng ập tới chia rẽ họ…!?\nĐây là câu chuyện về hành trình “tìm thấy bản thân” nhờ sự dẫn lối của những bài ca!"
      },
 
      {
           "productID": "P00014",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/tang_hoa_cho_quai_vat_trong_rung.webp",
+          "img": "../Assets/Images/Books/Light_Novel/tang_hoa_cho_quai_vat_trong_rung.webp",
           "name": "Tặng Hoa Cho Quái Vật Trong Rừng",
           "author": "Kimito Kogi",
           "sale": 0.35,
@@ -239,7 +239,7 @@
 
      {
           "productID": "P00015",
-          "img": "/Web-Books-Store/Assets/Images/Books/Manga/yotsuba___tap_4.webp",
+          "img": "../Assets/Images/Books/Manga/yotsuba___tap_4.webp",
           "name": "Yotsuba&!-4",
           "author": " Azuma Kiyohiko",
           "sale": 0.15,
@@ -247,16 +247,16 @@
           "price": 65000,
           "release": "2024",
           "format": "bìa mềm",
-          "type": "light novel",
+          "type": "manga",
           "genre": "comedy",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Từ oẳn tù tì, chơi cầu lông đến câu cá, Yotsuba vui vẻ tận hưởng mùa hè sôi động! \nBỗng ngày nọ, cô bé nhận tin chấn động từ Fuka!? Đáng lẽ phải giữ bí mật, song với sự ngây ngô của mình, Yotsuba trót gây ra hàng loạt tình huống “khó đỡ”, khiến Fuka chẳng biết nên khóc hay nên cười…\nMột mùa hè với bao điều mới lạ, vẫn đang chờ Yotsuba khám phá!   "
      },
 
      {
           "productID": "P00016",
-          "img": "/Web-Books-Store/Assets/Images/Books/Van_Hoc/co-tich-nguoi-dien.webp",
+          "img": "../Assets/Images/Books/Van_Hoc/co-tich-nguoi-dien.webp",
           "name": "Cổ tích của người điên",
           "author": " Thời Thần",
           "sale": 0.23,
@@ -273,7 +273,7 @@
 
      {
           "productID": "P00017",
-          "img": "/Web-Books-Store/Assets/Images/Books/Technology/clean_code.webp",
+          "img": "../Assets/Images/Books/Technology/clean_code.webp",
           "name": "Clean Code-Mã Sạch Và Con Đường Trở Thành Lập Trình Viên Giỏi (Tái Bản 2023)",
           "author": "Nguyễn Văn Trung",
           "sale": 0.2,
@@ -290,7 +290,7 @@
 
      {
           "productID": "P00018",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/khi_muon_khoc_toi_deo_mat_na_meo.webp",
+          "img": "../Assets/Images/Books/Light_Novel/khi_muon_khoc_toi_deo_mat_na_meo.webp",
           "name": "Khi Muốn Khóc Tôi Đeo Mặt Nạ Mèo",
           "author": "Iwasa Mamoru",
           "sale": 0.2,
@@ -307,7 +307,7 @@
 
      {
           "productID": "P00019",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/bau_troi_xanh_cua_em.webp",
+          "img": "../Assets/Images/Books/Light_Novel/bau_troi_xanh_cua_em.webp",
           "name": "Bầu Trời Xanh Của Em",
           "author": "Cho-Heiwa Busters",
           "sale": 0.3,
@@ -324,7 +324,7 @@
 
      {
           "productID": "P00020",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/hello_world.webp",
+          "img": "../Assets/Images/Books/Light_Novel/hello_world.webp",
           "name": "Hello World",
           "author": "Nozaki Mado",
           "sale": 0.4,
@@ -341,7 +341,7 @@
 
      {
           "productID": "P00021",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/khu-vuon-ngon-tu.webp",
+          "img": "../Assets/Images/Books/Light_Novel/khu-vuon-ngon-tu.webp",
           "name": "Khu Vườn Ngôn Từ",
           "author": "Shinkai Makoto",
           "sale": 0.2,
@@ -358,7 +358,7 @@
 
      {
           "productID": "P00022",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/toi-muon-bao-ve-cau-du-phai-mat-di-tinh-yeu-nay.webp",
+          "img": "../Assets/Images/Books/Light_Novel/toi-muon-bao-ve-cau-du-phai-mat-di-tinh-yeu-nay.webp",
           "name": "Tôi Muốn Bảo Vệ Cậu Dù Phải Mất Đi... Tình Yêu Này",
           "author": "Sou Inaida",
           "sale": 0.2,
@@ -375,7 +375,7 @@
 
      {
           "productID": "P00023",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/tam-biet-troi-xanh.webp",
+          "img": "../Assets/Images/Books/Light_Novel/tam-biet-troi-xanh.webp",
           "name": "Tạm Biệt Trời Xanh",
           "author": "Misaki",
           "sale": 0.5,
@@ -387,12 +387,12 @@
           "genre": "tragedy",
           "packagingSize": "13 x 19 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Tạm Biệt Trời Xanh\nSau khi lên cấp ba, bằng tinh thần chính nghĩa vốn có của mình, Kawahara Aoi đã ra mặt giúp đỡ một người bạn cùng lớp bị bắt nạt, kết cục cô lại trở thành nạn nhân tiếp theo thay thế cho người bạn đó. Quá tuyệt vọng khi phải trải qua những ngày bị giày vò cả về thể xác lẫn tinh thần ở trường, Aoi đi tới bờ sông, nơi có cây cầu bắc qua hai khu phố và chuẩn bị kết thúc cuộc đời mình ở đó. Tuy nhiên Midori, một chàng trai có phong thái kỳ lạ đã bất ngờ xuất hiện và ngăn cô lại. Kể từ đó, sau mỗi ngày hẹn gặp nhau ở bờ sông, trò chuyện và lắng nghe những lời khuyên của Midori, Aoi dần lấy lại được lòng dũng cảm và sự tự tin để đối mặt với mọi chuyện. Tuy nhiên, đó cũng chính là lúc sự thật về Midori được phơi bày, mở ra đoạn hồi ức đau buồn thời thơ ấu của hai người mà cô đã vô tình lãng quên…  \nTrích dẫn trong sách:\n“Đối với tớ, sự tồn tại của Aoi tựa như một khoảng trời xanh mà cuộc đời tớ thiếu vắng bấy lâu vậy. Mỗi khi ở bên cậu, tớ cảm thấy tâm hồn mình như được gột rửa, bình yên và hạnh phúc lắm.”"
      },
 
      {
           "productID": "P00024",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/okitegamikyoko_1.webp",
+          "img": "../Assets/Images/Books/Light_Novel/okitegamikyoko_1.webp",
           "name": "Okitegami Kyoko I-Sổ Ghi Chép",
           "author": " NISIOISIN",
           "sale": 0.26,
@@ -404,12 +404,12 @@
           "genre": "fantasy, detective",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Thám tử mà hay quên thì làm ăn gì?\nKhông, thật ra trí nhớ của cô nàng thám tử có tên Okitegami Kyoko tốt hơn đa số mọi người… nếu chỉ tính trong một ngày!\nKí ức trong ngày của cô sẽ bị xóa vào chính cuối mỗi ngày, nên cô còn được gọi là “thám tử lãng quên”.\nKyoko sẽ làm thế nào để phá án khi chỉ có thời gian là một ngày?\nChưa kể anh chàng khách hàng Kakushidate Yakusuke, bạn thân của “xui xẻo”, kẻ luôn bị cuốn vào các vụ án, sẽ mang đến cho cô những bí ẩn tưởng chừng không thể phá giải trong một ngày!"
      },
 
      {
           "productID": "P00025",
-          "img": "/Web-Books-Store/Assets/Images/Books/Light_Novel/okitegamikyoko_2.webp",
+          "img": "../Assets/Images/Books/Light_Novel/okitegamikyoko_2.webp",
           "name": "Okitegami Kyoko II-Thư Tiến Cử",
           "author": " NISIOISIN",
           "sale": 0.5,
@@ -421,12 +421,12 @@
           "genre": "fantasy, detective",
           "packagingSize": "13 x 18 cm",
           "category": "normal",
-          "description": "....."
+          "description": "Ở tập 2 này, chúng ta sẽ theo chân cô nàng thám tử lãng quên Okaitegami Kyoko, người có kí ức bị cài đặt lại mỗi ngày, đến… bảo tàng mỹ thuật để xem tranh. Đời tư của cô sẽ tiếp tục được hé lộ, (vẫn) bên cạnh những màn phá án tài tình chỉ trong một ngày.\nĐây là một tập truyện dài, vì diễn tả đầy đủ quá trình suy luận bằng phương pháp loại trừ: liệt kê mọi khả năng có thể xảy ra, rồi gạch bỏ từng cái một cho đến khi còn lại chân tướng. Nếu đủ kiên nhẫn, độc giả sẽ biết Kyoko cũng rất kiên nhẫn (với vụ án và cả với anh chàng khách hàng mới) và giỏi bao quát tình hình tới nhường nào - chỉ có điều là cô \"nhanh bậc nhất\".\nCuốn sách là tập thứ hai thuộc series Thám tử lãng quên của Nisioisin, nhà văn nổi tiếng với những pha bẻ lái ngoạn mục trong tình tiết và sự vui tính thường gây trầm trồ trong sử dụng ngôn từ, đã được khẳng định qua nhiều series, trong đó có series Monogatari, cũng do VOFAN minh họa, và truyện ngắn DEATH NOTE: ANOTHER NOTE - LABB liên hoàn án."
      },
 
      {
           "productID": "P00026",
-          "img": "/Web-Books-Store/Assets/Images/Books/Learn_Language/kanji-look-learn.webp",
+          "img": "../Assets/Images/Books/Learn_Language/kanji-look-learn.webp",
           "name": "Kanji Look And Learn-512 Chữ Kanji Có Minh Họa Và Gợi Nhớ Bằng Hình",
           "author": " Nhiều Tác Giả",
           "sale": 0.2,
@@ -443,7 +443,7 @@
 
      {
           "productID": "P00027",
-          "img": "/Web-Books-Store/Assets/Images/Books/Learn_Language/kanji-look-learn-bai-tap.webp",
+          "img": "../Assets/Images/Books/Learn_Language/kanji-look-learn-bai-tap.webp",
           "name": "Kanji Look And Learn-512 Chữ Kanji Có Minh Họa Và Gợi Nhớ Bằng Hình - Bài Tập Workbook",
           "author": " Nhiều Tác Giả",
           "sale": 0.2,
@@ -460,7 +460,7 @@
 
      {
           "productID": "P00028",
-          "img": "/Web-Books-Store/Assets/Images/Books/Thieu_Nhi/alice.webp",
+          "img": "../Assets/Images/Books/Thieu_Nhi/alice.webp",
           "name": "Alice Ở Xứ Sở Diệu Kỳ Và Thế Giới Trong Gương",
           "author": " LEWIS CARROLL",
           "sale": 0.4,
@@ -468,7 +468,7 @@
           "price": 150000,
           "release": "2019",
           "format": "bìa mềm",
-          "type": "literary ",
+          "type": "literary",
           "genre": "literary",
           "packagingSize": "13.5 x 20.5 cm",
           "category": "normal",
@@ -478,7 +478,7 @@
 
      {
           "productID": "P00029",
-          "img": "/Web-Books-Store/Assets/Images/Books/Van_Hoc/am_hac_quan_combo.webp",
+          "img": "../Assets/Images/Books/Van_Hoc/am_hac_quan_combo.webp",
           "name": "Ám Hắc Quán – Combo 2 Tập",
           "author": "Yukito Ayatsuji",
           "sale": 0.2,
@@ -486,7 +486,7 @@
           "price": 350000,
           "release": "2023",
           "format": "bìa mềm",
-          "type": "literary ",
+          "type": "literary",
           "genre": "literary",
           "packagingSize": "13.5 x 20.5 cm",
           "category": "normal",
@@ -495,7 +495,7 @@
 
      {
           "productID": "BK0030",
-          "img": "/Web-Books-Store/Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp",
+          "img": "../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp",
           "name": "Khẽ Hát Lời Yêu-1 (bản sưu tập)",
           "author": "Eku Takeshima",
           "sale": 0.15,

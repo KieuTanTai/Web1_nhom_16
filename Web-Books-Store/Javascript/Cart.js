@@ -257,39 +257,51 @@ function attachAddToCartEvents() {
     console.error("Không tìm thấy #main-container!");
     return;
   }
+
   const productItems = mainContainer.querySelectorAll(".product-item");
 
   productItems.forEach((productItem) => {
     const addToCartButton = productItem.querySelector(".add-to-cart .button");
+    const buyNowButton = productItem.querySelector(".buy-btn .button");
 
-    if (!addToCartButton) {
-      console.warn(
-        "Không tìm thấy nút 'Thêm vào giỏ hàng' cho sản phẩm:",
-        productItem
-      );
+    if (!addToCartButton || !buyNowButton) {
+      console.warn("Không tìm thấy nút 'Thêm vào giỏ hàng' hoặc 'Mua ngay' cho sản phẩm:", productItem);
       return;
     }
+
     addToCartButton.replaceWith(addToCartButton.cloneNode(true));
-    const newButton = productItem.querySelector(".add-to-cart .button");
+    const newAddToCartButton = productItem.querySelector(
+      ".add-to-cart .button"
+    );
+
     const productName = productItem.querySelector("h4")?.textContent.trim();
     if (!productName) {
-      console.warn(
-        "Không tìm thấy tên sản phẩm trong .product-item:",
-        productItem
-      );
+      console.warn("Không tìm thấy tên sản phẩm trong .product-item:", productItem);
       return;
     }
-    newButton.addEventListener("click", () => {
+
+    newAddToCartButton.addEventListener("click", () => {
+      console.log(`Đang thêm sản phẩm: ${productName}`);
+      addToCart(productName);
+      increaseCartCount();
+    });
+
+    buyNowButton.replaceWith(buyNowButton.cloneNode(true));
+    const newBuyNowButton = productItem.querySelector(".buy-btn .button");
+
+    newBuyNowButton.addEventListener("click", () => {
       if (sessionStorage.getItem("hasLogin")) {
-        console.log(`Đang thêm sản phẩm: ${productName}`);
+        console.log(`Đang thêm sản phẩm và chuyển đến giỏ hàng: ${productName}`);
         addToCart(productName);
         increaseCartCount();
+        window.location.href = "cart.html";
       } else {
         alert("Phải đăng nhập trước");
       }
     });
   });
 }
+
 function handleCategoryNavigation() {
   const categoryButtons = document.querySelectorAll(".category-btn");
 
@@ -330,6 +342,12 @@ function handleOrderPlacement(elementsObj) {
       );
       return;
     }
+
+    if (!sessionStorage.getItem("hasLogin")) {
+      alert("Vui lòng đăng nhập");
+      return;
+    }
+
     const selectedItems = Array.from(cartItems)
       .filter((item) => {
         const checkbox = item.querySelector('input[type="checkbox"]');
@@ -364,11 +382,21 @@ function handleOrderPlacement(elementsObj) {
       return;
     }
 
+    const userPhone = document.querySelector("#user-phone").value.trim();
     const userAddress = document.querySelector("#user-address").value.trim();
     const userNote = document.querySelector("#user-note").value.trim();
 
     if (!userAddress) {
       alert("Hãy nhập địa chỉ giao hàng.");
+      return;
+    }
+    if (!userPhone) {
+      alert("Hãy nhập số điện thoại liên lạc.");
+      return;
+    }
+    const phoneRegex = /^[0-9]{10,11}$/;
+    if (!phoneRegex.test(userPhone)) {
+      alert("Số điện thoại không hợp lệ. Vui lòng nhập lại.");
       return;
     }
 
@@ -384,39 +412,40 @@ function handleOrderPlacement(elementsObj) {
 
     const totalOrderPrice =
       Prices + shippingFee - shippingDiscount - voucherDiscount;
-
+    const orderId = `ORDER-${Date.now()}`;
+    const user = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
+    const userName = user ? `${user.firstName} ${user.lastName}` : "Khách hàng";
+    let orders = JSON.parse(localStorage.getItem("orders"));
+    console.log(orders);
     const order = {
+      orderId: orderId,
+      userName: userName,
       products: selectedItems,
       date: new Date().toLocaleString("vi-VN"),
-      paymentMethod: paymentOption.id,
+      totalPrice: totalOrderPrice,
       address: userAddress,
+      phonenumber: userPhone,
+      paymentMethod: paymentOption.id,
       note: userNote,
       voucherCode: voucherCode || null,
-      totalPrice: totalOrderPrice,
     };
-    const orders = JSON.parse(localStorage.getItem("pay")) || [];
-    orders.push(order);
-
-    localStorage.setItem("pay", JSON.stringify(orders));
-
+    if (!orders) {
+      orders = [];
+      orders.push(order);
+    } else orders.push(order);
+    localStorage.setItem("orders", JSON.stringify(orders));
     const updatedCart = Array.from(cartItems)
       .filter((item) => {
         const checkbox = item.querySelector('input[type="checkbox"]');
         return !checkbox || !checkbox.checked;
       })
       .map((item) => {
-        const name = item
-          .querySelector(".info-product-cart p")
-          .innerText.trim();
+        const name = item.querySelector(".info-product-cart p").innerText.trim();
         const priceElement = item.querySelector(".price");
         const quantityElement = item.querySelector(".quantity-cart");
-        const rawPrice = priceElement
-          ? priceElement.innerText.replace(/\D/g, "")
-          : "0";
+        const rawPrice = priceElement ? priceElement.innerText.replace(/\D/g, "") : "0";
         const price = parseFloat(rawPrice) || 0;
-        const quantity = quantityElement
-          ? parseInt(quantityElement.value, 10)
-          : 1;
+        const quantity = quantityElement ? parseInt(quantityElement.value, 10) : 1;
         const image = item.querySelector("img").src;
         return { name, price, quantity, image };
       });
@@ -431,20 +460,70 @@ function handleOrderPlacement(elementsObj) {
   });
 }
 
-export {
-  addToCart,
-  attachAddToCartEvents,
-  increaseCartCount,
-  displayCartItems,
-  updateCartCount,
-  updateCartTotal,
-  handleOrderPlacement,
-};
-export {
-  handleQuantityChange,
-  handleCheckboxChange,
-  handleSelectAllCheckbox,
-  handleRemoveItem,
-  handleCartNavigation,
-  handleCategoryNavigation,
-};
+function attachAddToCartInDetails() {
+  const addToCartButton = Bridge.$$(".add-to-cart.button");
+  const buyNowButton = Bridge.$$(".buy-btn.button");
+  let historyCart = Bridge.$$(".block-product .cart-content");
+
+  if (!addToCartButton || !buyNowButton) {
+    console.error("Không tìm thấy nút 'Thêm vào giỏ hàng' hoặc 'Mua ngay' trong Product Details.");
+    return;
+  }
+
+  addToCartButton.forEach((button) => {
+    if (button.dataset.eventAttached)
+      return;
+    button.addEventListener("click", Bridge.throttle(() => {
+      const productName = document.querySelector(".product-title h1")?.textContent.trim();
+      const productPrice = parseFloat(document.querySelector(".new-price")?.textContent.replace(/\D/g, "")) || 0;
+      const productImage = document.querySelector(".product-image img")?.src;
+  
+      if (!productName || !productPrice || !productImage) {
+        console.error("Không thể lấy thông tin sản phẩm từ Product Details.");
+        return;
+      }
+  
+      const product = {
+        name: productName,
+        price: productPrice,
+        img: productImage,
+        quantity: 1,
+      };
+  
+      addToCart(productName);
+      increaseCartCount();
+    }), 200, "add-to-cart");
+    button.dataset.eventAttached = true;
+  });
+
+  buyNowButton.forEach((button) => button.addEventListener("click", Bridge.throttle(() => {
+    if (!sessionStorage.getItem("hasLogin")) {
+      alert("Bạn cần đăng nhập để mua ngay.");
+      return;
+    }
+
+    const productName = document.querySelector(".product-title h1")?.textContent.trim();
+    const productPrice = parseFloat(document.querySelector(".new-price")?.textContent.replace(/\D/g, "")) || 0;
+    const productImage = document.querySelector(".product-image img")?.src;
+
+    if (!productName || !productPrice || !productImage) {
+      console.error("Không thể lấy thông tin sản phẩm từ Product Details.");
+      return;
+    }
+
+    const product = {
+      name: productName,
+      price: productPrice,
+      img: productImage,
+      quantity: 1,
+    };
+
+    addToCart(productName);
+    increaseCartCount();
+    window.location.href = "cart.html";
+  })), 200, "buy-now");
+
+}
+
+export { addToCart, attachAddToCartEvents, increaseCartCount, displayCartItems, updateCartCount, updateCartTotal, handleOrderPlacement, attachAddToCartInDetails };
+export { handleQuantityChange, handleCheckboxChange, handleSelectAllCheckbox, handleRemoveItem, handleCartNavigation, handleCategoryNavigation };

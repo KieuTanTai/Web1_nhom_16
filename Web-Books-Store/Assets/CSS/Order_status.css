@@ -133,6 +133,7 @@
 }
 
 .history-order-table .block-product .cart-content {
+     height: 100%;
      padding: 0.5em;
      border-radius: var(--normal-radius);
      border: 1px solid var(--main-color);
@@ -140,14 +141,13 @@
 }
 
 #history-order-container .block-product img {
-     width: 12%;
+     width: 10%;
      height: 100%;
      object-fit: contain;
 }
 
-.history-order-table .block-product > div + div {
+.history-order-table .block-product .cart-content > div + div {
      border-top: 1px solid var(--border);
-
 }
 
 .history-order-table .block-product .order-status {
