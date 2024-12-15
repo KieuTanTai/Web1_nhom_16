@@ -457,10 +457,8 @@ function xemhoadon_kh(obj, f) {
         }
     }
     refresh_xemhd();
-    var frame_xemhd = document.createElement('div');
-    frame_xemhd.style.width = "100%";
-    frame_xemhd.id = "frame_xemhd";
-    document.getElementsByClassName('table-content')[4].appendChild(frame_xemhd);
+    var frame_xemhd = `<div id="frame_xemhd" style="width:100%"></div>`
+    document.getElementsByClassName('table-content')[5].innerHTML += frame_xemhd;
 
     add_header_hd();
     add_list_hd(list_hd, f);
