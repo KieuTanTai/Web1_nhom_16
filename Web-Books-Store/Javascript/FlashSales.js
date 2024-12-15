@@ -14,7 +14,7 @@ function setTimeFS(elementsObj) {
   let countDown = elementsObj.getFSCountDown();
   let fSTime = elementsObj.getTimeFS();
 
-  if (localStorage.getItem("activeFlashSale"))
+  if (!localStorage.getItem("activeFlashSale"))
     activeFlashSale();
 
   if (countDown && fSTime) {

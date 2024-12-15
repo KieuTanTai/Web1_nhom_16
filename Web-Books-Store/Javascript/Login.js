@@ -24,7 +24,7 @@ function validateAccount () {
         return;
       }
  
-    alert(`Đăng nhập thành công! Chào mừng ${user.firstName} ${user.lastName}`);
+    alert(`Đăng nhập thành công! Chào mừng ${user.lastName} ${user.firstName}`);
     sessionStorage.setItem("hasLogin", true);
     sessionStorage.setItem("hasLoginAccount", JSON.stringify(user));
     headerUserInfo(Bridge.default());

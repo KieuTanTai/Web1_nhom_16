@@ -186,20 +186,12 @@ function displayCartItems(elementsObj) {
                           item.name
                         }</p>
                         <div class="block-product-price">
-    <span class="new-price font-bold padding-right-8 price">${priceAfterDiscount}</span>
-    <del class="price old-price">${item.price || 0}</del>
-</div>
+                            <span class="new-price font-bold padding-right-8 price">${priceAfterDiscount}</span>
+                            <del class="price old-price">${item.price || 0}</del>
+                        </div>
                     </div>
                     <div class="number-product-cart grid-col col-l-2 col-m-10 col-s-10 no-gutter">
-                        <input
-                            type="number"
-                            name="quantity-cart"
-                            id="update_${index}"
-                            value="${item.quantity}"
-                            min="1"
-                            max="99"
-                            class="quantity-cart"
-                        />
+                        <input type="number" name="quantity-cart" id="update_${index}" value="${item.quantity}" min="1" max="99" class="quantity-cart"/>
                     </div>
                     <div class="price-per-item price font-bold grid-col col-l-3 s-m-hidden no-gutter text-center">
                         ${totalPricePerItem}

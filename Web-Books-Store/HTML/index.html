@@ -373,58 +373,49 @@
                                         <div class="account-container">
                                              <div class="flex align-center margin-bottom-16">
                                                   <div class="font-size-20 uppercase font-bold">tài khoản của bạn</div>
-                                                  <div class="margin-left-12 js-logout exit-color">Thoát</div>
+                                                  <div class="margin-left-12 js-signout exit-color">Thoát</div>
                                              </div>
-                                             <p class="user-orders margin-bottom-16 font-size-14 font-light">Bạn chưa
-                                                  đặt mua sản phẩm.</p>
+                                             <p class="user-orders margin-bottom-16 font-size-14 font-light"></p>
 
-                                             <div class="account-history-bill">
-                                                  <article
-                                                       class="history-order-link button flex justify-center align-center ">
-                                                       <div class="history-order-btn font-bold capitalize disable">xem
-                                                            lịch sử mua hàng</div>
+                                             <div class="account-history-bill grid-col col-l-3 no-gutter">
+                                                  <article class="history-order-link button">
+                                                       <div class="history-order-btn font-bold capitalize text-center">xem lịch sử mua hàng</div>
                                                   </article>
                                              </div>
 
                                              <div class="account-info padding-top-16">
-                                                  <h3 class="uppercase margin-bottom-16">thông tin khách hàng</h3>
+                                                  <div class="font-bold uppercase margin-bottom-16 font-size-20">thông tin khách hàng</div>
                                                   <div class="user-card padding-16 grid-col col-l-6 col-m-12 col-s-12">
-                                                       <div class="info user-name">
-                                                            <div
-                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">
-                                                                 Full Name</div>
-                                                            <input type="text" name="user-name" id="user-name"
-                                                                 class="grid-col col-l-10 col-m-8 col-s-8"
-                                                                 value="Kenneth Valdez" disabled>
-
+                                                       <div class="info user-last-name">
+                                                            <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Họ</div>
+                                                            <input type="text" name="user-last-name" id="user-last-name" 
+                                                                 class="grid-col col-l-10 col-m-8 col-s-8" value="Kenneth Valdez" disabled>
+                                                       </div>
+                                                       <div class="info user-first-name">
+                                                            <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Tên</div>
+                                                            <input type="text" name="user-first-name" id="user-first-name" 
+                                                                 class="grid-col col-l-10 col-m-8 col-s-8" value="Kenneth Valdez" disabled>
                                                        </div>
                                                        <div class="info user-email">
                                                             <div
-                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">
-                                                                 Email</div>
+                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Email</div>
                                                             <input type="text" name="user-email" id="user-email"
-                                                                 class="grid-col col-l-10 col-m-8 col-s-8"
-                                                                 value="fip@jukmuh.al" disabled>
+                                                                 class="grid-col col-l-10 col-m-8 col-s-8" value="fip@jukmuh.al" disabled>
                                                        </div>
                                                        <div class="info user-phone">
                                                             <div
-                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">
-                                                                 Phone</div>
-                                                            <input type="text" name="user-phone" id="user-phone"
-                                                                 class="grid-col col-l-10 col-m-8 col-s-8"
-                                                                 value="(239) 816-9029" disabled>
+                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Điện Thoại</div>
+                                                            <input type="text" name="user-phone" id="user-phone" class="grid-col col-l-10 col-m-8 col-s-8" 
+                                                                 placeholder="chưa có số điện thoại" value="(239) 816-9029" disabled>
                                                        </div>
                                                        <div class="info user-address">
-                                                            <div
-                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">
-                                                                 Address</div>
-                                                            <input type="text" name="user-address" id="user-address"
-                                                                 class="grid-col col-l-10 col-m-8 col-s-8"
-                                                                 value="Bay Area, San Francisco, CA" disabled>
+                                                            <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter"> Địa Chỉ</div>
+                                                            <input type="text" name="user-address" id="user-address" class="grid-col col-l-10 col-m-8 col-s-8" 
+                                                                 placeholder="chưa có địa chỉ" value="Bay Area, San Francisco, CA" disabled>
                                                        </div>
-                                                       <div class="full-width flex justify-center margin-top-8">
-                                                            <button class="js-edit-btn button capitalize">sửa thông
-                                                                 tin</button>
+                                                       <div class="full-width flex margin-top-12">
+                                                            <button class="js-edit-btn button capitalize">sửa thông tin</button>
+                                                            <button class="js-submit-btn button margin-left-16 capitalize">xác nhận</button>
                                                        </div>
                                                   </div>
                                                   <!-- <a href="#" class="view-address">Xem địa chỉ</a> -->
@@ -573,8 +564,7 @@
                                         <section id="blank-order" class="margin-y-16">
                                              <img
                                                   src="https://m.media-amazon.com/images/G/31/cart/empty/kettle-desaturated._CB424694257_.svg">
-                                             <span class="font-size-16 padding-bottom-16 margin-y-12">Không có đơn đặt
-                                                  hàng nào.</span>
+                                             <span class="font-size-16 padding-bottom-16 margin-y-12">Không có đơn đặt hàng nào.</span>
                                              <section
                                                   class="flex justify-center align-center font-bold capitalize margin-y-12">
                                                   <a href="./index.html" target="_self" class="return-homepage category-btn button">trang chủ</a>

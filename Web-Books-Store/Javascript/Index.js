@@ -77,28 +77,33 @@ window.addEventListener("load", () => {
   let registForm = Bridge.$("#register");
   let forgotForm = Bridge.$("#forgot-password");
 
-  if (sessionStorage.getItem("retryShowOrder") === "true") {
+  if (sessionStorage.getItem("retryShowOrder")) {
     sessionStorage.removeItem("retryShowOrder");
     Actions.showOrderContent();
   }
 
-  if (sessionStorage.getItem("retryTracking") === "true") {
+  if (sessionStorage.getItem("retryTracking")) {
     sessionStorage.removeItem("retryTracking");
-    Actions.showTracking(localStorage.getItem("orders"));
+    Actions.showTracking(localStorage.getItem("donhang"));
   }
 
-  if (sessionStorage.getItem("login") === "true") {
+  if (sessionStorage.getItem("login")) {
     sessionStorage.removeItem("login");
     Actions.showLogin(loginForm, registForm, forgotForm);
   }
 
-  if (sessionStorage.getItem("register") === "true") {
+  if (sessionStorage.getItem("register")) {
     sessionStorage.removeItem("register");
     Actions.showRegister(loginForm, registForm, forgotForm);
   }
 
-  if (sessionStorage.getItem("forgotPassword") === "true") {
+  if (sessionStorage.getItem("forgotPassword")) {
     sessionStorage.removeItem("forggotPassword");
     Actions.showForgotPassword(loginForm, registForm, forgotForm);
+  }
+
+  if (sessionStorage.getItem("userDetail")) {
+    sessionStorage.removeItem("userDetail");
+    Actions.userDetail(Bridge.default());
   }
 });
