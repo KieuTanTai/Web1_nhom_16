@@ -291,6 +291,19 @@
   box-shadow: 0 0.25em 0.5em var(--primary-dark);
 }
 
+.qr-code-container {
+  display: block;
+  text-align: center; 
+  margin-top: 10px;
+  width: 100%;
+  max-width: 900px; 
+}
+
+.qr-code-container img {
+  width: 100%; 
+  height: auto;
+}
+
 .list-btn .nav-categories .nav-item {
   line-height: 1.5;
   min-height: 2.25em;

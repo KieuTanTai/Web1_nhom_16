@@ -373,8 +373,6 @@ function handleOrderPlacement(elementsObj) {
       alert("Hãy chọn một phương thức thanh toán.");
       return;
     }
-
-    const userPhone = document.querySelector("#user-phone").value.trim();
     const userAddress = document.querySelector("#user-address").value.trim();
     const userNote = document.querySelector("#user-note").value.trim();
 
@@ -382,16 +380,6 @@ function handleOrderPlacement(elementsObj) {
       alert("Hãy nhập địa chỉ giao hàng.");
       return;
     }
-    if (!userPhone) {
-      alert("Hãy nhập số điện thoại liên lạc.");
-      return;
-    }
-    const phoneRegex = /^[0-9]{10,11}$/;
-    if (!phoneRegex.test(userPhone)) {
-      alert("Số điện thoại không hợp lệ. Vui lòng nhập lại.");
-      return;
-    }
-
     const voucherCode = document.querySelector("#voucher-code").value.trim();
 
     const Prices = selectedItems.reduce(
@@ -404,20 +392,34 @@ function handleOrderPlacement(elementsObj) {
 
     const totalOrderPrice =
       Prices + shippingFee - shippingDiscount - voucherDiscount;
-    const orderId = `ORDER-${Date.now()}`;
+      const currentDate = new Date();
+    const formattedDate = `${String(currentDate.getMonth() + 1).padStart(2, "0")}/${String(
+      currentDate.getDate()
+    ).padStart(2, "0")}/${String(currentDate.getFullYear()).slice(-2)} ${currentDate.toLocaleTimeString("en-US")}`;
+    const orderId = `DH${String(Date.now()).slice(-5)}`;
     const user = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
+    let userId, phone;
+    if (user?.userID) {
+      userId = user.userID; 
+      phone = user.phone; 
+    } else {
+      userId = generateId(users); 
+      phone = generateId(users);
+    }
+
     const userName = user ? `${user.firstName} ${user.lastName}` : "Khách hàng";
-    let orders = JSON.parse(localStorage.getItem("orders"));
+    let orders = JSON.parse(localStorage.getItem("donhang"));
     console.log(orders);
     const order = {
-      orderId: orderId,
-      userName: userName,
-      products: selectedItems,
-      date: new Date().toLocaleString("vi-VN"),
-      totalPrice: totalOrderPrice,
-      address: userAddress,
-      phonenumber: userPhone,
-      paymentMethod: paymentOption.id,
+      date: formattedDate,
+      dia_chi: userAddress,
+      id_donhang: orderId,
+      id_khachhang: userId,
+      ten_khach_hang: userName,
+      phonenumber: phone,
+      tong: totalOrderPrice,
+      trang_thai: paymentOption.id,
+      ten_sanpham: selectedItems,
       note: userNote,
       voucherCode: voucherCode || null,
     };
@@ -425,7 +427,7 @@ function handleOrderPlacement(elementsObj) {
       orders = [];
       orders.push(order);
     } else orders.push(order);
-    localStorage.setItem("orders", JSON.stringify(orders));
+    localStorage.setItem("donhang", JSON.stringify(orders));
     const updatedCart = Array.from(cartItems)
       .filter((item) => {
         const checkbox = item.querySelector('input[type="checkbox"]');
@@ -517,5 +519,27 @@ function attachAddToCartInDetails() {
 
 }
 
-export { addToCart, attachAddToCartEvents, increaseCartCount, displayCartItems, updateCartCount, updateCartTotal, handleOrderPlacement, attachAddToCartInDetails };
+function handlePaymentOptionChange() {
+  const qrCodeMomo = document.querySelector("#qr-code-momo");
+  const qrCodeATM = document.querySelector("#qr-code-atm");
+
+  const paymentOptions = document.querySelectorAll('input[name="payment-option"]');
+
+  paymentOptions.forEach((option) => {
+      option.addEventListener("change", () => {
+          if (option.id === "payment-option-2") {
+              qrCodeMomo.style.display = "block";
+              qrCodeATM.style.display = "none";
+          } else if (option.id === "payment-option-3") {
+              qrCodeATM.style.display = "block";
+              qrCodeMomo.style.display = "none";
+          } else {
+              qrCodeMomo.style.display = "none";
+              qrCodeATM.style.display = "none";
+          }
+      });
+  });
+}
+
+export { addToCart, attachAddToCartEvents, increaseCartCount, displayCartItems, updateCartCount, updateCartTotal, handleOrderPlacement, attachAddToCartInDetails, handlePaymentOptionChange };
 export { handleQuantityChange, handleCheckboxChange, handleSelectAllCheckbox, handleRemoveItem, handleCartNavigation, handleCategoryNavigation };

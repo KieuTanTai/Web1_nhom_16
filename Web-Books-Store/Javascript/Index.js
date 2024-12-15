@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       Cart.increaseCartCount();
       Cart.updateCartCount(elementsObj);
       Cart.handleCartNavigation();
+      Cart.handlePaymentOptionChange();
       Actions.accountEvents(elementsObj);
       Actions.staticContents(elementsObj);
       Actions.historyNavigate(elementsObj);

@@ -83,7 +83,7 @@ function showTracking(trackers) {
 }
 
 function orderInfo() {
-     if (!JSON.parse(sessionStorage.getItem("hasLogin"))) return;
+     if (!sessionStorage.getItem("hasLogin")) return;
      let ordersList = JSON.parse(localStorage.getItem("donhang"));
      let loginAccount = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
      let customer = ordersList.find((order) => order.id_khachhang === loginAccount.userID);
@@ -100,6 +100,7 @@ function orderInfo() {
                block.innerHTML = customer.dia_chi;
      });
 }
+ 
 
 // navigate to history tracking
 function historyNavigate(elementsObj) {
