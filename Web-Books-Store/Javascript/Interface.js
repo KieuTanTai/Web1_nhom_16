@@ -1,4 +1,5 @@
 "use strict";
+import { userDetail } from "./Actions.js";
 import * as Bridge from "./Bridge.js";
 import * as FlashSale from "./FlashSales.js";
 import { sleep } from "./Navigate.js";
@@ -28,7 +29,9 @@ function headerUserInfo(elementsObj) {
     registerBtn?.forEach((btn) => btn.classList.add("disable"));
     logoutBtn?.forEach((btn) => btn.classList.remove("disable"));
     container.classList.remove("disable");
-    userName.innerHTML = hasLoginAccount.firstName + hasLoginAccount.lastName;
+    userName.innerHTML = hasLoginAccount.lastName + " " + hasLoginAccount.firstName;
+    container.addEventListener("click", () => userDetail(elementsObj));
+
   }
   else {
     noSignIn.classList.remove("disable");

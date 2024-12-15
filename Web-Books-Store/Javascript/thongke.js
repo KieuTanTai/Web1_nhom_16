@@ -1,54 +1,71 @@
+
+
 // Lấy chuỗi JSON từ localStorage
 const tk_donhang_list = localStorage.getItem('donhang');
 // Chuyển chuỗi JSON thành mảng đối tượng
 const tk_donhangArray = JSON.parse(tk_donhang_list);
 // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
-var data_dh = tk_donhangArray.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
+var data_dh = tk_donhangArray?.map(({ id_khachhang, ...otherProps }) => Object.values(otherProps));
 
 // Lấy chuỗi JSON từ localStorage
 const tk_chitiet_donhang_list = localStorage.getItem('chitiet_donhang');
 // Chuyển chuỗi JSON thành mảng đối tượng
 const tk_chitiet_donhangArray = JSON.parse(tk_chitiet_donhang_list);
 // Tạo một mảng mới chỉ chứa các giá trị của đối tượng
-var data_dh_chitiet = tk_chitiet_donhangArray.map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
+var data_dh_chitiet = tk_chitiet_donhangArray?.map(({ id_sanpham, ...otherProps }) => Object.values(otherProps));
 
-var data_kh = tk_donhangArray.map(({ trang_thai,dia_chi, ...otherProps }) => Object.values(otherProps));
+var data_kh = tk_donhangArray?.map(({ trang_thai, dia_chi, ...otherProps }) => Object.values(otherProps));
 
 var data_kh_temp = [];
 var data_dh_temp = [];
 var num_page = 1;
 
+function formatPrice() {
+    const pricesContainer = document.querySelectorAll(".price");
+    if (pricesContainer) {
+        const formatPricesHandler = new Intl.NumberFormat("vi-VN", {
+            style: "currency",
+            currency: "VND",
+            minimumSignificantDigits: "3",
+        });
+        pricesContainer.forEach((element) => {
+            if (!element.innerHTML.includes("₫"))
+                element.innerText = formatPricesHandler.format(element.innerText);
+        });
+    }
+}
+
 // Cập nhật table (số trang về 1)
-function update_thongke(type,f){
+function update_thongke(type, f) {
     var parent = document.getElementsByClassName("table-content")[3];
     var children = parent.children;
-    if (type=='kh'){
+    if (type == 'kh') {
         Array.from(children).forEach(child => {
             if (child.id != "filter") {
                 parent.removeChild(child);
             }
         });
-    } else{
+    } else {
         Array.from(children).forEach(child => {
             parent.removeChild(child);
         });
     }
     num_page = 1
-    thongke(type,f);
+    thongke(type, f);
 }
 
 // Loại thống kê (mặt hàng, khách hàng)
-function thongke(type,f){
+function thongke(type, f) {
     var btn_tkmh = document.getElementById('mh');
     var btn_tkkh = document.getElementById('kh');
-    switch (type){
+    switch (type) {
         case 'mh':
-            btn_tkmh.setAttribute('style',"pointer-events: none; background-color: gray");
+            btn_tkmh.setAttribute('style', "pointer-events: none; background-color: gray");
             btn_tkkh.removeAttribute('style');
             thongke_mh();
             break;
         case 'kh':
-            btn_tkkh.setAttribute('style',"pointer-events: none; background-color: gray");
+            btn_tkkh.setAttribute('style', "pointer-events: none; background-color: gray");
             btn_tkmh.removeAttribute('style');
             thongke_kh(f);
             break;
@@ -56,7 +73,7 @@ function thongke(type,f){
 }
 
 // Thống kê mặt hàng
-function thongke_mh(){
+function thongke_mh() {
     var header_thongkemh = document.createElement('div');
     header_thongkemh.innerHTML = `
         <div class="header_thongkemh">
@@ -69,7 +86,7 @@ function thongke_mh(){
     info_thongke.className = 'info_thongke';
     info_thongke.innerHTML = `
         <div style="display: flex; width: 100%; height: 100%; background-color: rgb(220, 220, 220);">
-            <div style="display: flex; justify-content: center; align-items: center; width: 70%; height: 100%; border-right: 1px solid black;">
+            <div style="display: flex; justify-content: center; align-items: center; width: 60%; height: 100%; border-right: 1px solid black;">
                 <div style="width: 90%; height: 100%;">
                     <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
                         <h2 style="color: black;">Sản phẩm bán chạy</h2>
@@ -92,7 +109,7 @@ function thongke_mh(){
                     </div>
                 </div>
             </div>
-            <div style="display: flex; justify-content: center; align-items: center; width: 70%; height: 100%; border-left: 1px solid black;">
+            <div style="display: flex; justify-content: center; align-items: center; width: 60%; height: 100%; border-left: 1px solid black;">
                 <div style="width: 90%; height: 100%;">
                     <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
                         <h2 style="color: black;">Sản phẩm bán chậm</h2>
@@ -124,8 +141,8 @@ function thongke_mh(){
 }
 
 // Thống kê khách hàng
-function thongke_kh(f){
-    if (!f){
+function thongke_kh(f) {
+    if (!f) {
         var loc_date = document.createElement('div');
         loc_date.id = "filter";
         loc_date.innerHTML = `
@@ -179,103 +196,108 @@ function thongke_kh(f){
     </div>
     `;
     document.getElementsByClassName('table-content')[3].appendChild(info_thongke);
-    if (!f){
-        add_thongke_kh(get_thongke_kh(),false);
-    } else{
-        add_thongke_kh(get_thongke_kh_f(),true);
+    if (!f) {
+        add_thongke_kh(get_thongke_kh(), false);
+    } else {
+        add_thongke_kh(get_thongke_kh_f(), true);
     }
 }
 
 // Tổng thu
-function add_tongthu(){
+function add_tongthu() {
     var tongthu = document.createElement('div');
     var sum = 0;
-    for (let i=0; i<data_dh_chitiet.length; i++){
-        sum = sum + parseInt(data_dh_chitiet[i][4].replace(/,/g, ''));
+    for (let i = 0; i < data_dh_chitiet.length; i++) {
+        sum = sum + data_dh_chitiet[i][4];
     }
-    tongthu.className = 'tongthu';
-    tongthu.innerHTML = `<h1 style="color: black">Tổng thu: ${sum.toLocaleString()} VND</h1>`;
+    tongthu.classList.add('tongthu');
+    tongthu.classList.add('flex');
+    tongthu.classList.add('tongthu');
+    tongthu.classList.add('tongthu');
+    tongthu.classList.add('tongthu');
+    tongthu.innerHTML = `<h1 style="color: black">Tổng thu: <span class="price">${sum}</span></h1>`;
     document.getElementsByClassName('table-content')[3].appendChild(tongthu);
+    formatPrice();
 }
 
 // Lâp danh sách thống kê
-function get_thongke_mh(){
+function get_thongke_mh() {
     var rank = [];
-    for (let i=0; i<data_dh_chitiet.length; i++){
-        var f=0;
-        for (let j=0; j<rank.length; j++){
-            if (data_dh_chitiet[i][1]==rank[j][0]){
-                rank[j][1] = rank[j][1] + parseInt(data_dh_chitiet[i][3]);
-                rank[j][2] = (parseInt(rank[j][2].replace(/,/g, '')) + parseInt(data_dh_chitiet[i][4].replace(/,/g, ''))).toLocaleString('en-US');
-                f=1;
+    for (let i = 0; i < data_dh_chitiet.length; i++) {
+        var f = 0;
+        for (let j = 0; j < rank.length; j++) {
+            if (data_dh_chitiet[i][1] == rank[j][0]) {
+                rank[j][1] = rank[j][1] + data_dh_chitiet[i][3];
+                rank[j][2] = rank[j][2] + data_dh_chitiet[i][4];
+                f = 1;
                 break;
             }
         }
-        if (f==0){
-            rank.push([data_dh_chitiet[i][1],parseInt(data_dh_chitiet[i][3]),data_dh_chitiet[i][4]]);
+        if (f == 0) {
+            rank.push([data_dh_chitiet[i][1], parseInt(data_dh_chitiet[i][3]), data_dh_chitiet[i][4]]);
         }
     }
     return rank;
 }
 
-function get_thongke_kh(){
+function get_thongke_kh() {
     var rank = [];
-    for (let i=0; i<data_kh.length; i++){
-        var f=0;
-        for (let j=0; j<rank.length; j++){
-            if (data_kh[i][1]==rank[j][0]){
+    for (let i = 0; i < data_kh.length; i++) {
+        var f = 0;
+        for (let j = 0; j < rank.length; j++) {
+            if (data_kh[i][1] == rank[j][0]) {
                 rank[j][2] = (parseInt(rank[j][2].replace(/,/g, '')) + parseInt(data_kh[i][3].replace(/,/g, ''))).toLocaleString('en-US');
-                f=1;
+                f = 1;
                 break;
             }
         }
-        if (f==0){
-            rank.push([data_kh[i][1],data_kh[i][2],data_kh[i][3]]);
+        if (f == 0) {
+            rank.push([data_kh[i][1], data_kh[i][2], data_kh[i][3]]);
         }
     }
     return rank;
 }
 
-function get_thongke_kh_f(){
+function get_thongke_kh_f() {
     var rank = [];
-    for (let i=0; i<data_kh_temp.length; i++){
-        var f=0;
-        for (let j=0; j<rank.length; j++){
-            if (data_kh_temp[i][1]==rank[j][0]){
+    for (let i = 0; i < data_kh_temp.length; i++) {
+        var f = 0;
+        for (let j = 0; j < rank.length; j++) {
+            if (data_kh_temp[i][1] == rank[j][0]) {
                 rank[j][2] = (parseInt(rank[j][2].replace(/,/g, '')) + parseInt(data_kh_temp[i][3].replace(/,/g, ''))).toLocaleString('en-US');
-                f=1;
+                f = 1;
                 break;
             }
         }
-        if (f==0){
-            rank.push([data_kh_temp[i][1],data_kh_temp[i][2],data_kh_temp[i][3]]);
+        if (f == 0) {
+            rank.push([data_kh_temp[i][1], data_kh_temp[i][2], data_kh_temp[i][3]]);
         }
     }
     return rank;
 }
 
 // Thống kê bán chạy
-function add_thongke_mh1(){
+function add_thongke_mh1() {
     var body = document.querySelector('#thongke_mh1 tbody');
     var thongke = get_thongke_mh();
-    var top=0;
+    var top = 0;
     thongke.sort((a, b) => b[1] - a[1]);
-    for (let i = 0; i < thongke.length && top<5; i++) {
+    for (let i = 0; i < thongke.length && top < 5; i++) {
         var row = document.createElement('tr');
-        for (let j = 0; j < thongke[i].length+2; j++) {
+        for (let j = 0; j < thongke[i].length + 2; j++) {
             var cell = document.createElement('td');
             cell.style.color = 'black';
-            if (j==0){
-                cell.textContent = i+1;
+            if (j == 0) {
+                cell.textContent = i + 1;
                 row.appendChild(cell);
                 continue;
             }
-            if (j==thongke[i].length+1){
+            if (j == thongke[i].length + 1) {
                 cell.innerHTML = `<a style="text-decoration: underline; color: blue; cursor: default;" onClick="xemhoadon_mh('${thongke[i][0]}')">Xem</a>`;
                 row.appendChild(cell);
                 break;
             }
-            cell.textContent = thongke[i][j-1];
+            cell.textContent = thongke[i][j - 1];
             row.appendChild(cell);
         }
         body.appendChild(row);
@@ -284,27 +306,27 @@ function add_thongke_mh1(){
 }
 
 // Thống kê bán chậm
-function add_thongke_mh2(){
+function add_thongke_mh2() {
     var body = document.querySelector('#thongke_mh2 tbody');
     var thongke = get_thongke_mh();
-    var top=0;
+    var top = 0;
     thongke.sort((a, b) => a[1] - b[1]);
-    for (let i = 0; i < thongke.length && top<5; i++) {
+    for (let i = 0; i < thongke.length && top < 5; i++) {
         var row = document.createElement('tr');
-        for (let j = 0; j < thongke[i].length+2; j++) {
+        for (let j = 0; j < thongke[i].length + 2; j++) {
             var cell = document.createElement('td');
             cell.style.color = 'black';
-            if (j==0){
-                cell.textContent = i+1;
+            if (j == 0) {
+                cell.textContent = i + 1;
                 row.appendChild(cell);
                 continue;
             }
-            if (j==thongke[i].length+1){
+            if (j == thongke[i].length + 1) {
                 cell.innerHTML = `<a style="text-decoration: underline; color: blue; cursor: default;"onClick="xemhoadon_mh('${thongke[i][0]}')">Xem</a>`;
                 row.appendChild(cell);
                 break;
             }
-            cell.textContent = thongke[i][j-1];
+            cell.textContent = thongke[i][j - 1];
             row.appendChild(cell);
         }
         body.appendChild(row);
@@ -313,32 +335,32 @@ function add_thongke_mh2(){
 }
 
 // Thống kê khách hàng
-function add_thongke_kh(thongke,f){
+function add_thongke_kh(thongke, f) {
     var body = document.querySelector('#thongke_kh tbody');
-    var top=0;
+    var top = 0;
     thongke.sort((a, b) => {
-        const valueA = parseInt(a[2].replace(/,/g, ''));
-        const valueB = parseInt(b[2].replace(/,/g, ''));
-        
+        const valueA = a[2];
+        const valueB = b[2];
+
         return valueB - valueA;
     });
     console.log(thongke)
-    for (let i = 0; i < thongke.length && top<5; i++) {
+    for (let i = 0; i < thongke.length && top < 5; i++) {
         var row = document.createElement('tr');
-        for (let j = 0; j < thongke[i].length+2; j++) {
+        for (let j = 0; j < thongke[i].length + 2; j++) {
             var cell = document.createElement('td');
             cell.style.color = 'black';
-            if (j==0){
-                cell.textContent = i+1;
+            if (j == 0) {
+                cell.textContent = i + 1;
                 row.appendChild(cell);
                 continue;
             }
-            if (j==thongke[i].length+1){
+            if (j == thongke[i].length + 1) {
                 cell.innerHTML = `<a style="text-decoration: underline; color: blue; cursor: default;"onClick="xemhoadon_kh('${thongke[i][0]}',${f})">Xem</a>`;
                 row.appendChild(cell);
                 break;
             }
-            cell.textContent = thongke[i][j-1];
+            cell.textContent = thongke[i][j - 1];
             row.appendChild(cell);
         }
         body.appendChild(row);
@@ -347,9 +369,9 @@ function add_thongke_kh(thongke,f){
 }
 
 // Làm mới bảng xem hóa đơn
-function refresh_xemhd(){
+function refresh_xemhd() {
     var parent = document.getElementById("frame_xemhd");
-    if (parent != null){
+    if (parent != null) {
         var children = parent.children;
         Array.from(children).forEach(child => {
             parent.removeChild(child);
@@ -358,11 +380,11 @@ function refresh_xemhd(){
 }
 
 // Xem danh sách hóa đơn
-function xemhoadon_mh(obj){
+function xemhoadon_mh(obj) {
     // Lấy danh sách hóa đơn theo sản phẩm
     var list_hd = [];
-    for (let i=0; i<data_dh_chitiet.length; i++){
-        if (obj==data_dh_chitiet[i][1]){
+    for (let i = 0; i < data_dh_chitiet.length; i++) {
+        if (obj == data_dh_chitiet[i][1]) {
             list_hd.push(data_dh_chitiet[i][0]);
         }
     }
@@ -378,11 +400,11 @@ function xemhoadon_mh(obj){
     add_page_hd(list_hd);
 }
 
-function xemhoadon_kh(obj,f){
+function xemhoadon_kh(obj, f) {
     // Lấy danh sách hóa đơn theo khách hàng
     var list_hd = [];
-    for (let i=0; i<data_kh.length; i++){
-        if (obj==data_kh[i][1]){
+    for (let i = 0; i < data_kh.length; i++) {
+        if (obj == data_kh[i][1]) {
             list_hd.push(data_kh[i][0]);
         }
     }
@@ -393,12 +415,12 @@ function xemhoadon_kh(obj,f){
     document.getElementsByClassName('table-content')[3].appendChild(frame_xemhd);
 
     add_header_hd();
-    add_list_hd(list_hd,f);
+    add_list_hd(list_hd, f);
     add_page_hd(list_hd);
 }
 
 // Header bảng hóa đơn
-function add_header_hd(){
+function add_header_hd() {
     var header_xemhd = document.createElement('h2');
     header_xemhd.style = "display: grid; place-items:center; margin-top: 20px";
     header_xemhd.textContent = "Xem hoá đơn";
@@ -423,12 +445,12 @@ function add_header_hd(){
 }
 
 // Lập danh sách hóa đơn
-function add_list_hd(list_hd,f){
-    var k=0;
-    if(!f){
-        for (let i=(num_page-1)*5; i<(num_page-1)*5+5 && i<list_hd.length; i++){
-            for (let j=0; j<data_dh.length; j++){
-                if (list_hd[i]==data_dh[j][0]){
+function add_list_hd(list_hd, f) {
+    var k = 0;
+    if (!f) {
+        for (let i = (num_page - 1) * 5; i < (num_page - 1) * 5 + 5 && i < list_hd.length; i++) {
+            for (let j = 0; j < data_dh.length; j++) {
+                if (list_hd[i] == data_dh[j][0]) {
                     k++;
                     var new_hoadon = document.createElement('div');
                     new_hoadon.className = "table-donhang";
@@ -448,10 +470,10 @@ function add_list_hd(list_hd,f){
                 }
             }
         }
-    } else{
-        for (let i=(num_page-1)*5; i<(num_page-1)*5+5 && i<list_hd.length; i++){
-            for (let j=0; j<data_dh_temp.length; j++){
-                if (list_hd[i]==data_dh_temp[j][0]){
+    } else {
+        for (let i = (num_page - 1) * 5; i < (num_page - 1) * 5 + 5 && i < list_hd.length; i++) {
+            for (let j = 0; j < data_dh_temp.length; j++) {
+                if (list_hd[i] == data_dh_temp[j][0]) {
                     k++;
                     var new_hoadon = document.createElement('div');
                     new_hoadon.className = "table-donhang";
@@ -475,7 +497,7 @@ function add_list_hd(list_hd,f){
 }
 
 // Phân trang
-function add_page_hd(data){
+function add_page_hd(data) {
     var page = document.createElement('div');
     page.id = "phan_trang";
     page.style.display = "grid";
@@ -490,7 +512,7 @@ function add_page_hd(data){
                 </ul>
             </nav>
         `;
-    } else{
+    } else {
         page.innerHTML = `
             <nav>
                 <ul class="pagination">
@@ -504,15 +526,15 @@ function add_page_hd(data){
     document.getElementById('frame_xemhd').appendChild(page);
 }
 
-function xemchitiet_dh(id_donhang){
+function xemchitiet_dh(id_donhang) {
     // Lấy chi tiết đơn hàng
     var donhangDetails = [];
-    for (let i=0; i<data_dh_chitiet.length; i++){
-        if (data_dh_chitiet[i][0]==id_donhang.innerHTML){
+    for (let i = 0; i < data_dh_chitiet.length; i++) {
+        if (data_dh_chitiet[i][0] == id_donhang.innerHTML) {
             donhangDetails.push(data_dh_chitiet[i]);
         }
     }
-    
+
     // Header
     var model_ctdh = document.createElement('div');
     model_ctdh.className = 'chitietdonhang';
@@ -533,7 +555,7 @@ function xemchitiet_dh(id_donhang){
     document.getElementsByClassName('table-content')[3].appendChild(model_ctdh);
 
     // Chi tiết đơn hàng
-    for (let i=0; i<donhangDetails.length; i++){
+    for (let i = 0; i < donhangDetails.length; i++) {
         var new_ctdh = document.createElement('div');
         new_ctdh.className = 'table-chitiet_donhang';
         new_ctdh.innerHTML = `
@@ -546,43 +568,43 @@ function xemchitiet_dh(id_donhang){
     }
 }
 
-function loc_thongkekh(date_start,date_end){
+function loc_thongkekh(date_start, date_end) {
     var filtered_data_kh = [...data_kh];
     data_kh_temp = [];
     var filtered_data_dh = [...data_dh];
     data_dh_temp = [];
     // Lọc ngày bắt đầu
-    if (date_start.value != ""){
-        filtered_data_kh = filter_date_start(filtered_data_kh,date_start.value);
-        filtered_data_dh = filter_date_start(filtered_data_dh,date_start.value);
-    } 
+    if (date_start.value != "") {
+        filtered_data_kh = filter_date_start(filtered_data_kh, date_start.value);
+        filtered_data_dh = filter_date_start(filtered_data_dh, date_start.value);
+    }
     // Lọc ngày kết thúc
-    if (date_end.value != ""){
-        filtered_data_kh = filter_date_end(filtered_data_kh,date_end.value);
-        filtered_data_dh = filter_date_end(filtered_data_kh,date_end.value);
-    } 
+    if (date_end.value != "") {
+        filtered_data_kh = filter_date_end(filtered_data_kh, date_end.value);
+        filtered_data_dh = filter_date_end(filtered_data_kh, date_end.value);
+    }
     data_kh_temp = filtered_data_kh;
     data_dh_temp = filtered_data_dh;
     console.log(data_kh_temp);
     console.log(data_dh_temp);
-    update_thongke('kh',true);
+    update_thongke('kh', true);
 }
 
-function filter_date_start(f_data,date_start){
+function filter_date_start(f_data, date_start) {
     var f_date_start = new Date(date_start);
     f_date_start.setDate(f_date_start.getDate());
     return f_data.filter(row => {
-        var dateStr = row[4]; 
+        var dateStr = row[4];
         var dateObj = new Date(dateStr);
         return dateObj >= f_date_start;
     });
 }
 
-function filter_date_end(f_data,date_end){
+function filter_date_end(f_data, date_end) {
     var f_date_end = new Date(date_end);
-    f_date_end.setDate(f_date_end.getDate()+1);
+    f_date_end.setDate(f_date_end.getDate() + 1);
     return f_data.filter(row => {
-        var dateStr = row[4]; 
+        var dateStr = row[4];
         var dateObj = new Date(dateStr);
         return dateObj <= f_date_end;
     });

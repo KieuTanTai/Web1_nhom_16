@@ -190,7 +190,7 @@
                                    </section>
 
                                    <!-- best selling -->
-                                   <section id="best-selling-container"
+                                   <!-- <section id="best-selling-container"
                                         class="container flex grid-col col-l-12 col-m-12 col-s-12 no-gutter">
                                         <div class="category-tab">
                                              <div class="heading">
@@ -199,7 +199,6 @@
                                                        bán chạy</div>
                                              </div>
 
-                                             <!-- container for products -->
                                              <div class="product-container"></div>
 
                                              <div
@@ -207,14 +206,14 @@
                                                   <a href="#" class="category-btn button">Xem thêm</a>
                                              </div>
                                         </div>
-                                   </section>
+                                   </section> -->
 
                                    <!-- Light Novel  -->
                                    <section id="light-novel-container"
                                         class="container flex grid-col col-l-12 col-m-12 col-s-12 no-gutter">
                                         <div class="category-tab">
                                              <div class="heading">
-                                                  <div id="ln-label" class="heading-label"></div>
+                                                  <div class="heading-label light-novel-label"></div>
                                                   <div class="uppercase font-bold font-size-20 padding-left-8">Light
                                                        Novel</div>
                                              </div>
@@ -234,7 +233,7 @@
                                         class="container flex grid-col col-l-12 col-m-12 col-s-12 no-gutter">
                                         <div class="category-tab">
                                              <div class="heading">
-                                                  <div id="manga-label" class="heading-label"></div>
+                                                  <div class="heading-label manga-label"></div>
                                                   <div class="uppercase font-bold font-size-20 padding-left-8">Manga
                                                   </div>
                                              </div>
@@ -374,58 +373,55 @@
                                         <div class="account-container">
                                              <div class="flex align-center margin-bottom-16">
                                                   <div class="font-size-20 uppercase font-bold">tài khoản của bạn</div>
-                                                  <div class="margin-left-12 js-logout exit-color">Thoát</div>
+                                                  <div class="margin-left-12 js-signout exit-color">Thoát</div>
                                              </div>
-                                             <p class="user-orders margin-bottom-16 font-size-14 font-light">Bạn chưa
-                                                  đặt mua sản phẩm.</p>
+                                             <p class="user-orders margin-bottom-16 font-size-14 font-light"></p>
 
-                                             <div class="account-history-bill">
-                                                  <article
-                                                       class="history-order-link button flex justify-center align-center ">
-                                                       <div class="history-order-btn font-bold capitalize disable">xem
-                                                            lịch sử mua hàng</div>
+                                             <div class="account-history-bill grid-col col-l-3 no-gutter">
+                                                  <article class="history-order-link button">
+                                                       <div class="history-order-btn font-bold capitalize text-center">xem lịch sử mua hàng</div>
                                                   </article>
                                              </div>
 
                                              <div class="account-info padding-top-16">
-                                                  <h3 class="uppercase margin-bottom-16">thông tin khách hàng</h3>
+                                                  <div class="font-bold uppercase margin-bottom-16 font-size-20">thông tin khách hàng</div>
                                                   <div class="user-card padding-16 grid-col col-l-6 col-m-12 col-s-12">
-                                                       <div class="info user-name">
-                                                            <div
-                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">
-                                                                 Full Name</div>
-                                                            <input type="text" name="user-name" id="user-name"
-                                                                 class="grid-col col-l-10 col-m-8 col-s-8"
-                                                                 value="Kenneth Valdez" disabled>
-
+                                                       <div class="info user-last-name">
+                                                            <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Họ</div>
+                                                            <input type="text" name="user-last-name" id="user-last-name" 
+                                                                 class="grid-col col-l-10 col-m-8 col-s-8" value="Kenneth Valdez" disabled>
+                                                       </div>
+                                                       <div class="info user-first-name">
+                                                            <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Tên</div>
+                                                            <input type="text" name="user-first-name" id="user-first-name" 
+                                                                 class="grid-col col-l-10 col-m-8 col-s-8" value="Kenneth Valdez" disabled>
                                                        </div>
                                                        <div class="info user-email">
                                                             <div
-                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">
-                                                                 Email</div>
+                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Email</div>
                                                             <input type="text" name="user-email" id="user-email"
-                                                                 class="grid-col col-l-10 col-m-8 col-s-8"
-                                                                 value="fip@jukmuh.al" disabled>
+                                                                 class="grid-col col-l-10 col-m-8 col-s-8" value="fip@jukmuh.al" disabled>
+                                                       </div>
+                                                       <div class="info user-password">
+                                                            <div
+                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Mật Khẩu</div>
+                                                            <input type="password" name="user-password" id="user-password"
+                                                                 class="grid-col col-l-10 col-m-8 col-s-8" placeholder="nhập mật khẩu" disabled>
                                                        </div>
                                                        <div class="info user-phone">
                                                             <div
-                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">
-                                                                 Phone</div>
-                                                            <input type="text" name="user-phone" id="user-phone"
-                                                                 class="grid-col col-l-10 col-m-8 col-s-8"
-                                                                 value="(239) 816-9029" disabled>
+                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">Điện Thoại</div>
+                                                            <input type="text" name="user-phone" id="user-phone" class="grid-col col-l-10 col-m-8 col-s-8" 
+                                                                 placeholder="chưa có số điện thoại" value="(239) 816-9029" disabled>
                                                        </div>
                                                        <div class="info user-address">
-                                                            <div
-                                                                 class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter">
-                                                                 Address</div>
-                                                            <input type="text" name="user-address" id="user-address"
-                                                                 class="grid-col col-l-10 col-m-8 col-s-8"
-                                                                 value="Bay Area, San Francisco, CA" disabled>
+                                                            <div class="font-bold grid-col col-l-2 col-m-4 col-s-4 no-gutter"> Địa Chỉ</div>
+                                                            <input type="text" name="user-address" id="user-address" class="grid-col col-l-10 col-m-8 col-s-8" 
+                                                                 placeholder="chưa có địa chỉ" value="Bay Area, San Francisco, CA" disabled>
                                                        </div>
-                                                       <div class="full-width flex justify-center margin-top-8">
-                                                            <button class="js-edit-btn button capitalize">sửa thông
-                                                                 tin</button>
+                                                       <div class="full-width flex margin-top-12">
+                                                            <button class="js-edit-btn button capitalize">sửa thông tin</button>
+                                                            <button class="js-submit-btn button margin-left-16 capitalize">xác nhận</button>
                                                        </div>
                                                   </div>
                                                   <!-- <a href="#" class="view-address">Xem địa chỉ</a> -->
@@ -574,8 +570,7 @@
                                         <section id="blank-order" class="margin-y-16">
                                              <img
                                                   src="https://m.media-amazon.com/images/G/31/cart/empty/kettle-desaturated._CB424694257_.svg">
-                                             <span class="font-size-16 padding-bottom-16 margin-y-12">Không có đơn đặt
-                                                  hàng nào.</span>
+                                             <span class="font-size-16 padding-bottom-16 margin-y-12">Không có đơn đặt hàng nào.</span>
                                              <section
                                                   class="flex justify-center align-center font-bold capitalize margin-y-12">
                                                   <a href="./index.html" target="_self" class="return-homepage category-btn button">trang chủ</a>
@@ -637,8 +632,7 @@
                                                        <div class="block-order-info grid-col col-l-3 col-m-6 col-s-6">
                                                             <h4 class="capitalize">địa chỉ nhận hàng</h4>
                                                             <span class="shipping-to font-size-20 opacity-0-8">
-                                                                 <span class="Consignee-address">449/76 K4 HL BD BT
-                                                                      TP.HCM</span>
+                                                                 <span class="Consignee-address">449/76 K4 HL BD BT TP.HCM</span>
                                                             </span>
                                                        </div>
                                                   </div>
@@ -716,8 +710,7 @@
                                                   </div>
 
                                                   <!-- tracking table -->
-                                                  <div
-                                                       class="tracking-table-container grid-col col-l-12 col-m-12 col-s-12 margin-top-16 no-gutter">
+                                                  <!-- <div class="tracking-table-container grid-col col-l-12 col-m-12 col-s-12 margin-top-16 no-gutter">
                                                        <div class="tracking-table flex">
                                                             <div
                                                                  class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
@@ -870,7 +863,7 @@
                                                                  </div>
                                                             </div>
                                                        </div>
-                                                  </div>
+                                                  </div> -->
                                              </div>
 
                                              <article
@@ -886,83 +879,34 @@
                                         class="history-tracking-container margin-y-24 grid-col col-l-12 col-m-12 col-s-12">
                                         <section id="history-order-container" class="">
                                              <div class="order-status-header padding-bottom-8 margin-bottom-16">
-                                                  <p class="uppercase font-bold text-center font-size-20">lịch sử mua
-                                                       hàng</p>
+                                                  <p class="uppercase font-bold text-center font-size-20">lịch sử mua hàng</p>
                                              </div>
 
-                                             <div
-                                                  class="history-order-table grid-col col-l-12 col-m-12 col-s-12 no-gutter flex justify-space-between">
-                                                  <div class="block-product">
-                                                       <div class="cart-content">
-                                                            <div class="completed-order-info margin-bottom-8">
-                                                                 <img
-                                                                      src="../Assets/Images/Books/Manga/khe_hat_loi_yeu_1.webp">
-                                                                 <div class="full-width padding-left-12">
-                                                                      <p class="capitalize padding-bottom-8">khẽ hát lời
-                                                                           yêu 1</p>
-                                                                      <div class="block-product-price text-end">
-                                                                           <div class="quantity-cart">x1</div>
-                                                                           <div class="new-price price">55250</div>
-                                                                      </div>
-                                                                 </div>
-                                                            </div>
-                                                            <div
-                                                                 class="flex justify-space-between padding-bottom-8 padding-top-8">
-                                                                 <div class="total-item opacity-0-6">1 item</div>
-                                                                 <div class="price total-price font-bold text-end">
-                                                                      55250
-                                                                 </div>
-                                                            </div>
-                                                            <div
-                                                                 class="order-status flex justify-space-between padding-top-8 padding-bottom-8">
-                                                                 <span class="opacity-0-8 font-size-13 success-color">Giao
-                                                                      hàng thành công</span>
-                                                                 <div><i class="fa-solid fa-chevron-right fa-xs"
-                                                                           style="color: var(--main-color);"></i></div>
-                                                            </div>
-                                                            <div
-                                                                 class="flex align-center justify-space-between padding-top-8">
-                                                                 <span class="delivered-day flex opacity-0-8">
-                                                                      <div>12/09/2024</div>
-                                                                      <div class="padding-left-12">21:05</div>
-                                                                 </span>
-
-                                                                 <span class="buy-btn button">
-                                                                      <div class="capitalize"> mua lại</div>
-                                                                 </span>
-                                                            </div>
-                                                       </div>
-                                                  </div>
-                                             </div>
+                                             <div class="history-order-table grid-col col-l-12 col-m-12 col-s-12 no-gutter flex justify-space-between"></div>
                                         </section>
                                    </div>
 
                                    <div class="overlay">
-                                        <div
-                                             class="status-container grid-col col-l-6 col-m-6 col-s-6 flex justify-center align-center full-height">
+                                        <div class="status-container grid-col col-l-6 col-m-6 col-s-6 flex justify-center align-center full-height">
                                              <!-- tracking table -->
                                              <div
                                                   class="tracking-table-container grid-col col-l-12 col-m-12 col-s-12 no-gutter">
                                                   <div class="tracking-table flex align-center">
-                                                       <div
-                                                            class="flex justify-space-between full-width margin-bottom-12">
+                                                       <div class="flex justify-space-between full-width margin-bottom-12">
                                                             <h4 class="uppercase">mã vận đơn</h4>
-                                                            <span
-                                                                 class="tracking-code font-size-20 opacity-0-6">432434xgf14142</span>
+                                                            <span class="tracking-code font-size-20 opacity-0-6">432434xgf14142</span>
                                                        </div>
 
                                                        <div
                                                             class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
-                                                            <div
-                                                                 class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
                                                                  <div>12/09</div>
                                                                  <div>18:05</div>
                                                             </div>
 
                                                             <div class="dot-status flex align-center">
                                                                  <div>
-                                                                      <i class="fa-regular fa-circle-dot fa-2xs"
-                                                                           style="color: var(--main-color);"></i>
+                                                                      <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
                                                                  </div>
                                                             </div>
 
@@ -974,23 +918,20 @@
 
                                                        <div
                                                             class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
-                                                            <div
-                                                                 class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
                                                                  <div>12/09</div>
                                                                  <div>19:05</div>
                                                             </div>
 
                                                             <div class="dot-status flex align-center">
                                                                  <div>
-                                                                      <i class="fa-regular fa-circle-dot fa-2xs"
-                                                                           style="color: var(--main-color);"></i>
+                                                                      <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
                                                                  </div>
                                                             </div>
 
                                                             <div class="delivery-state padding-left-12">
                                                                  <div class="font-bold">Chuẩn bị hàng</div>
-                                                                 <span class="opacity-0-8">Shop đang chuẩn bị
-                                                                      hàng</span>
+                                                                 <span class="opacity-0-8">Shop đang chuẩn bị hàng</span>
                                                             </div>
                                                        </div>
 
@@ -1004,21 +945,18 @@
 
                                                             <div class="dot-status flex align-center">
                                                                  <div>
-                                                                      <i class="fa-regular fa-circle-dot fa-2xs"
-                                                                           style="color: var(--main-color);"></i>
+                                                                      <i class="fa-regular fa-circle-dot fa-2xs" style="color: var(--main-color);"></i>
                                                                  </div>
                                                             </div>
 
                                                             <div class="delivery-state padding-left-12">
-                                                                 <span class="opacity-0-8">Đơn vị vận chuyển lấy hàng
-                                                                      thành công</span>
+                                                                 <span class="opacity-0-8">Đơn vị vận chuyển lấy hàng thành công</span>
                                                             </div>
                                                        </div>
 
                                                        <div
                                                             class="tracking-block flex padding-top-8 padding-bottom-8 align-center full-width">
-                                                            <div
-                                                                 class="tracking-time padding-right-8 font-size-14 opacity-0-6">
+                                                            <div class="tracking-time padding-right-8 font-size-14 opacity-0-6">
                                                                  <div>12/09</div>
                                                                  <div>21:05</div>
                                                             </div>
@@ -1031,8 +969,7 @@
                                                             </div>
 
                                                             <div class="delivery-state padding-left-12">
-                                                                 <span class="opacity-0-8">Đơn hàng đã đến kho phân
-                                                                      loại</span>
+                                                                 <span class="opacity-0-8">Đơn hàng đã đến kho phân loại</span>
                                                             </div>
                                                        </div>
 
@@ -1118,14 +1055,16 @@
                                              <div class="news-item grid-col col-l-4 col-m-4 col-s-12 active">
                                                   <div class="news-blogs">
                                                        <div class="news-blogs-image">
-                                                            <a href="https://ipm.vn/blogs/tintuc/diem-danh-nhung-cuon-truyen-tranh-co-dung-luong-khung-tren-400-trang">
+                                                            <!-- <a href="https://ipm.vn/blogs/tintuc/diem-danh-nhung-cuon-truyen-tranh-co-dung-luong-khung-tren-400-trang"> -->
+                                                            <a href="#">
                                                                  <img src="../Assets/Images/Banners/news-blogs-1.jpg" alt="" />
                                                             </a>
                                                             <div class="date">24/07/2024</div>
                                                        </div>
                                                        <div class="news-blogs-detail">
                                                             <p class="news-blogs-review">
-                                                                 <a href="https://ipm.vn/blogs/tintuc/diem-danh-nhung-cuon-truyen-tranh-co-dung-luong-khung-tren-400-trang">
+                                                                 <!-- <a href="https://ipm.vn/blogs/tintuc/diem-danh-nhung-cuon-truyen-tranh-co-dung-luong-khung-tren-400-trang"> -->
+                                                                 <a href="#">
                                                                       Điểm danh những cuốn truyện tranh có dung lượng
                                                                       KHỦNG trên 400 trang!
                                                                  </a>
@@ -1143,7 +1082,8 @@
                                              <div class="news-item grid-col col-l-4 col-m-4 col-s-12 active">
                                                   <div class="news-blogs">
                                                        <div class="news-blogs-image">
-                                                            <a href="https://ipm.vn/blogs/tintuc/diem-danh-nhung-tieu-thuyet-trinh-tham-kinh-di-hap-dan-mong-nhe-duo">
+                                                            <!-- <a href="https://ipm.vn/blogs/tintuc/diem-danh-nhung-tieu-thuyet-trinh-tham-kinh-di-hap-dan-mong-nhe-duo"> -->
+                                                            <a href="#">
                                                                  <img src="../Assets/Images/Banners/news-blogs-2.jpg"
                                                                       alt="" />
                                                             </a>
@@ -1151,7 +1091,8 @@
                                                        </div>
                                                        <div class="news-blogs-detail">
                                                             <p class="news-blogs-review">
-                                                                 <a href="https://ipm.vn/blogs/tintuc/diem-danh-nhung-tieu-thuyet-trinh-tham-kinh-di-hap-dan-mong-nhe-duo">
+                                                                 <!-- <a href="https://ipm.vn/blogs/tintuc/diem-danh-nhung-tieu-thuyet-trinh-tham-kinh-di-hap-dan-mong-nhe-duo"> -->
+                                                                 <a href="#">
                                                                       Điểm danh những tiểu thuyết trinh thám - kinh dị
                                                                       hấp dẫn, mỏng nhẹ dưới 300 trang
                                                                  </a>
@@ -1169,7 +1110,8 @@
                                              <div class="news-item grid-col col-l-4 col-m-4 col-s-12 active">
                                                   <div class="news-blogs">
                                                        <div class="news-blogs-image">
-                                                            <a href="https://ipm.vn/blogs/tintuc/xu-tuyet-cuc-han-cai-dep">
+                                                            <!-- <a href="https://ipm.vn/blogs/tintuc/xu-tuyet-cuc-han-cai-dep"> -->
+                                                            <a href="#">
                                                                  <img src="../Assets/Images/Banners/news-blogs-3.jpg" alt=""/>
                                                             </a>
                                                             <div class="date">14/06/2024</div>
@@ -1194,7 +1136,8 @@
                                              <div class="news-item grid-col col-l-4 col-m-4 col-s-12 active">
                                                   <div class="news-blogs">
                                                        <div class="news-blogs-image">
-                                                            <a href="https://ipm.vn/blogs/tintuc/on-lai-ki-niem-tuoi-tho-voi-bo-manga-vui-nhon-yotsuba">
+                                                            <!-- <a href="https://ipm.vn/blogs/tintuc/on-lai-ki-niem-tuoi-tho-voi-bo-manga-vui-nhon-yotsuba"> -->
+                                                            <a href="#">
                                                                  <img src="../Assets/Images/Banners/Yotsuba.jpg" alt="" />
                                                             </a>
                                                             <div class="date">22/04/2024</div>
