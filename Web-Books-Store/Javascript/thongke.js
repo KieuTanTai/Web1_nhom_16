@@ -189,13 +189,12 @@ function thongke_kh(f) {
         document.getElementsByClassName('table-content')[5].innerHTML = loc_date.innerHTML;
     }
 
-    var header_thongkekh = document.createElement('div');
-    header_thongkekh.innerHTML = `
+    var header_thongkekh = `
         <div class="header_thongkekh">
             <h1 style="color: black;">Thống kê khách hàng</h1>
         </div>
         `;
-    document.getElementsByClassName('table-content')[4].appendChild(header_thongkekh);
+    document.getElementsByClassName('table-content')[5].innerHTML = header_thongkekh;
 
     var info_thongke = document.createElement('div');
     info_thongke.innerHTML = `
@@ -441,10 +440,8 @@ function xemhoadon_mh(obj) {
         }
     }
     refresh_xemhd();
-    var frame_xemhd = document.createElement('div');
-    frame_xemhd.style.width = "100%";
-    frame_xemhd.id = "frame_xemhd";
-    document.getElementsByClassName('table-content')[4].appendChild(frame_xemhd);
+    var frame_xemhd =  `<div id="frame_xemhd" style="width:100%"></div>`
+    document.getElementsByClassName('table-content')[5].innerHTML = frame_xemhd;
 
     add_header_hd();
     add_list_hd(list_hd);
