@@ -15,27 +15,25 @@ function validateRegister() {
 
   registerForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    for (let key in errorMessages) {
-      if (emailExists) {
-        errorMessages[key].innerHTML = "Email này đã tồn tại!";
-        email.addEventListner("focus", () => (errorMessages[key].innerHTML = ""));
-        return;
-      }
+    if (emailExists) {
+      errorMessages[0].innerHTML = "Email này đã tồn tại!";
+      email.addEventListner("focus", () => (errorMessages[0].innerHTML = ""));
+      return;
+    }
 
-      const passwordRegex = /^[a-zA-Z0-9 !@#$&*%]{8,20}$/;
-      if (!passwordRegex.test(nodePassword.value)) {
-        errorMessages[key].innerHTML = "Mật khẩu phải từ 8 ký tự trở lên";
-        nodePassword.addEventListner("focus", () => (errorMessages[key].innerHTML = ""));
-        return;
-      }
+    const passwordRegex = /^[a-zA-Z0-9 !@#$&*%]{8,20}$/;
+    if (!passwordRegex.test(nodePassword.value)) {
+      errorMessages[1].innerHTML = "Mật khẩu phải từ 8 ký tự trở lên";
+      nodePassword.addEventListner("focus", () => (errorMessages[1].innerHTML = ""));
+      return;
+    }
 
-      if (nodePassword.value !== confirmPassword.value) {
-        errorMessages[key].innerHTML = "Mật khẩu không khớp!";
-        errorMessages[++key].innerHTML = "Mật khẩu không khớp!";
-        nodePassword.addEventListner("focus", () => (errorMessages[key].innerHTML = ""));
-        confirmPassword.addEventListner("focus", () => (errorMessages[key].innerHTML = ""));
-        return;
-      }
+    if (nodePassword.value !== confirmPassword.value) {
+      errorMessages[2].innerHTML = "Mật khẩu không khớp!";
+      errorMessages[3].innerHTML = "Mật khẩu không khớp!";
+      nodePassword.addEventListner("focus", () => (errorMessages[2].innerHTML = ""));
+      confirmPassword.addEventListner("focus", () => (errorMessages[3].innerHTML = ""));
+      return;
     }
 
     const userID = generateId(users);
@@ -46,7 +44,7 @@ function validateRegister() {
     const phone = "";
     const address = "";
 
-    const newUser = {userID, firstName, lastName, email, password, phone, address};
+    const newUser = { userID, firstName, lastName, email, password, phone, address };
     console.log(newUser);
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));

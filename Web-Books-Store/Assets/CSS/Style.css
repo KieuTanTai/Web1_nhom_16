@@ -290,6 +290,11 @@
   border-bottom-right-radius: 0.25em;
   box-shadow: 0 0.25em 0.5em var(--primary-dark);
 }
+.qr-code-container img {
+  max-width: none; /* Hoặc tăng kích thước như max-width: 400px; */
+  width: 100%; /* Đảm bảo hình ảnh co giãn theo kích thước container */
+  height: auto; /* Đảm bảo tỷ lệ ảnh không bị méo */
+}
 
 .qr-code-container {
   display: block;

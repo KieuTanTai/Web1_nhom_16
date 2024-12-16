@@ -14,13 +14,13 @@ function validateAccount () {
     const user = users.find((user) => user.email.trim() === email.value.trim());
       if (!user) {
         errorMessages[0].innerHTML = "Tài khoản không tồn tại!";
-        email.addEventListener("focus", () => errorMessages[key].innerHTML = "");
+        email.addEventListener("focus", () => errorMessages[0].innerHTML = "");
         return;
       }
   
       if (user.password !== password.value) {
         errorMessages[1].innerHTML = "Mật khẩu không đúng!";
-        password.addEventListener("focus", () => errorMessages[key].innerHTML = "");
+        password.addEventListener("focus", () => errorMessages[1].innerHTML = "");
         return;
       }
       
