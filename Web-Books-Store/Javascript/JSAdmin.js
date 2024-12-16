@@ -24,7 +24,7 @@ function hiddenException(exception) {
      console.log(container);
    
      container.forEach((element) => {
-          if (element.classList.contains(exception))
+          if (element.classList.contains(exception) || element.classList.contains("overclass"))
             element.classList.remove("disable");
           else
             element.classList.add("disable");

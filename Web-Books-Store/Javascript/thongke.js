@@ -207,7 +207,7 @@ function thongke_kh(f) {
     info_thongke.innerHTML = `
     <div style="display: flex; width: 100%; height: 100%; background-color: rgb(220, 220, 220);">
         <div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; border-right: 1px solid black;">
-            <div style="width: 50%; height: 100%;">
+            <div style="width: 50%; min-height: 15em;">
                 <div style="width: 100%; height: 50px; display: flex; justify-content: center; align-items: center;">
                     <h2 style="color: black;">Danh sách khách hàng phát sinh doanh thu nhiều nhất</h2>
                 </div>

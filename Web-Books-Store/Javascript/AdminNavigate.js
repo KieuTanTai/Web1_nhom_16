@@ -298,7 +298,7 @@ window.showEditBookForm = function (productID) {
         </tr>
         <tr>
           <td colspan="2" class="table-footer">
-            <button type="button" class="btn-save">LƯU THAY ĐỔI</button>
+            <button type="button" class="btn-save" onclick=suaSanPham(${sp.masp})>LƯU THAY ĐỔI</button>
           </td>
         </tr>
       </table>

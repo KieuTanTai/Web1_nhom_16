@@ -13,14 +13,16 @@
     <link rel="stylesheet" href="../Assets/Font/fontawesome-6.6.0/css/all.min.css" />
     <!-- <script type="module" src="../Javascript/Index.js"></script> -->
     <script type="module" src="../Javascript/JSAdmin.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 </head>
 
 <body>
     <!-- Login component -->
     <div class="login-component flex justify-center">
-        <h1 class="message disable" style="background-color:pink; color:red; width:100%; text-align:center; margin: 50px;"> BạnChưa Đăng Nhập ADMIN </h1>
+        <h1 class="message disable"
+            style="background-color:pink; color:red; width:100%; text-align:center; margin: 50px;"> BạnChưa Đăng Nhập
+            ADMIN </h1>
         <form class="flex flex-direction-y ">
             <h3 class="text-center">Login Admin</h3>
             <div class="form-group flex flex-direction-y margin-bottom-8">
@@ -417,7 +419,7 @@
                         </tr>
 
                         <script>
-                            let isLocked = false; 
+                            let isLocked = false;
                             let currentUserID = "";
 
                             function showEditUser(userID) {
@@ -429,10 +431,20 @@
                                         alert("Không tìm thấy người dùng!");
                                         return;
                                     }
+                                    const khungsanpham = document.querySelector(".js-sanpham");
+
+                                    const khungkhachhang = document.querySelector(".js-khachhang");
+
+                                    const khungdonhang = document.querySelector(".js-donhang");
+
+                                    khungsanpham.classList.add("open");
+                                    khungdonhang.classList.add("open");
+                                    khungkhachhang.classList.add("open");
+
+
 
                                     currentUserID = userID;
-                                    console.log(currentUserID);
-
+                                    console.log(document.querySelector("#khungSuaUser input[name='userID']"));
                                     document.querySelector("#khungSuaUser input[name='userID']").value = user.userID;
                                     document.querySelector("#khungSuaUser input[name='firstName']").value = user.firstName;
                                     document.querySelector("#khungSuaUser input[name='lastName']").value = user.lastName;
@@ -466,7 +478,6 @@
 
                             function saveEditUser() {
                                 try {
-                                    console.log(currentUserID);
                                     const firstName = document.querySelector("#khungSuaUser input[name='firstName']").value;
                                     const lastName = document.querySelector("#khungSuaUser input[name='lastName']").value;
                                     const email = document.querySelector("#khungSuaUser input[name='email']").value;
@@ -525,18 +536,18 @@
                         <input type="reset" value="Reset" style="width: 50px; color: black">
                     </div>
                 </form>
-                
+
                 <table class="table-header">
                     <tr>
                         <!-- Theo độ rộng của table content -->
-                        <th title="Sắp xếp" style="width: 3%" >STT</th>
-                        <th title="Sắp xếp" style="width: 7%" >Mã đơn</th>
-                        <th title="Sắp xếp" style="width: 12%" >Khách hàng</th>
-                        <th title="Sắp xếp" style="width: 24%" >Địa chỉ</th>
-                        <th title="Sắp xếp" style="width: 12%" >SDT</th>
-                        <th title="Sắp xếp" style="width: 10%" >Tổng tiền</th>
-                        <th title="Sắp xếp" style="width: 12%" >Ngày giờ</th>
-                        <th title="Sắp xếp" style="width: 10%" >Trạng thái</th>
+                        <th title="Sắp xếp" style="width: 3%">STT</th>
+                        <th title="Sắp xếp" style="width: 7%">Mã đơn</th>
+                        <th title="Sắp xếp" style="width: 12%">Khách hàng</th>
+                        <th title="Sắp xếp" style="width: 24%">Địa chỉ</th>
+                        <th title="Sắp xếp" style="width: 12%">SDT</th>
+                        <th title="Sắp xếp" style="width: 10%">Tổng tiền</th>
+                        <th title="Sắp xếp" style="width: 12%">Ngày giờ</th>
+                        <th title="Sắp xếp" style="width: 10%">Trạng thái</th>
                         <th style="width: 10%">Hành động</th>
                     </tr>
                 </table>
@@ -548,7 +559,8 @@
                 <div style="display: grid; place-items: center;">
                     <nav>
                         <ul class="button_thongke">
-                            <li><a href="#" id="mh" style="pointer-events: none; background-color: gray;">Thống kê mặt hàng</a></li>
+                            <li><a href="#" id="mh" style="pointer-events: none; background-color: gray;">Thống kê mặt
+                                    hàng</a></li>
                             <li><a href="#" id="kh">Thống kê khách hàng</a></li>
                         </ul>
                     </nav>
@@ -561,6 +573,52 @@
         <div class="clear"></div>
         <footer></footer>
     </div>
+
+    <script>
+        let previewSrc;
+
+        function suaSanPham(masp) {
+            // Tìm đối tượng sản phẩm cần sửa
+            let bookList = JSON.parse(localStorage.getItem("products"));
+            let spIndex = bookList.findIndex((sp) => sp.masp === masp);
+            if (spIndex === -1) {
+                alert("Không tìm thấy sản phẩm cần sửa!");
+                return;
+            }
+
+            // Lấy thông tin từ các ô input trong khung sửa
+            const inputs = document.querySelectorAll("#khungSuaSanPham input, #khungSuaSanPham select");
+            const newSP = {
+                masp: inputs[0].value.trim(),
+                tensp: inputs[1].value.trim(),
+                thuonghieu: inputs[2].value.trim(),
+                hinh: previewSrc || bookList[spIndex].hinh, // Ảnh mới hoặc giữ ảnh cũ
+                gia: numToString(stringToNum(inputs[3].value.trim())), // Chuyển đổi giá tiền
+                sosao: parseInt(inputs[4].value.trim()) || 0,
+                nongdo: inputs[5].value.trim(),
+                dungtich: inputs[6].value.trim(),
+            };
+
+            // Kiểm tra hợp lệ
+            if (!newSP.masp || !newSP.tensp || !newSP.gia) {
+                alert("Mã sản phẩm, tên sản phẩm và giá tiền không được để trống!");
+                return;
+            }
+
+            // Cập nhật thông tin vào bookList
+            bookList[spIndex] = newSP;
+
+            // Lưu vào localStorage
+            setbookList(bookList);
+
+            // Cập nhật lại bảng sản phẩm
+            addTableProducts();
+
+            // Đóng khung sửa
+            document.getElementById("khungSuaSanPham").style.transform = "scale(0)";
+            alert("Cập nhật sản phẩm thành công!");
+        }
+    </script>
 </body>
 
 </html>

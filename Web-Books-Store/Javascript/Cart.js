@@ -3,6 +3,7 @@ import * as Bridge from "./Bridge.js";
 import { getProductBooks } from "./Products.js";
 import { formatPrices, hiddenException } from "./Interface.js";
 import { sleep } from "./Navigate.js";
+import { userDetail } from "./Actions.js";
 function updateCartTotal(elementsObj) {
   const cartItems = elementsObj.getCartItems();
   let total = 0;
@@ -321,6 +322,7 @@ function handleCartNavigation() {
 }
 function handleOrderPlacement(elementsObj) {
   const checkoutButton = document.querySelector(".checkout-btn");
+  let loginAccount = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
   if (!checkoutButton) {
     console.warn("Không tìm thấy nút 'checkout-btn'.");
     return;
@@ -376,10 +378,16 @@ function handleOrderPlacement(elementsObj) {
     const userAddress = document.querySelector("#user-address").value.trim();
     const userNote = document.querySelector("#user-note").value.trim();
 
-    if (!userAddress) {
+    if (!userAddress && !loginAccount?.address) {
       alert("Hãy nhập địa chỉ giao hàng.");
       return;
     }
+
+    if (!loginAccount.phone) {
+      alert("Thiếu số điện thoại để liên lạc vui lòng nhập số điện thoại!");
+      userDetail(Bridge.default());
+    }
+
     const voucherCode = document.querySelector("#voucher-code").value.trim();
 
     const Prices = selectedItems.reduce(
