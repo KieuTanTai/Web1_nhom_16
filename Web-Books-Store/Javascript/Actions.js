@@ -89,6 +89,7 @@ function orderInfo() {
      let customer = ordersList.find((order) => order.id_khachhang === loginAccount.userID);
      let container = Bridge.$$(".order-info .block-order-info span");
      container.forEach((block) => {
+          if (!customer) return;
           if (block.classList.contains("order-code")) block.innerHTML = customer.id_donhang;
           if (block.classList.contains("order-time")) block.innerHTML = customer.date;
           if (block.classList.contains("expected-delivery-date"))
