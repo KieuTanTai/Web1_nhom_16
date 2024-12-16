@@ -398,7 +398,7 @@ function storage_to_array() {
 
 // Cập nhật table (số trang về 1)
 function update_table_donhang(flag) {
-  var parent = document.getElementsByClassName("table-content")[3];
+  var parent = document.getElementsByClassName("table-content")[4];
   var children = parent.children;
   Array.from(children).forEach((child) => {
     parent.removeChild(child);
@@ -415,7 +415,7 @@ function update_table_donhang(flag) {
 
 // Cập nhật table (giữ số trang)
 function update_table_donhang_now() {
-  var parent = document.getElementsByClassName("table-content")[3];
+  var parent = document.getElementsByClassName("table-content")[4];
   var children = parent.children;
   Array.from(children).forEach((child) => {
     parent.removeChild(child);
@@ -556,7 +556,7 @@ function add_table_donhang(objData) {
     }
 
     document
-      .getElementsByClassName("table-content")[3]
+      .getElementsByClassName("table-content")[4]
       .appendChild(new_donhang);
   }
 }
@@ -722,7 +722,7 @@ function add_page(data_f) {
              change_page(1);
          });
   }
-  document.getElementsByClassName("table-content")[3].appendChild(page);
+  document.getElementsByClassName("table-content")[4].appendChild(page);
 }
 
 // Chuyển trang
@@ -867,7 +867,7 @@ function xemchitiet(id_donhang) {
      `;
      const closeButton = model_ctdh.querySelector('.close');
      closeButton.addEventListener('click', close_ctdh);
-  document.getElementsByClassName("table-content")[3].appendChild(model_ctdh);
+  document.getElementsByClassName("table-content")[4].appendChild(model_ctdh);
 
   // Chi tiết đơn hàng
   for (let i = 0; i < donhangDetails.length; i++) {
