@@ -100,7 +100,7 @@ function orderInfo() {
                block.innerHTML = customer.dia_chi;
      });
 }
- 
+
 
 // navigate to history tracking
 function historyNavigate(elementsObj) {
@@ -141,7 +141,7 @@ function scriptOrder(customer, detailOrder) {
           year: "numeric",
           hour: "2-digit",
           minute: "2-digit",
-          hour12: false, 
+          hour12: false,
           timeZone: "Asia/Ho_Chi_Minh",
      });
 
@@ -194,19 +194,29 @@ function renderOrder(elementsObj) {
      let ordersList = JSON.parse(localStorage.getItem("donhang"));
      let detailOrders = JSON.parse(localStorage.getItem("chitiet_donhang"));
      let loginAccount = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
-     let customer = ordersList.find((order) => order.id_khachhang === loginAccount.userID);
+     let customer = ordersList.filter((order) => order.id_khachhang === loginAccount.userID);
 
      if (customer && container) {
-          let details = detailOrders.filter((detail) => detail.id_donhang === customer.id_donhang);
+          let details = [];
+          detailOrders.forEach((detail) => {
+               customer.forEach((cus) => {
+                    if (cus.id_donhang === detail.id_donhang) {
+                         let temp = {};
+                         temp.customer = cus;
+                         temp.detail = detail;
+                         details.push(temp);
+                    }
+               })
+          });
           details.forEach((detail) => {
-               let script = scriptOrder(customer, detail);
+               let script = scriptOrder(detail.customer, detail.detail);
                let removeBtn = script.querySelector(".remove-btn");
                removeBtn.addEventListener("click", () => {
                     container.removeChild(removeBtn.offsetParent);
                     // reduce array of detail order on local
                     detailOrders = detailOrders.filter((element) => element.id_donhang !== detail.id_donhang || element.id_sanpham !== detail.id_sanpham);
                     if (detailOrders.filter((element) => element.id_donhang === customer.id_donhang).length === 0)
-                         ordersList = ordersList.filter((order) => order.id_khachhang !== "KH012");
+                         ordersList = ordersList.filter((order) => order.id_khachhang !== loginAccount.userID);
                     // update arrays
                     localStorage.setItem("donhang", JSON.stringify(ordersList));
                     localStorage.setItem("chitiet_donhang", JSON.stringify(detailOrders));
@@ -240,13 +250,13 @@ function blankOrder(elementsObj) {
 function addDaysToDate(dateString, daysToAdd) {
      const date = new Date(dateString); // Chuyển chuỗi thành đối tượng Date
      if (isNaN(date)) {
-       throw new Error("Invalid date format");
+          throw new Error("Invalid date format");
      }
-   
+
      date.setDate(date.getDate() + daysToAdd); // Thêm 3 ngày vào ngày hiện tại
      return date; // Trả về đối tượng Date mới
-   }
-   
+}
+
 
 // set quantity box on detail product
 function setQuantityBox(elementsObj) {
@@ -417,7 +427,7 @@ function userDetail(elementsObj) {
      // for checking account have order or not
      let ordersList = JSON.parse(localStorage.getItem("donhang"));
      if (!ordersList) return;
-     
+
      let loginAccount = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
      let customer = ordersList.find((order) => order.id_khachhang === loginAccount.userID);
 
@@ -469,15 +479,15 @@ function changeInfoUser(elementsObj) {
           if (fields.getAttribute("id") === "user-password")
                fields.value = accountLogin.password;
           if (fields.getAttribute("id") === "user-phone")
-               fields.value = accountLogin.phone;
+               fields.value = accountLogin.phone ? accountLogin.phone : "";
           if (fields.getAttribute("id") === "user-address")
-               fields.value = accountLogin.address;
+               fields.value = accountLogin.address ? accountLogin.address : "";
      });
 
      // new info object
      let newInfo = {
           userID: accountLogin.userID,
-          password: accountLogin.password, 
+          password: accountLogin.password,
      };
      // edit btn 
      editInfoBtn.addEventListener("click", Bridge.throttle(() => {
@@ -491,7 +501,7 @@ function changeInfoUser(elementsObj) {
                inputFields.forEach((fields) => {
                     // get new info
                     if (fields.getAttribute("id") === "user-last-name")
-                         newInfo.lastName =  fields.value;
+                         newInfo.lastName = fields.value;
                     if (fields.getAttribute("id") === "user-first-name")
                          newInfo.firstName = fields.value;
                     if (fields.getAttribute("id") === "user-email")

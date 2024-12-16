@@ -94,34 +94,34 @@ function handleCheckboxChange(elementsObj) {
   const paymentOptions = document.querySelectorAll('input[name="payment-option"]');
 
   cartItems.forEach((item) => {
-      const checkbox = item.querySelector('input[type="checkbox"]');
-      checkbox.addEventListener("change", () => {
-          const isAnyProductSelected = Array.from(cartItems).some((item) => {
-              const checkbox = item.querySelector('input[type="checkbox"]');
-              return checkbox && checkbox.checked; 
-          });
-
-          if (!isAnyProductSelected) {
-              if (qrCodeMomo) qrCodeMomo.style.display = "none";
-              if (qrCodeATM) qrCodeATM.style.display = "none";
-          } else {
-
-              const selectedPaymentOption = document.querySelector(
-                  'input[name="payment-option"]:checked'
-              );
-              if (selectedPaymentOption) {
-                  if (selectedPaymentOption.id === "payment-option-2") {
-                      qrCodeMomo.style.display = "block";
-                      qrCodeATM.style.display = "none";
-                  } else if (selectedPaymentOption.id === "payment-option-3") {
-                      qrCodeATM.style.display = "block";
-                      qrCodeMomo.style.display = "none";
-                  }
-              }
-          }
-
-          updateCartTotal(elementsObj);
+    const checkbox = item.querySelector('input[type="checkbox"]');
+    checkbox.addEventListener("change", () => {
+      const isAnyProductSelected = Array.from(cartItems).some((item) => {
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        return checkbox && checkbox.checked;
       });
+
+      if (!isAnyProductSelected) {
+        if (qrCodeMomo) qrCodeMomo.style.display = "none";
+        if (qrCodeATM) qrCodeATM.style.display = "none";
+      } else {
+
+        const selectedPaymentOption = document.querySelector(
+          'input[name="payment-option"]:checked'
+        );
+        if (selectedPaymentOption) {
+          if (selectedPaymentOption.id === "payment-option-2") {
+            qrCodeMomo.style.display = "block";
+            qrCodeATM.style.display = "none";
+          } else if (selectedPaymentOption.id === "payment-option-3") {
+            qrCodeATM.style.display = "block";
+            qrCodeMomo.style.display = "none";
+          }
+        }
+      }
+
+      updateCartTotal(elementsObj);
+    });
   });
 }
 
@@ -134,35 +134,35 @@ function handleSelectAllCheckbox(elementsObj) {
   const paymentOptions = document.querySelectorAll('input[name="payment-option"]');
 
   selectAllCheckbox.addEventListener("change", () => {
-      const isChecked = selectAllCheckbox.checked;
+    const isChecked = selectAllCheckbox.checked;
 
-      cartItems.forEach((item) => {
-          const checkbox = item.querySelector('input[type="checkbox"]');
-          if (checkbox) checkbox.checked = isChecked;
-      });
+    cartItems.forEach((item) => {
+      const checkbox = item.querySelector('input[type="checkbox"]');
+      if (checkbox) checkbox.checked = isChecked;
+    });
 
-      const isAnyProductSelected = isChecked;
+    const isAnyProductSelected = isChecked;
 
-      if (!isAnyProductSelected) {
-          if (qrCodeMomo) qrCodeMomo.style.display = "none";
-          if (qrCodeATM) qrCodeATM.style.display = "none";
-      } else {
+    if (!isAnyProductSelected) {
+      if (qrCodeMomo) qrCodeMomo.style.display = "none";
+      if (qrCodeATM) qrCodeATM.style.display = "none";
+    } else {
 
-          const selectedPaymentOption = document.querySelector(
-              'input[name="payment-option"]:checked'
-          );
-          if (selectedPaymentOption) {
-              if (selectedPaymentOption.id === "payment-option-2") {
-                  qrCodeMomo.style.display = "block";
-                  qrCodeATM.style.display = "none";
-              } else if (selectedPaymentOption.id === "payment-option-3") {
-                  qrCodeATM.style.display = "block";
-                  qrCodeMomo.style.display = "none";
-              }
-          }
+      const selectedPaymentOption = document.querySelector(
+        'input[name="payment-option"]:checked'
+      );
+      if (selectedPaymentOption) {
+        if (selectedPaymentOption.id === "payment-option-2") {
+          qrCodeMomo.style.display = "block";
+          qrCodeATM.style.display = "none";
+        } else if (selectedPaymentOption.id === "payment-option-3") {
+          qrCodeATM.style.display = "block";
+          qrCodeMomo.style.display = "none";
+        }
       }
+    }
 
-      updateCartTotal(elementsObj);
+    updateCartTotal(elementsObj);
   });
 }
 
@@ -225,9 +225,9 @@ function displayCartItems(elementsObj) {
   cart.forEach((item, index) => {
     const priceAfterDiscount =
       typeof item.price === "number" &&
-      typeof item.sale === "number" &&
-      item.sale >= 0 &&
-      item.sale <= 1
+        typeof item.sale === "number" &&
+        item.sale >= 0 &&
+        item.sale <= 1
         ? Math.round(item.price * (1 - item.sale))
         : item.price || 0;
     const totalPricePerItem = priceAfterDiscount * item.quantity || 0;
@@ -239,9 +239,8 @@ function displayCartItems(elementsObj) {
                 </div>
                 <div class="grid-col col-l-10 col-m-10 col-s-10 no-gutter flex align-center">
                     <div class="info-product-cart padding-left-8 grid-col col-l-6 col-m-12 col-s-12">
-                        <p class="font-bold capitalize margin-bottom-16">${
-                          item.name
-                        }</p>
+                        <p class="font-bold capitalize margin-bottom-16">${item.name
+      }</p>
                         <div class="block-product-price">
                             <span class="new-price font-bold padding-right-8 price">${priceAfterDiscount}</span>
                             <del class="price old-price">${item.price || 0}</del>
@@ -382,23 +381,23 @@ function handleDefaultAddressCheckbox() {
   const userAddressInput = document.querySelector("#user-address");
 
   if (!checkbox || !userAddressInput) {
-      console.warn("Không tìm thấy checkbox hoặc input địa chỉ.");
-      return;
+    console.warn("Không tìm thấy checkbox hoặc input địa chỉ.");
+    return;
   }
 
   checkbox.addEventListener("change", () => {
-      const user = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
+    const user = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
 
-      if (checkbox.checked) {
-          if (user && user.address) {
-              userAddressInput.value = user.address;
-          } else {
-              alert("Không tìm thấy địa chỉ mặc định của người dùng. Vui lòng kiểm tra lại thông tin đăng nhập.");
-              checkbox.checked = false;
-          }
+    if (checkbox.checked) {
+      if (user && user.address) {
+        userAddressInput.value = user.address;
       } else {
-          userAddressInput.value = ""; 
+        alert("Không tìm thấy địa chỉ mặc định của người dùng. Vui lòng kiểm tra lại thông tin đăng nhập.");
+        checkbox.checked = false;
       }
+    } else {
+      userAddressInput.value = "";
+    }
   });
 }
 
@@ -406,32 +405,32 @@ function handleDefaultAddressCheckbox() {
 
 function createDonHang(orderId, userId, userAddress, totalOrderPrice, formattedDate, phone, userName, status) {
   return {
-      date: formattedDate,
-      dia_chi: userAddress,
-      id_donhang: orderId,
-      id_khachhang: userId,
-      ten_khach_hang: userName,
-      phonenumber: phone,
-      tong: totalOrderPrice,
-      trang_thai: status,
+    id_donhang: orderId,
+    id_khachhang: userId,
+    date: formattedDate,
+    ten_khach_hang: userName,
+    dia_chi: userAddress,
+    phonenumber: phone,
+    tong: totalOrderPrice,
+    trang_thai: status,
   };
 }
 
 function createChiTietDonHang(orderId, selectedItems, totalOrderPrice) {
   const products = getProductBooks();
   return selectedItems.map((item) => {
-      const product = products.find((prod) => {
-          const normalize = (str) => str.trim().toLowerCase();
-          return normalize(prod.name) === normalize(item.name);
-      });
-      return {
-          don_gia: item.price.toString(),
-          id_donhang: orderId,
-          id_sanpham: product?.productID || "", 
-          sanpham: product?.name || item.name, 
-          sl: item.quantity.toString(),
-          tong: totalOrderPrice.toString(),
-      };
+    const product = products.find((prod) => {
+      const normalize = (str) => str.trim().toLowerCase();
+      return normalize(prod.name) === normalize(item.name);
+    });
+    return {
+      id_donhang: orderId,
+      id_sanpham: product?.productID || "",
+      sanpham: product?.name || item.name,
+      don_gia: item.price.toString(),
+      sl: item.quantity.toString(),
+      tong: totalOrderPrice.toString(),
+    };
   });
 }
 
@@ -439,142 +438,142 @@ function handleOrderPlacement(elementsObj) {
   const checkoutButton = document.querySelector(".checkout-btn");
   let accountLogin = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
   if (!checkoutButton) {
-      console.warn("Không tìm thấy nút 'checkout-btn'.");
-      return;
+    console.warn("Không tìm thấy nút 'checkout-btn'.");
+    return;
   }
 
   checkoutButton.addEventListener("click", () => {
-      const cartItems = document.querySelectorAll(".block-product");
-      if (cartItems.length === 0) {
-          alert("Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm trước khi đặt hàng!");
-          return;
-      }
+    const cartItems = document.querySelectorAll(".block-product");
+    if (cartItems.length === 0) {
+      alert("Giỏ hàng của bạn đang trống. Hãy thêm sản phẩm trước khi đặt hàng!");
+      return;
+    }
 
-      if (!sessionStorage.getItem("hasLogin")) {
-          alert("Vui lòng đăng nhập");
-          return;
-      }
+    if (!sessionStorage.getItem("hasLogin")) {
+      alert("Vui lòng đăng nhập");
+      return;
+    }
 
-      const selectedItems = Array.from(cartItems)
-          .filter((item) => {
-              const checkbox = item.querySelector('input[type="checkbox"]');
-              return checkbox && checkbox.checked;
-          })
-          .map((item) => {
-              const priceElement = item.querySelector(".price");
-              const quantityElement = item.querySelector(".quantity-cart");
-              const rawPrice = priceElement
-                  ? priceElement.innerText.replace(/\D/g, "")
-                  : "0";
-              const price = parseFloat(rawPrice) || 0;
-              const quantity = quantityElement
-                  ? parseInt(quantityElement.value, 10)
-                  : 1;
-              const name = item
-                  .querySelector(".info-product-cart p")
-                  .innerText.trim();
-              const productID = item.dataset.productId; // Assume productID is stored as a data attribute
-              const image = item.querySelector("img").src;
-              return { name, price, quantity, image, productID };
-          });
+    const selectedItems = Array.from(cartItems)
+      .filter((item) => {
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        return checkbox && checkbox.checked;
+      })
+      .map((item) => {
+        const priceElement = item.querySelector(".price");
+        const quantityElement = item.querySelector(".quantity-cart");
+        const rawPrice = priceElement
+          ? priceElement.innerText.replace(/\D/g, "")
+          : "0";
+        const price = parseFloat(rawPrice) || 0;
+        const quantity = quantityElement
+          ? parseInt(quantityElement.value, 10)
+          : 1;
+        const name = item
+          .querySelector(".info-product-cart p")
+          .innerText.trim();
+        const productID = item.dataset.productId; // Assume productID is stored as a data attribute
+        const image = item.querySelector("img").src;
+        return { name, price, quantity, image, productID };
+      });
 
-      if (selectedItems.length === 0) {
-          alert("Bạn chưa chọn sản phẩm nào để đặt hàng.");
-          return;
-      }
+    if (selectedItems.length === 0) {
+      alert("Bạn chưa chọn sản phẩm nào để đặt hàng.");
+      return;
+    }
 
-      const paymentOption = document.querySelector(
-          'input[name="payment-option"]:checked'
-      );
-      if (!paymentOption) {
-          alert("Hãy chọn một phương thức thanh toán.");
-          return;
-      }
+    const paymentOption = document.querySelector(
+      'input[name="payment-option"]:checked'
+    );
+    if (!paymentOption) {
+      alert("Hãy chọn một phương thức thanh toán.");
+      return;
+    }
 
-      const userAddress = document.querySelector("#user-address").value.trim();
-      const userNote = document.querySelector("#user-note").value.trim();
+    const userAddress = document.querySelector("#user-address").value.trim();
+    const userNote = document.querySelector("#user-note").value.trim();
 
-      if (!userAddress && !accountLogin.address) {
-          alert("Hãy nhập địa chỉ giao hàng.");
-          return;
-      }
+    if (!userAddress && !accountLogin.address) {
+      alert("Hãy nhập địa chỉ giao hàng.");
+      return;
+    }
 
-      if (!accountLogin.phone) {
-        alert("chưa nhập số điện thoại liên lạc.");
-        userDetail(Bridge.default());
-      }
+    if (!accountLogin.phone) {
+      alert("chưa nhập số điện thoại liên lạc.");
+      userDetail(Bridge.default());
+    }
 
-      const voucherCode = document.querySelector("#voucher-code").value.trim();
+    const voucherCode = document.querySelector("#voucher-code").value.trim();
 
-      const Prices = selectedItems.reduce(
-          (total, item) => total + item.price * item.quantity,
-          0
-      );
-      const shippingFee = 10000;
-      const shippingDiscount = 5250;
-      const voucherDiscount = 3000;
+    const Prices = selectedItems.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    const shippingFee = 10000;
+    const shippingDiscount = 5250;
+    const voucherDiscount = 3000;
 
-      const totalOrderPrice =
-          Prices + shippingFee - shippingDiscount - voucherDiscount;
-      const currentDate = new Date();
-      const formattedDate = `${String(currentDate.getMonth() + 1).padStart(2, "0")}/${String(
-          currentDate.getDate()
-      ).padStart(2, "0")}/${String(currentDate.getFullYear()).slice(-2)} ${currentDate.toLocaleTimeString("en-US")}`;
-      const orderId = `DH${String(Date.now()).slice(-5)}`;
-      const user = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
-      const userName = user ? `${user.firstName} ${user.lastName}` : "Khách hàng";
-      const status = userName === "Khách hàng" ? "2" : "1";
-      let userId, phone;
-        if (user?.userID) {
-            userId = user.userID;
-            phone = user.phone;
-        } else {
-            userId = generateId(users);
-            phone = generateId(users);
-        }
+    const totalOrderPrice =
+      Prices + shippingFee - shippingDiscount - voucherDiscount;
+    const currentDate = new Date();
+    const formattedDate = `${String(currentDate.getMonth() + 1).padStart(2, "0")}/${String(
+      currentDate.getDate()
+    ).padStart(2, "0")}/${String(currentDate.getFullYear()).slice(-2)} ${currentDate.toLocaleTimeString("en-US")}`;
+    const orderId = `DH${String(Date.now()).slice(-5)}`;
+    const user = JSON.parse(sessionStorage.getItem("hasLoginAccount"));
+    const userName = user ? `${user.firstName} ${user.lastName}` : "Khách hàng";
+    const status = userName === "Khách hàng" ? "2" : "1";
+    let userId, phone;
+    if (user?.userID) {
+      userId = user.userID;
+      phone = user.phone;
+    } else {
+      userId = generateId(user);
+      phone = generateId(user);
+    }
 
-        if (!phone || phone === "Unknown") {
-          alert("Số điện thoại không hợp lệ. Vui lòng cập nhật thông tin của bạn trước khi đặt hàng.");
-          return;
-      }
+    if (!phone || phone === "Unknown") {
+      alert("Số điện thoại không hợp lệ. Vui lòng cập nhật thông tin của bạn trước khi đặt hàng.");
+      return;
+    }
 
-      // Create donhang and chitiet_donhang
-      const donHang = createDonHang(orderId, userId, userAddress, totalOrderPrice, formattedDate, phone, userName, status);
-      const chiTietDonHang = createChiTietDonHang(orderId, selectedItems, totalOrderPrice);
+    // Create donhang and chitiet_donhang
+    const donHang = createDonHang(orderId, userId, userAddress, totalOrderPrice, formattedDate, phone, userName, status);
+    const chiTietDonHang = createChiTietDonHang(orderId, selectedItems, totalOrderPrice);
 
-      // Save to localStorage
-      let orders = JSON.parse(localStorage.getItem("donhang")) || [];
-      orders.push(donHang);
-      localStorage.setItem("donhang", JSON.stringify(orders));
+    // Save to localStorage
+    let orders = JSON.parse(localStorage.getItem("donhang")) || [];
+    orders.push(donHang);
+    localStorage.setItem("donhang", JSON.stringify(orders));
 
-      let orderDetails = JSON.parse(localStorage.getItem("chitiet_donhang")) || [];
-      orderDetails = orderDetails.concat(chiTietDonHang);
-      localStorage.setItem("chitiet_donhang", JSON.stringify(orderDetails));
+    let orderDetails = JSON.parse(localStorage.getItem("chitiet_donhang")) || [];
+    orderDetails = orderDetails.concat(chiTietDonHang);
+    localStorage.setItem("chitiet_donhang", JSON.stringify(orderDetails));
 
-      // Update cart
-      const updatedCart = Array.from(cartItems)
-          .filter((item) => {
-              const checkbox = item.querySelector('input[type="checkbox"]');
-              return !checkbox || !checkbox.checked;
-          })
-          .map((item) => {
-              const name = item.querySelector(".info-product-cart p").innerText.trim();
-              const priceElement = item.querySelector(".price");
-              const quantityElement = item.querySelector(".quantity-cart");
-              const rawPrice = priceElement ? priceElement.innerText.replace(/\D/g, "") : "0";
-              const price = parseFloat(rawPrice) || 0;
-              const quantity = quantityElement ? parseInt(quantityElement.value, 10) : 1;
-              const image = item.querySelector("img").src;
-              return { name, price, quantity, image };
-          });
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-      updateCartCount();
-      displayCartItems(elementsObj);
-      handleQuantityChange(elementsObj);
-      handleCheckboxChange(elementsObj);
-      handleSelectAllCheckbox(elementsObj);
-      updateCartTotal(elementsObj);
-      alert("Đặt hàng thành công!");
+    // Update cart
+    const updatedCart = Array.from(cartItems)
+      .filter((item) => {
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        return !checkbox || !checkbox.checked;
+      })
+      .map((item) => {
+        const name = item.querySelector(".info-product-cart p").innerText.trim();
+        const priceElement = item.querySelector(".price");
+        const quantityElement = item.querySelector(".quantity-cart");
+        const rawPrice = priceElement ? priceElement.innerText.replace(/\D/g, "") : "0";
+        const price = parseFloat(rawPrice) || 0;
+        const quantity = quantityElement ? parseInt(quantityElement.value, 10) : 1;
+        const image = item.querySelector("img").src;
+        return { name, price, quantity, image };
+      });
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    updateCartCount();
+    displayCartItems(elementsObj);
+    handleQuantityChange(elementsObj);
+    handleCheckboxChange(elementsObj);
+    handleSelectAllCheckbox(elementsObj);
+    updateCartTotal(elementsObj);
+    alert("Đặt hàng thành công!");
   });
 }
 
@@ -596,19 +595,19 @@ function attachAddToCartInDetails() {
       const productName = document.querySelector(".product-title h1")?.textContent.trim();
       const productPrice = parseFloat(document.querySelector(".new-price")?.textContent.replace(/\D/g, "")) || 0;
       const productImage = document.querySelector(".product-image img")?.src;
-  
+
       if (!productName || !productPrice || !productImage) {
         console.error("Không thể lấy thông tin sản phẩm từ Product Details.");
         return;
       }
-  
+
       const product = {
         name: productName,
         price: productPrice,
         img: productImage,
         quantity: 1,
       };
-  
+
       addToCart(productName);
       increaseCartCount();
     }), 200, "add-to-cart");
@@ -650,30 +649,30 @@ function handlePaymentOptionChange() {
   const paymentOptions = document.querySelectorAll('input[name="payment-option"]');
 
   paymentOptions.forEach((option) => {
-      option.addEventListener("change", () => {
-          const cartItems = document.querySelectorAll(".block-product");
-          const isAnyProductSelected = Array.from(cartItems).some((item) => {
-              const checkbox = item.querySelector('input[type="checkbox"]');
-              return checkbox && checkbox.checked; 
-          });
-
-          if (!isAnyProductSelected) {
-              if (qrCodeMomo) qrCodeMomo.style.display = "none";
-              if (qrCodeATM) qrCodeATM.style.display = "none";
-              return;
-          }
-
-          if (option.id === "payment-option-2") {
-              qrCodeMomo.style.display = "block";
-              qrCodeATM.style.display = "none";
-          } else if (option.id === "payment-option-3") {
-              qrCodeATM.style.display = "block";
-              qrCodeMomo.style.display = "none";
-          } else {
-              qrCodeMomo.style.display = "none";
-              qrCodeATM.style.display = "none";
-          }
+    option.addEventListener("change", () => {
+      const cartItems = document.querySelectorAll(".block-product");
+      const isAnyProductSelected = Array.from(cartItems).some((item) => {
+        const checkbox = item.querySelector('input[type="checkbox"]');
+        return checkbox && checkbox.checked;
       });
+
+      if (!isAnyProductSelected) {
+        if (qrCodeMomo) qrCodeMomo.style.display = "none";
+        if (qrCodeATM) qrCodeATM.style.display = "none";
+        return;
+      }
+
+      if (option.id === "payment-option-2") {
+        qrCodeMomo.style.display = "block";
+        qrCodeATM.style.display = "none";
+      } else if (option.id === "payment-option-3") {
+        qrCodeATM.style.display = "block";
+        qrCodeMomo.style.display = "none";
+      } else {
+        qrCodeMomo.style.display = "none";
+        qrCodeATM.style.display = "none";
+      }
+    });
   });
 }
 
@@ -682,4 +681,4 @@ function handlePaymentOptionChange() {
 
 
 export { addToCart, attachAddToCartEvents, increaseCartCount, displayCartItems, updateCartCount, updateCartTotal, handleOrderPlacement, attachAddToCartInDetails, handlePaymentOptionChange };
-export { handleQuantityChange, handleCheckboxChange, handleSelectAllCheckbox, handleRemoveItem, handleCartNavigation, handleCategoryNavigation, handleDefaultAddressCheckbox};
+export { handleQuantityChange, handleCheckboxChange, handleSelectAllCheckbox, handleRemoveItem, handleCartNavigation, handleCategoryNavigation, handleDefaultAddressCheckbox };
